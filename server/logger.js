@@ -15,9 +15,15 @@ const logger = {
     console.error(chalk.red(err));
   },
 
+  graphQL: (names) => {
+    console.log(`GraphQL Server started! ${chalk.green('✓')}\n`);
+
+    console.log(`${chalk.bold('Contentful content types prepared: ')}${names}\n`);
+  },
+
   // Called when express.js app starts on given port w/o errors
   appStarted: (port, host, tunnelStarted) => {
-    console.log(`Server started ! ${chalk.green('✓')}`);
+    console.log(`Web Server started! ${chalk.green('✓')}`);
 
     // If the tunnel started, log that and the URL it's available at
     if (tunnelStarted) {

@@ -1,5 +1,8 @@
 /* eslint consistent-return:0 */
 
+// Load in our environment variables
+require('dotenv').config();
+
 const express = require('express');
 const logger = require('./logger');
 
