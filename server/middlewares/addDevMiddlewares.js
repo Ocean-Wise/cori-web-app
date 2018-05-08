@@ -23,7 +23,6 @@ function createWebpackMiddleware(compiler, publicPath) {
 }
 
 module.exports = function addDevMiddlewares(app, webpackConfig) {
-
   // Create GraphQL client for our Contentful space
   const client = cfGraphql.createClient({ spaceId, cdaToken, cmaToken });
   // Get the content types in our Contentful space
@@ -37,7 +36,7 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
   .then(cfGraphql.createSchema)
   .then((schema) => startServer(client, schema))
   .catch((fail) => {
-    console.log(fail);
+    console.log(fail); // eslint-disable-line
   });
 
   // Start the server to serve both GraphQL and our frontend application
