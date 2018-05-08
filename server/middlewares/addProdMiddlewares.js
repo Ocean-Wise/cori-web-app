@@ -29,7 +29,7 @@ module.exports = function addProdMiddlewares(app, options) {
   .then(cfGraphql.createSchema)
   .then((schema) => startServer(client, schema))
   .catch((fail) => {
-    console.log(fail);
+    console.log(fail); // eslint-disable-line
   });
 
   // Start the GraphQL server
