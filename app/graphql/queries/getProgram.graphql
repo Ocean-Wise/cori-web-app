@@ -1,0 +1,23 @@
+#import "../fragments/programTeaser.graphql"
+#import "../fragments/projectTeaser.graphql"
+
+query Program($slug: String!) {
+  programs(q: $slug) {
+    ...ProgramTeaser
+    layout {
+      contentModules {
+        sys {
+          id
+          contentTypeId
+        }
+      }
+    }
+    initiatives {
+      title
+      slug
+      projects {
+        ...ProjectTeaser
+      }
+    }
+  }
+}

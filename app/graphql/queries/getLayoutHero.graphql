@@ -1,0 +1,9 @@
+query LayoutHero($heroId: ID!) {
+  layoutHero(id: $heroId) {
+    title
+    image {
+      title
+      url
+    }
+  }
+}

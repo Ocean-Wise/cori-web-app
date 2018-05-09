@@ -1,0 +1,9 @@
+#import "../fragments/personInfo.graphql"
+
+query ProjectMemberQuery($projectName: String!) {
+  projects(q: $projectName) {
+    members {
+      ...PersonInfo
+    }
+  }
+}

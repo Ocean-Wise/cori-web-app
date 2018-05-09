@@ -1,0 +1,9 @@
+fragment ProjectTeaser on Project {
+  projectTitle
+  slug
+  type
+  externalLink
+  pdf {
+    url
+  }
+}

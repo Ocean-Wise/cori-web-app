@@ -56,11 +56,11 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
               <FormattedMessage {...messages.home} />
             </Button>
           </Link>
-          <A href="http://www.material-ui.com/#/components/app-bar/">
-            <Button id="invert-test" inverted>
-              Material UI
+          <Link to="/team">
+            <Button id="team">
+              Team
             </Button>
-          </A>
+          </Link>
         </NavBar>
       </div>
     );

@@ -52,25 +52,25 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
     const opts = { version: true, timeline: true, detailedErrors: false };
     const ext = cfGraphql.helpers.expressGraphqlExtension(client, schema, opts);
     app.use('/graphql', graphqlHTTP(ext));
-  }
 
-  const compiler = webpack(webpackConfig);
-  const middleware = createWebpackMiddleware(compiler, webpackConfig.output.publicPath);
+    const compiler = webpack(webpackConfig);
+    const middleware = createWebpackMiddleware(compiler, webpackConfig.output.publicPath);
 
-  app.use(middleware);
-  app.use(webpackHotMiddleware(compiler));
+    app.use(middleware);
+    app.use(webpackHotMiddleware(compiler));
 
-  // Since webpackDevMiddleware uses memory-fs internally to store build
-  // artifacts, we use it instead
-  const fs = middleware.fileSystem;
+    // Since webpackDevMiddleware uses memory-fs internally to store build
+    // artifacts, we use it instead
+    const fs = middleware.fileSystem;
 
-  app.get('/^(?!/graph.*).*', (req, res) => {
-    fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
-      if (err) {
-        res.sendStatus(404);
-      } else {
-        res.send(file.toString());
-      }
+    app.get('*', (req, res) => {
+      fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
+        if (err) {
+          res.sendStatus(404);
+        } else {
+          res.send(file.toString());
+        }
+      });
     });
-  });
+  }
 };

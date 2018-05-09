@@ -18,6 +18,8 @@ import createHistory from 'history/createBrowserHistory';
 import 'sanitize.css/sanitize.css';
 import throttle from 'lodash/throttle';
 import { ThemeProvider } from 'styled-components';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
 
 // Import root app
 import App from 'containers/App';
@@ -57,6 +59,9 @@ import { translationMessages } from './i18n';
 import './styles/global-styles';
 import theme from './styles/theme';
 
+// Set up the Apollo client to interface with our GraphQL endpoint
+const client = new ApolloClient({ uri: 'http://172.19.1.14:3000/graphql' });
+
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
 const openSansObserver = new FontFaceObserver('Open Sans', {});
@@ -83,15 +88,17 @@ const MOUNT_NODE = document.getElementById('app');
 
 const render = (messages) => {
   ReactDOM.render(
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <LanguageProvider messages={messages}>
-          <ConnectedRouter history={history}>
-            <App />
-          </ConnectedRouter>
-        </LanguageProvider>
-      </ThemeProvider>
-    </Provider>,
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <LanguageProvider messages={messages}>
+            <ConnectedRouter history={history}>
+              <App />
+            </ConnectedRouter>
+          </LanguageProvider>
+        </ThemeProvider>
+      </Provider>
+    </ApolloProvider>,
     MOUNT_NODE
   );
 };

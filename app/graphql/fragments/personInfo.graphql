@@ -1,0 +1,9 @@
+fragment PersonInfo on Person {
+  first
+  last
+  honorifictitle
+  image {
+    title
+    url
+  }
+}

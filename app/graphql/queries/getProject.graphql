@@ -1,0 +1,15 @@
+#import "../fragments/projectTeaser.graphql"
+
+query Project($slug: String!) {
+  projects(q: $slug) {
+    ...ProjectTeaser
+    layout {
+      contentModules {
+        sys {
+          id
+          contentTypeId
+        }
+      }
+    }
+  }
+}
