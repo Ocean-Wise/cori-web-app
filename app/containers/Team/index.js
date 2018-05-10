@@ -24,7 +24,7 @@ import reducer from './reducer';
 
 export class Team extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const MemberComponent = R.isEmpty(this.props.match.params) ? <TeamMembers /> : <ProjectMembers slug={this.props.match.params.projectName} />;
+    const MemberComponent = R.isEmpty(this.props.match.params) ? <TeamMembers /> : <ProjectMembers slug={this.props.match.params.slug} />;
     return (
       <div>
         <Helmet>
@@ -40,7 +40,7 @@ export class Team extends React.PureComponent { // eslint-disable-line react/pre
 
 Team.propTypes = {
   match: PropTypes.object,
-  dispatch: PropTypes.func.isRequired,
+  // dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

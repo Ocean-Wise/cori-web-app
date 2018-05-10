@@ -41,7 +41,7 @@ export default function App() {
         </Helmet>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/team/:projectName" component={Team} />
+          <Route path="/team/:slug" component={Team} />
           <Route path="/team" component={Team} />
           <Route path="/research/:slug" component={ResearchArea} />
           <Route path="/program/:slug" component={Program} />

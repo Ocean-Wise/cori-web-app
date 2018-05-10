@@ -13,7 +13,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
-import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/createBrowserHistory';
 import 'sanitize.css/sanitize.css';
 import throttle from 'lodash/throttle';
@@ -61,17 +60,6 @@ import theme from './styles/theme';
 
 // Set up the Apollo client to interface with our GraphQL endpoint
 const client = new ApolloClient({ uri: 'http://172.19.1.14:3000/graphql' });
-
-// Observe loading of Open Sans (to remove open sans, remove the <link> tag in
-// the index.html file and this observer)
-const openSansObserver = new FontFaceObserver('Open Sans', {});
-
-// When Open Sans is loaded, add a font-family using Open Sans to the body
-openSansObserver.load().then(() => {
-  document.body.classList.add('fontLoaded');
-}, () => {
-  document.body.classList.remove('fontLoaded');
-});
 
 // Create redux store with history
 const initialState = loadState(); // Load the state from Redux local storage as the initial state

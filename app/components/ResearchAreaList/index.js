@@ -11,7 +11,6 @@ import { graphql } from 'react-apollo';
 import getAllResearchAreas from 'graphql/queries/getAllResearchAreas.graphql';
 
 function ResearchAreaList({ data: { researchAreas } }) {
-  console.log(researchAreas);
   let links;
   try {
     links = researchAreas.map((area, i) => { // eslint-disable-line

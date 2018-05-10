@@ -34,7 +34,7 @@ export class ResearchArea extends React.PureComponent { // eslint-disable-line r
 }
 
 ResearchArea.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  // dispatch: PropTypes.func.isRequired,
   match: PropTypes.object,
 };
 

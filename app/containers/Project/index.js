@@ -13,8 +13,7 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import ProjectContent from 'components/ProjectContent';
-import ProjectMembers from 'components/ProjectMembers';
+// import ProjectMembers from 'components/ProjectMembers';
 
 import injectReducer from 'utils/injectReducer';
 import makeSelectProject from './selectors';
@@ -29,7 +28,6 @@ export class Project extends React.PureComponent { // eslint-disable-line react/
           <title>Project</title>
           <meta name="description" content="Description of Project" />
         </Helmet>
-        <ProjectContent slug={this.props.match.params.slug} />
         <Link to={`/team/${this.props.match.params.slug}`}>
           <h3>View our team</h3>
         </Link>
@@ -40,7 +38,7 @@ export class Project extends React.PureComponent { // eslint-disable-line react/
 }
 
 Project.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  // dispatch: PropTypes.func.isRequired,
   match: PropTypes.object,
 };
 
