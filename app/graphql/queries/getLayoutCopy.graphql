@@ -1,7 +1,0 @@
-query LayoutCopy($copyId: ID!) {
-  layoutCopy(id: $copyId) {
-    title
-    headline
-    copy
-  }
-}

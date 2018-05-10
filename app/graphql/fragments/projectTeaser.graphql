@@ -1,6 +1,7 @@
 fragment ProjectTeaser on Project {
   projectTitle
   slug
+  hero
   type
   externalLink
   pdf {

@@ -12,6 +12,8 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
+import ResearchAreaList from 'components/ResearchAreaList';
+
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import Header from 'components/Header';
@@ -43,6 +45,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
           <CenteredSection>
             <h1>Simple example functionality</h1>
             <h2>Our Research:</h2>
+            <ResearchAreaList />
           </CenteredSection>
         </Wrapper>
       </article>

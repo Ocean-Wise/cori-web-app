@@ -1,4 +1,5 @@
 fragment ProgramTeaser on Program {
   title
   slug
+  hero
 }

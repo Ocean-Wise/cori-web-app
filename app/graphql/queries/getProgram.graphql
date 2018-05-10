@@ -4,14 +4,7 @@
 query Program($slug: String!) {
   programs(q: $slug) {
     ...ProgramTeaser
-    layout {
-      contentModules {
-        sys {
-          id
-          contentTypeId
-        }
-      }
-    }
+    copy
     initiatives {
       title
       slug

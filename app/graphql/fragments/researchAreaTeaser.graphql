@@ -1,4 +1,5 @@
 fragment ResearchAreaTeaser on ResearchArea {
   title
   slug
+  hero
 }

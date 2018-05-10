@@ -1,20 +1,16 @@
 #import "../fragments/researchAreaTeaser.graphql"
 #import "../fragments/programTeaser.graphql"
+#import "../fragments/projectTeaser.graphql"
 
 query ResearchArea($area: String!) {
   researchAreas(q: $area) {
     ...ResearchAreaTeaser
     type
-    layout {
-      contentModules {
-        sys {
-          id
-          contentTypeId
-        }
-      }
-    }
     programs {
       ...ProgramTeaser
+    }
+    projects {
+      ...ProjectTeaser
     }
   }
 }
