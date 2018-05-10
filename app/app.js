@@ -60,7 +60,7 @@ import './styles/global-styles';
 import theme from './styles/theme';
 
 // Set up the Apollo client to interface with our GraphQL endpoint
-const client = new ApolloClient({ uri: 'http://172.19.1.14:3000/graphql' });
+const client = new ApolloClient({ uri: 'http://localhost:3000/graphql' });
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)

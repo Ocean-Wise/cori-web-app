@@ -2,7 +2,6 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import Button from 'components/Button';
-import OceanWiseNav from 'components/OceanWiseNav';
 
 import A from './A';
 import Img from './Img';

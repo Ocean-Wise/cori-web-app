@@ -12,11 +12,7 @@ import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import HomePage from 'containers/HomePage/Loadable';
-import Team from 'containers/Team/Loadable';
-import ResearchArea from 'containers/ResearchArea/Loadable';
-import Program from 'containers/Program/Loadable';
-import Project from 'containers/Project/Loadable';
+import HomePage from 'containers/HomePage';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Footer from 'components/Footer';
 
@@ -41,11 +37,7 @@ export default function App() {
         </Helmet>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/team/:projectName" component={Team} />
-          <Route path="/team" component={Team} />
-          <Route path="/research/:slug" component={ResearchArea} />
-          <Route path="/program/:slug" component={Program} />
-          <Route path="/project/:slug" component={Project} />
+          {/* <Route path="/team/:projectName" component={Team} /> */}
           <Route path="" component={NotFoundPage} />
         </Switch>
         <Footer />

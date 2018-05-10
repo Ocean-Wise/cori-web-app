@@ -4,12 +4,29 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const cors = require('cors');
 
+// PostgreSQL
+const promise = require('bluebird');
+const options = {
+  // Initialization option for database
+  promiseLib: promise,
+};
+
+const pgp = require('pg-promise')(options);
+// Connect to the Heroku PostgreSQL database
+const db = pgp(`${process.env.DATABASE_URL}?ssl=true`);
+
 // Setup GraphQL & Contentful packages and environment variables
 const cfGraphql = require('cf-graphql');
 const graphqlHTTP = require('express-graphql');
 const spaceId = process.env.SPACE_ID;
 const cdaToken = process.env.CDA_TOKEN;
 const cmaToken = process.env.CMA_TOKEN;
+
+const passportService = require('./passport');
+const passport = require('passport');
+const authentication = require('../authentication');
+
+const requireAuth = passport.authenticate('local', { session: false });
 
 const logger = require('../logger');
 
@@ -58,6 +75,18 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
 
     app.use(middleware);
     app.use(webpackHotMiddleware(compiler));
+
+    // app.get('/doLogin', requireAuth, (req, res) => res.redirect('/status'));
+    app.post('/getStatus', requireAuth, (req, res) => {
+      const query = `
+        SELECT *
+        FROM users
+        WHERE email=$1`;
+      db.oneOrNone(query, [req.body.email]).then((dbData) => {
+        res.send(dbData.role);
+      });
+    });
+    app.use('/', authentication);
 
     // Since webpackDevMiddleware uses memory-fs internally to store build
     // artifacts, we use it instead
