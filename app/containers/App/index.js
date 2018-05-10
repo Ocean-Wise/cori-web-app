@@ -34,10 +34,10 @@ export default function App() {
     <MuiThemeProvider>
       <AppWrapper>
         <Helmet
-          titleTemplate="%s - React.js Boilerplate"
-          defaultTitle="React.js Boilerplate"
+          titleTemplate="%s - Ocean Wise Research"
+          defaultTitle="Ocean Wise Research"
         >
-          <meta name="description" content="A React.js Boilerplate application" />
+          <meta name="description" content="Ocean Wise Research" />
         </Helmet>
         <Switch>
           <Route exact path="/" component={HomePage} />
