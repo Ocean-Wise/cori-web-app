@@ -71,7 +71,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
           <meta name="description" content="Ocean Wise Research" />
         </Helmet>
         <Wrapper>
-          <ResearchOverviewTiles first={this.state.first} second={this.state.second} third={this.state.third} fourth={this.state.fourth} fifth={this.state.fifth} />
+          <ResearchOverviewTiles first={this.state.first} second={this.state.second} third={this.state.third} fourth={this.state.fourth} fifth={this.state.fifth} width={this.state.width} />
           <HomeCopy />
         </Wrapper>
       </article>

@@ -4,11 +4,14 @@ const md = 992;
 
 const lg = 1200;
 
+const xl = 1785;
+
 const breakpoints = {
   xs: { min: 0, max: sm - 1 },
   sm: { min: sm, max: md - 1 },
   md: { min: md, max: lg - 1 },
-  lg: { min: lg, max: 100000 },
+  lg: { min: lg, max: xl - 1 },
+  xl: { min: xl, max: 100000 },
 };
 
 export default {

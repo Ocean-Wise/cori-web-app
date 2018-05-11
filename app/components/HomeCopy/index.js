@@ -11,9 +11,15 @@ import { graphql } from 'react-apollo';
 import ReactMarkdown from 'react-markdown';
 import getHomeCopy from 'graphql/queries/getHomeCopy.graphql';
 
-import H1 from 'components/H1';
 import Blockquote from 'components/Blockquote';
 import Button from 'components/Button';
+
+import H1 from './H1';
+import IntroContainer from './IntroContainer';
+import Wrapper from './Wrapper';
+import Section from './Section';
+import CopyBlock from './CopyBlock';
+import Img from './Img';
 
 function HomeCopy({ data: { homeCopies } }) {
   try {
@@ -57,37 +63,43 @@ function HomeCopy({ data: { homeCopies } }) {
 
     return (
       <div>
-        <div style={{ width: '50%', display: 'block', margin: '0 auto' }}>
+        <IntroContainer>
           <center>
             <H1>{data.headline}</H1>
             <Blockquote>{data.subheader}</Blockquote>
             <ReactMarkdown source={data.introCopy} />
           </center>
-        </div>
-        <div style={{ width: '55%', display: 'block', margin: '70px auto', height: 450 }}>
-          <img src={data.firstImage.url} alt={data.firstImage.title} style={{ float: 'left', marginLeft: 10 }} />
-          <div style={{ float: 'right', maxWidth: 405 }}>
-            <H1>{data.firstHeader}</H1>
-            <ReactMarkdown source={data.firstCopy} />
-            {firstButtons}
-          </div>
-        </div>
-        <div style={{ width: '55%', display: 'block', margin: '70px auto', height: 450 }}>
-          <div style={{ float: 'left', maxWidth: 405, marginLeft: 10 }}>
-            <H1>{data.secondHeader}</H1>
-            <ReactMarkdown source={data.secondCopy} />
-            {secondButtons}
-          </div>
-          <img src={data.secondImage.url} alt={data.secondImage.title} style={{ float: 'right' }} />
-        </div>
-        <div style={{ width: '55%', display: 'block', margin: '70px auto', height: 450 }}>
-          <img src={data.thirdImage.url} alt={data.thirdImage.title} style={{ float: 'left', marginLeft: 10 }} />
-          <div style={{ float: 'right', maxWidth: 405 }}>
-            <H1>{data.thirdHeader}</H1>
-            <ReactMarkdown source={data.thirdCopy} />
-            {thirdButtons}
-          </div>
-        </div>
+        </IntroContainer>
+        <Wrapper>
+          <Section flexDirection="column">
+            <Img src={data.firstImage.url} alt={data.firstImage.title} float="left" />
+            <CopyBlock float="right">
+              <H1 section>{data.firstHeader}</H1>
+              <ReactMarkdown source={data.firstCopy} />
+              {firstButtons}
+            </CopyBlock>
+          </Section>
+        </Wrapper>
+        <Wrapper>
+          <Section flexDirection="column-reverse">
+            <CopyBlock float="left">
+              <H1 section>{data.secondHeader}</H1>
+              <ReactMarkdown source={data.secondCopy} />
+              {secondButtons}
+            </CopyBlock>
+            <Img src={data.secondImage.url} alt={data.secondImage.title} float="right" />
+          </Section>
+        </Wrapper>
+        <Wrapper>
+          <Section flexDirection="column">
+            <Img src={data.thirdImage.url} alt={data.thirdImage.title} float="left" />
+            <CopyBlock float="right">
+              <H1 section>{data.thirdHeader}</H1>
+              <ReactMarkdown source={data.thirdCopy} />
+              {thirdButtons}
+            </CopyBlock>
+          </Section>
+        </Wrapper>
       </div>
     );
   } catch (err) {
