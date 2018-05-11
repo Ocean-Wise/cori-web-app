@@ -1,8 +1,12 @@
 fragment ProjectTeaser on Project {
   projectTitle
   slug
-  hero
   type
+  hero {
+    title
+    url
+  }
+  copy
   externalLink
   pdf {
     url

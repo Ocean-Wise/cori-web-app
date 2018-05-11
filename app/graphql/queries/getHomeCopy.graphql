@@ -1,0 +1,28 @@
+query HomeCopy {
+  homeCopies {
+    headline
+    subheader
+    introCopy
+    firstImage {
+      title
+      url
+    }
+    firstHeader
+    firstCopy
+    firstLinks
+    secondImage {
+      title
+      url
+    }
+    secondHeader
+    secondCopy
+    secondLinks
+    thirdImage {
+      title
+      url
+    }
+    thirdHeader
+    thirdCopy
+    thirdLinks
+  }
+}

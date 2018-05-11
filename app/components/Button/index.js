@@ -11,28 +11,31 @@ import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 
 function Button(props) {
-  const transition = 'all 0.45s cubic-bezier(0.23, 1, 0.23, 1) 0ms !important';
+  const transition = 'all 0.2s cubic-bezier(0.23, 1, 0.23, 1) 0ms !important';
 
   const style = {
     root: {
-      borderRadius: 4,
       margin: 2.5,
+      borderRadius: 0,
     },
     button: {
       height: '55px',
-      borderRadius: 4,
+      borderRadius: 0,
     },
     overlay: {
       height: '55px',
       paddingTop: '10px',
+      paddingLeft: '45px',
+      paddingRight: '45px',
       fontWeight: 700,
+      borderRadius: 0,
     },
   };
 
   const primary = `
     #${props.id}:hover {
       background-color: #005EB8 !important;
-      color: white !important;
+      color: #4D4D4D !important;
       border: 1px solid transparent !important;
       transition: ${transition};
     }
