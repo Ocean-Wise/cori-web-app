@@ -26,12 +26,40 @@ import saga from './saga';
 
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
-  // Set up the state for the checkboxes
   constructor(props) {
     super(props);
     this.state = {
-
+      width: window.innerWidth,
+      height: window.innerHeight,
+      first: 951,
+      second: 601,
+      third: 348,
+      fourth: 348,
+      fifth: 601,
     };
+
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({
+      width: window.innerWidth,
+      height: window.innerHeight,
+      first: document.getElementById('tile-1').clientWidth,
+      second: document.getElementById('tile-2').clientWidth,
+      third: document.getElementById('tile-3').clientWidth,
+      fourth: document.getElementById('tile-4').clientWidth,
+      fifth: document.getElementById('tile-5').clientWidth,
+    });
   }
 
   render() {
@@ -43,7 +71,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
           <meta name="description" content="Ocean Wise Research" />
         </Helmet>
         <Wrapper>
-          <ResearchOverviewTiles />
+          <ResearchOverviewTiles first={this.state.first} second={this.state.second} third={this.state.third} fourth={this.state.fourth} fifth={this.state.fifth} />
           <HomeCopy />
         </Wrapper>
       </article>
