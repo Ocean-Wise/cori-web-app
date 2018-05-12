@@ -5,7 +5,8 @@
 query ResearchArea($area: String!) {
   researchAreas(q: $area) {
     ...ResearchAreaTeaser
-    type
+    subheader
+    copy
     programs {
       ...ProgramTeaser
     }

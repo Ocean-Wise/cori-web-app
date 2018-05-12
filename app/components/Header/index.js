@@ -1,6 +1,6 @@
 import React from 'react';
 // import { FormattedMessage } from 'react-intl';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import Button from 'components/Button';
 // import OceanWiseNav from 'components/OceanWiseNav';
 
@@ -41,7 +41,9 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
       <div>
         {/* <OceanWiseNav /> */}
         <Container>
-          <H1>Ocean Wise Research</H1>
+          <Link to="/">
+            <H1>Ocean Wise Research</H1>
+          </Link>
           <div style={{ display: 'flex', flexDirection: 'row', color: '#73838b', fontWeight: 700, fontSize: '1rem', float: 'right' }}>
             <span>About</span>
             <span style={{ marginLeft: 15 }}>Team</span>

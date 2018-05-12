@@ -32,10 +32,10 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
       width: window.innerWidth,
       height: window.innerHeight,
       first: 951,
-      second: 601,
+      second: 348,
       third: 348,
       fourth: 348,
-      fifth: 601,
+      fifth: 348,
     };
 
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);

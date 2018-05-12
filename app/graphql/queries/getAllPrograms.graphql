@@ -1,0 +1,7 @@
+#import "../fragments/programTeaser.graphql"
+
+query Programs {
+  programs {
+    ...ProgramTeaser
+  }
+}

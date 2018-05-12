@@ -5,26 +5,20 @@ const Tile = styled.div`
   width: ${(props) => props.width};
   position: relative;
   height: 460px;
-  margin: 1px;
-  &:first-of-type {
-    margin-left: 0;
-  }
-  &:last-of-type {
-    margin-right: 0;
-  }
+
   background-image: url(${(props) => props.image});
-  ${'' /* &:nth-of-type(1) {
-  flex-grow: 2;
+  background-size: cover;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(to bottom, rgba(0,47,75,0), rgb(0, 47,75));
+    opacity: 0.6;
   }
-  &:nth-of-type(2) {
-    flex-grow: 1;
-  }
-  &:nth-of-type(3) {
-    flex-grow: 1;
-  }
-  &:last-of-type {
-    flex-grow: 2;
-  } */}
+
   ${mixins.bp.xs.max`
     height: 210px;
   `}
