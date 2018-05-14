@@ -180,7 +180,10 @@
       "cf-graphql",
       "express-graphql",
       "dotenv",
-      "graphql-tag"
+      "graphql-tag",
+      "cors",
+      "rss-parser",
+      "body-parser"
     ],
     "include": [
       "core-js",
@@ -218,7 +221,9 @@
   },
   "dependencies": {
     "apollo-boost": "^0.1.6",
+    "axios": "^0.18.0",
     "babel-polyfill": "6.23.0",
+    "body-parser": "^1.18.3",
     "cf-graphql": "^0.5.0",
     "chalk": "^1.1.3",
     "compression": "1.6.2",
@@ -256,6 +261,7 @@
     "redux-immutable": "4.0.0",
     "redux-saga": "0.15.3",
     "reselect": "3.0.1",
+    "rss-parser": "^3.1.2",
     "sanitize.css": "4.1.0",
     "styled-components": "2.0.0",
     "warning": "3.0.0",

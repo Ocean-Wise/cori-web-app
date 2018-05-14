@@ -12,6 +12,7 @@ import ReactMarkdown from 'react-markdown';
 import getResearchArea from 'graphql/queries/getResearchArea.graphql';
 
 import ProjectTiles from 'components/ProjectTiles';
+import LatestNews from 'components/LatestNews';
 import Hero from './Hero';
 import Container from './Container';
 import H1 from './H1';
@@ -21,7 +22,6 @@ function ResearchAreaContent({ data: { researchAreas } }) {
   // let programs;
   let area = {};
   try {
-    // console.log(researchAreas[0]);
     area = researchAreas[0];
     // programs = area.programs.map((program, i) => { // eslint-disable-line
     //   return (
@@ -33,6 +33,8 @@ function ResearchAreaContent({ data: { researchAreas } }) {
     //   );
     // });
 
+    const LatestNewsComponent = area.rssLink !== null ? <LatestNews url={area.rssLink} /> : '';
+
     return (
       <div>
         <Hero src={area.hero.url} alt={area.hero.title} />
@@ -41,6 +43,7 @@ function ResearchAreaContent({ data: { researchAreas } }) {
           <H2>{area.subheader}</H2>
           <ReactMarkdown source={area.copy} />
           <ProjectTiles />
+          {LatestNewsComponent}
         </Container>
       </div>
     );
