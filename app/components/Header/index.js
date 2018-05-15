@@ -41,7 +41,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
         <OceanWiseNav />
         <Container>
           <Link to="/">
-            <H1>Ocean Wise Research</H1>
+            <H1>Ocean Wise <span>Research</span></H1>
           </Link>
           <div style={{ display: 'flex', flexDirection: 'row', color: '#73838b', fontWeight: 700, fontSize: '1rem', float: 'right' }}>
             <span>About</span>
