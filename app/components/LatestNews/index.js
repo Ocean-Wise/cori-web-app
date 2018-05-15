@@ -31,14 +31,14 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
   componentWillMount() {
     let featured;
     const regular = [];
-    axios.post('http://172.19.1.14:3000/api/rss', { url: this.props.url })
+    axios.post('http://172.19.1.14:3000/api/rss', { url: this.props.url, news: true })
       .then((res) => {
         const data = res.data;
         const featuredTeaser = data.featured[0].teaser.replace('[…]', '');
         const featuredTitle = <Link to={`${data.featured[0].link}`}>{data.featured[0].title}</Link>;
         featured = (
           <Paper zDepth={2} featured>
-            <Link to={`${data.featured[0].link}`}><img src={data.featured[0].img} alt="featured" style={{ width: '100%' }} /></Link>
+            <a href={data.featured[0].link} target="_blank"><img src={data.featured[0].img} alt="featured" style={{ width: '100%' }} /></a>
             <div style={{ padding: 20 }}>
               <h3>{featuredTitle}</h3>
               <P>{featuredTeaser} <Link to={`${data.featured[0].link}`}>[…]</Link></P>
@@ -56,7 +56,7 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
           const title = <Link to={`${item.link}`}>{item.title}</Link>;
           regular.push(
             <Paper zDepth={2} key={i.toString()}>
-              <Link to={`${item.link}`}><img src={item.img} alt="featured" style={{ width: '100%' }} /></Link>
+              <a href={item.link} target="_blank"><img src={item.img} alt="featured" style={{ width: '100%' }} /></a>
               <div style={{ padding: 20 }}>
                 <h3>{title}</h3>
                 <P>{teaser} <Link to={`${item.link}`}>[…]</Link></P>

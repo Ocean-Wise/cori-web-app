@@ -15,7 +15,8 @@ import R from 'ramda';
 
 import Header from 'components/Header';
 import TeamMembers from 'components/TeamMembers';
-import ProjectMembers from 'components/ProjectMembers';
+// import ProjectMembers from 'components/ProjectMembers';
+import AreaMembers from 'components/AreaMembers';
 
 import injectReducer from 'utils/injectReducer';
 import makeSelectTeam from './selectors';
@@ -24,7 +25,7 @@ import reducer from './reducer';
 
 export class Team extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const MemberComponent = R.isEmpty(this.props.match.params) ? <TeamMembers /> : <ProjectMembers slug={this.props.match.params.slug} />;
+    const MemberComponent = R.isEmpty(this.props.match.params) ? <TeamMembers /> : <AreaMembers slug={this.props.match.params.slug} />;
     return (
       <div>
         <Helmet>

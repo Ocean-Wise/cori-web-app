@@ -7,7 +7,17 @@ query ResearchArea($area: String!) {
     ...ResearchAreaTeaser
     subheader
     copy
-    rssLink
+    newsRSS
+    mediaRSS
+    teamMembers {
+      first
+      last
+      honorifictitle
+      image {
+        title
+        url
+      }
+    }
     programs {
       ...ProgramTeaser
     }
