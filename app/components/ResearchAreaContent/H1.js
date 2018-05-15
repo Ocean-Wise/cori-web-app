@@ -3,7 +3,11 @@ import NormalH1 from 'components/H1';
 // import * as mixins from 'styles/mixins';
 
 const H1 = styled(NormalH1)`
-  color: rgb(77,77,77);
+  color: #B2BEC4;
+  font-size: 72px;
+  font-weight: bold;
+  line-height: 79px;
+  margin-bottom: 15px;
 `;
 
 export default H1;

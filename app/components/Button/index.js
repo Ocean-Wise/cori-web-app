@@ -19,12 +19,12 @@ function Button(props) {
       borderRadius: 0,
     },
     button: {
-      height: '55px',
+      height: '40px',
       borderRadius: 0,
     },
     overlay: {
-      height: '55px',
-      paddingTop: '10px',
+      height: '40px',
+      paddingTop: '2px',
       paddingLeft: '45px',
       paddingRight: '45px',
       fontWeight: 700,
@@ -34,15 +34,15 @@ function Button(props) {
 
   const primary = `
     #${props.id}:hover {
-      background-color: #005EB8 !important;
-      color: #4D4D4D !important;
+      background-color: rgb(0, 179, 152) !important;
+      color: #efefef !important;
       border: 1px solid transparent !important;
       transition: ${transition};
     }
     #${props.id} {
-      background-color: transparent !important;
-      color: #005EB8 !important;
-      border: 1px solid #005EB8 !important;
+      background-color: #efefef !important;
+      color: rgb(0, 179, 152) !important;
+      border: 1px solid rgb(0, 179, 152) !important;
       transition: ${transition};
     }
   `;

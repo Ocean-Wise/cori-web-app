@@ -54,7 +54,7 @@ AreaMembers.propTypes = {
 export default graphql(researchAreaQuery, {
   options: (props) => ({
     variables: {
-      area: `fields.slug=${props.slug}`,
+      slug: `fields.slug=${props.slug}`,
     },
   }),
 })(AreaMembers);

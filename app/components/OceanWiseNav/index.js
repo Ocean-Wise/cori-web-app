@@ -18,6 +18,26 @@ class OceanWiseNav extends React.Component { // eslint-disable-line react/prefer
       active: false,
     };
     this.setState = this.setState.bind(this);
+    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
+  setWrapperRef(node) {
+    this.wrapperRef = node;
+  }
+
+  handleClickOutside(event) {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target) && this.state.active) {
+      this.toggleActive();
+    }
   }
 
   toggleActive() {
@@ -26,7 +46,7 @@ class OceanWiseNav extends React.Component { // eslint-disable-line react/prefer
 
   render() {
     return (
-      <div className="hello-bar">
+      <div className="hello-bar" ref={this.setWrapperRef}>
 
         <div className="hello-bar-text">
           <FormattedMessage {...messages.explore} /> <span className="hello-bar-hide-mobile"><FormattedMessage {...messages.moreAt} /></span><a href="https://ocean.org" target="_blank">ocean.org</a>
@@ -44,7 +64,7 @@ class OceanWiseNav extends React.Component { // eslint-disable-line react/prefer
             {/* TODO: Translate these */}
             <li><a href="https://ocean.org" target="_blank">Ocean Wise</a></li>
             <li><a href="http://vanaqua.org" target="_blank">Vancouver Aquarium</a></li>
-            <li><a href="https://ocean.org/seafood" className="disabled" target="_blank">Sustainable Seafood</a></li>
+            <li><a href="https://ocean.org/seafood" target="_blank">Sustainable Seafood</a></li>
             <li><a href="https://shorelinecleanup.ca" target="_blank">Shoreline Cleanup</a></li>
             <li><a href="https://ocean.org/research" target="_blank">Ocean Research</a></li>
             <li><a href="https://ocean.org/education" target="_blank">Ocean Education</a></li>

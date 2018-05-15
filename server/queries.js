@@ -37,7 +37,7 @@ async function handleGetRSS(req, res) {
 
         // Format the date string
         const date = new Date(item.pubDate);
-        const months = ['January', 'Feburary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         itemData.date = `${months[date.getMonth()]} ${item.pubDate.match(/\d{2}/g)[0]}, ${date.getFullYear()}`;
 
         itemData.link = item.link;

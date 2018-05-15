@@ -18,6 +18,9 @@ import Container from './Container';
 import Wrapper from './Wrapper';
 import Paper from './Paper';
 import A from './A';
+import H1 from './H1';
+import H3 from './H3';
+import Divider from './Divider';
 
 class LatestNews extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -37,14 +40,14 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
         const featuredTeaser = data.featured[0].teaser.replace('[…]', '');
         const featuredTitle = <Link to={`${data.featured[0].link}`}>{data.featured[0].title}</Link>;
         featured = (
-          <Paper zDepth={2} featured>
+          <Paper zDepth={1} featured>
             <a href={data.featured[0].link} target="_blank"><img src={data.featured[0].img} alt="featured" style={{ width: '100%' }} /></a>
-            <div style={{ padding: 20 }}>
-              <h3>{featuredTitle}</h3>
-              <P>{featuredTeaser} <Link to={`${data.featured[0].link}`}>[…]</Link></P>
+            <div style={{ padding: '20px 20px 10px 20px', marginBottom: 45 }}>
+              <H3>{featuredTitle}</H3>
+              <P>{featuredTeaser.substring(0, 250)} <Link to={`${data.featured[0].link}`}>[…]</Link></P>
             </div>
-            <div style={{ padding: 20, position: 'relative' }}>
-              <hr style={{ width: 50, position: 'absolute', top: -10 }} />
+            <div style={{ padding: 20, position: 'absolute', bottom: 5 }}>
+              <Divider style={{ width: 50, height: 1, marginBottom: 10 }} />
               <span>{data.featured[0].date}</span>
             </div>
           </Paper>
@@ -55,14 +58,14 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
           const teaser = item.teaser.replace('[…]', '');
           const title = <Link to={`${item.link}`}>{item.title}</Link>;
           regular.push(
-            <Paper zDepth={2} key={i.toString()}>
+            <Paper zDepth={1} key={i.toString()}>
               <a href={item.link} target="_blank"><img src={item.img} alt="featured" style={{ width: '100%' }} /></a>
-              <div style={{ padding: 20 }}>
-                <h3>{title}</h3>
-                <P>{teaser} <Link to={`${item.link}`}>[…]</Link></P>
+              <div style={{ padding: '20px 20px 10px 20px', marginBottom: 45 }}>
+                <H3>{title}</H3>
+                <P>{teaser.substring(0, 100)} <Link to={`${item.link}`}>[…]</Link></P>
               </div>
-              <div style={{ padding: 20, position: 'relative' }}>
-                <hr style={{ width: 50, position: 'absolute', top: -10 }} />
+              <div style={{ padding: 20, position: 'absolute', bottom: 5 }}>
+                <Divider style={{ width: 50, height: 1, marginBottom: 10 }} />
                 <span>{item.date}</span>
               </div>
             </Paper>
@@ -77,10 +80,12 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
   render() {
     return (
       <div style={{ marginTop: 80 }}>
-        <div style={{ color: '#4D4D4D', fontSize: 36, fontWeight: 'bold', lineHeight: '45px' }}>
-          <FormattedMessage {...messages.header} />
-        </div>
-        <hr />
+        <center>
+          <H1>
+            <FormattedMessage {...messages.header} />
+          </H1>
+          <Divider />
+        </center>
         <Container>
           <Wrapper>
             {this.state.regular}

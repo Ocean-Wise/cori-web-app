@@ -45,6 +45,8 @@ export default function App() {
           <Route path="/team" component={Team} />
           <Route path="/research/:slug" component={ResearchArea} />
           <Route path="/program/:slug" component={Program} />
+          {/* For testing the FloatingNav element pre Program page writing */}
+          {/* <Route path="/program/:slug" component={ResearchArea} /> */}
           <Route path="/project/:slug" component={Project} />
           <Route path="" component={NotFoundPage} />
         </Switch>

@@ -1,8 +1,7 @@
 import React from 'react';
 // import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
-// import Button from 'components/Button';
-// import OceanWiseNav from 'components/OceanWiseNav';
+import OceanWiseNav from 'components/OceanWiseNav';
 
 import H1 from './H1';
 
@@ -39,7 +38,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
   render() {
     return (
       <div>
-        {/* <OceanWiseNav /> */}
+        <OceanWiseNav />
         <Container>
           <Link to="/">
             <H1>Ocean Wise Research</H1>

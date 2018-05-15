@@ -12,6 +12,10 @@ import axios from 'axios';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
+import H2 from './H2';
+import H3 from './H3';
+import Date from './Date';
+
 class MediaReleases extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   constructor(props) {
@@ -28,8 +32,8 @@ class MediaReleases extends React.PureComponent { // eslint-disable-line react/p
         res.data.forEach((item, i) => {
           media.push(
             <div key={i.toString()}>
-              <a href={item.link} target="_blank"><h3 style={{ marginBottom: 2 }}>{item.title}</h3></a>
-              <span>{item.date}</span>
+              <a href={item.link} target="_blank"><H3 style={{ marginBottom: 2 }}>{item.title}</H3></a>
+              <Date>{item.date}</Date>
             </div>
           );
         });
@@ -40,9 +44,9 @@ class MediaReleases extends React.PureComponent { // eslint-disable-line react/p
   render() {
     return (
       <div style={{ marginTop: 80 }}>
-        <div style={{ color: '#4D4D4D', fontSize: 36, fontWeight: 'bold', lineHeight: '45px' }}>
+        <H2>
           <FormattedMessage {...messages.header} />
-        </div>
+        </H2>
         <div>
           {this.state.media}
         </div>

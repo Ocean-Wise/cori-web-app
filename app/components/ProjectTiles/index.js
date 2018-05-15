@@ -13,20 +13,25 @@ import getAllPrograms from 'graphql/queries/getAllPrograms.graphql';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
+import H1 from './H1';
+import Divider from './Divider';
 import Tile from './Tile';
 import Img from './Img';
+import Title from './Title';
 
 function ProjectTiles({ data: { programs } }) {
   try {
     return (
       <div style={{ marginTop: 100 }}>
-        <div style={{ color: '#4D4D4D', fontSize: 36, fontWeight: 'bold', lineHeight: '45px' }}>
-          <FormattedMessage {...messages.header} />
-        </div>
-        <hr />
+        <center>
+          <H1>
+            <FormattedMessage {...messages.header} />
+          </H1>
+          <Divider />
+        </center>
         <Tile>
-          <Img src={programs[0].hero.url} alt={programs[0].hero.title} />
-          <span>{programs[0].title}</span>
+          <Img src={programs[0].hero.url} />
+          <Title>{programs[0].title}</Title>
         </Tile>
       </div>
     );

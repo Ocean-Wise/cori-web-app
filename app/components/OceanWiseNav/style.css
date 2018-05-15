@@ -13,12 +13,12 @@
   color: #fff;
 }
 .hello-bar a {
-  color: #283C50;
-  text-decoration: none;
+  color: #283C50  !important;
+  text-decoration: none  !important;
 }
 .hello-bar a:hover {
-  color: #0191D0;
-  text-decoration: underline;
+  color: #0191D0  !important;
+  text-decoration: underline  !important;
 }
 
 .hello-bar-text {
@@ -26,10 +26,10 @@
   padding: 16px;
 }
 .hello-bar-text a {
-  color: #fff;
+  color: #fff !important;
 }
 .hello-bar-text a:hover {
-  color: #fff;
+  color: #fff !important;
 }
 
 @media screen and (max-width: 576px) {
@@ -55,7 +55,7 @@
   background-color: #0191D0;
   display: inline-block;
   vertical-align: middle;
-  padding: 13px 12px 10px 12px;
+  padding: 13px 12px 11px 12px;
 }
 .hello-bar-btn .hello-bar-icon {
   width: 24px;

@@ -7,6 +7,7 @@ const Wrapper = styled.div`
   ${mixins.bp.sm.max`
     flex-direction: column;
   `}
+  position: relative;
 `;
 
 export default Wrapper;

@@ -1,0 +1,13 @@
+#import "../fragments/programTeaser.graphql"
+
+query Program($slug: String!) {
+  programs(q: $slug) {
+    ...ProgramTeaser
+    _backrefs {
+      researchAreas__via__programs {
+        title
+        slug
+      }
+    }
+  }
+}

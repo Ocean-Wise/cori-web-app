@@ -12,6 +12,10 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
+import Header from 'components/Header';
+import FloatingNav from 'components/FloatingNav';
+import ProgramContent from 'components/ProgramContent';
+
 import injectReducer from 'utils/injectReducer';
 import makeSelectProgram from './selectors';
 import reducer from './reducer';
@@ -25,13 +29,16 @@ export class Program extends React.PureComponent { // eslint-disable-line react/
           <title>Program</title>
           <meta name="description" content="Description of Program" />
         </Helmet>
+        <Header />
+        <FloatingNav active={this.props.match.params.slug} location={this.props.match} />
+        <ProgramContent slug={this.props.match.params.slug} match={this.props.match} />
       </div>
     );
   }
 }
 
 Program.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  // dispatch: PropTypes.func.isRequired,
   match: PropTypes.object,
 };
 

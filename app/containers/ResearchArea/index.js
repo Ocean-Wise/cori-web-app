@@ -30,8 +30,8 @@ export class ResearchArea extends React.PureComponent { // eslint-disable-line r
           <meta name="description" content="Description of ResearchArea" />
         </Helmet>
         <Header />
-        <FloatingNav active={this.props.match.params.slug} />
-        <ResearchAreaContent slug={this.props.match.params.slug} />
+        <FloatingNav active={this.props.match.params.slug} location={this.props.match} />
+        <ResearchAreaContent slug={this.props.match.params.slug} match={this.props.match} />
       </div>
     );
   }
