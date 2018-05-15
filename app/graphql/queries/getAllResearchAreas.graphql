@@ -1,9 +1,13 @@
 #import "../fragments/researchAreaTeaser.graphql"
 #import "../fragments/projectTeaser.graphql"
+#import "../fragments/programTeaser.graphql"
 
 query ResearchAreas {
   researchAreas {
     ...ResearchAreaTeaser
+    programs {
+      ...ProgramTeaser
+    }
     projects {
       ...ProjectTeaser
     }

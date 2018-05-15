@@ -14,6 +14,7 @@ import { compose } from 'redux';
 
 import Header from 'components/Header';
 import ResearchAreaContent from 'components/ResearchAreaContent';
+import FloatingNav from 'components/FloatingNav';
 
 import injectReducer from 'utils/injectReducer';
 import makeSelectResearchArea from './selectors';
@@ -29,6 +30,7 @@ export class ResearchArea extends React.PureComponent { // eslint-disable-line r
           <meta name="description" content="Description of ResearchArea" />
         </Helmet>
         <Header />
+        <FloatingNav active={this.props.match.params.slug} />
         <ResearchAreaContent slug={this.props.match.params.slug} />
       </div>
     );
