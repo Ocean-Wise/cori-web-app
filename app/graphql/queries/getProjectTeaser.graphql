@@ -10,15 +10,31 @@ query Project($slug: String!) {
         programs {
           title
           slug
+          initiatives {
+            title
+            slug
+            projects {
+              projectTitle
+            }
+          }
         }
       }
       initiatives__via__projects {
         title
         slug
+        projects {
+          slug
+        }
         _backrefs {
           programs__via__initiatives {
             title
             slug
+            _backrefs {
+              researchAreas__via__programs {
+                title
+                slug
+              }
+            }
           }
         }
       }

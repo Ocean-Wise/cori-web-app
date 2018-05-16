@@ -16,7 +16,7 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
 // TODO: This will need an extra check to see if the /program/ is actually a 'Working Group'. Will need an extra query.
-function Breadcrumbs({ data, location }) {
+function Breadcrumbs({ data, location, slug }) {
   try {
     // Set up our variables pertaining to the query
     let dataQuery;
@@ -44,7 +44,25 @@ function Breadcrumbs({ data, location }) {
         break;
       case 'projects':
         // This is a project, so Link to the research area and program via backref, then highlight the program project title
-        string = '';
+        if (data[dataQuery][0]._backrefs.researchAreas__via__projects.length !== 0) { // eslint-disable-line
+          string = <span><Link to={`/research/${data[dataQuery][0]._backrefs.researchAreas__via__projects[0].slug}`}>{data[dataQuery][0]._backrefs.researchAreas__via__projects[0].title}</Link> /  <span style={{ color: 'rgb(0, 179, 152)', fontWeight: 'bold', lineHeight: '18px' }}>{data[dataQuery][0].title}</span></span>; // eslint-disable-line
+        } else {
+          const initiatives = data[dataQuery][0]._backrefs.initiatives__via__projects; // eslint-disable-line
+
+          let currentInitiative = '';
+          initiatives.map((initiative) => { // eslint-disable-line
+            initiative.projects.map((project) => { // eslint-disable-line
+              if (project.slug === slug) {
+                currentInitiative = initiative;
+              }
+            });
+          });
+
+          const currentProgram = data[dataQuery][0]._backrefs.initiatives__via__projects[0]._backrefs.programs__via__initiatives[0]; // eslint-disable-line
+          const currentArea = data[dataQuery][0]._backrefs.initiatives__via__projects[0]._backrefs.programs__via__initiatives[0]._backrefs.researchAreas__via__programs[0]; // eslint-disable-line
+
+          string = <span><Link to={`/research/${currentArea.slug}`}>{currentArea.title}</Link> / <Link to={`/program/${currentProgram.slug}`}>{currentProgram.title}</Link> / {currentInitiative.title} / <span style={{ color: 'rgb(0, 179, 152)', fontWeight: 'bold', lineHeight: '18px' }}>{data[dataQuery][0].projectTitle}</span></span>;
+        }
         break;
       default:
         string = '';

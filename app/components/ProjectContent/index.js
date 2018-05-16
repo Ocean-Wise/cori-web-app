@@ -27,7 +27,7 @@ function ProjectContent({ data: { projects }, slug, match }) {
         <Hero src={project.hero.url} alt={project.hero.title} />
         <Section>
           <Container>
-            <Breadcrumbs slug={slug} location={match} />
+            <Breadcrumbs slug={slug} location={match} project />
             <H1>{project.projectTitle}</H1>
             <H3>{project.subheader}</H3>
           </Container>
