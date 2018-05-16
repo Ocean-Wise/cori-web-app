@@ -6,4 +6,5 @@ fragment PersonInfo on Person {
     title
     url
   }
+  position
 }

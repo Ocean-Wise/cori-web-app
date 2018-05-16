@@ -9,8 +9,11 @@ import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import projectMemberQuery from 'graphql/queries/getProjectMembers.graphql';
 
+import Container from './Container';
 import Person from './Person';
 import Img from './Img';
+import H1 from './H1';
+import P from './P';
 
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
@@ -28,7 +31,8 @@ function ProjectMembers({ data: { projects } }) {
       return (
         <Person key={`member-${i.toString()}`}>
           <Img src={member.image.url} alt={member.image.title} /><br />
-          <span>{member.honorifictitle}. {member.first} {member.last}</span>
+          <span>{member.honorifictitle}. {member.first} {member.last}</span><br />
+          <span>{member.position}</span>
         </Person>
       );
     });
@@ -38,7 +42,11 @@ function ProjectMembers({ data: { projects } }) {
 
   return (
     <div>
-      {members}
+      <H1>Research Team</H1>
+      <P>Vivamus non quam efficitur, consectetur ante sed, tincidunt tortor. Fusce ut tincidunt nisi, ac condimentum quam.</P>
+      <Container>
+        {members}
+      </Container>
     </div>
   );
 }

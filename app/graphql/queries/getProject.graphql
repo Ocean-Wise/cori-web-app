@@ -4,5 +4,12 @@ query Project($slug: String!) {
   projects(q: $slug) {
     ...ProjectTeaser
     copy
+    supporters {
+      name
+      logo {
+        title
+        url
+      }
+    }
   }
 }

@@ -15,7 +15,7 @@ import { compose } from 'redux';
 
 import Header from 'components/Header';
 import ProjectContent from 'components/ProjectContent';
-import ProjectMembers from 'components/ProjectMembers';
+// import FloatingNav from 'components/FloatingNav';
 
 import injectReducer from 'utils/injectReducer';
 import makeSelectProject from './selectors';
@@ -31,8 +31,8 @@ export class Project extends React.PureComponent { // eslint-disable-line react/
           <meta name="description" content="Description of Project" />
         </Helmet>
         <Header />
+        {/* <FloatingNav active={this.props.match.params.slug} location={this.props.match} /> */}
         <ProjectContent slug={this.props.match.params.slug} match={this.props.match} />
-        <ProjectMembers slug={this.props.match.params.slug} />
       </div>
     );
   }
