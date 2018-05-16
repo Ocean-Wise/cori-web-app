@@ -26,7 +26,7 @@ class MediaReleases extends React.PureComponent { // eslint-disable-line react/p
   }
 
   componentWillMount() {
-    axios.post('http://172.19.1.14:3000/api/rss', { url: this.props.url })
+    axios.post(`${window.location.origin}/api/rss`, { url: this.props.url })
       .then((res) => {
         const media = [];
         res.data.forEach((item, i) => {

@@ -34,7 +34,7 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
   componentWillMount() {
     let featured;
     const regular = [];
-    axios.post('http://172.19.1.14:3000/api/rss', { url: this.props.url, news: true })
+    axios.post(`${window.location.origin}/api/rss`, { url: this.props.url, news: true })
       .then((res) => {
         const data = res.data;
         const featuredTeaser = data.featured[0].teaser.replace('[…]', '');

@@ -59,7 +59,7 @@ import './styles/global-styles';
 import theme from './styles/theme';
 
 // Set up the Apollo client to interface with our GraphQL endpoint
-const client = new ApolloClient({ uri: 'http://172.19.1.14:3000/graphql' });
+const client = new ApolloClient({ uri: `${window.location.origin}/graphql` });
 
 // Create redux store with history
 const initialState = loadState(); // Load the state from Redux local storage as the initial state
