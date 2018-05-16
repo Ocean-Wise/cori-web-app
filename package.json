@@ -43,7 +43,7 @@
     "test": "cross-env NODE_ENV=test jest",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "delpoy": "npm run deploy:staging",
+    "deploy": "npm run deploy:staging",
     "deploy:staging": "heroku container:push web -a cori-staging",
     "deploy:prod": "heroku container:push web -a cori"
   },
@@ -186,7 +186,8 @@
       "graphql-tag",
       "cors",
       "rss-parser",
-      "body-parser"
+      "body-parser",
+      "http-auth"
     ],
     "include": [
       "core-js",
@@ -239,6 +240,7 @@
     "graphql-tag": "^2.9.2",
     "history": "4.6.3",
     "hoist-non-react-statics": "2.1.1",
+    "http-auth": "^3.2.3",
     "immutable": "3.8.1",
     "intl": "1.2.5",
     "invariant": "2.2.2",

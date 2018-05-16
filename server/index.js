@@ -19,6 +19,16 @@ const app = express();
 
 const theApi = require('./api');
 
+// Configuration for basic authentication
+const auth = require('http-auth');
+const internalAuth = auth.basic({
+  realm: 'all',
+}, (username, password, callback) => {
+  callback(username === 'admin' && password === 'coriresearch'); // Set the username and password here
+}
+);
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
@@ -29,6 +39,10 @@ setup(app, {
   outputPath: resolve(process.cwd(), 'build'),
   publicPath: '/',
 });
+
+if (process.env.NODE_ENV !== 'production') {
+  app.use(auth.connect(internalAuth));
+}
 
 // get the intended host and port number, use localhost and port 3000 if not provided
 const customHost = argv.host || process.env.HOST;
