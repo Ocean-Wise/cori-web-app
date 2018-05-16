@@ -9165,7 +9165,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c cross-env NODE_ENV=test jest
+  Arguments: -c npm run test:clean && npm run lint
   Directory: /Users/ethan/Projects/CORI
   Output:
   

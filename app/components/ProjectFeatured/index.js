@@ -27,7 +27,6 @@ class ProjectFeatured extends React.PureComponent { // eslint-disable-line react
     axios.post(`${window.location.origin}/api/rss`, { url: this.props.url, news: true })
       .then((res) => {
         const data = res.data;
-        console.log(data);
         try {
           const teaser = data.featured[0].teaser.replace('[…]', '');
           const title = <Link to={`${data.featured[0].link}`}>{data.featured[0].title}</Link>;
@@ -46,7 +45,6 @@ class ProjectFeatured extends React.PureComponent { // eslint-disable-line react
           );
           this.setState({ story });
         } catch (err) {
-          console.log(err);
           story = <div></div>;
           this.setState({ story });
         }
@@ -54,7 +52,6 @@ class ProjectFeatured extends React.PureComponent { // eslint-disable-line react
   }
 
   render() {
-    console.log(this.state.story);
     return <div>{this.state.story}</div>;
   }
 }

@@ -7,13 +7,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 // import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-// import ProjectMembers from 'components/ProjectMembers';
+import Header from 'components/Header';
+import ProjectContent from 'components/ProjectContent';
+import ProjectMembers from 'components/ProjectMembers';
 
 import injectReducer from 'utils/injectReducer';
 import makeSelectProject from './selectors';
@@ -28,10 +30,9 @@ export class Project extends React.PureComponent { // eslint-disable-line react/
           <title>Project</title>
           <meta name="description" content="Description of Project" />
         </Helmet>
-        <Link to={`/team/${this.props.match.params.slug}`}>
-          <h3>View our team</h3>
-        </Link>
-        {/* <ProjectMembers slug={this.props.match.params.slug} /> */}
+        <Header />
+        <ProjectContent slug={this.props.match.params.slug} match={this.props.match} />
+        <ProjectMembers slug={this.props.match.params.slug} />
       </div>
     );
   }

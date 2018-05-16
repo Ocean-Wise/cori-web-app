@@ -84,7 +84,7 @@ function ProgramContent({ data: { programs }, slug, match }) {
         <Hero src={program.hero.url} alt={program.hero.title} />
         <Section style={{ paddingBottom: 20 }}>
           <Container>
-            <Breadcrumbs slug={slug} location={match} />
+            <Breadcrumbs slug={slug} location={match} program />
             <H1>{program.title}</H1>
             <H3>{program.subheader}</H3>
             <MarkdownWrapper>

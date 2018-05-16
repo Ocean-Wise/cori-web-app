@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { graphql, compose } from 'react-apollo';
 import ResearchAreaTeaser from 'graphql/queries/getResearchAreaTeaser.graphql';
 import ProgramTeaser from 'graphql/queries/getProgramTeaser.graphql';
+import ProjectTeaser from 'graphql/queries/getProjectTeaser.graphql';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
@@ -25,6 +26,9 @@ function Breadcrumbs({ data, location }) {
     } else if (location.path.match(/\/program\//g)) {
       // We are an a program page, so query the program and its back references
       dataQuery = 'programs';
+    } else if (location.path.match(/\/project\//g)) {
+      // We are on a project page so query the project and its back references
+      dataQuery = 'projects';
     }
 
     // Initialize our breadcrumb string
@@ -37,6 +41,10 @@ function Breadcrumbs({ data, location }) {
       case 'programs':
         // This is a program, so Link to the research area via backref, then highlight the program title
         string = <span><Link to={`/research/${data[dataQuery][0]._backrefs.researchAreas__via__programs[0].slug}`}>{data[dataQuery][0]._backrefs.researchAreas__via__programs[0].title}</Link> / <span style={{ color: 'rgb(0, 179, 152)', fontWeight: 'bold', lineHeight: '18px' }}>{data[dataQuery][0].title}</span></span>; // eslint-disable-line
+        break;
+      case 'projects':
+        // This is a project, so Link to the research area and program via backref, then highlight the program project title
+        string = '';
         break;
       default:
         string = '';
@@ -73,7 +81,15 @@ export default compose(
     }),
   }),
   graphql(ProgramTeaser, {
-    skip: (props) => props.research,
+    skip: (props) => !props.program,
+    options: (props) => ({
+      variables: {
+        slug: `fields.slug=${props.slug}`,
+      },
+    }),
+  }),
+  graphql(ProjectTeaser, {
+    skip: (props) => !props.project,
     options: (props) => ({
       variables: {
         slug: `fields.slug=${props.slug}`,

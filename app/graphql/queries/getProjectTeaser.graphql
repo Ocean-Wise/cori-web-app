@@ -1,0 +1,27 @@
+#import "../fragments/projectTeaser.graphql"
+
+query Project($slug: String!) {
+  projects(q: $slug) {
+    ...ProjectTeaser
+    _backrefs {
+      researchAreas__via__projects {
+        title
+        slug
+        programs {
+          title
+          slug
+        }
+      }
+      initiatives__via__projects {
+        title
+        slug
+        _backrefs {
+          programs__via__initiatives {
+            title
+            slug
+          }
+        }
+      }
+    }
+  }
+}
