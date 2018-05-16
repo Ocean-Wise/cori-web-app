@@ -29,8 +29,8 @@ function HomeCopy({ data: { homeCopies } }) {
     Object.entries(firstButtonData).forEach(
       ([key, value], i) => { // eslint-disable-line
         firstButtons.push(
-          <a href={value}>
-            <Button inverted id={`link-${i.toString()}`} key={i.toString()}>
+          <a href={value} key={i.toString()}>
+            <Button inverted id={`link-${i.toString()}`}>
               {key}
             </Button>
           </a>
@@ -43,8 +43,8 @@ function HomeCopy({ data: { homeCopies } }) {
     Object.entries(secondButtonData).forEach(
       ([key, value], i) => { // eslint-disable-line
         secondButtons.push(
-          <a href={value}>
-            <Button inverted id={`link-${i.toString()}`} key={i.toString()}>
+          <a href={value} key={i.toString()}>
+            <Button inverted id={`link-${i.toString()}`}>
               {key}
             </Button>
           </a>
@@ -57,8 +57,8 @@ function HomeCopy({ data: { homeCopies } }) {
     Object.entries(thirdButtonData).forEach(
       ([key, value], i) => { // eslint-disable-line
         thirdButtons.push(
-          <a href={value}>
-            <Button inverted id={`link-${i.toString()}`} key={i.toString()}>
+          <a href={value} key={i.toString()}>
+            <Button inverted id={`link-${i.toString()}`}>
               {key}
             </Button>
           </a>

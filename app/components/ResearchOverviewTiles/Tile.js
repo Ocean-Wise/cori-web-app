@@ -5,7 +5,6 @@ const Tile = styled.div`
   width: ${(props) => props.width};
   position: relative;
   height: 460px;
-
   background-image: url(${(props) => props.image});
   background-size: cover;
   &::before {
@@ -22,7 +21,7 @@ const Tile = styled.div`
   ${mixins.bp.xs.max`
     height: 210px;
   `}
-  span {
+  span.initialTitle {
     color: #FFFFFF;
     font-size: 36px;
     font-weight: bold;
@@ -35,6 +34,30 @@ const Tile = styled.div`
       line-height: 25px;
     `}
   }
+  span.explore {
+    color: #FFFFFF;
+    text-align: center;
+  }
+
+  div {
+    display: none;
+  }
+
+  &:hover {
+    &::before {
+      background-color: rgba(0,179,152,0.8);
+      background-image: unset;
+      opacity: unset;
+      border: 8px solid white;
+    }
+    span.initialTitle {
+      display: none;
+    }
+    div {
+      display: block;
+    }
+  }
+
 
 `;
 

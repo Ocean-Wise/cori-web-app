@@ -5,7 +5,6 @@
 query ResearchArea($slug: String!) {
   researchAreas(q: $slug) {
     ...ResearchAreaTeaser
-    subheader
     copy
     newsRSS
     mediaRSS

@@ -1,6 +1,7 @@
 fragment ResearchAreaTeaser on ResearchArea {
   title
   slug
+  subheader
   hero {
     title
     url
