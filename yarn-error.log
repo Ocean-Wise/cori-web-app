@@ -1,26 +1,17 @@
 Arguments: 
-  /home/ethand/.nvm/versions/node/v9.0.0/bin/node /home/ethand/.yarn/bin/yarn.js start
+  /usr/local/Cellar/node/9.9.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js test
 
 PATH: 
-  /home/ethand/.yarn/bin:/home/ethand/.config/yarn/global/node_modules/.bin:/home/ethand/.config/composer/vendor/bin:/home/ethand/.nvm/versions/node/v9.0.0/bin:/bin:/usr/bin:/usr/X11R6/bin:/usr/local/bin
+  /Users/ethan/google-cloud-sdk/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Users/ethan/Library/Android/sdk/tools:/Users/ethan/Library/Android/sdk/platform-tools
 
 Yarn version: 
-  1.6.0
+  1.5.1
 
 Node version: 
-  9.0.0
+  9.9.0
 
 Platform: 
-  linux x64
-
-Trace: 
-  SyntaxError: /home/ethand/Documents/CORI/package.json: Unexpected token } in JSON at position 2342
-      at JSON.parse (<anonymous>)
-      at /home/ethand/.yarn/lib/cli.js:1130:59
-      at Generator.next (<anonymous>)
-      at step (/home/ethand/.yarn/lib/cli.js:98:30)
-      at /home/ethand/.yarn/lib/cli.js:109:13
-      at <anonymous>
+  darwin x64
 
 npm manifest: 
   {
@@ -68,9 +59,9 @@ npm manifest:
       "test": "cross-env NODE_ENV=test jest",
       "test:watch": "cross-env NODE_ENV=test jest --watchAll",
       "coveralls": "cat ./coverage/lcov.info | coveralls",
-      "delpoy": "npm run deploy:staging",
+      "deploy": "npm run deploy:staging",
       "deploy:staging": "heroku container:push web -a cori-staging",
-      "deploy:prod": "heroku container:push web -a cori",
+      "deploy:prod": "heroku container:push web -a cori"
     },
     "lint-staged": {
       "*.js": "lint:eslint"
@@ -211,7 +202,8 @@ npm manifest:
         "graphql-tag",
         "cors",
         "rss-parser",
-        "body-parser"
+        "body-parser",
+        "http-auth"
       ],
       "include": [
         "core-js",
@@ -264,6 +256,7 @@ npm manifest:
       "graphql-tag": "^2.9.2",
       "history": "4.6.3",
       "hoist-non-react-statics": "2.1.1",
+      "http-auth": "^3.2.3",
       "immutable": "3.8.1",
       "intl": "1.2.5",
       "invariant": "2.2.2",
@@ -501,6 +494,16 @@ Lockfile:
     dependencies:
       micromatch "^2.1.5"
       normalize-path "^2.0.0"
+  
+  apache-crypt@^1.1.2:
+    version "1.2.1"
+    resolved "https://registry.yarnpkg.com/apache-crypt/-/apache-crypt-1.2.1.tgz#d6fc72aa6d27d99c95a94fd188d731eefffa663c"
+    dependencies:
+      unix-crypt-td-js "^1.0.0"
+  
+  apache-md5@^1.0.6:
+    version "1.1.2"
+    resolved "https://registry.yarnpkg.com/apache-md5/-/apache-md5-1.1.2.tgz#ee49736b639b4f108b6e9e626c6da99306b41692"
   
   apollo-boost@^0.1.6:
     version "0.1.6"
@@ -1637,6 +1640,10 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/bcrypt-pbkdf/-/bcrypt-pbkdf-1.0.1.tgz#63bc5dcb61331b92bc05fd528953c33462a06f8d"
     dependencies:
       tweetnacl "^0.14.3"
+  
+  bcryptjs@^2.3.0:
+    version "2.4.3"
+    resolved "https://registry.yarnpkg.com/bcryptjs/-/bcryptjs-2.4.3.tgz#9ab5627b93e60621ff7cdac5da9733027df1d0cb"
   
   beeper@^1.0.0:
     version "1.1.1"
@@ -4338,6 +4345,15 @@ Lockfile:
       domhandler "2.1"
       domutils "1.1"
       readable-stream "1.0"
+  
+  http-auth@^3.2.3:
+    version "3.2.3"
+    resolved "https://registry.yarnpkg.com/http-auth/-/http-auth-3.2.3.tgz#636842b71d6e1f2c98dba09af54417a1fef8b61c"
+    dependencies:
+      apache-crypt "^1.1.2"
+      apache-md5 "^1.0.6"
+      bcryptjs "^2.3.0"
+      uuid "^3.0.0"
   
   http-errors@1.6.2, http-errors@~1.6.1:
     version "1.6.2"
@@ -8637,6 +8653,10 @@ Lockfile:
     dependencies:
       unist-util-is "^2.1.1"
   
+  unix-crypt-td-js@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/unix-crypt-td-js/-/unix-crypt-td-js-1.0.0.tgz#1c0824150481bc7a01d49e98f1ec668d82412f3b"
+  
   unpipe@1.0.0, unpipe@~1.0.0:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
@@ -9140,3 +9160,18 @@ Lockfile:
   zen-observable@^0.8.0:
     version "0.8.8"
     resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.8.tgz#1ea93995bf098754a58215a1e0a7309e5749ec42"
+
+Trace: 
+  Error: Command failed.
+  Exit code: 1
+  Command: sh
+  Arguments: -c cross-env NODE_ENV=test jest
+  Directory: /Users/ethan/Projects/CORI
+  Output:
+  
+      at ProcessTermError.MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
+      at new ProcessTermError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:226:113)
+      at ChildProcess.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:30281:17)
+      at ChildProcess.emit (events.js:180:13)
+      at maybeClose (internal/child_process.js:936:16)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)
