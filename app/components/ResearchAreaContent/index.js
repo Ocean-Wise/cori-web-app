@@ -24,7 +24,7 @@ import H2 from './H2';
 import MarkdownWrapper from './MarkdownWrapper';
 import H3 from './H3';
 
-function ResearchAreaContent({ data: { researchAreas }, slug }) {
+function ResearchAreaContent({ data: { researchAreas }, slug, match }) {
   let area = {};
   try {
     area = researchAreas[0];
@@ -34,7 +34,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug }) {
       <div>
         <Hero src={area.hero.url} alt={area.hero.title} />
         <Container>
-          <Breadcrumbs slug={slug} />
+          <Breadcrumbs slug={slug} location={match} research />
           <H1>{area.title}</H1>
           <Divider />
           <H2>{area.subheader}</H2>
@@ -84,7 +84,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug }) {
 ResearchAreaContent.propTypes = {
   data: PropTypes.object.isRequired,
   slug: PropTypes.string.isRequired,
-  // match: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 export default graphql(getResearchArea, {

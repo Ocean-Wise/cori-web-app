@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import getAllPrograms from 'graphql/queries/getAllPrograms.graphql';
 
@@ -21,6 +21,18 @@ import Title from './Title';
 
 function ProjectTiles({ data: { programs } }) {
   try {
+    const tiles = [];
+    programs.map((program, i) => {
+      tiles.push(
+        <Link to={`/program/${program.slug}`} key={`programLink-${i.toString()}`}>
+          <Tile>
+            <Img src={program.hero.url} />
+            <Title>{program.title}</Title>
+          </Tile>
+        </Link>
+      );
+      return true;
+    });
     return (
       <div style={{ marginTop: 100 }}>
         <center>
@@ -29,10 +41,7 @@ function ProjectTiles({ data: { programs } }) {
           </H1>
           <Divider />
         </center>
-        <Tile>
-          <Img src={programs[0].hero.url} />
-          <Title>{programs[0].title}</Title>
-        </Tile>
+        {tiles}
       </div>
     );
   } catch (err) {

@@ -56,13 +56,13 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
         data.data.forEach((item, i) => {
           if (i > 1) return;
           const teaser = item.teaser.replace('[…]', '');
-          const title = <Link to={`${item.link}`}>{item.title}</Link>;
+          const title = <a href={item.link} target="_blank">{item.title}</a>;
           regular.push(
             <Paper zDepth={1} key={i.toString()}>
               <a href={item.link} target="_blank"><img src={item.img} alt="featured" style={{ width: '100%' }} /></a>
               <div style={{ padding: '20px 20px 10px 20px', marginBottom: 45 }}>
                 <H3>{title}</H3>
-                <P>{teaser.substring(0, 100)} <Link to={`${item.link}`}>[…]</Link></P>
+                <P>{teaser.substring(0, 100)} <a href={item.link} target="_blank">[…]</a></P>
               </div>
               <div style={{ padding: 20, position: 'absolute', bottom: 5 }}>
                 <Divider style={{ width: 50, height: 1, marginBottom: 10 }} />

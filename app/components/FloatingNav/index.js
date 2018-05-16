@@ -93,7 +93,7 @@ function FloatingNav({ data: { researchAreas }, active, location }) {
                 }
               }}
               style={{ color: areaColor, fontSize: 18, fontWeight: 'bold', lineHeight: '21px', padding: '12px 12px 12px 15px' }}
-            >{area.title}</div>
+            ><Link to={`/research/${area.slug}`}>{area.title}</Link></div>
             <div id={`subNav-${i.toString()}`} style={{ height: programHeightVal, overflow: 'hidden', transition: 'all 250ms cubic-bezier(0.805, 0.125, 0.500, 0.750)', marginLeft: 13, color: '#4D4D4D', fontSize: 14, lineHeight: '14px', padding: '12px 12px 12px 3px', borderTop: '1px solid #6a7b83', width: '90.5%' }}>
               {subNav}
               <div id={`initiative-${i.toString()}`} style={{ height: initiativeHeightVal, marginLeft: 13, padding: '5px 12px 12px 3px', fontSize: 12, lineHeight: '18px' }}>

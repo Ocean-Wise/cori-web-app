@@ -15,7 +15,7 @@ import Breadcrumbs from 'components/Breadcrumbs';
 import Hero from './Hero';
 import Container from './Container';
 
-function ProgramContent({ data: { programs }, slug }) {
+function ProgramContent({ data: { programs }, slug, match }) {
   let program = {};
 
   try {
@@ -24,7 +24,7 @@ function ProgramContent({ data: { programs }, slug }) {
       <div>
         <Hero src={program.hero.url} alt={program.hero.title} />
         <Container>
-          <Breadcrumbs slug={slug} />
+          <Breadcrumbs slug={slug} location={match} />
         </Container>
       </div>
     );
@@ -36,7 +36,7 @@ function ProgramContent({ data: { programs }, slug }) {
 ProgramContent.propTypes = {
   data: PropTypes.object.isRequired,
   slug: PropTypes.string.isRequired,
-  // match: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 export default graphql(getProgram, {

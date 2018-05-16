@@ -1,9 +1,9 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+// import { FormattedMessage } from 'react-intl';
 
 import A from './A';
 import LinkWrapper from './LinkWrapper';
-import messages from './messages';
+// import messages from './messages';
 import H4 from './H4';
 import Row from './Row';
 import LinkSection from './LinkSection';
@@ -14,35 +14,73 @@ function Links() {
       <LinkSection>
         <Row>
           <H4>
-            <FormattedMessage {...messages.LinkRow1} />
+            Coastal Ocean Research Institute
           </H4>
           <A href="#">
-            <FormattedMessage {...messages.LinkRow1.Link1} />
+            Marine Mammals
           </A>
           <A href="#">
-            <FormattedMessage {...messages.LinkRow1.Link2} />
+            Ocean Pollution
+          </A>
+          <A href="#">
+            Coastal Ocean Health
+          </A>
+          <A href="#">
+            Howe Sound Biodiversity
           </A>
         </Row>
         <Row>
           <H4>
-            <FormattedMessage {...messages.LinkRow2} />
+            Vancouver Aquarium
           </H4>
           <A href="#">
-            <FormattedMessage {...messages.LinkRow2.Link1} />
+            Frog Conservation
           </A>
           <A href="#">
-            <FormattedMessage {...messages.LinkRow2.Link2} />
+            Fish Propagation
+          </A>
+          <A href="#">
+            Animal Rehabilitation
+          </A>
+          <A href="#">
+            Energetics and Metabolism
+          </A>
+          <A href="#">
+            Jellyfish Rearing
+          </A>
+        </Row>
+        <Row>
+          <H4 style={{ position: 'relative', top: 17 }}>
+            Working Groups
+          </H4>
+          <A href="#">
+            Arctic
+          </A>
+          <A href="#">
+            Plastic
+          </A>
+          <A href="#">
+            Special Places
+          </A>
+          <A href="#">
+            Threatened Species
           </A>
         </Row>
         <Row>
           <H4>
-            <FormattedMessage {...messages.LinkRow3} />
+            Ocean Wise Research
           </H4>
           <A href="#">
-            <FormattedMessage {...messages.LinkRow3.Link1} />
+            About
           </A>
           <A href="#">
-            <FormattedMessage {...messages.LinkRow3.Link2} />
+            Team
+          </A>
+          <A href="#">
+            Media
+          </A>
+          <A href="#">
+            Publications
           </A>
         </Row>
       </LinkSection>

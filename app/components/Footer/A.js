@@ -5,7 +5,7 @@ const A = NormalA.extend`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  color: #999;
+  color: #676c6f !important;
   text-decoration: none;
   font-size: 14px;
 `;
