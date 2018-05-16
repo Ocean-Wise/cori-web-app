@@ -13,7 +13,7 @@ import Links from './Links';
 function Footer() {
   return (
     <div>
-      <Wrapper>
+      <Wrapper style={{ backgroundColor: '#fff' }}>
         <Section>
           <Logo src={OWLogo} alt="Ocean Wise" />
         </Section>
@@ -21,7 +21,7 @@ function Footer() {
           <Links />
         </Section>
       </Wrapper>
-      <Wrapper style={{ backgroundColor: 'rgb(220,220,220)' }}>
+      <Wrapper style={{ backgroundColor: '#f8f9f9' }}>
         <Section>
           <span>About Ocean Wise&reg;</span>
           <span>Terms</span>

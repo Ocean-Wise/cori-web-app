@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 import NormalPaper from 'material-ui/Paper';
+// import * as mixins from 'styles/mixins';
 
 const Paper = styled(NormalPaper)`
-  width: 285px;
-  position: fixed;
-  left: 7rem;
-  top: 200px;
+  padding: 50px;
+  margin-bottom: 50px;
 `;
 
 export default Paper;

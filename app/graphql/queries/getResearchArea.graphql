@@ -24,5 +24,12 @@ query ResearchArea($slug: String!) {
     projects {
       ...ProjectTeaser
     }
+    supporters {
+      name
+      logo {
+        title
+        url
+      }
+    }
   }
 }

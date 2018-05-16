@@ -30,6 +30,23 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match }) {
     area = researchAreas[0];
     const LatestNewsComponent = area.newsRSS !== null ? <LatestNews url={area.newsRSS} /> : '';
     const MediaReleasesComponent = area.mediaRSS !== null ? <MediaReleases url={area.mediaRSS} /> : '';
+    const supporters = area.supporters.map((supporter) => { // eslint-disable-line
+      return (
+        <div>
+          <img src={supporter.logo.url} alt={supporter.name} />
+        </div>
+      );
+    });
+    const supportersComponent = area.supporters !== null ? (
+      <div style={{ backgroundColor: '#efefef', marginTop: 100, paddingBottom: 25 }}>
+        <center>
+          <H1 style={{ fontSize: 48, lineHeight: '50px', paddingTop: 15 }}>Our Supporters</H1>
+          <Divider />
+          <p>Ut convallis, metus et convallis mattis, nunc velit placerat quam, sed consectetur risus tellus sed sem. Integer fermentum ue turpis vitae egestas.</p>
+          <div style={{ display: 'inline-flex', flexDirection: 'row' }}>{supporters}</div>
+        </center>
+      </div>
+    ) : '';
     return (
       <div>
         <Hero src={area.hero.url} alt={area.hero.title} />
@@ -67,13 +84,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match }) {
             </center>
           </div>
         </Container>
-        <div style={{ backgroundColor: '#efefef', marginTop: 100 }}>
-          <center>
-            <H1 style={{ fontSize: 48, lineHeight: '50px', paddingTop: 15 }}>Our Supporters</H1>
-            <Divider />
-            <p>Ut convallis, metus et convallis mattis, nunc velit placerat quam, sed consectetur risus tellus sed sem. Integer fermentum ue turpis vitae egestas.</p>
-          </center>
-        </div>
+        {supportersComponent}
       </div>
     );
   } catch (err) {

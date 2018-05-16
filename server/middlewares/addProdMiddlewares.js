@@ -37,11 +37,11 @@ module.exports = function addProdMiddlewares(app, options) {
     // Enable CORS header to allow access to the GraphQL endpoint from within an application that is not running on the same origin
     app.use(cors());
 
-    app.use('/graphql', graphqlHTTP({
+    app.use('/graphql', graphqlHTTP(() => ({
       context: { entryLoader: theClient.createEntryLoader() },
       graphiql: false,
       schema,
-    }));
+    })));
 
     // compression middleware compresses your server responses which makes them
     // smaller (applies also to assets). You can read more about that technique
