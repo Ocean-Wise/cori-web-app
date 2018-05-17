@@ -15,7 +15,6 @@ import P from 'components/P';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
-import Container from './Container';
 import Wrapper from './Wrapper';
 import Paper from './Paper';
 import A from './A';

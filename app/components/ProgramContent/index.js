@@ -10,21 +10,21 @@ import { Link } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import ReactMarkdown from 'react-markdown';
 import getProgram from 'graphql/queries/getProgram.graphql';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 
 import Breadcrumbs from 'components/Breadcrumbs';
 import ProjectFeatured from 'components/ProjectFeatured';
 import Hero from './Hero';
 import Container from './Container';
 import Section from './Section';
+import Hr from './Hr';
 import H1 from './H1';
-import H2 from './H2';
 import H3 from './H3';
 import H4 from './H4';
 import H5 from './H5';
 import MarkdownWrapper from './MarkdownWrapper';
 import Paper from './Paper';
 import Divider from './Divider';
-import ProjectList from './ProjectList';
 import Column from './Column';
 
 function ProgramContent({ data: { programs }, slug, match }) {
@@ -41,65 +41,108 @@ function ProgramContent({ data: { programs }, slug, match }) {
           column = [];
         }
         column.push(
-          <div key={`project-${j.toString()}`}>
-            <Link to={`/project/${project.slug}`}>
-              <span style={{ color: '#005EB8' }}>{project.projectTitle} &gt;</span>
+          <div key={`project-${j.toString()}`} style={{ paddingBottom: 10 }}>
+            <Link to={`/project/${project.slug}`} style={{ fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>
+              <span style={{ color: '#00B398' }}>{project.projectTitle} &gt;</span>
             </Link>
           </div>
         );
         if (j === initiative.projects.length - 1) {
-          projects.push(<Column key={`projectCol-${j.toString()}`}>{column}</Column>);
+          projects.push(<Col key={`projectCol-${j.toString()}`} md={6}>{column}</Col>);
         }
         return true;
       });
 
+      const sponsors = [];
+      try {
+        initiative.sponsors.map((sponsor, j) => { // eslint-disable-line
+          sponsors.push(
+            <Col md={2} key={`sponsor-${j.toString()}`}>
+              <img src={sponsor.logo.url} alt={sponsor.logo.title} />
+            </Col>
+          );
+        });
+      } catch (err) {
+        // Error
+      }
+
+      const SponsorComponent = sponsors.length === 0 ? '' : (
+        <div>
+          <Hr style={{ marginBottom: 15 }} />
+          <H5>INITIATIVE SPONSORS</H5>
+          <p>Ut convallis, metus et convallis mattis, nunc velit placerat quam, sed consectetur risus tellus sed sem. Integer fermentum eu turpis vitae egestas.</p>
+          <Grid fluid>
+            <Row>
+              {sponsors}
+            </Row>
+          </Grid>
+        </div>
+      );
+
       return (
         <Paper zDepth={1} key={`card-${i.toString()}`}>
-          <H4>{initiative.title}</H4>
-          <MarkdownWrapper>
-            <ReactMarkdown source={initiative.copy} />
-          </MarkdownWrapper>
-          <H5>Projects</H5>
-          <hr style={{ marginBottom: 15 }} />
-          <ProjectList>
-            {projects}
-          </ProjectList>
-          <H5>Feature Story</H5>
-          <hr style={{ marginBottom: 15 }} />
-          <ProjectFeatured url={initiative.rssLink} />
+          <div style={{ backgroundColor: '#00B398', padding: '32px 32px 16px 32px' }}>
+            <H4>{initiative.title}</H4>
+          </div>
+          <div style={{ padding: '0 32px' }}>
+            <MarkdownWrapper>
+              <ReactMarkdown source={initiative.copy} />
+            </MarkdownWrapper>
+            <Hr style={{ marginBottom: 15 }} />
+            <H5>PROJECTS</H5>
+            <Grid fluid style={{ paddingLeft: 0 }}>
+              <Row>
+                {projects}
+              </Row>
+            </Grid>
+            <Hr style={{ marginBottom: 15 }} />
+            <H5>SPOTLIGHT</H5>
+            <ProjectFeatured url={initiative.rssLink} />
+            {SponsorComponent}
+          </div>
         </Paper>
       );
     });
 
     const InitiativesComponent = (
-      <div>
-        <H2>Initiatives</H2>
-        <Divider />
-        {initiativesList}
-      </div>
+      <Grid fluid style={{ padding: '60px 0' }}>
+        <Row>
+          <Col md={4}>
+            <Divider />
+            <H1 style={{ marginTop: 15, position: 'relative', left: 201 }}>Initiatives</H1>
+          </Col>
+          <Col md={5}>
+            {initiativesList}
+          </Col>
+        </Row>
+      </Grid>
     );
 
     return (
       <div>
         <Hero src={program.hero.url} alt={program.hero.title} />
         <Section style={{ paddingBottom: 20 }}>
-          <Container>
-            <Breadcrumbs slug={slug} location={match} program />
-            <H1>{program.title}</H1>
-            <H3>{program.subheader}</H3>
-            <MarkdownWrapper>
-              <ReactMarkdown source={program.copy} />
-            </MarkdownWrapper>
-          </Container>
+          <Grid fluid>
+            <Row>
+              <Col md={4} />
+              <Col md={5}>
+                <Breadcrumbs slug={slug} location={match} program />
+                <H1 style={{ marginTop: 15 }}>{program.title}</H1>
+                <H3>{program.subheader}</H3>
+                <MarkdownWrapper>
+                  <ReactMarkdown source={program.copy} />
+                </MarkdownWrapper>
+              </Col>
+            </Row>
+          </Grid>
         </Section>
         <Section>
-          <Container>
-            {InitiativesComponent}
-          </Container>
+          {InitiativesComponent}
         </Section>
       </div>
     );
   } catch (err) {
+    console.log(err);
     return <div></div>;
   }
 }
