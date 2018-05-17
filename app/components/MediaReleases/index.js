@@ -8,13 +8,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 // import { Link } from 'react-router-dom';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
-import H2 from './H2';
+import Divider from './Divider';
+import H1 from './H1';
 import H3 from './H3';
 import Date from './Date';
+import A from './A';
 
 class MediaReleases extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
@@ -43,14 +46,27 @@ class MediaReleases extends React.PureComponent { // eslint-disable-line react/p
 
   render() {
     return (
-      <div style={{ marginTop: 80 }}>
-        <H2>
-          <FormattedMessage {...messages.header} />
-        </H2>
-        <div>
-          {this.state.media}
-        </div>
-      </div>
+      <Grid fluid>
+        <Row>
+          <Col md={4}>
+            <Divider />
+            <H1>
+              <FormattedMessage {...messages.header} />
+            </H1>
+          </Col>
+          <Col md={5}>
+            <div>
+              {this.state.media}
+            </div>
+          </Col>
+        </Row>
+        <Row style={{ marginTop: 15 }}>
+          <Col md={4} />
+          <Col md={5}>
+            <A href="https://ocean.org/media-releases" target="_blank">View more media releases &gt;</A>
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }

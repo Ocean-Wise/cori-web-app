@@ -40,7 +40,7 @@ function Button(props) {
       transition: ${transition};
     }
     #${props.id} {
-      background-color: #efefef !important;
+      background-color: transparent !important;
       color: rgb(0, 179, 152) !important;
       border: 1px solid rgb(0, 179, 152) !important;
       transition: ${transition};

@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import ReactMarkdown from 'react-markdown';
 import getResearchArea from 'graphql/queries/getResearchArea.graphql';
-import { Grid, Row, Col } from 'react-flexbox-grid';
+import { Grid, Row } from 'react-flexbox-grid';
 
 import ProjectTiles from 'components/ProjectTiles';
 import Breadcrumbs from 'components/Breadcrumbs';
@@ -18,13 +18,14 @@ import LatestNews from 'components/LatestNews/Loadable';
 import MediaReleases from 'components/MediaReleases/Loadable';
 import Button from 'components/Button';
 import Hero from './Hero';
-import Container from './Container';
 import Section from './Section';
+import Container from './Container';
 import H1 from './H1';
 import Divider from './Divider';
 import H2 from './H2';
 import MarkdownWrapper from './MarkdownWrapper';
 import H3 from './H3';
+import Col from './Col';
 
 function ResearchAreaContent({ data: { researchAreas }, slug, match }) {
   let area = {};
@@ -52,14 +53,12 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match }) {
       <div>
         <Hero src={area.hero.url} alt={area.hero.title} />
         <Section style={{ paddingTop: 30 }}>
-          {/* <Container> */}
           <Grid fluid>
             <Row>
               <Col md={4} />
               <Col md={5} style={{ paddingLeft: 0 }}>
                 <Breadcrumbs slug={slug} location={match} research />
                 <H1 style={{ marginTop: 25 }}>{area.title}</H1>
-                {/* <Divider /> */}
                 <H2>{area.subheader}</H2>
                 <MarkdownWrapper>
                   <ReactMarkdown source={area.copy} />
@@ -67,44 +66,47 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match }) {
               </Col>
             </Row>
           </Grid>
-          {/* </Container> */}
         </Section>
         <Section>
           <ProjectTiles />
         </Section>
         <Section>
-          <Container>
-            {LatestNewsComponent}
-          </Container>
+          {LatestNewsComponent}
         </Section>
         <Section>
-          <Container>
-            {MediaReleasesComponent}
-          </Container>
+          {MediaReleasesComponent}
         </Section>
         <Section>
-          <div style={{ backgroundColor: '#efefef', padding: 10, marginTop: 80 }}>
-            <center>
-              <H3>The Team</H3>
-              <p>Ut convallis, metus et convallis mattis, nunc velit placerat quam, sed consectetur risus tellus sed sem. Integer fermentum ue turpis vitae egestas.</p>
-              <Link to={`/team/${slug}`}>
-                <Button id="team">
-                  Get to know our researchers &gt;
-                </Button>
-              </Link>
-            </center>
-          </div>
-          <div style={{ backgroundColor: '#efefef', padding: 10, marginTop: 35 }}>
-            <center>
-              <H3>Read Our Work</H3>
-              <p>Ut convallis, metus et convallis mattis, nunc velit placerat quam, sed consectetur risus tellus sed sem. Integer fermentum ue turpis vitae egestas.</p>
-              <Link to={`/publications/${slug}`}>
-                <Button id="publications">
-                  Find our publications &gt;
-                </Button>
-              </Link>
-            </center>
-          </div>
+          <Grid fluid>
+            <Row>
+              <Col md={1} />
+              <Col md={4} team>
+                <Container>
+                  <H3>The Team</H3>
+                  <p>Ut convallis, metus et convallis mattis, nunc velit placerat quam, sed consectetur risus tellus sed sem. Integer fermentum ue turpis vitae egestas.</p>
+                  <Link to={`/team/${slug}`}>
+                    <Button id="team">
+                      Get to know our researchers &gt;
+                    </Button>
+                  </Link>
+                </Container>
+              </Col>
+            </Row>
+            <Row style={{ marginTop: 80 }}>
+              <Col md={6} />
+              <Col md={4}>
+                <Container>
+                  <H3>Read Our Work</H3>
+                  <p>Ut convallis, metus et convallis mattis, nunc velit placerat quam, sed consectetur risus tellus sed sem. Integer fermentum ue turpis vitae egestas.</p>
+                  <Link to={`/publications/${slug}`}>
+                    <Button id="publications">
+                      Find our publications &gt;
+                    </Button>
+                  </Link>
+                </Container>
+              </Col>
+            </Row>
+          </Grid>
         </Section>
         <Section>
           {supportersComponent}

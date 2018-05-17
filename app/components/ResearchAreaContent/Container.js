@@ -1,14 +1,8 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  width: 730px;
-  display: block;
-  margin: 0 auto;
-  transform: translateX(80px);
-  p {
-    font-size: 16px;
-    line-height: 26px;
-  }
+  padding: 32px;
+  box-shadow: 0 8px 16px -8px rgba(0,0,0,0.24), 0 16px 32px 0 rgba(0,0,0,0.12), -32px -32px 0 0 #CCF0EA;
 `;
 
 export default Container;

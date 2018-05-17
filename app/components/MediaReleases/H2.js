@@ -7,7 +7,9 @@ const H2 = styled(NormalH2)`
   font-size: 36px;
   font-weight: bold;
   line-height: 45px;
-  margin-bottom: 15px;
+  margin: 0;
+  position: relative;
+  left: 197px;
 `;
 
 export default H2;

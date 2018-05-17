@@ -7,9 +7,9 @@ const H1 = styled(NormalH1)`
   font-size: 48px;
   font-weight: bold;
   line-height: 50px;
-  margin-bottom: 15px;
+  margin: 15px 0;
   position: relative;
-  left: 48px;
+  left: 196px;
 `;
 
 export default H1;

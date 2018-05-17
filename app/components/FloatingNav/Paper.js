@@ -6,6 +6,7 @@ const Paper = styled(NormalPaper)`
   position: fixed;
   left: 7rem;
   top: 200px;
+  z-index: 10;
 `;
 
 export default Paper;

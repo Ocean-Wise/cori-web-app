@@ -7,8 +7,7 @@ const H3 = styled(NormalH3)`
   font-size: 48px;
   font-weight: bold;
   line-height: 50px;
-  text-align: center;
-  margin-top: 15px;
+  margin-top: 0;
   margin-bottom: 15px;
 `;
 
