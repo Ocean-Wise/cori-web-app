@@ -28,7 +28,6 @@ const internalAuth = auth.basic({
 }
 );
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
