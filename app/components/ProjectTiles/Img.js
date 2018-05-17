@@ -1,15 +1,14 @@
 import styled from 'styled-components';
 
 const Img = styled.div`
-  width: 350px;
-  height: 350px;
-  margin-bottom: 5px;
+  width: 389px;
+  height: 389px;
 
   background-image: url(${(props) => props.src});
   background-size: cover;
   &::before {
-    width: 350px;
-    height: 350px;
+    width: 389px;
+    height: 389px;
     content: '';
     position: absolute;
     top: 0;

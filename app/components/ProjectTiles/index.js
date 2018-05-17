@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import getAllPrograms from 'graphql/queries/getAllPrograms.graphql';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
@@ -34,15 +35,28 @@ function ProjectTiles({ data: { programs } }) {
       return true;
     });
     return (
-      <div style={{ marginTop: 100 }}>
-        <center>
-          <H1>
-            <FormattedMessage {...messages.header} />
-          </H1>
-          <Divider />
-        </center>
-        {tiles}
-      </div>
+      <Grid fluid>
+        <Row>
+          <Col md={4}>
+            <div style={{ textAlign: 'center' }}>
+              <Divider />
+              <H1>
+                <FormattedMessage {...messages.header} />
+              </H1>
+            </div>
+          </Col>
+          <Col md={5}>
+            <Row style={{ marginBottom: 0 }}>
+              {tiles}
+              {tiles}
+            </Row>
+            <Row>
+              {tiles}
+              {tiles}
+            </Row>
+          </Col>
+        </Row>
+      </Grid>
     );
   } catch (err) {
     return <div></div>;

@@ -254,6 +254,7 @@
     "react-apollo": "^2.1.4",
     "react-checkbox-group": "^3.3.4",
     "react-dom": "15.6.1",
+    "react-flexbox-grid": "^2.1.0",
     "react-helmet": "5.1.3",
     "react-intl": "2.3.0",
     "react-loadable": "4.0.3",

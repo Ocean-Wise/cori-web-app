@@ -8,7 +8,7 @@ const Title = styled.span`
   text-align: center;
   position: absolute;
   bottom: 10px;
-  left: 60px;
+  left: 85px;
 `;
 
 export default Title;

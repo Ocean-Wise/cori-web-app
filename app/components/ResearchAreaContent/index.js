@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import ReactMarkdown from 'react-markdown';
 import getResearchArea from 'graphql/queries/getResearchArea.graphql';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 
 import ProjectTiles from 'components/ProjectTiles';
 import Breadcrumbs from 'components/Breadcrumbs';
@@ -18,6 +19,7 @@ import MediaReleases from 'components/MediaReleases/Loadable';
 import Button from 'components/Button';
 import Hero from './Hero';
 import Container from './Container';
+import Section from './Section';
 import H1 from './H1';
 import Divider from './Divider';
 import H2 from './H2';
@@ -38,29 +40,49 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match }) {
       );
     });
     const supportersComponent = area.supporters !== null ? (
-      <div style={{ backgroundColor: '#efefef', marginTop: 100, paddingBottom: 25 }}>
-        <center>
-          <H1 style={{ fontSize: 48, lineHeight: '50px', paddingTop: 15 }}>Our Supporters</H1>
-          <Divider />
-          <p>Ut convallis, metus et convallis mattis, nunc velit placerat quam, sed consectetur risus tellus sed sem. Integer fermentum ue turpis vitae egestas.</p>
-          <div style={{ display: 'inline-flex', flexDirection: 'row' }}>{supporters}</div>
-        </center>
-      </div>
+      <center>
+        <H1 style={{ fontSize: 48, lineHeight: '50px', paddingTop: 15 }}>Our Supporters</H1>
+        <Divider />
+        <p>Ut convallis, metus et convallis mattis, nunc velit placerat quam, sed consectetur risus tellus sed sem. Integer fermentum ue turpis vitae egestas.</p>
+        <div style={{ display: 'inline-flex', flexDirection: 'row' }}>{supporters}</div>
+      </center>
     ) : '';
+
     return (
       <div>
         <Hero src={area.hero.url} alt={area.hero.title} />
-        <Container>
-          <Breadcrumbs slug={slug} location={match} research />
-          <H1>{area.title}</H1>
-          <Divider />
-          <H2>{area.subheader}</H2>
-          <MarkdownWrapper>
-            <ReactMarkdown source={area.copy} />
-          </MarkdownWrapper>
+        <Section style={{ paddingTop: 30 }}>
+          {/* <Container> */}
+          <Grid fluid>
+            <Row>
+              <Col md={4} />
+              <Col md={5} style={{ paddingLeft: 0 }}>
+                <Breadcrumbs slug={slug} location={match} research />
+                <H1 style={{ marginTop: 25 }}>{area.title}</H1>
+                {/* <Divider /> */}
+                <H2>{area.subheader}</H2>
+                <MarkdownWrapper>
+                  <ReactMarkdown source={area.copy} />
+                </MarkdownWrapper>
+              </Col>
+            </Row>
+          </Grid>
+          {/* </Container> */}
+        </Section>
+        <Section>
           <ProjectTiles />
-          {LatestNewsComponent}
-          {MediaReleasesComponent}
+        </Section>
+        <Section>
+          <Container>
+            {LatestNewsComponent}
+          </Container>
+        </Section>
+        <Section>
+          <Container>
+            {MediaReleasesComponent}
+          </Container>
+        </Section>
+        <Section>
           <div style={{ backgroundColor: '#efefef', padding: 10, marginTop: 80 }}>
             <center>
               <H3>The Team</H3>
@@ -83,8 +105,10 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match }) {
               </Link>
             </center>
           </div>
-        </Container>
-        {supportersComponent}
+        </Section>
+        <Section>
+          {supportersComponent}
+        </Section>
       </div>
     );
   } catch (err) {
