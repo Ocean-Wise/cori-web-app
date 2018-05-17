@@ -44,6 +44,18 @@ function ProjectContent({ data: { projects }, slug, match }) {
       </div>
     ) : '';
 
+    console.log(project.copy);
+    let copy = project.copy;
+    const regex = /!\[(.*)\]\(.*\)/g;
+    let images = regex.exec(copy);
+    while (images != null) {
+      console.log(images);
+      const imageWithCaption = `${images[0]}*${images[1]}*`;
+      copy = copy.replace(images[0], imageWithCaption);
+      images = regex.exec(copy);
+    }
+    console.log(copy);
+
     return (
       <div>
         <Hero src={project.hero.url} alt={project.hero.title} />
@@ -56,7 +68,7 @@ function ProjectContent({ data: { projects }, slug, match }) {
                 <H1>{project.projectTitle}</H1>
                 <H3>{project.subheader}</H3>
                 <MarkdownWrapper>
-                  <ReactMarkdown source={project.copy} />
+                  <ReactMarkdown source={copy} />
                 </MarkdownWrapper>
               </Col>
             </Row>

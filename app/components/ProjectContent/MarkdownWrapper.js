@@ -7,8 +7,16 @@ const MarkdownWrapper = styled.div`
   margin-bottom: 60px;
   img {
     margin-top: 8px;
+    margin-bottom: 5px;
     width: 100%;
     box-shadow: 0 1px 3px 0 rgba(0,0,0,0.24), 14px -14px 0 0 #CCF0EA !important;
+    + em {
+      margin-top: 5px;
+      color: #8D8D8D;
+      font-size: 14px;
+      line-height: 18px;
+      font-style: normal;
+    }
   }
   blockquote {
     p {

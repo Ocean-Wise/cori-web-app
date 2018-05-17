@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import NormalH1 from 'components/H1';
 
 const H1 = styled(NormalH1)`
-  color: #4D4D4D;
-  font-size: 48px;
+  color: #B2BEC4;
+  font-size: 72px;
   font-weight: bold;
-  line-height: 50px;
+  line-height: 79px;
 `;
 
 export default H1;

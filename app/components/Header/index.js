@@ -44,10 +44,18 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
             <H1>Ocean Wise <span>Research</span></H1>
           </Link>
           <div style={{ display: 'flex', flexDirection: 'row', color: '#73838b', fontWeight: 700, fontSize: '1rem', float: 'right' }}>
-            <span>About</span>
-            <span style={{ marginLeft: 15 }}>Team</span>
-            <span style={{ marginLeft: 15 }}>Media</span>
-            <span style={{ marginLeft: 15 }}>Publications</span>
+            <Link to="/about">
+              About
+            </Link>
+            <Link to="/team" style={{ marginLeft: 15 }}>
+              Team
+            </Link>
+            <Link to="/media" style={{ marginLeft: 15 }}>
+              Media
+            </Link>
+            <Link to="/Publications" style={{ marginLeft: 15 }}>
+              Publications
+            </Link>
             <span style={{ marginLeft: 15 }}>S-Icon</span>
           </div>
         </Container>
