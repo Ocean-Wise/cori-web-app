@@ -9,22 +9,22 @@ import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import ReactMarkdown from 'react-markdown';
 import getProject from 'graphql/queries/getProject.graphql';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 
 import Breadcrumbs from 'components/Breadcrumbs';
 import ProjectMembers from 'components/ProjectMembers';
 import Hero from './Hero';
 import Section from './Section';
-import Container from './Container';
 import H1 from './H1';
 import H3 from './H3';
 import MarkdownWrapper from './MarkdownWrapper';
 import Divider from './Divider';
+import Hr from './Hr';
 
 function ProjectContent({ data: { projects }, slug, match }) {
   let project = {};
   try {
     project = projects[0];
-    // console.log(project);
     const supporters = project.supporters.map((supporter) => { // eslint-disable-line
       return (
         <div>
@@ -48,15 +48,30 @@ function ProjectContent({ data: { projects }, slug, match }) {
       <div>
         <Hero src={project.hero.url} alt={project.hero.title} />
         <Section>
-          <Container>
-            <Breadcrumbs slug={slug} location={match} project />
-            <H1>{project.projectTitle}</H1>
-            <H3>{project.subheader}</H3>
-            <MarkdownWrapper>
-              <ReactMarkdown source={project.copy} />
-            </MarkdownWrapper>
-            <ProjectMembers slug={slug} />
-          </Container>
+          <Grid fluid>
+            <Row>
+              <Col md={3} />
+              <Col md={6}>
+                <Breadcrumbs slug={slug} location={match} project />
+                <H1>{project.projectTitle}</H1>
+                <H3>{project.subheader}</H3>
+                <MarkdownWrapper>
+                  <ReactMarkdown source={project.copy} />
+                </MarkdownWrapper>
+              </Col>
+            </Row>
+          </Grid>
+          <div style={{ width: '65%', margin: '0 auto' }}>
+            <Hr />
+          </div>
+          <Grid fluid>
+            <Row>
+              <Col md={3} />
+              <Col md={6}>
+                <ProjectMembers slug={slug} />
+              </Col>
+            </Row>
+          </Grid>
           {supportersComponent}
         </Section>
       </div>

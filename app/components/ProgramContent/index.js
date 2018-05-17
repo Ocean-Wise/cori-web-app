@@ -15,7 +15,6 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import Breadcrumbs from 'components/Breadcrumbs';
 import ProjectFeatured from 'components/ProjectFeatured';
 import Hero from './Hero';
-import Container from './Container';
 import Section from './Section';
 import Hr from './Hr';
 import H1 from './H1';
@@ -25,7 +24,6 @@ import H5 from './H5';
 import MarkdownWrapper from './MarkdownWrapper';
 import Paper from './Paper';
 import Divider from './Divider';
-import Column from './Column';
 
 function ProgramContent({ data: { programs }, slug, match }) {
   let program = {};
@@ -106,7 +104,7 @@ function ProgramContent({ data: { programs }, slug, match }) {
 
     const InitiativesComponent = (
       <Grid fluid style={{ padding: '60px 0' }}>
-        <Row>
+        <Row style={{ margin: 0 }}>
           <Col md={4}>
             <Divider />
             <H1 style={{ marginTop: 15, position: 'relative', left: 201 }}>Initiatives</H1>
@@ -142,7 +140,6 @@ function ProgramContent({ data: { programs }, slug, match }) {
       </div>
     );
   } catch (err) {
-    console.log(err);
     return <div></div>;
   }
 }
