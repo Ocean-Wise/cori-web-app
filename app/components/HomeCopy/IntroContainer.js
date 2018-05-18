@@ -6,6 +6,7 @@ const IntroContainer = styled.div`
   display: block;
   margin: 0 auto;
   margin-bottom: 45px;
+  background-color: #FFFFFF;
 `;
 
 export default IntroContainer;

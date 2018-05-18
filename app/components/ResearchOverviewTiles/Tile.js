@@ -40,6 +40,9 @@ const Tile = styled.div`
       line-height: 25px;
     `}
   }
+  span.subsequent {
+    width: 400px;
+  }
   span.explore {
     color: #FFFFFF;
     text-align: center;

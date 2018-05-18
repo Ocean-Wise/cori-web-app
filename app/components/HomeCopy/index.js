@@ -68,13 +68,15 @@ function HomeCopy({ data: { homeCopies } }) {
 
     return (
       <div>
-        <IntroContainer>
-          <center>
-            <H1>{data.headline}</H1>
-            <Blockquote>{data.subheader}</Blockquote>
-            <ReactMarkdown source={data.introCopy} />
-          </center>
-        </IntroContainer>
+        <Wrapper>
+          <IntroContainer>
+            <center>
+              <H1>{data.headline}</H1>
+              <Blockquote>{data.subheader}</Blockquote>
+              <ReactMarkdown source={data.introCopy} />
+            </center>
+          </IntroContainer>
+        </Wrapper>
         <Wrapper>
           <Section flexDirection="column">
             <Img src={data.firstImage.url} alt={data.firstImage.title} float="left" />

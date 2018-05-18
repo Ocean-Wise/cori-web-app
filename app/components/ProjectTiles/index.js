@@ -45,13 +45,8 @@ function ProjectTiles({ data: { programs } }) {
               </H1>
             </div>
           </Col>
-          <Col md={8}>
+          <Col md={7}>
             <Row style={{ marginBottom: 0 }}>
-              {tiles}
-              {tiles}
-            </Row>
-            <Row>
-              {tiles}
               {tiles}
             </Row>
           </Col>
