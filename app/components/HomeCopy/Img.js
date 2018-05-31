@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import * as mixins from 'styles/mixins';
 
 const Img = styled.img`
-  width: 480px;
   height: 440px;
+  width: 540px;
   ${(props) => props.float === 'right' ? `
     box-shadow: 0 8px 16px -8px rgba(0,0,0,0.24), 0 16px 32px 0 rgba(0,0,0,0.12), 32px -32px 0 0 #CCF0EA;
     float: right;

@@ -26,7 +26,7 @@ function ProjectTiles({ data: { programs } }) {
     programs.map((program, i) => {
       tiles.push(
         <Link to={`/program/${program.slug}`} key={`programLink-${i.toString()}`}>
-          <Tile>
+          <Tile image={program.hero.url}>
             <Img src={program.hero.url} />
             <Title>{program.title}</Title>
           </Tile>

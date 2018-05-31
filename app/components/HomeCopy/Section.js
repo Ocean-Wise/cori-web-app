@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import * as mixins from 'styles/mixins';
 
 const Section = styled.div`
-  width: 55%;
+  width: 60%;
   display: block;
   margin: 0 auto;
   height: 450px;

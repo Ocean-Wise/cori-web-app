@@ -23,24 +23,38 @@ function createWebpackMiddleware(compiler, publicPath) {
 }
 
 module.exports = function addDevMiddlewares(app, webpackConfig) {
-  // Create GraphQL client for our Contentful space
-  const client = cfGraphql.createClient({ spaceId, cdaToken, cmaToken });
+  // Create GraphQL clients for our Contentful space
+  const enClient = cfGraphql.createClient({ spaceId, cdaToken, cmaToken });
   // Get the content types in our Contentful space
-  client.getContentTypes()
+  enClient.getContentTypes()
   .then(cfGraphql.prepareSpaceGraph)
   .then((spaceGraph) => {
     const names = spaceGraph.map((ct) => ct.names.type).join(', ');
-    logger.graphQL(names);
+    logger.graphQL(names, 'English');
     return spaceGraph;
   })
   .then(cfGraphql.createSchema)
-  .then((schema) => startServer(client, schema))
-  .catch((fail) => {
-    console.log(fail); // eslint-disable-line
+  .then((enSchema) => {
+    const frClient = cfGraphql.createClient({ spaceId, cdaToken, cmaToken, locale: 'fr' });
+
+    frClient.getContentTypes()
+    .then(cfGraphql.prepareSpaceGraph)
+    .then((spaceGraph) => {
+      const names = spaceGraph.map((ct) => ct.names.type).join(', ');
+      logger.graphQL(names, 'French');
+      return spaceGraph;
+    })
+    .then(cfGraphql.createSchema)
+    .then((frSchema) => {
+      startServer({ fr: frClient, en: enClient }, { fr: frSchema, en: enSchema });
+    })
+    .catch(() => {
+      // Failure
+    });
   });
 
   // Start the server to serve both GraphQL and our frontend application
-  function startServer(theClient, schema) {
+  function startServer(clients, schemas) {
     // Enable CORS header to allow access to the GraphQL endpoint from within an application that is not running on the same origin
     app.use(cors());
 
@@ -50,8 +64,14 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
 
     // Enrich the response with useful information like timing of the underlying HTTP requests.
     const opts = { version: true, timeline: true, detailedErrors: false };
-    const ext = cfGraphql.helpers.expressGraphqlExtension(client, schema, opts);
-    app.use('/graphql', graphqlHTTP(ext));
+
+    // English
+    const extEn = cfGraphql.helpers.expressGraphqlExtension(clients.en, schemas.en, opts);
+    app.use('/graphql-en', graphqlHTTP(extEn));
+
+    // French
+    const extFr = cfGraphql.helpers.expressGraphqlExtension(clients.fr, schemas.fr, opts);
+    app.use('/graphql-fr', graphqlHTTP(extFr));
 
     const compiler = webpack(webpackConfig);
     const middleware = createWebpackMiddleware(compiler, webpackConfig.output.publicPath);

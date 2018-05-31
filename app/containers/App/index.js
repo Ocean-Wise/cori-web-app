@@ -20,6 +20,8 @@ import Project from 'containers/Project/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Footer from 'components/Footer';
 
+import ApolloWrapper from 'containers/ApolloWrapper';
+
 const AppWrapper = styled.div`
   max-width: 100%;
   margin: 0 auto;
@@ -33,24 +35,26 @@ export default function App() {
   return (
     <MuiThemeProvider>
       <AppWrapper>
-        <Helmet
-          titleTemplate="%s - Ocean Wise Research"
-          defaultTitle="Ocean Wise Research"
-        >
-          <meta name="description" content="Ocean Wise Research" />
-        </Helmet>
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/team/:slug" component={Team} />
-          <Route path="/team" component={Team} />
-          <Route path="/research/:slug" component={ResearchArea} />
-          <Route path="/program/:slug" component={Program} />
-          {/* For testing the FloatingNav element pre Program page writing */}
-          {/* <Route path="/program/:slug" component={ResearchArea} /> */}
-          <Route path="/project/:slug" component={Project} />
-          <Route path="" component={NotFoundPage} />
-        </Switch>
-        <Footer />
+        <ApolloWrapper>
+          <Helmet
+            titleTemplate="%s - Ocean Wise Research"
+            defaultTitle="Ocean Wise Research"
+          >
+            <meta name="description" content="Ocean Wise Research" />
+          </Helmet>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/team/:slug" component={Team} />
+            <Route path="/team" component={Team} />
+            <Route path="/research/:slug" component={ResearchArea} />
+            <Route path="/program/:slug" component={Program} />
+            {/* For testing the FloatingNav element pre Program page writing */}
+            {/* <Route path="/program/:slug" component={ResearchArea} /> */}
+            <Route path="/project/:slug" component={Project} />
+            <Route path="" component={NotFoundPage} />
+          </Switch>
+          <Footer />
+        </ApolloWrapper>
       </AppWrapper>
     </MuiThemeProvider>
   );

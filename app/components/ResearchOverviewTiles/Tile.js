@@ -17,7 +17,7 @@ const Tile = styled.div`
     right: 0;
     bottom: 0;
     left: 0;
-    background-image: linear-gradient(to bottom, rgba(0,47,75,0), rgb(0, 47,75));
+    background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, #000000 100%);
     opacity: 0.6;
   }
 
@@ -26,9 +26,10 @@ const Tile = styled.div`
   `}
   span.initialTitle {
     color: #FFFFFF;
-    font-size: 48px;
-    font-weight: bold;
-    line-height: 50px;
+    font-size: 36px;
+    font-weight: 300;
+    line-height: 45px;
+    letter-spacing: 3px;
     margin: 0 auto;
     z-index: 5;
     position: relative;
@@ -46,6 +47,9 @@ const Tile = styled.div`
   span.explore {
     color: #FFFFFF;
     text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 12px;
   }
 
   div {

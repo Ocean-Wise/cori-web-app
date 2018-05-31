@@ -15,8 +15,8 @@ const logger = {
     console.error(chalk.red(err));
   },
 
-  graphQL: (names) => {
-    console.log(`GraphQL Server started! ${chalk.green('✓')}\n`);
+  graphQL: (names, lang) => {
+    console.log(`${lang} GraphQL Server started! ${chalk.green('✓')}\n`);
 
     console.log(`${chalk.bold('Contentful content types prepared: ')}${names}\n`);
   },

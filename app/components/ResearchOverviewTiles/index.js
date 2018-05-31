@@ -30,7 +30,7 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
           <H1>{cori.title}</H1>
           <P>{cori.subheader}</P>
           <center>
-            <Link to={`/research/${cori.slug}`} style={{ border: '1px solid #FFFFFF', padding: 15, position: 'relative', top: 30 }}>
+            <Link to={`/research/${cori.slug}`} style={{ border: '1px solid #FFFFFF', padding: '15px 30px', position: 'relative', top: 30 }}>
               <span className="explore">Explore &gt;</span>
             </Link>
           </center>
@@ -44,7 +44,7 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
           <H1>{va.title}</H1>
           <P>{va.subheader}</P>
           <center>
-            <Link to={`/research/${va.slug}`} style={{ border: '1px solid #FFFFFF', padding: 15, position: 'relative', top: 30 }}>
+            <Link to={`/research/${va.slug}`} style={{ border: '1px solid #FFFFFF', padding: '15px 30px', position: 'relative', top: 30 }}>
               <span className="explore">Explore &gt;</span>
             </Link>
           </center>
@@ -67,7 +67,7 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
             <H1>{area.title}</H1>
             <P>{area.subheader}</P>
             <center>
-              <Link to={`/research/${area.slug}`} style={{ border: '1px solid #FFFFFF', padding: 15, position: 'relative', top: 30 }}>
+              <Link to={`/research/${area.slug}`} style={{ border: '1px solid #FFFFFF', padding: '15px 30px', position: 'relative', top: 30 }}>
                 <span className="explore">Explore &gt;</span>
               </Link>
             </center>

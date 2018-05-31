@@ -50,15 +50,15 @@ function Button(props) {
 
   const inverted = `
     #${props.id}:hover {
-      background-color: transparent !important;
-      color: #005EB8 !important;
-      border: 1px solid rgba(0, 0, 0, 0.08) !important;
+      background-color: #00B398 !important;
+      color: #F5F5F5 !important;
+      border: 1px solid #00B398 !important;
       transition: ${transition};
     }
     #${props.id} {
-      background-color: #005EB8 !important;
-      color: white !important;
-      border: 1px solid #005EB8 !important;
+      background-color: transparent !important;
+      color: #00B398 !important;
+      border: 1px solid #00B398 !important;
       transition: ${transition};
     }
   `;

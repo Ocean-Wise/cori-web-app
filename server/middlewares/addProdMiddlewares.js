@@ -16,31 +16,51 @@ module.exports = function addProdMiddlewares(app, options) {
   const publicPath = options.publicPath || '/';
   const outputPath = options.outputPath || path.resolve(process.cwd(), 'build');
 
-  // Create GraphQL client for our Contentful space
-  const client = cfGraphql.createClient({ spaceId, cdaToken, cmaToken });
+  // Create GraphQL clients for our Contentful space
+  const enClient = cfGraphql.createClient({ spaceId, cdaToken, cmaToken });
   // Get the content types in our Contentful space
-  client.getContentTypes()
+  enClient.getContentTypes()
   .then(cfGraphql.prepareSpaceGraph)
   .then((spaceGraph) => {
     const names = spaceGraph.map((ct) => ct.names.type).join(', ');
-    logger.graphQL(names);
+    logger.graphQL(names, 'English');
     return spaceGraph;
   })
   .then(cfGraphql.createSchema)
-  .then((schema) => startServer(client, schema))
-  .catch((fail) => {
-    console.log(fail); // eslint-disable-line
+  .then((enSchema) => {
+    const frClient = cfGraphql.createClient({ spaceId, cdaToken, cmaToken, locale: 'fr' });
+
+    frClient.getContentTypes()
+    .then(cfGraphql.prepareSpaceGraph)
+    .then((spaceGraph) => {
+      const names = spaceGraph.map((ct) => ct.names.type).join(', ');
+      logger.graphQL(names, 'French');
+      return spaceGraph;
+    })
+    .then(cfGraphql.createSchema)
+    .then((frSchema) => {
+      startServer({ fr: frClient, en: enClient }, { fr: frSchema, en: enSchema });
+    })
+    .catch(() => {
+      // Failure
+    });
   });
 
   // Start the GraphQL server
-  function startServer(theClient, schema) {
+  function startServer(clients, schemas) {
     // Enable CORS header to allow access to the GraphQL endpoint from within an application that is not running on the same origin
     app.use(cors());
 
-    app.use('/graphql', graphqlHTTP(() => ({
-      context: { entryLoader: theClient.createEntryLoader() },
+    app.use('/graphql-en', graphqlHTTP(() => ({
+      context: { entryLoader: clients.en.createEntryLoader() },
       graphiql: false,
-      schema,
+      schema: schemas.en,
+    })));
+
+    app.use('/graphql-fr', graphqlHTTP(() => ({
+      context: { entryLoader: clients.fr.createEntryLoader() },
+      graphiql: false,
+      schema: schemas.fr,
     })));
 
     // compression middleware compresses your server responses which makes them

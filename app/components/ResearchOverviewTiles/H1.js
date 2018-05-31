@@ -4,9 +4,10 @@ import NormalH1 from 'components/H1';
 
 const H1 = styled(NormalH1)`
   color: #FFFFFF;
-  font-size: 48px;
-  font-weight: bold;
-  line-height: 50px;
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 45px;
+  letter-spacing: 3px;
   text-align: center;
 `;
 

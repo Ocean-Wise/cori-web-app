@@ -19,6 +19,7 @@ import Wrapper from './Wrapper';
 import Section from './Section';
 import CopyBlock from './CopyBlock';
 import Img from './Img';
+import Divider from './Divider';
 
 function HomeCopy({ data: { homeCopies } }) {
   try {
@@ -81,6 +82,7 @@ function HomeCopy({ data: { homeCopies } }) {
           <Section flexDirection="column">
             <Img src={data.firstImage.url} alt={data.firstImage.title} float="left" />
             <CopyBlock float="right">
+              <Divider />
               <H1 section>{data.firstHeader}</H1>
               <ReactMarkdown source={data.firstCopy} />
               {firstButtons}
@@ -90,6 +92,7 @@ function HomeCopy({ data: { homeCopies } }) {
         <Wrapper>
           <Section flexDirection="column-reverse">
             <CopyBlock float="left">
+              <Divider />
               <H1 section>{data.secondHeader}</H1>
               <ReactMarkdown source={data.secondCopy} />
               {secondButtons}
@@ -101,6 +104,7 @@ function HomeCopy({ data: { homeCopies } }) {
           <Section flexDirection="column">
             <Img src={data.thirdImage.url} alt={data.thirdImage.title} float="left" />
             <CopyBlock float="right">
+              <Divider />
               <H1 section>{data.thirdHeader}</H1>
               <ReactMarkdown source={data.thirdCopy} />
               {thirdButtons}

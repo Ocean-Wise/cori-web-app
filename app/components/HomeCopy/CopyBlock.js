@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import * as mixins from 'styles/mixins';
 
 const CopyBlock = styled.div`
-  max-width: 405px;
+  max-width: 425px;
   float: ${(props) => props.float};
   ${mixins.bp.md.min`
     position: absolute;
@@ -15,6 +15,11 @@ const CopyBlock = styled.div`
     margin: 0 auto;
     text-align: center;
   `}
+  p {
+    font-size: 16px;
+    line-height: 26px;
+    color: #4D4D4D;
+  }
 `;
 
 export default CopyBlock;

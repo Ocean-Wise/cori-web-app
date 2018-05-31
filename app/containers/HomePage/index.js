@@ -24,6 +24,7 @@ import Wrapper from './Wrapper';
 import reducer from './reducer';
 import saga from './saga';
 
+
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   render() {
@@ -44,7 +45,6 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
 }
 
 HomePage.propTypes = {
-
 };
 
 export function mapDispatchToProps(dispatch) {
