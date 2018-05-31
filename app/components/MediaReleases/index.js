@@ -49,10 +49,12 @@ class MediaReleases extends React.PureComponent { // eslint-disable-line react/p
       <Grid fluid>
         <Row>
           <Col md={4}>
-            <Divider />
-            <H1>
-              <FormattedMessage {...messages.header} />
-            </H1>
+            <center>
+              <Divider />
+              <H1>
+                <FormattedMessage {...messages.header} />
+              </H1>
+            </center>
           </Col>
           <Col md={5}>
             <div>

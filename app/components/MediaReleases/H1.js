@@ -9,7 +9,7 @@ const H1 = styled(NormalH1)`
   line-height: 50px;
   margin: 15px 0;
   position: relative;
-  left: 196px;
+  left: 67px;
 `;
 
 export default H1;

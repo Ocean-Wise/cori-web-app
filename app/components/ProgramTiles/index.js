@@ -1,6 +1,6 @@
 /**
 *
-* ProjectTiles
+* ProgramTiles
 *
 */
 
@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { graphql } from 'react-apollo';
-import getAllPrograms from 'graphql/queries/getAllPrograms.graphql';
+import getRAPrograms from 'graphql/queries/getRAPrograms.graphql';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
 import { FormattedMessage } from 'react-intl';
@@ -17,17 +17,15 @@ import messages from './messages';
 import H1 from './H1';
 import Divider from './Divider';
 import Tile from './Tile';
-import Img from './Img';
 import Title from './Title';
 
-function ProjectTiles({ data: { programs } }) {
+function ProgramTiles({ data: { researchAreas } }) {
   try {
     const tiles = [];
-    programs.map((program, i) => {
+    researchAreas[0].programs.map((program, i) => {
       tiles.push(
         <Link to={`/program/${program.slug}`} key={`programLink-${i.toString()}`}>
           <Tile image={program.hero.url}>
-            <Img src={program.hero.url} />
             <Title>{program.title}</Title>
           </Tile>
         </Link>
@@ -46,7 +44,7 @@ function ProjectTiles({ data: { programs } }) {
             </div>
           </Col>
           <Col md={7}>
-            <Row style={{ marginBottom: 0 }}>
+            <Row style={{ marginBottom: 0, width: 730 }}>
               {tiles}
             </Row>
           </Col>
@@ -58,8 +56,15 @@ function ProjectTiles({ data: { programs } }) {
   }
 }
 
-ProjectTiles.propTypes = {
+ProgramTiles.propTypes = {
   data: PropTypes.object.isRequired,
+  // slug: PropTypes.string.isRequired, // eslint-dis
 };
 
-export default graphql(getAllPrograms)(ProjectTiles);
+export default graphql(getRAPrograms, {
+  options: (props) => ({
+    variables: {
+      slug: `fields.slug=${props.slug}`,
+    },
+  }),
+})(ProgramTiles);

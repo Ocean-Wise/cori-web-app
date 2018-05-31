@@ -68,6 +68,8 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
     // English
     const extEn = cfGraphql.helpers.expressGraphqlExtension(clients.en, schemas.en, opts);
     app.use('/graphql-en', graphqlHTTP(extEn));
+    // Set default graphql endpoint to English
+    app.use('/graphql', graphqlHTTP(extEn));
 
     // French
     const extFr = cfGraphql.helpers.expressGraphqlExtension(clients.fr, schemas.fr, opts);

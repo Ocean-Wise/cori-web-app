@@ -12,7 +12,7 @@ import ReactMarkdown from 'react-markdown';
 import getResearchArea from 'graphql/queries/getResearchArea.graphql';
 import { Grid, Row } from 'react-flexbox-grid';
 
-import ProjectTiles from 'components/ProjectTiles';
+import ProgramTiles from 'components/ProgramTiles';
 import Breadcrumbs from 'components/Breadcrumbs';
 import LatestNews from 'components/LatestNews/Loadable';
 import MediaReleases from 'components/MediaReleases/Loadable';
@@ -68,7 +68,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match }) {
           </Grid>
         </Section>
         <Section>
-          <ProjectTiles />
+          <ProgramTiles slug={slug} />
         </Section>
         <Section>
           {LatestNewsComponent}

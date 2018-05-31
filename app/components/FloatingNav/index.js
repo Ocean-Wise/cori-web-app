@@ -19,7 +19,6 @@ import Paper from './Paper';
 function FloatingNav({ data: { researchAreas }, active, location }) {
   // Initialize the nav array
   const nav = [];
-
   try {
     // Loop over all the research areas
     researchAreas.map((area, i) => {
@@ -36,10 +35,10 @@ function FloatingNav({ data: { researchAreas }, active, location }) {
           if (active === program.slug) programActive = true;
 
           // Loop over initiatives
-          program.initiatives.map((initiative, k) => {
+          program.initiatives.map((initiative) => {
             // Push a new initiative div into the array
             initiatives.push(
-              <div key={`initiative-${k.toString()}`} style={{ padding: '0 8px 8px 0' }}>
+              <div key={`initiative-${initiative.title}`} style={{ padding: '0 8px 8px 0' }}>
                 {initiative.title}
               </div>
             );
@@ -49,8 +48,11 @@ function FloatingNav({ data: { researchAreas }, active, location }) {
           // Push a new program link to the subNav array
           subNav.push(
             <Link to={`/program/${program.slug}`} key={`program-${j.toString()}`}>
-              <div style={{ paddingBottom: 8 }}>
+              <div style={{ padding: '13px 8px', color: '#6A7B83', fontSize: 14, fontWeight: 'bold', lineHeight: '14px', borderBottom: '1px solid #CED5D9', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 {program.title}
+                <span>
+                  +
+                </span>
               </div>
             </Link>
           );
@@ -58,18 +60,31 @@ function FloatingNav({ data: { researchAreas }, active, location }) {
           return true;
         });
 
-        // The logic which sets the height/color for the active research area/program
+        // The logic which sets the height, color, padding, display for the active/inactive research area/program
         let programHeightVal;
         let initiativeHeightVal;
+        let subNavDisplayVal;
+        let subNavPaddingVal;
         let areaColor;
         // If the research area being processed currently is the active area OR if a
         if (active === area.slug || programActive) {
-          programHeightVal = location.path.match(/\/research\//g) ? `${(subNav.length) * 40}px` : `${(subNav.length + initiatives.length) * 40}px`;
+          let isResearch;
+          try {
+            if (location.path.match(/\/research\//g).length > 0) isResearch = true;
+          } catch (err) {
+            isResearch = false;
+          }
+          // This may need to be modified for collapable initiatives...
+          programHeightVal = isResearch ? `${(subNav.length) * 45}px` : `${(subNav.length + initiatives.length) * 34}px`;
           areaColor = '#00B398';
+          subNavDisplayVal = 'block';
+          subNavPaddingVal = '0 12px 12px 0';
         } else {
           programHeightVal = 0;
           initiativeHeightVal = 0;
           areaColor = '#4D4D4D';
+          subNavDisplayVal = 'none';
+          subNavPaddingVal = '0';
         }
 
         // Push a new nav element for the research area
@@ -78,35 +93,50 @@ function FloatingNav({ data: { researchAreas }, active, location }) {
             <div
               role="menuitem"
               tabIndex={-1}
-              // The logic fired upon mouse click which handles collapsing/expanding
               onClick={() => {
                 const elem = document.getElementById(`subNav-${i.toString()}`);
+                const container = document.getElementById(`subNav-${i.toString()}-container`);
                 if (elem.style.height === '0px') {
-                  const newHeight = programActive ? (subNav.length + initiatives.length) * 40 : subNav.length * 40;
+                  const newHeight = (subNav.length + initiatives.length) * 34;
                   elem.style.height = `${newHeight}px`;
-                  elem.style.padding = '12px 12px 12px 0';
-                  elem.style.borderTop = '1px solid #6a7b83';
+                  elem.style.padding = subNavPaddingVal;
+                  container.style.display = 'block';
+                  if (!(active === area.slug)) {
+                    // container.style.marginTop = '12px';
+                  }
                 } else {
                   elem.style.height = '0px';
                   elem.style.padding = '0px';
-                  elem.style.borderTop = 'unset';
+                  container.style.display = 'none';
+                  if (!(active === area.slug)) {
+                    // container.style.marginTop = '0';
+                  }
                 }
               }}
-              style={{ color: areaColor, fontSize: 18, fontWeight: 'bold', lineHeight: '21px', padding: '12px 12px 12px 15px' }}
-            ><Link to={`/research/${area.slug}`}>{area.title}</Link></div>
-            <div id={`subNav-${i.toString()}`} style={{ height: programHeightVal, overflow: 'hidden', transition: 'all 250ms cubic-bezier(0.805, 0.125, 0.500, 0.750)', marginLeft: 13, color: '#4D4D4D', fontSize: 14, lineHeight: '14px', padding: '12px 12px 12px 3px', borderTop: '1px solid #6a7b83', width: '90.5%' }}>
-              {subNav}
-              <div id={`initiative-${i.toString()}`} style={{ height: initiativeHeightVal, marginLeft: 13, padding: '5px 12px 12px 3px', fontSize: 12, lineHeight: '18px' }}>
-                {initiatives}
+              style={{ color: areaColor, fontSize: 18, fontWeight: 'bold', lineHeight: '21px', padding: '12px 12px 12px 0', borderBottom: '1px solid #CED5D9', margin: '0 16px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}
+            >
+              <Link to={`/research/${area.slug}`}>{area.title}</Link>
+              <span>
+                +
+              </span>
+            </div>
+            <div id={`subNav-${i.toString()}`} style={{ height: programHeightVal, overflow: 'hidden', transition: 'all 250ms cubic-bezier(0.805, 0.125, 0.500, 0.750)', marginLeft: 13, color: '#4D4D4D', fontSize: 14, lineHeight: '14px', padding: subNavPaddingVal, width: '90.5%' }}>
+              <div id={`subNav-${i.toString()}-container`} style={{ display: subNavDisplayVal }}>
+                {subNav}
+                <div id={`initiative-${i.toString()}`} style={{ height: initiativeHeightVal, marginLeft: 13, padding: '5px 12px 12px 3px', fontSize: 12, lineHeight: '18px' }}>
+                  {initiatives}
+                </div>
               </div>
             </div>
           </div>
         );
       }
+      // console.log(area);
+      // console.log(nav);
       return true;
     });
   } catch (err) {
-    // An error happened
+    // console.log(err);
   }
 
   return (

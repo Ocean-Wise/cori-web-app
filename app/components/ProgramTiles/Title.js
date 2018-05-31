@@ -3,12 +3,13 @@ import styled from 'styled-components';
 const Title = styled.span`
   color: #FFFFFF;
   font-size: 28px;
-  font-weight: bold;
+  font-weight: 300;
+  letter-spacing: 3px;
   line-height: 35px;
   text-align: center;
+  width: inherit;
   position: absolute;
-  bottom: 10px;
-  left: 85px;
+  bottom: 16px;
 `;
 
 export default Title;

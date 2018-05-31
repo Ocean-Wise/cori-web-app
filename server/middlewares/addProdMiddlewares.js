@@ -51,12 +51,21 @@ module.exports = function addProdMiddlewares(app, options) {
     // Enable CORS header to allow access to the GraphQL endpoint from within an application that is not running on the same origin
     app.use(cors());
 
+    // Default GraphQL endpoint
+    app.use('/graphql', graphqlHTTP(() => ({
+      context: { entryLoader: clients.en.createEntryLoader() },
+      graphiql: false,
+      schema: schemas.en,
+    })));
+
+    // English GraphQL endpoint
     app.use('/graphql-en', graphqlHTTP(() => ({
       context: { entryLoader: clients.en.createEntryLoader() },
       graphiql: false,
       schema: schemas.en,
     })));
 
+    // French GraphQL endpoint
     app.use('/graphql-fr', graphqlHTTP(() => ({
       context: { entryLoader: clients.fr.createEntryLoader() },
       graphiql: false,

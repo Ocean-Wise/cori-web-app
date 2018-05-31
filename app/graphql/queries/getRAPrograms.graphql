@@ -1,0 +1,9 @@
+#import "../fragments/programTeaser.graphql"
+
+query Programs($slug: String!) {
+  researchAreas(q: $slug) {
+    programs {
+      ...ProgramTeaser
+    }
+  }
+}
