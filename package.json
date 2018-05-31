@@ -44,8 +44,8 @@
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "deploy": "npm run deploy:staging",
-    "deploy:staging": "heroku container:push web -a cori-staging",
-    "deploy:prod": "heroku container:push web -a cori"
+    "deploy:staging": "heroku container:push web -a cori-staging && heroku container:release web -a cori-staging",
+    "deploy:prod": "heroku container:push web -a cori && heroku container:release web -a cori"
   },
   "lint-staged": {
     "*.js": "lint:eslint"
