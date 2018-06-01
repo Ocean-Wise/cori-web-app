@@ -77,6 +77,14 @@ function ProgramContent({ data: { programs }, slug, match }) {
         </div>
       );
 
+      const spotlight = initiative.rssLink !== null ? (
+        <div>
+          <Hr style={{ marginBottom: 15 }} />
+          <H5>SPOTLIGHT</H5>
+          <ProjectFeatured url={initiative.rssLink} />
+        </div>
+      ) : '';
+
       return (
         <Paper zDepth={1} key={`card-${i.toString()}`}>
           <div style={{ backgroundColor: '#00B398', padding: '32px 32px 16px 32px' }}>
@@ -93,9 +101,7 @@ function ProgramContent({ data: { programs }, slug, match }) {
                 {projects}
               </Row>
             </Grid>
-            <Hr style={{ marginBottom: 15 }} />
-            <H5>SPOTLIGHT</H5>
-            <ProjectFeatured url={initiative.rssLink} />
+            {spotlight}
             {SponsorComponent}
           </div>
         </Paper>
