@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import NormalPaper from 'material-ui/Paper';
+import NormalPaper from '@material-ui/core/Paper';
 
 const Paper = styled(NormalPaper)`
   width: 350px;

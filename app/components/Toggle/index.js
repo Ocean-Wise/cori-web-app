@@ -7,7 +7,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Select from './Select';
+// import Select from './Select';
+import Select from '@material-ui/core/Select';
 import ToggleOption from '../ToggleOption';
 
 function Toggle(props) {
@@ -21,7 +22,7 @@ function Toggle(props) {
   }
 
   return (
-    <Select value={props.value} onChange={props.onToggle}>
+    <Select value={props.value} onChange={props.onToggle} displayEmpty name="language">
       {content}
     </Select>
   );

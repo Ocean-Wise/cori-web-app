@@ -8,7 +8,7 @@ import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 
 // import styled from 'styled-components';
-import RaisedButton from 'material-ui/RaisedButton';
+import RaisedButton from '@material-ui/core/Button';
 
 function Button(props) {
   const transition = 'all 0.2s cubic-bezier(0.23, 1, 0.23, 1) 0ms !important';

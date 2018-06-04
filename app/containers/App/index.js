@@ -10,7 +10,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import HomePage from 'containers/HomePage/Loadable';
 import Team from 'containers/Team/Loadable';
@@ -33,29 +33,29 @@ const AppWrapper = styled.div`
 
 export default function App() {
   return (
-    <MuiThemeProvider>
-      <AppWrapper>
-        <ApolloWrapper>
-          <Helmet
-            titleTemplate="%s - Ocean Wise Research"
-            defaultTitle="Ocean Wise Research"
-          >
-            <meta name="description" content="Ocean Wise Research" />
-          </Helmet>
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route path="/team/:slug" component={Team} />
-            <Route path="/team" component={Team} />
-            <Route path="/research/:slug" component={ResearchArea} />
-            <Route path="/program/:slug" component={Program} />
-            {/* For testing the FloatingNav element pre Program page writing */}
-            {/* <Route path="/program/:slug" component={ResearchArea} /> */}
-            <Route path="/project/:slug" component={Project} />
-            <Route path="" component={NotFoundPage} />
-          </Switch>
-          <Footer />
-        </ApolloWrapper>
-      </AppWrapper>
-    </MuiThemeProvider>
+    // <MuiThemeProvider>
+    <AppWrapper>
+      <ApolloWrapper>
+        <Helmet
+          titleTemplate="%s - Ocean Wise Research"
+          defaultTitle="Ocean Wise Research"
+        >
+          <meta name="description" content="Ocean Wise Research" />
+        </Helmet>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/team/:slug" component={Team} />
+          <Route path="/team" component={Team} />
+          <Route path="/research/:slug" component={ResearchArea} />
+          <Route path="/program/:slug" component={Program} />
+          {/* For testing the FloatingNav element pre Program page writing */}
+          {/* <Route path="/program/:slug" component={ResearchArea} /> */}
+          <Route path="/project/:slug" component={Project} />
+          <Route path="" component={NotFoundPage} />
+        </Switch>
+        <Footer />
+      </ApolloWrapper>
+    </AppWrapper>
+    // </MuiThemeProvider>
   );
 }

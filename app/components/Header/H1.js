@@ -6,7 +6,7 @@ const H1 = styled(NormalH1)`
   font-size: 1.9rem;
   color: rgb(115, 131, 139);
   float: left;
-  margin: 0;
+  margin-top: 4px;
   span {
     font-weight: 300;
   }

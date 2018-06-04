@@ -1,67 +1,81 @@
+/**
+*
+* Header
+*
+*/
+
 import React from 'react';
-// import { FormattedMessage } from 'react-intl';
+// import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import OceanWiseNav from 'components/OceanWiseNav';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
+
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 
 import H1 from './H1';
-
 import Container from './Container';
-// import messages from './messages';
-import DeskLogo from './logo.svg';
-import MobiLogo from './logo-mobile.svg';
 
-class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  constructor(props) {
-    super(props);
-    this.state = { width: window.innerWidth, height: window.innerHeight, source: '' };
-    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
-  }
+const styles = () => ({
+  button: {
+    color: '#6A7B83',
+    fontSize: 14,
+    fontWeight: 'bold',
+    letterSpacing: 1,
+    lineHeight: '14px',
+    fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+    textTransform: 'capitalize',
+    minWidth: 66,
+    minHeight: 27,
+    padding: '6px 12px',
+  },
+});
 
-  componentDidMount() {
-    this.updateWindowDimensions();
-    window.addEventListener('resize', this.updateWindowDimensions);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateWindowDimensions);
-  }
-
-  updateWindowDimensions() {
-    this.setState({ width: window.innerWidth, height: window.innerHeight });
-    if (this.state.width > 768) {
-      this.state.source = DeskLogo;
-    } else {
-      this.state.source = MobiLogo;
-    }
-  }
-
-  render() {
-    return (
-      <div>
-        <OceanWiseNav />
-        <Container>
-          <Link to="/">
-            <H1>Ocean Wise <span>Research</span></H1>
-          </Link>
-          <div style={{ display: 'flex', flexDirection: 'row', color: '#73838b', fontWeight: 700, fontSize: '1rem', float: 'right' }}>
+function Header(props) {
+  const { classes } = props;
+  return (
+    <div>
+      <OceanWiseNav />
+      <Container>
+        <Link to="/">
+          <H1>Ocean Wise <span>Research</span></H1>
+        </Link>
+        <div style={{ display: 'flex', flexDirection: 'row', color: '#73838b', fontWeight: 700, fontSize: '1rem', float: 'right' }}>
+          <Button className={classes.button}>
             <Link to="/about">
               About
             </Link>
-            <Link to="/team" style={{ marginLeft: 15 }}>
+          </Button>
+          <Button className={classes.button}>
+            <Link to="/team">
               Team
             </Link>
-            <Link to="/media" style={{ marginLeft: 15 }}>
+          </Button>
+          <Button className={classes.button}>
+            <Link to="/media">
               Media
             </Link>
-            <Link to="/Publications" style={{ marginLeft: 15 }}>
+          </Button>
+          <Button className={classes.button}>
+            <Link to="/publications">
               Publications
             </Link>
-            <span style={{ marginLeft: 15 }}>S-Icon</span>
-          </div>
-        </Container>
-      </div>
-    );
-  }
+          </Button>
+          <IconButton aria-label="Search">
+            <SearchIcon />
+          </IconButton>
+        </div>
+      </Container>
+    </div>
+  );
 }
 
-export default Header;
+Header.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Header);

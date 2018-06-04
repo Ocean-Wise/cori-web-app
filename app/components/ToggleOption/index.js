@@ -7,11 +7,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const ToggleOption = ({ value, message, intl }) => (
-  <option value={value}>
+  <MenuItem value={value}>
     {message ? intl.formatMessage(message) : value}
-  </option>
+  </MenuItem>
 );
 
 ToggleOption.propTypes = {
