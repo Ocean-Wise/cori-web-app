@@ -12,7 +12,7 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import Header from 'components/Header';
+import Header from 'components/Header/Loadable';
 import FloatingNav from 'components/FloatingNav';
 import ProgramContent from 'components/ProgramContent';
 

@@ -12,6 +12,7 @@ import ReactMarkdown from 'react-markdown';
 import getResearchArea from 'graphql/queries/getResearchArea.graphql';
 import { Grid, Row } from 'react-flexbox-grid';
 
+import ChevronRight from '@material-ui/icons/ChevronRight';
 import ProgramTiles from 'components/ProgramTiles';
 import Breadcrumbs from 'components/Breadcrumbs';
 import LatestNews from 'components/LatestNews/Loadable';
@@ -86,7 +87,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match }) {
                   <p>Ut convallis, metus et convallis mattis, nunc velit placerat quam, sed consectetur risus tellus sed sem. Integer fermentum ue turpis vitae egestas.</p>
                   <Link to={`/team/${slug}`}>
                     <Button id="team">
-                      Get to know our researchers &gt;
+                      Get to know our researchers <ChevronRight style={{ fontSize: 30 }} />
                     </Button>
                   </Link>
                 </Container>
@@ -100,7 +101,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match }) {
                   <p>Ut convallis, metus et convallis mattis, nunc velit placerat quam, sed consectetur risus tellus sed sem. Integer fermentum ue turpis vitae egestas.</p>
                   <Link to={`/publications/${slug}`}>
                     <Button id="publications">
-                      Find our publications &gt;
+                      Find our publications <ChevronRight style={{ fontSize: 30 }} />
                     </Button>
                   </Link>
                 </Container>

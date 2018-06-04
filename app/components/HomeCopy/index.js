@@ -14,6 +14,7 @@ import Blockquote from 'components/Blockquote';
 import Button from 'components/Button';
 
 import H1 from './H1';
+import A from './A';
 import IntroContainer from './IntroContainer';
 import Wrapper from './Wrapper';
 import Section from './Section';
@@ -30,11 +31,11 @@ function HomeCopy({ data: { homeCopies } }) {
     Object.entries(firstButtonData).forEach(
       ([key, value], i) => { // eslint-disable-line
         firstButtons.push(
-          <a href={value} key={i.toString()}>
+          <A href={value} key={i.toString()}>
             <Button inverted id={`link-${i.toString()}`}>
               {key}
             </Button>
-          </a>
+          </A>
         );
       }
     );
@@ -44,11 +45,11 @@ function HomeCopy({ data: { homeCopies } }) {
     Object.entries(secondButtonData).forEach(
       ([key, value], i) => { // eslint-disable-line
         secondButtons.push(
-          <a href={value} key={i.toString()}>
+          <A href={value} key={i.toString()}>
             <Button inverted id={`link-${i.toString()}`}>
               {key}
             </Button>
-          </a>
+          </A>
         );
       }
     );
@@ -58,11 +59,11 @@ function HomeCopy({ data: { homeCopies } }) {
     Object.entries(thirdButtonData).forEach(
       ([key, value], i) => { // eslint-disable-line
         thirdButtons.push(
-          <a href={value} key={i.toString()}>
+          <A href={value} key={i.toString()}>
             <Button inverted id={`link-${i.toString()}`}>
               {key}
             </Button>
-          </a>
+          </A>
         );
       }
     );

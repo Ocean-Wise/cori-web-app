@@ -14,8 +14,8 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+// import { FormattedMessage } from 'react-intl';
+// import messages from './messages';
 
 import H1 from './H1';
 import Container from './Container';
@@ -30,7 +30,7 @@ const styles = () => ({
     fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
     textTransform: 'capitalize',
     minWidth: 66,
-    minHeight: 27,
+    minHeight: 45,
     padding: '6px 12px',
   },
 });
@@ -45,26 +45,26 @@ function Header(props) {
           <H1>Ocean Wise <span>Research</span></H1>
         </Link>
         <div style={{ display: 'flex', flexDirection: 'row', color: '#73838b', fontWeight: 700, fontSize: '1rem', float: 'right' }}>
-          <Button className={classes.button}>
-            <Link to="/about">
+          <Link to="/about">
+            <Button className={classes.button}>
               About
-            </Link>
-          </Button>
-          <Button className={classes.button}>
-            <Link to="/team">
+            </Button>
+          </Link>
+          <Link to="/team">
+            <Button className={classes.button}>
               Team
-            </Link>
-          </Button>
-          <Button className={classes.button}>
-            <Link to="/media">
+            </Button>
+          </Link>
+          <Link to="/media">
+            <Button className={classes.button}>
               Media
-            </Link>
-          </Button>
-          <Button className={classes.button}>
-            <Link to="/publications">
+            </Button>
+          </Link>
+          <Link to="/publications">
+            <Button className={classes.button}>
               Publications
-            </Link>
-          </Button>
+            </Button>
+          </Link>
           <IconButton aria-label="Search">
             <SearchIcon />
           </IconButton>

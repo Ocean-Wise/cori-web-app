@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import NormalImg from 'components/Img';
 
 const Img = styled(NormalImg)`
-  height: 200px;
-  width: 200px;
-  border-radius: 100px;
-  margin-bottom: 10px;
+  height: 250px;
+  width: 255px;
+  box-shadow: 0 2px 4px -2px rgba(0,0,0,0.24), 0 6px 10px 0 rgba(0,0,0,0.12), 16px -16px 0 0 #CCF0EA;
+  margin-bottom: 15px;
 `;
 
 export default Img;

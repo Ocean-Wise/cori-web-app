@@ -10,6 +10,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
+import ChevronRight from '@material-ui/icons/ChevronRight';
 import P from 'components/P';
 
 import { FormattedMessage } from 'react-intl';
@@ -17,6 +18,7 @@ import messages from './messages';
 
 import Wrapper from './Wrapper';
 import Paper from './Paper';
+import Img from './Img';
 import A from './A';
 import H1 from './H1';
 import H3 from './H3';
@@ -41,14 +43,16 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
         const featuredTitle = <Link to={`${data.featured[0].link}`}>{data.featured[0].title}</Link>;
         featured = (
           <Paper zDepth={1} featured>
-            <a href={data.featured[0].link} target="_blank"><img src={data.featured[0].img} alt="featured" style={{ width: '100%' }} /></a>
+            <a href={data.featured[0].link} target="_blank"><Img src={data.featured[0].img} featured /></a>
             <div style={{ padding: '20px 20px 58px 20px', marginBottom: 45 }}>
               <H3>{featuredTitle}</H3>
               <P>{featuredTeaser.substring(0, 250)} <Link to={`${data.featured[0].link}`}>[…]</Link></P>
             </div>
-            <div style={{ padding: 20, position: 'absolute', bottom: 5 }}>
-              <Divider style={{ width: 50, height: 1, marginBottom: 10, backgroundColor: '#00B398', right: '39px' }} />
-              <span>{data.featured[0].date}</span>
+            <div style={{ position: 'absolute', bottom: 5 }}>
+              <div style={{ padding: 20, display: 'inline-flex', flexDirection: 'column', justifyContent: 'left' }}>
+                <Divider style={{ width: 50, height: 1, marginBottom: 10, backgroundColor: '#00B398' }} />
+                <div>{data.featured[0].date}</div>
+              </div>
             </div>
           </Paper>
         );
@@ -59,14 +63,16 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
           const title = <a href={item.link} target="_blank">{item.title}</a>;
           regular.push(
             <Paper zDepth={1} key={i.toString()}>
-              <a href={item.link} target="_blank"><img src={item.img} alt="featured" style={{ width: '100%' }} /></a>
+              <a href={item.link} target="_blank"><Img src={item.img} /></a>
               <div style={{ padding: '20px 20px 10px 20px', marginBottom: 45 }}>
                 <H3>{title}</H3>
                 <P>{teaser.substring(0, 100)} <a href={item.link} target="_blank">[…]</a></P>
               </div>
-              <div style={{ padding: 20, position: 'absolute', bottom: 5 }}>
-                <Divider style={{ width: 50, height: 1, marginBottom: 10, backgroundColor: '#00B398', right: '39px' }} />
-                <span>{item.date}</span>
+              <div style={{ position: 'absolute', bottom: 5 }}>
+                <div style={{ padding: 20, display: 'inline-flex', flexDirection: 'column', justifyContent: 'left' }}>
+                  <Divider style={{ width: 50, height: 1, marginBottom: 10, backgroundColor: '#00B398' }} />
+                  <div>{item.date}</div>
+                </div>
               </div>
             </Paper>
           );
@@ -99,7 +105,7 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
         <Row>
           <Col md={4} />
           <Col md={5} style={{ margin: '-10px 0' }}>
-            <A href="https://aquablog.ca/" target="_blank">See more on Aquablog.ca &gt;</A>
+            <A href="https://aquablog.ca/" target="_blank">See more on Aquablog.ca <ChevronRight style={{ fontSize: 40 }} /></A>
           </Col>
         </Row>
       </Grid>

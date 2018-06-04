@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import getAllResearchAreas from 'graphql/queries/getAllResearchAreas.graphql';
 
+import Button from '@material-ui/core/Button';
+import ChevronRight from '@material-ui/icons/ChevronRight';
 import Container from './Container';
 import Row from './Row';
 import Tile from './Tile';
@@ -30,8 +32,10 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
           <H1>{cori.title}</H1>
           <P>{cori.subheader}</P>
           <center>
-            <Link to={`/research/${cori.slug}`} style={{ border: '1px solid #FFFFFF', padding: '15px 30px', position: 'relative', top: 30 }}>
-              <span className="explore">Explore &gt;</span>
+            <Link to={`/research/${cori.slug}`}>
+              <Button style={{ border: '1px solid #FFFFFF', borderRadius: 0, padding: '10px 25px', marginTop: 32 }}>
+                <span className="explore">Explore <ChevronRight style={{ fontSize: 35, marginLeft: -5, marginRight: -15 }} /></span>
+              </Button>
             </Link>
           </center>
         </div>
@@ -44,8 +48,10 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
           <H1>{va.title}</H1>
           <P>{va.subheader}</P>
           <center>
-            <Link to={`/research/${va.slug}`} style={{ border: '1px solid #FFFFFF', padding: '15px 30px', position: 'relative', top: 30 }}>
-              <span className="explore">Explore &gt;</span>
+            <Link to={`/research/${va.slug}`}>
+              <Button style={{ border: '1px solid #FFFFFF', borderRadius: 0, padding: '10px 25px', marginTop: 32 }}>
+                <span className="explore">Explore <ChevronRight style={{ fontSize: 35, marginRight: -15 }} /></span>
+              </Button>
             </Link>
           </center>
         </div>
@@ -67,8 +73,10 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
             <H1>{area.title}</H1>
             <P>{area.subheader}</P>
             <center>
-              <Link to={`/research/${area.slug}`} style={{ border: '1px solid #FFFFFF', padding: '15px 30px', position: 'relative', top: 30 }}>
-                <span className="explore">Explore &gt;</span>
+              <Link to={`/research/${area.slug}`}>
+                <Button style={{ border: '1px solid #FFFFFF', borderRadius: 0, padding: '10px 25px', marginTop: 32 }}>
+                  <span className="explore">Explore <ChevronRight style={{ fontSize: 35, marginRight: -15 }} /></span>
+                </Button>
               </Link>
             </center>
           </div>

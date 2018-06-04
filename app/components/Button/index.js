@@ -17,6 +17,8 @@ function Button(props) {
     root: {
       margin: 2.5,
       borderRadius: 0,
+      fontFamily: "'Helvetica Neue', Helvatica, Arial, sans-serif",
+      textTransform: 'unset',
     },
     button: {
       height: '40px',
@@ -36,12 +38,20 @@ function Button(props) {
     #${props.id}:hover {
       background-color: rgb(0, 179, 152) !important;
       color: #efefef !important;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 12px;
+      text-transform: unset;
       border: 1px solid transparent !important;
       transition: ${transition};
     }
     #${props.id} {
       background-color: transparent !important;
       color: rgb(0, 179, 152) !important;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 12px;
+      text-transform: unset;
       border: 1px solid rgb(0, 179, 152) !important;
       transition: ${transition};
     }
@@ -52,14 +62,24 @@ function Button(props) {
     #${props.id}:hover {
       background-color: #00B398 !important;
       color: #F5F5F5 !important;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 12px;
       border: 1px solid #00B398 !important;
       transition: ${transition};
+      width: 200px;
+      height: 45px;
     }
     #${props.id} {
       background-color: transparent !important;
       color: #00B398 !important;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 12px;
       border: 1px solid #00B398 !important;
       transition: ${transition};
+      width: 200px;
+      height: 45px;
     }
   `;
 
@@ -75,7 +95,7 @@ function Button(props) {
       <style>
         {theme}
       </style>
-      <RaisedButton id={props.id} style={style.root} buttonStyle={style.button} overlayStyle={style.overlay}>
+      <RaisedButton id={props.id} style={style.root}>
         {Children.toArray(props.children)}
       </RaisedButton>
       {/* <RaisedButton style={style.root} buttonStyle={style.button} overlayStyle={style.overlay} rippleStyle={{height: '55px'}}>

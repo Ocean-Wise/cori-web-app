@@ -16,6 +16,9 @@ query ResearchArea($slug: String!) {
         title
         url
       }
+      position
+      phone
+      email
     }
     programs {
       ...ProgramTeaser
