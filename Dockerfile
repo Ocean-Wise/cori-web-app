@@ -29,6 +29,9 @@ RUN yarn
 CMD if [ ${NODE_ENV} = production ]; \
 	then \
 	yarn run start:production; \
+	elif [ ${NODE_ENV} = staging ]; \
+	then \
+	yarn run start:staging; \
 	else \
 	yarn start; \
 	fi
