@@ -89,7 +89,7 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
         <Row>
           <Col md={4}>
             <center>
-              <Divider />
+              <Divider style={{ position: 'relative', right: 75, top: 22 }} />
               <H1>
                 <FormattedMessage {...messages.header} />
               </H1>
