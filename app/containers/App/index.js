@@ -20,6 +20,10 @@ import Project from 'containers/Project/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Footer from 'components/Footer';
 
+import ScrollUpButton from 'react-scroll-up-button';
+import ArrowUpward from '@material-ui/icons/ArrowUpward';
+import IconButton from '@material-ui/core/IconButton';
+
 import ApolloWrapper from 'containers/ApolloWrapper';
 
 const AppWrapper = styled.div`
@@ -55,6 +59,18 @@ export default function App() {
         </Switch>
         <Footer />
       </ApolloWrapper>
+      <ScrollUpButton
+        StopPosition={0}
+        TransitionBtnPosition={150}
+        EasingType="easeOutCubic"
+        AnimationDuration={500}
+        ContainerClassName="ScrollUpButton__Container"
+        TransitionClassName="ScrollUpButton__Toggled"
+      >
+        <IconButton style={{ backgroundColor: 'rgba(95,95,95,0.4313725490)' }}>
+          <ArrowUpward />
+        </IconButton>
+      </ScrollUpButton>
     </AppWrapper>
     // </MuiThemeProvider>
   );

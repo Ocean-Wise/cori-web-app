@@ -31,4 +31,18 @@ injectGlobal`
     text-decoration: none !important;
     color: inherit !important;
   }
+
+  .ScrollUpButton__Container {
+    position: fixed;
+    bottom: 20px;
+    width: 50px;
+    transition: all 0.5s ease-in-out;
+    transition-property: : opacity, right;
+    opacity: 0;
+    right: -75px;
+  }
+  .ScrollUpButton__Toggled {
+    opacity: 1;
+    right: 20px;
+  }
 `;
