@@ -2,13 +2,14 @@ import styled from 'styled-components';
 
 const Person = styled.div`
   margin: 0 15px;
-  span {
+  div {
     &:first-of-type {
-      color: #00B398;
+      color: #6A7B83;
       font-size: 28px;
-      font-weight: bold;
+      font-weight: 300;
       line-height: 35px;
-      max-width: 50%;
+      letter-spacing: 3px;
+      max-width: 255px;
     }
     &:last-of-type {
       color: #8D8D8D;
@@ -17,6 +18,17 @@ const Person = styled.div`
       line-height: 18px;
       position: relative;
       bottom: 0px;
+      display: inline-flex;
+      flex-direction: column;
+      span {
+        color: #B2BEC4;
+        font-size: 12px;
+        letter-spacing: 1px;
+        line-height: 21px;
+        &.bold {
+          font-weight: bold;
+        }
+      }
     }
   }
 `;

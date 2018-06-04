@@ -56,7 +56,7 @@ function ProgramContent({ data: { programs }, slug, match }) {
         initiative.sponsors.map((sponsor, j) => { // eslint-disable-line
           sponsors.push(
             <Col md={2} key={`sponsor-${j.toString()}`}>
-              <img src={sponsor.logo.url} alt={sponsor.logo.title} />
+              <img style={{ padding: '16px 0 32px 0' }} src={sponsor.logo.url} alt={sponsor.logo.title} />
             </Col>
           );
         });
@@ -69,7 +69,7 @@ function ProgramContent({ data: { programs }, slug, match }) {
           <Hr style={{ marginBottom: 15 }} />
           <H5>INITIATIVE SPONSORS</H5>
           <p>Ut convallis, metus et convallis mattis, nunc velit placerat quam, sed consectetur risus tellus sed sem. Integer fermentum eu turpis vitae egestas.</p>
-          <Grid fluid>
+          <Grid fluid style={{ padding: 0 }}>
             <Row>
               {sponsors}
             </Row>
@@ -87,7 +87,7 @@ function ProgramContent({ data: { programs }, slug, match }) {
 
       return (
         <Paper zDepth={1} key={`card-${i.toString()}`}>
-          <div style={{ backgroundColor: '#00B398', padding: '32px 32px 16px 32px' }}>
+          <div style={{ padding: '32px 32px 16px 32px' }}>
             <H4>{initiative.title}</H4>
           </div>
           <div style={{ padding: '0 32px' }}>

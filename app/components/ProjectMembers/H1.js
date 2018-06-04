@@ -7,6 +7,7 @@ const H1 = styled(NormalH1)`
   font-weight: bold;
   line-height: 50px;
   text-align: center;
+  margin-bottom: 10px;
 `;
 
 export default H1;

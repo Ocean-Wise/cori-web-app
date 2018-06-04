@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
 const Divider = styled.div`
-  height: 8px;
-  width: 64px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  height: 4px;
+  width: 24px;
   background-color: #CCF0EA;
-  margin: 0 auto 0 auto;
-  position: relative;
-  right: 76px;
 `;
 
 export default Divider;
