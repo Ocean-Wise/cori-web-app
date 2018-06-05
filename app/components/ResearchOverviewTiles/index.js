@@ -27,7 +27,7 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
     const cori = areas.find((x) => x.slug === 'cori');
     const va = areas.find((x) => x.slug === 'vancouver-aquarium');
     topRow.push(
-      <Tile key="cori-tile" id="tile-1" image={cori.hero.url} width="100%">
+      <Tile key="cori-tile" id="tile-1" image={cori.hero.url} width="50%">
         <div style={{ zIndex: 10, position: 'relative', top: 65, padding: 30 }}>
           <H1>{cori.title}</H1>
           <P>{cori.subheader}</P>
@@ -43,7 +43,7 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
       </Tile>
     );
     topRow.push(
-      <Tile key="va-tile" id="tile-1" image={va.hero.url} width="100%">
+      <Tile key="va-tile" id="tile-1" image={va.hero.url} width="50%">
         <div style={{ zIndex: 10, position: 'relative', top: 65, padding: 30 }}>
           <H1>{va.title}</H1>
           <P>{va.subheader}</P>

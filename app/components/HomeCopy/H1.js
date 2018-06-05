@@ -12,7 +12,10 @@ const H1 = styled(NormalH1)`
     margin-bottom: 0;
     ` : ''}
   ${mixins.bp.md.max`
-    ${(props) => props.section ? 'font-size: 1.3rem;' : ''}
+    ${(props) => props.section ? `
+      font-size: 45px;
+      margin-top: 0;
+    ` : ''}
   `}
 `;
 

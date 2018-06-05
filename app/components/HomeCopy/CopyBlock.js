@@ -10,6 +10,12 @@ const CopyBlock = styled.div`
     transform: translateY(-50%);
     ${(props) => props.float === 'left' ? 'left: 0;' : 'right: 0;'}
   `}
+  ${mixins.bp.md.max`
+    max-width: 345px;
+    button {
+      width: 160px !important;
+    }
+  `}
   ${mixins.bp.sm.max`
     display: block;
     margin: 0 auto;

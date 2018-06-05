@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 // import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
@@ -34,7 +34,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
   render() {
     return (
       <article>
-        <Header />
+        <Header active={this.props.match.params.slug} />
         <Helmet>
           <title>Home Page</title>
           <meta name="description" content="Ocean Wise Research" />
@@ -49,6 +49,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
 }
 
 HomePage.propTypes = {
+  match: PropTypes.object,
 };
 
 export function mapDispatchToProps(dispatch) {

@@ -6,8 +6,6 @@
 
 import React, { Children } from 'react';
 import PropTypes from 'prop-types';
-
-// import styled from 'styled-components';
 import RaisedButton from '@material-ui/core/Button';
 
 function Button(props) {
@@ -69,6 +67,9 @@ function Button(props) {
       transition: ${transition};
       width: 200px;
       height: 45px;
+      @media all and (max-width: 1999px) {
+        width: 160px;
+      }
     }
     #${props.id} {
       background-color: transparent !important;

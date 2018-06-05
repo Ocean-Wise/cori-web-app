@@ -36,6 +36,10 @@ const Tile = styled.div`
     bottom: 32px;
     width: 560px;
     text-align: center;
+    ${mixins.bp.md.max`
+      font-size: 32px;
+      width: 90%;
+    `}
     ${mixins.bp.sm.max`
       font-size: 26px;
       line-height: 25px;
@@ -43,6 +47,10 @@ const Tile = styled.div`
   }
   span.subsequent {
     width: 400px;
+    ${mixins.bp.md.max`
+      width: 90%;
+      bottom: 42px;
+    `}
   }
   span.explore {
     color: #FFFFFF;

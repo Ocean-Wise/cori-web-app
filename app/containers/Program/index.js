@@ -13,7 +13,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import Header from 'components/Header/Loadable';
-import FloatingNav from 'components/FloatingNav';
+import FloatingNav from 'components/FloatingNav/Loadable';
 import ProgramContent from 'components/ProgramContent';
 
 import injectReducer from 'utils/injectReducer';
@@ -22,20 +22,33 @@ import reducer from './reducer';
 // import messages from './messages';
 
 export class Program extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
+    super(props);
+    this.state = {
+      width: window.innerWidth,
+    };
+  }
 
   componentDidMount() {
+    this.updateWindowDimensions();
     window.scrollTo(0, 0);
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions = () => {
+    this.setState({ width: window.innerWidth });
   }
 
   render() {
+    const NAV = this.state.width < 1226 ? '' : <FloatingNav active={this.props.match.params.slug} location={this.props.match} />;
     return (
       <div>
         <Helmet>
           <title>Program</title>
           <meta name="description" content="Description of Program" />
         </Helmet>
-        <Header />
-        <FloatingNav active={this.props.match.params.slug} location={this.props.match} />
+        <Header active={this.props.match.params.slug} />
+        {NAV}
         <ProgramContent slug={this.props.match.params.slug} match={this.props.match} />
       </div>
     );

@@ -35,8 +35,8 @@ export class Project extends React.PureComponent { // eslint-disable-line react/
           <title>Project</title>
           <meta name="description" content="Description of Project" />
         </Helmet>
-        <Header />
-        {/* <FloatingNav active={this.props.match.params.slug} location={this.props.match} /> */}
+        <Header active={this.props.match.params.slug} />
+        {/* <FloatingNav active={this.props.match.params.slug} /> */}
         <ProjectContent slug={this.props.match.params.slug} match={this.props.match} />
       </div>
     );
