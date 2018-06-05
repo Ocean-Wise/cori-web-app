@@ -51,7 +51,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match }) {
     ) : '';
 
     return (
-      <div>
+      <div style={{ overflow: 'hidden' }}>
         <Hero src={area.hero.url} alt={area.hero.title} />
         <Section style={{ paddingTop: 30 }}>
           <Grid fluid>

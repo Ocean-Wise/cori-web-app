@@ -9,11 +9,12 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import getRAPrograms from 'graphql/queries/getRAPrograms.graphql';
-import { Grid, Row, Col } from 'react-flexbox-grid';
+import { Grid, Col } from 'react-flexbox-grid';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
+import Row from './Row';
 import H1 from './H1';
 import Divider from './Divider';
 import Tile from './Tile';
@@ -35,7 +36,7 @@ function ProgramTiles({ data: { researchAreas } }) {
     return (
       <Grid fluid>
         <Row>
-          <Col md={4}>
+          <Col xl={4}>
             <div style={{ textAlign: 'center' }}>
               <Divider />
               <H1>
@@ -43,7 +44,7 @@ function ProgramTiles({ data: { researchAreas } }) {
               </H1>
             </div>
           </Col>
-          <Col md={7}>
+          <Col xl={7}>
             <Row style={{ marginBottom: 0, width: 730 }}>
               {tiles}
             </Row>

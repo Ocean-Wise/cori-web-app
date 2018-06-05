@@ -87,7 +87,7 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
     return (
       <Grid fluid>
         <Row>
-          <Col md={4}>
+          <Col xl={4}>
             <center>
               <Divider style={{ position: 'relative', right: 75, top: 22 }} />
               <H1>
@@ -95,7 +95,7 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
               </H1>
             </center>
           </Col>
-          <Col md={5}>
+          <Col xl={5}>
             <Wrapper>
               {this.state.regular}
             </Wrapper>
@@ -103,8 +103,8 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
           </Col>
         </Row>
         <Row>
-          <Col md={4} />
-          <Col md={5} style={{ margin: '-10px 0' }}>
+          <Col xl={4} />
+          <Col xl={5} style={{ margin: '-10px 0' }}>
             <A href="https://aquablog.ca/" target="_blank">See more on Aquablog.ca <ChevronRight style={{ fontSize: 40 }} /></A>
           </Col>
         </Row>

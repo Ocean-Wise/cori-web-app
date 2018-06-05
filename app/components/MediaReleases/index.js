@@ -49,23 +49,23 @@ class MediaReleases extends React.PureComponent { // eslint-disable-line react/p
     return (
       <Grid fluid>
         <Row>
-          <Col md={4}>
-            <center>
+          <Col xl={4}>
+            <div style={{ textAlign: 'center' }}>
               <Divider />
               <H1>
                 <FormattedMessage {...messages.header} />
               </H1>
-            </center>
+            </div>
           </Col>
-          <Col md={5}>
+          <Col xl={5}>
             <div>
               {this.state.media}
             </div>
           </Col>
         </Row>
         <Row style={{ marginTop: 15 }}>
-          <Col md={4} />
-          <Col md={5}>
+          <Col xl={4} />
+          <Col xl={5}>
             <A href="https://ocean.org/media-releases" target="_blank">View more media releases <ChevronRight style={{ fontSize: 40 }} /></A>
           </Col>
         </Row>

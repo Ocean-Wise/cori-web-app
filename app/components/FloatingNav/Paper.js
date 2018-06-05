@@ -5,7 +5,10 @@ const Paper = styled(NormalPaper)`
   width: 350px;
   position: absolute;
   left: 12rem;
-  top: 200px;
+  @media all and (max-width: 1400px) {
+    left: 4rem;
+  }
+  top: 250px;
   z-index: 10;
   padding-bottom: 32px;
 `;
