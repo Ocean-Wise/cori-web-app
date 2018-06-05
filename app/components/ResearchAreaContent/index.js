@@ -36,7 +36,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match }) {
     const MediaReleasesComponent = area.mediaRSS !== null ? <MediaReleases url={area.mediaRSS} /> : '';
     const supporters = area.supporters.map((supporter) => { // eslint-disable-line
       return (
-        <div>
+        <div key={`supporter-${supporter.name}`}>
           <img src={supporter.logo.url} alt={supporter.name} />
         </div>
       );

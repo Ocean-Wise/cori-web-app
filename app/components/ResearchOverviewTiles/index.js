@@ -27,7 +27,7 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
     const cori = areas.find((x) => x.slug === 'cori');
     const va = areas.find((x) => x.slug === 'vancouver-aquarium');
     topRow.push(
-      <Tile id="tile-1" image={cori.hero.url} width="100%">
+      <Tile key="cori-tile" id="tile-1" image={cori.hero.url} width="100%">
         <div style={{ zIndex: 10, position: 'relative', top: 65, padding: 30 }}>
           <H1>{cori.title}</H1>
           <P>{cori.subheader}</P>
@@ -43,7 +43,7 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
       </Tile>
     );
     topRow.push(
-      <Tile id="tile-1" image={va.hero.url} width="100%">
+      <Tile key="va-tile" id="tile-1" image={va.hero.url} width="100%">
         <div style={{ zIndex: 10, position: 'relative', top: 65, padding: 30 }}>
           <H1>{va.title}</H1>
           <P>{va.subheader}</P>
@@ -68,7 +68,7 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
     let row = [];
     areas.map((area, i) => {
       row.push(
-        <Tile id={`tile-${i.toString()}`} image={area.hero.url} width="25%">
+        <Tile key={`${area.slug}-tile`} id={`tile-${i.toString()}`} image={area.hero.url} width="25%">
           <div style={{ zIndex: 10, position: 'relative', top: 65, padding: 30 }}>
             <H1>{area.title}</H1>
             <P>{area.subheader}</P>
@@ -85,7 +85,7 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
       );
       if (i !== 0 && i % 4 === 0) {
         subsequentRows.push(
-          <Row>
+          <Row key={`row-${i.toString()}`}>
             {row}
           </Row>
         );
@@ -93,7 +93,7 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
       }
       return true;
     });
-    subsequentRows.push(<Row>{row}</Row>);
+    subsequentRows.push(<Row key="row-last">{row}</Row>);
     return (
       <Container>
         <Row>

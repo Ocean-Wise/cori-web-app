@@ -23,6 +23,11 @@ import reducer from './reducer';
 // import messages from './messages';
 
 export class Project extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     return (
       <div>

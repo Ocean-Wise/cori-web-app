@@ -42,7 +42,7 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
         const featuredTeaser = data.featured[0].teaser.replace('[…]', '');
         const featuredTitle = <Link to={`${data.featured[0].link}`}>{data.featured[0].title}</Link>;
         featured = (
-          <Paper zDepth={1} featured>
+          <Paper elevation={1} featured>
             <a href={data.featured[0].link} target="_blank"><Img src={data.featured[0].img} featured /></a>
             <div style={{ padding: '20px 20px 58px 20px', marginBottom: 45 }}>
               <H3>{featuredTitle}</H3>
@@ -62,7 +62,7 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
           const teaser = item.teaser.replace('[…]', '');
           const title = <a href={item.link} target="_blank">{item.title}</a>;
           regular.push(
-            <Paper zDepth={1} key={i.toString()}>
+            <Paper elevation={1} key={i.toString()}>
               <a href={item.link} target="_blank"><Img src={item.img} /></a>
               <div style={{ padding: '20px 20px 10px 20px', marginBottom: 45 }}>
                 <H3>{title}</H3>

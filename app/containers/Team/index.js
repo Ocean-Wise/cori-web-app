@@ -24,6 +24,11 @@ import reducer from './reducer';
 // import messages from './messages';
 
 export class Team extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     const MemberComponent = R.isEmpty(this.props.match.params) ? <TeamMembers /> : <AreaMembers slug={this.props.match.params.slug} />;
     return (
