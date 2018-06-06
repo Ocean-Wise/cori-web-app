@@ -57,8 +57,8 @@ function ProjectContent({ data: { projects }, slug, match }) {
         <Section>
           <Grid fluid>
             <Row>
-              <Col md={3} />
-              <Col md={6}>
+              <Col xl={3} />
+              <Col xl={7}>
                 <Breadcrumbs slug={slug} location={match} project />
                 <H1>{project.projectTitle}</H1>
                 <H3>{project.subheader}</H3>
@@ -68,19 +68,21 @@ function ProjectContent({ data: { projects }, slug, match }) {
               </Col>
             </Row>
           </Grid>
-          <div style={{ width: '65%', margin: '0 auto' }}>
-            <Hr />
-          </div>
+        </Section>
+        <div style={{ width: '95%', margin: '0 auto', marginTop: -50 }}>
+          <Hr />
+        </div>
+        <Section>
           <Grid fluid>
             <Row>
-              <Col md={3} />
-              <Col md={6}>
+              <Col xl={3} />
+              <Col xl={7}>
                 <ProjectMembers slug={slug} />
               </Col>
             </Row>
           </Grid>
-          {supportersComponent}
         </Section>
+        {supportersComponent}
       </div>
     );
   } catch (err) {

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 const Section = styled.div`
+  padding: 60px;
+  padding-top: 30px;
   &:nth-of-type(even) {
     background-color: #fff;
   }
