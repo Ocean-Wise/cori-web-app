@@ -8,11 +8,9 @@ const H1 = styled(NormalH1)`
   font-weight: bold;
   line-height: 50px;
   margin-bottom: 15px;
-  position: relative;
-  left: 48px;
+  margin-top: 15px;
   ${mixins.bp.lg.max`
-    font-size: 38px;
-    left: unset;
+    // font-size: 38px;
   `}
 `;
 
