@@ -40,7 +40,7 @@ export class Program extends React.PureComponent { // eslint-disable-line react/
   }
 
   render() {
-    const NAV = this.state.width < 1226 ? '' : <FloatingNav active={this.props.match.params.slug} location={this.props.match} />;
+    const NAV = this.state.width < 1200 ? '' : <FloatingNav active={this.props.match.params.slug} location={this.props.match} />;
     return (
       <div>
         <Helmet>

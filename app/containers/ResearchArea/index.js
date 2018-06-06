@@ -34,13 +34,12 @@ export class ResearchArea extends React.PureComponent { // eslint-disable-line r
     window.scrollTo(0, 0);
     window.addEventListener('resize', this.updateWindowDimensions);
   }
-
   updateWindowDimensions = () => {
     this.setState({ width: window.innerWidth });
   }
 
   render() {
-    const NAV = this.state.width < 1226 ? '' : <FloatingNav active={this.props.match.params.slug} location={this.props.match} />;
+    const NAV = this.state.width < 1200 ? '' : <FloatingNav active={this.props.match.params.slug} location={this.props.match} />;
     return (
       <div>
         <Helmet>

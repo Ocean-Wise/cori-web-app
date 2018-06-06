@@ -57,7 +57,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match }) {
           <Grid fluid>
             <Row>
               <Col xl={4} />
-              <Col xl={5} style={{ paddingLeft: 0 }}>
+              <Col xl={7} style={{ paddingLeft: 0 }}>
                 <Breadcrumbs slug={slug} location={match} research />
                 <H1 style={{ marginTop: 25 }}>{area.title}</H1>
                 <H2>{area.subheader}</H2>

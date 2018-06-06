@@ -38,7 +38,7 @@ class NavLinks extends React.Component { // eslint-disable-line react/prefer-sta
   }
 
   render() {
-    const NAV = this.state.width < 1226 ? <DrawerNav active={this.props.active} /> : (
+    const NAV = this.state.width < 1200 ? <DrawerNav active={this.props.active} /> : (
       <Container>
         <Link to="/about">
           <Button>

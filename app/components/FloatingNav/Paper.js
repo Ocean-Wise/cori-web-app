@@ -5,7 +5,7 @@ const Paper = styled(NormalPaper)`
   width: 350px;
   position: absolute;
   left: 12rem;
-  @media all and (max-width: 1400px) {
+  @media all and (max-width: 1592px) {
     left: 4rem;
   }
   top: 250px;
