@@ -12,7 +12,7 @@ const H1 = styled(NormalH1)`
   left: 48px;
   ${mixins.bp.lg.max`
     font-size: 38px;
-    left: 17px;
+    left: unset;
   `}
 `;
 

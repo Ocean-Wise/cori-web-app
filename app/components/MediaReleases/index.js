@@ -14,6 +14,7 @@ import ChevronRight from '@material-ui/icons/ChevronRight';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
+import Container from './Container';
 import Divider from './Divider';
 import H1 from './H1';
 import H3 from './H3';
@@ -50,12 +51,12 @@ class MediaReleases extends React.PureComponent { // eslint-disable-line react/p
       <Grid fluid>
         <Row>
           <Col xl={4}>
-            <div style={{ textAlign: 'center' }}>
+            <Container>
               <Divider />
               <H1>
                 <FormattedMessage {...messages.header} />
               </H1>
-            </div>
+            </Container>
           </Col>
           <Col xl={5}>
             <div>

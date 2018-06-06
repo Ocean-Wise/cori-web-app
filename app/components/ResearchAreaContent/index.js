@@ -22,7 +22,7 @@ import Hero from './Hero';
 import Section from './Section';
 import Container from './Container';
 import H1 from './H1';
-import Divider from './Divider';
+// import Divider from './Divider';
 import H2 from './H2';
 import MarkdownWrapper from './MarkdownWrapper';
 import H3 from './H3';
@@ -44,7 +44,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match }) {
     const supportersComponent = area.supporters !== null ? (
       <center>
         <H1 style={{ fontSize: 48, lineHeight: '50px', paddingTop: 15 }}>Our Supporters</H1>
-        <Divider />
+        {/* <Divider /> */}
         <p>Ut convallis, metus et convallis mattis, nunc velit placerat quam, sed consectetur risus tellus sed sem. Integer fermentum ue turpis vitae egestas.</p>
         <div style={{ display: 'inline-flex', flexDirection: 'row' }}>{supporters}</div>
       </center>
@@ -56,8 +56,8 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match }) {
         <Section style={{ paddingTop: 30 }}>
           <Grid fluid>
             <Row>
-              <Col md={4} />
-              <Col md={5} style={{ paddingLeft: 0 }}>
+              <Col xl={4} />
+              <Col xl={5} style={{ paddingLeft: 0 }}>
                 <Breadcrumbs slug={slug} location={match} research />
                 <H1 style={{ marginTop: 25 }}>{area.title}</H1>
                 <H2>{area.subheader}</H2>
@@ -79,9 +79,9 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match }) {
         </Section>
         <Section>
           <Grid fluid>
-            <Row>
-              <Col md={1} />
-              <Col md={4} team>
+            <Row style={{ position: 'relative', zIndex: 10 }}>
+              <Col xl={1} />
+              <Col xl={4} team>
                 <Container>
                   <H3>The Team</H3>
                   <p>Ut convallis, metus et convallis mattis, nunc velit placerat quam, sed consectetur risus tellus sed sem. Integer fermentum ue turpis vitae egestas.</p>
@@ -93,10 +93,10 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match }) {
                 </Container>
               </Col>
             </Row>
-            <Row style={{ marginTop: 80 }}>
-              <Col md={6} />
-              <Col md={4}>
-                <Container>
+            <Row style={{ position: 'relative', zIndex: 5 }}>
+              <Col xl={6} />
+              <Col xl={4}>
+                <Container second>
                   <H3>Read Our Work</H3>
                   <p>Ut convallis, metus et convallis mattis, nunc velit placerat quam, sed consectetur risus tellus sed sem. Integer fermentum ue turpis vitae egestas.</p>
                   <Link to={`/publications/${slug}`}>

@@ -12,6 +12,7 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Button from '@material-ui/core/Button';
 import Nav from 'components/Nav';
 import Menu from '@material-ui/icons/Menu';
+import Close from '@material-ui/icons/Close';
 
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
@@ -19,6 +20,13 @@ import Menu from '@material-ui/icons/Menu';
 const styles = () => ({
   paper: {
     width: '100%',
+  },
+  button: {
+    minWidth: 28,
+    padding: 0,
+  },
+  menuButton: {
+    float: 'right',
   },
 });
 
@@ -35,7 +43,7 @@ class DrawerNav extends React.Component { // eslint-disable-line react/prefer-st
     const { classes } = this.props;
     return (
       <div>
-        <Button onClick={this.toggleDrawer}><Menu /></Button>
+        <Button className={classes.button} onClick={this.toggleDrawer}><Menu /></Button>
         <SwipeableDrawer
           anchor="right"
           open={this.state.open}
@@ -43,7 +51,9 @@ class DrawerNav extends React.Component { // eslint-disable-line react/prefer-st
           onOpen={this.toggleDrawer}
           classes={classes}
         >
-          <Button onClick={this.toggleDrawer}><Menu /></Button>
+          <div>
+            <Button className={classes.menuButton} onClick={this.toggleDrawer}><Close /></Button>
+          </div>
           <Nav active={this.props.active} />
         </SwipeableDrawer>
       </div>

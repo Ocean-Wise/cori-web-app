@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import * as mixins from 'styles/mixins';
 
 const Tile = styled.div`
   position: relative;
@@ -16,6 +17,10 @@ const Tile = styled.div`
     background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, #000000 100%);
     opacity: 0.6;
   }
+  ${mixins.bp.lg.max`
+    height: 308px;
+    width: 308px;
+  `}
 `;
 
 export default Tile;

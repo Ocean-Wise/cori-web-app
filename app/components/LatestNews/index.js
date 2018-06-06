@@ -16,6 +16,7 @@ import P from 'components/P';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
+import Container from './Container';
 import Wrapper from './Wrapper';
 import Paper from './Paper';
 import Img from './Img';
@@ -50,7 +51,7 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
             </div>
             <div style={{ position: 'absolute', bottom: 5 }}>
               <div style={{ padding: 20, display: 'inline-flex', flexDirection: 'column', justifyContent: 'left' }}>
-                <Divider style={{ width: 50, height: 1, marginBottom: 10, backgroundColor: '#00B398' }} />
+                <Divider style={{ width: 50, height: 1, marginBottom: 10, backgroundColor: '#00B398' }} news />
                 <div>{data.featured[0].date}</div>
               </div>
             </div>
@@ -70,7 +71,7 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
               </div>
               <div style={{ position: 'absolute', bottom: 5 }}>
                 <div style={{ padding: 20, display: 'inline-flex', flexDirection: 'column', justifyContent: 'left' }}>
-                  <Divider style={{ width: 50, height: 1, marginBottom: 10, backgroundColor: '#00B398' }} />
+                  <Divider style={{ width: 50, height: 1, marginBottom: 10, backgroundColor: '#00B398' }} news />
                   <div>{item.date}</div>
                 </div>
               </div>
@@ -88,12 +89,12 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
       <Grid fluid>
         <Row>
           <Col xl={4}>
-            <center>
-              <Divider style={{ position: 'relative', right: 75, top: 22 }} />
+            <Container>
+              <Divider />
               <H1>
                 <FormattedMessage {...messages.header} />
               </H1>
-            </center>
+            </Container>
           </Col>
           <Col xl={5}>
             <Wrapper>
@@ -112,23 +113,6 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
     );
   }
 }
-// return (
-//   <div style={{ marginTop: 80 }}>
-//     <center>
-//       <H1>
-//         <FormattedMessage {...messages.header} />
-//       </H1>
-//       <Divider />
-//     </center>
-//     <Container>
-//       <Wrapper>
-//         {this.state.regular}
-//       </Wrapper>
-//       {this.state.featured}
-//     </Container>
-//     <A href="https://aquablog.ca/" target="_blank">See more on Aquablog.ca &gt;</A>
-//   </div>
-// );
 
 LatestNews.propTypes = {
   url: PropTypes.string.isRequired,

@@ -14,6 +14,7 @@ import { Grid, Col } from 'react-flexbox-grid';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
+import Container from './Container';
 import Row from './Row';
 import H1 from './H1';
 import Divider from './Divider';
@@ -37,15 +38,15 @@ function ProgramTiles({ data: { researchAreas } }) {
       <Grid fluid>
         <Row>
           <Col xl={4}>
-            <div style={{ textAlign: 'center' }}>
+            <Container>
               <Divider />
               <H1>
                 <FormattedMessage {...messages.header} />
               </H1>
-            </div>
+            </Container>
           </Col>
           <Col xl={7}>
-            <Row style={{ marginBottom: 0, width: 730 }}>
+            <Row tileContainer>
               {tiles}
             </Row>
           </Col>

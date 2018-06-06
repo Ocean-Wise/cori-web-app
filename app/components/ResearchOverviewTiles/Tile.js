@@ -36,7 +36,7 @@ const Tile = styled.div`
     bottom: 32px;
     width: 560px;
     text-align: center;
-    ${mixins.bp.md.max`
+    ${mixins.bp.lg.max`
       font-size: 32px;
       width: 90%;
     `}
@@ -47,7 +47,7 @@ const Tile = styled.div`
   }
   span.subsequent {
     width: 400px;
-    ${mixins.bp.md.max`
+    ${mixins.bp.lg.max`
       width: 90%;
       bottom: 42px;
     `}
