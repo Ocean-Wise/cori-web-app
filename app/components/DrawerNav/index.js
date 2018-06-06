@@ -43,7 +43,7 @@ class DrawerNav extends React.Component { // eslint-disable-line react/prefer-st
     const { classes } = this.props;
     return (
       <div>
-        <Button className={classes.button} onClick={this.toggleDrawer}><Menu /></Button>
+        <Button className={classes.button} onClick={this.toggleDrawer}><Menu style={{ stroke: 'rgb(178, 190, 196)', color: 'rgb(178, 190, 196)' }} /></Button>
         <SwipeableDrawer
           anchor="right"
           open={this.state.open}

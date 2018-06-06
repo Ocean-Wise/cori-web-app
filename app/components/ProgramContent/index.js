@@ -11,6 +11,7 @@ import { graphql } from 'react-apollo';
 import ReactMarkdown from 'react-markdown';
 import getProgram from 'graphql/queries/getProgram.graphql';
 import { Grid, Row, Col } from 'react-flexbox-grid';
+import ChevronRight from '@material-ui/icons/ChevronRight';
 
 import Breadcrumbs from 'components/Breadcrumbs';
 import ProjectFeatured from 'components/ProjectFeatured';
@@ -24,6 +25,7 @@ import H5 from './H5';
 import MarkdownWrapper from './MarkdownWrapper';
 import Paper from './Paper';
 import Divider from './Divider';
+import TitleContainer from './TitleContainer';
 
 function ProgramContent({ data: { programs }, slug, match }) {
   let program = {};
@@ -41,7 +43,7 @@ function ProgramContent({ data: { programs }, slug, match }) {
         column.push(
           <div key={`project-${j.toString()}`} style={{ paddingBottom: 10 }}>
             <Link to={`/project/${project.slug}`} style={{ fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>
-              <span style={{ color: '#00B398' }}>{project.projectTitle} &gt;</span>
+              <span style={{ color: '#00B398' }}>{project.projectTitle} <ChevronRight style={{ marginLeft: -5 }} /></span>
             </Link>
           </div>
         );
@@ -111,11 +113,13 @@ function ProgramContent({ data: { programs }, slug, match }) {
     const InitiativesComponent = (
       <Grid fluid style={{ padding: '60px 0' }}>
         <Row style={{ margin: 0 }}>
-          <Col md={4}>
-            <Divider />
-            <H1 style={{ marginTop: 15, position: 'relative', left: 201 }}>Initiatives</H1>
+          <Col xl={4}>
+            <TitleContainer>
+              <Divider />
+              <H1 style={{ marginTop: 15 }}>Initiatives</H1>
+            </TitleContainer>
           </Col>
-          <Col md={5}>
+          <Col xl={7}>
             {initiativesList}
           </Col>
         </Row>
@@ -128,8 +132,8 @@ function ProgramContent({ data: { programs }, slug, match }) {
         <Section style={{ paddingBottom: 20 }}>
           <Grid fluid>
             <Row>
-              <Col md={4} />
-              <Col md={5}>
+              <Col xl={4} />
+              <Col xl={7}>
                 <Breadcrumbs slug={slug} location={match} program />
                 <H1 style={{ marginTop: 15 }}>{program.title}</H1>
                 <H3>{program.subheader}</H3>

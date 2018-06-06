@@ -34,6 +34,9 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
+const ScrollWrapper = styled.div`
+  z-index: 15;
+`;
 
 export default function App() {
   return (
@@ -59,18 +62,20 @@ export default function App() {
         </Switch>
         <Footer />
       </ApolloWrapper>
-      <ScrollUpButton
-        StopPosition={0}
-        TransitionBtnPosition={150}
-        EasingType="easeOutCubic"
-        AnimationDuration={500}
-        ContainerClassName="ScrollUpButton__Container"
-        TransitionClassName="ScrollUpButton__Toggled"
-      >
-        <IconButton style={{ backgroundColor: 'rgba(95,95,95,0.4313725490)' }}>
-          <ArrowUpward />
-        </IconButton>
-      </ScrollUpButton>
+      <ScrollWrapper>
+        <ScrollUpButton
+          StopPosition={0}
+          TransitionBtnPosition={150}
+          EasingType="easeOutCubic"
+          AnimationDuration={500}
+          ContainerClassName="ScrollUpButton__Container"
+          TransitionClassName="ScrollUpButton__Toggled"
+        >
+          <IconButton style={{ backgroundColor: 'rgba(95,95,95,0.4313725490)' }}>
+            <ArrowUpward />
+          </IconButton>
+        </ScrollUpButton>
+      </ScrollWrapper>
     </AppWrapper>
     // </MuiThemeProvider>
   );
