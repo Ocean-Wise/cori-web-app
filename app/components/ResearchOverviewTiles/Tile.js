@@ -5,6 +5,11 @@ const Tile = styled.div`
   width: ${(props) => props.width};
   position: relative;
   height: 460px;
+  ${mixins.bp.sm.max`
+    ${(props) => props.last ? `
+      height: 219px;
+    ` : ''}
+  `}
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -50,6 +55,9 @@ const Tile = styled.div`
     ${mixins.bp.lg.max`
       width: 90%;
       bottom: 42px;
+    `}
+    ${mixins.bp.sm.max`
+      bottom: 60px;
     `}
   }
   span.explore {

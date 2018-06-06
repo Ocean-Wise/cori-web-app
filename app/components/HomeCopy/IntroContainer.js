@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-
+import * as mixins from 'styles/mixins';
 
 const IntroContainer = styled.div`
-  width: 50%;
+  width: 75%;
   display: block;
   margin: 0 auto;
   margin-bottom: 45px;
@@ -12,6 +12,10 @@ const IntroContainer = styled.div`
     font-size: 16px;
     line-height: 26px;
   }
+  ${mixins.bp.md.max`
+    padding-top: 50px;
+    // width: 75%;
+  `}
 `;
 
 export default IntroContainer;

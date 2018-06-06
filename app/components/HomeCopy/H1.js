@@ -17,6 +17,11 @@ const H1 = styled(NormalH1)`
       margin-top: 0;
     ` : ''}
   `}
+  ${mixins.bp.sm.max`
+    ${(props) => props.section ? `
+      text-align: left;
+    ` : ''}
+  `}
 `;
 
 export default H1;

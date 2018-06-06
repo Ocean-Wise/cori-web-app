@@ -20,6 +20,7 @@ const CopyBlock = styled.div`
     display: block;
     margin: 0 auto;
     text-align: center;
+    margin-top: 25px;
   `}
   p {
     font-size: 16px;

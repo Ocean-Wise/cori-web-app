@@ -50,7 +50,7 @@ function Links() {
           </A>
         </Row>
         <Row>
-          <H4 style={{ position: 'relative', top: 17 }}>
+          <H4>
             Working Groups
           </H4>
           <A href="#">

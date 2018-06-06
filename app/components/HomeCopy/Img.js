@@ -18,9 +18,9 @@ const Img = styled.img`
     width: 26vw;
   `} */}
   ${mixins.bp.sm.max`
-    width: unset;
-    // margin: 10px;
-    margin-bottom: 40px;
+    height: 390px;
+    width: 65%;
+    margin: 0 auto;
   `}
 `;
 

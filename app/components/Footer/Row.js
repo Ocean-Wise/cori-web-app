@@ -10,6 +10,10 @@ const Row = styled.div`
   ${mixins.bp.lg.max`
     margin-left: 2em;
   `}
+  ${mixins.bp.sm.max`
+    margin: 0 auto;
+    width: 41%;
+  `}
 `;
 
 export default Row;

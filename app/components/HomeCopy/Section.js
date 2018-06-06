@@ -18,6 +18,7 @@ const Section = styled.div`
     height: unset;
     display: flex;
     flex-direction: ${(props) => props.flexDirection};
+    padding-top: 80px;
   `}
 `;
 
