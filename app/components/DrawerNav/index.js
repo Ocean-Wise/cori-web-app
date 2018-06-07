@@ -35,6 +35,16 @@ class DrawerNav extends React.Component { // eslint-disable-line react/prefer-st
     open: false,
   };
 
+  /**
+   * This functions ensures that the drawer will close when
+   * switching between routes that only differ by slug
+   */
+  componentWillReceiveProps(nextProps) {
+    if (this.props.active !== nextProps.active) {
+      this.setState({ open: false });
+    }
+  }
+
   toggleDrawer = () => {
     this.setState({ open: !this.state.open });
   }

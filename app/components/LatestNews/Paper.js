@@ -24,6 +24,9 @@ const Paper = styled(NormalPaper)`
     width: 100%;
     margin: 5px 0 !important;
   `}
+  ${mixins.bp.xs.max`
+    margin: 16px 0 !important;
+  `}
 `;
 
 export default Paper;

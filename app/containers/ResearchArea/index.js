@@ -48,7 +48,7 @@ export class ResearchArea extends React.PureComponent { // eslint-disable-line r
         </Helmet>
         <Header active={this.props.match.params.slug} />
         {NAV}
-        <ResearchAreaContent slug={this.props.match.params.slug} match={this.props.match} />
+        <ResearchAreaContent slug={this.props.match.params.slug} match={this.props.match} width={this.state.width} />
       </div>
     );
   }

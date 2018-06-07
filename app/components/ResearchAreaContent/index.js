@@ -28,7 +28,7 @@ import MarkdownWrapper from './MarkdownWrapper';
 import H3 from './H3';
 import Col from './Col';
 
-function ResearchAreaContent({ data: { researchAreas }, slug, match }) {
+function ResearchAreaContent({ data: { researchAreas }, slug, match, width }) {
   let area = {};
   try {
     area = researchAreas[0];
@@ -53,7 +53,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match }) {
     return (
       <div style={{ overflow: 'hidden' }}>
         <Hero src={area.hero.url} alt={area.hero.title} />
-        <Section style={{ paddingTop: 30 }}>
+        <Section first>
           <Grid fluid>
             <Row>
               <Col xl={4} />
@@ -69,7 +69,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match }) {
           </Grid>
         </Section>
         <Section>
-          <ProgramTiles slug={slug} />
+          <ProgramTiles slug={slug} width={width} />
         </Section>
         <Section>
           {LatestNewsComponent}
@@ -123,6 +123,7 @@ ResearchAreaContent.propTypes = {
   data: PropTypes.object.isRequired,
   slug: PropTypes.string.isRequired,
   match: PropTypes.object.isRequired,
+  width: PropTypes.number,
 };
 
 export default graphql(getResearchArea, {

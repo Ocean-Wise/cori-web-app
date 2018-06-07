@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 import NormalH2 from 'components/H2';
-// import * as mixins from 'styles/mixins';
+import * as mixins from 'styles/mixins';
 
 const H2 = styled(NormalH2)`
-  color: #6A7B83;
+  color: #8D8D8D;
   font-size: 24px;
   font-weight: 300;
   line-height: 34px;
+  ${mixins.bp.xs.max`
+    font-size: 20px;
+    line-height: 29px;
+  `}
 `;
 
 export default H2;

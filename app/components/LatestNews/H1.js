@@ -9,8 +9,10 @@ const H1 = styled(NormalH1)`
   line-height: 50px;
   margin-bottom: 15px;
   margin-top: 15px;
-  ${mixins.bp.lg.max`
-    // font-size: 38px;
+  ${mixins.bp.xs.max`
+    font-size: 32px;
+    line-height: 33px;
+    position: absolute;
   `}
 `;
 

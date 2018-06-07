@@ -9,25 +9,26 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import getRAPrograms from 'graphql/queries/getRAPrograms.graphql';
-import { Grid, Col } from 'react-flexbox-grid';
+import { Col } from 'react-flexbox-grid';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
 import Container from './Container';
+import Grid from './Grid';
 import Row from './Row';
 import H1 from './H1';
 import Divider from './Divider';
 import Tile from './Tile';
 import Title from './Title';
 
-function ProgramTiles({ data: { researchAreas } }) {
+function ProgramTiles({ data: { researchAreas }, width }) {
   try {
     const tiles = [];
     researchAreas[0].programs.map((program, i) => {
       tiles.push(
         <Link to={`/program/${program.slug}`} key={`programLink-${i.toString()}`}>
-          <Tile image={program.hero.url}>
+          <Tile image={program.hero.url} width={width}>
             <Title>{program.title}</Title>
           </Tile>
         </Link>
@@ -60,7 +61,7 @@ function ProgramTiles({ data: { researchAreas } }) {
 
 ProgramTiles.propTypes = {
   data: PropTypes.object.isRequired,
-  // slug: PropTypes.string.isRequired, // eslint-dis
+  width: PropTypes.number,
 };
 
 export default graphql(getRAPrograms, {

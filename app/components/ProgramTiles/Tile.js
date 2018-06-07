@@ -21,6 +21,10 @@ const Tile = styled.div`
     height: 308px;
     width: 308px;
   `}
+  ${mixins.bp.xs.max`
+    height: ${(props) => (props.width - 50)}px;
+    width: ${(props) => (props.width - 50)}px;
+  `}
 `;
 
 export default Tile;
