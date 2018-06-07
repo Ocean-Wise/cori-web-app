@@ -11,6 +11,9 @@ const Container = styled.div`
     display: flex;
     justify-content: space-between;
   `}
+  ${mixins.bp.xs.max`
+    padding: 20px 0;
+  `}
 `;
 
 export default Container;

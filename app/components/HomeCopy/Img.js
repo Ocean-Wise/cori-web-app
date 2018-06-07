@@ -22,6 +22,10 @@ const Img = styled.img`
     width: 65%;
     margin: 0 auto;
   `}
+  ${mixins.bp.xs.max`
+    height: 269px;
+    width: 90%;
+  `}
 `;
 
 export default Img;

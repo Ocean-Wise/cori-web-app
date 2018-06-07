@@ -22,6 +22,23 @@ const CopyBlock = styled.div`
     text-align: center;
     margin-top: 25px;
   `}
+  ${mixins.bp.xs.max`
+    padding: 15px;
+    p {
+      text-align: left;
+    }
+    button {
+      width: 132px !important;
+    }
+    a:only-of-type {
+      div {
+        width: 100%;
+      }
+      button {
+        width: 100% !important;
+      }
+    }
+  `}
   p {
     font-size: 16px;
     line-height: 26px;

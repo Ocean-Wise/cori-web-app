@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import * as mixins from 'styles/mixins';
 import NormalH1 from 'components/H1';
 
 const H1 = styled(NormalH1)`
@@ -10,6 +10,16 @@ const H1 = styled(NormalH1)`
   span {
     font-weight: 300;
   }
+  sup {
+    font-size: 18px;
+  }
+  ${mixins.bp.xs.max`
+    font-size: 24px;
+    letter-spacing: 0.86px;
+    line-height: 35px;
+    margin-top: 0;
+    margin-bottom: 0;
+  `}
 `;
 
 export default H1;

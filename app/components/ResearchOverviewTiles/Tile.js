@@ -26,9 +26,9 @@ const Tile = styled.div`
     opacity: 0.6;
   }
 
-  ${mixins.bp.xs.max`
+  ${'' /* ${mixins.bp.xs.max`
     height: 210px;
-  `}
+  `} */}
   span.initialTitle {
     color: #FFFFFF;
     font-size: 36px;

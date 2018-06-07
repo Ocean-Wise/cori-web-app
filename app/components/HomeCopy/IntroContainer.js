@@ -16,6 +16,9 @@ const IntroContainer = styled.div`
     padding-top: 50px;
     // width: 75%;
   `}
+  ${mixins.bp.xs.max`
+    width: 90%;
+  `}
 `;
 
 export default IntroContainer;

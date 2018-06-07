@@ -23,7 +23,7 @@ function Header({ active }) {
       <OceanWiseNav />
       <Container>
         <Link to="/">
-          <H1>Ocean Wise<sup style={{ fontSize: 18 }}>&reg;</sup> <span>Research</span></H1>
+          <H1>Ocean Wise<sup>&reg;</sup> <span>Research</span></H1>
         </Link>
         <NavLinks active={active} />
       </Container>

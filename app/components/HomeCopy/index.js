@@ -10,11 +10,11 @@ import { graphql } from 'react-apollo';
 import ReactMarkdown from 'react-markdown';
 import getHomeCopy from 'graphql/queries/getHomeCopy.graphql';
 
-import Blockquote from 'components/Blockquote';
 import Button from 'components/Button';
 
 import H1 from './H1';
 import A from './A';
+import Blockquote from './Blockquote';
 import IntroContainer from './IntroContainer';
 import Wrapper from './Wrapper';
 import Section from './Section';

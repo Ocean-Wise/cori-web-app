@@ -18,6 +18,9 @@ const styles = () => ({
     fontSize: 14,
     color: '#FFF',
   },
+  icon: {
+    color: '#FFF',
+  },
 });
 
 function Toggle(props) {
@@ -31,7 +34,7 @@ function Toggle(props) {
   // }
   const { classes } = props;
   return (
-    <Select value={props.value} onChange={props.onToggle} displayEmpty name="language" className={classes.root}>
+    <Select value={props.value} onChange={props.onToggle} displayEmpty name="language" classes={classes}>
       <MenuItem value="en">
         English
       </MenuItem>

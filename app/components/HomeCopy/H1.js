@@ -22,6 +22,19 @@ const H1 = styled(NormalH1)`
       text-align: left;
     ` : ''}
   `}
+  ${mixins.bp.xs.max`
+    ${(props) => !props.section ? `
+      font-size: 50px;
+      line-height: 61px;
+      text-align: center;
+      margin-top: 60px;
+      margin-bottom: 10px;
+    ` : `
+      margin-top: 10px;
+      font-size: 49px;
+      line-height: 61px;
+    `}
+  `}
 `;
 
 export default H1;
