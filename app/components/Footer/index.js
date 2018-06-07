@@ -9,6 +9,7 @@ import Logo from './Logo';
 import OWLogo from './logo.svg';
 import Links from './Links';
 import Container from './Container';
+import Hr from './Hr';
 
 function Footer() {
   return (
@@ -17,7 +18,7 @@ function Footer() {
         <Section>
           <Logo src={OWLogo} alt="Ocean Wise" />
         </Section>
-        <div style={{ marginTop: 45, borderTop: '1px solid #E9EEF6', width: '95%', height: 1 }} />
+        <Hr />
         <Section>
           <Links />
         </Section>
