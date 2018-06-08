@@ -116,7 +116,7 @@ function ProgramContent({ data: { programs }, slug, match }) {
           <Col xl={4}>
             <TitleContainer>
               <Divider />
-              <H1 style={{ marginTop: 15 }}>Initiatives</H1>
+              <H1 style={{ marginTop: 15, position: 'absolute' }}>Initiatives</H1>
             </TitleContainer>
           </Col>
           <Col xl={7}>

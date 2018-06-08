@@ -11,6 +11,11 @@ import { Link } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import getAllResearchAreas from 'graphql/queries/getAllResearchAreas.graphql';
 
+import ResearchArea from './ResearchArea';
+import ProgramContainer from './ProgramContainer';
+import Program from './Program';
+import Initiative from './Initiative';
+
 /**
  * Nav handles the logic for creating the navigation
  * hierarchy and expanding/collapsing menu items
@@ -33,9 +38,9 @@ function Nav({ data: { researchAreas }, active }) {
           // Create the rows for each initiative of the current program
           const initiatives = program.initiatives.map((initiative) => { // eslint-disable-line
             return (
-              <div key={`initiative-${initiative.slug}`} style={{ padding: '0 8px 8px 0', color: '#6A7B83', fontSize: 12, lineHeight: '18px', marginLeft: 15 }}>
+              <Initiative key={`initiative-${initiative.slug}`}>
                 {initiative.title}
-              </div>
+              </Initiative>
             );
           });
 
@@ -46,8 +51,8 @@ function Nav({ data: { researchAreas }, active }) {
 
           // Create our program row
           programs.push(
-            <div key={`${program.slug}-program`} style={{ borderBottom: '1px solid #CED5D9' }} id={`${program.slug}-program`}>
-              <div
+            <ProgramContainer key={`${program.slug}-program`} id={`${program.slug}-program`}>
+              <Program
                 role="menuitem"
                 tabIndex={-1}
                 id={`${program.slug}-program-container`}
@@ -87,7 +92,6 @@ function Nav({ data: { researchAreas }, active }) {
                     el.classList.remove('active-program');
                   }
                 }}
-                style={{ padding: '13px 8px', color: '#6A7B83', fontSize: 14, transition: 'all 250ms cubic-bezier(0.805, 0.125, 0.500, 0.750)', fontWeight: 'bold', lineHeight: '14px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}
               >
                 <Link to={`/program/${program.slug}`} key={`program-${program.slug}`}>
                   {program.title}
@@ -95,11 +99,11 @@ function Nav({ data: { researchAreas }, active }) {
                 <span style={{ marginRight: 8 }} id={`${program.slug}-expander`}>
                   {active === program.slug ? '-' : '+'}
                 </span>
-              </div>
+              </Program>
               <div id={`${program.slug}-initiatives`} className={active === program.slug ? 'active-program' : ''} style={{ height: initiativeHeight, overflow: 'hidden', transition: 'all 250ms cubic-bezier(0.805, 0.125, 0.500, 0.750)' }}>
                 {initiatives}
               </div>
-            </div>
+            </ProgramContainer>
           );
 
           return true;
@@ -121,7 +125,7 @@ function Nav({ data: { researchAreas }, active }) {
       // Push the research area into our navigation array to be rendered
       nav.push(
         <div key={`area-${area.slug}`}>
-          <div
+          <ResearchArea
             role="menuitem"
             tabIndex={-1}
             onClick={() => {
@@ -158,13 +162,12 @@ function Nav({ data: { researchAreas }, active }) {
                 expanderEl.innerText = '-';
               }
             }}
-            style={{ color: '#6A7B83', fontSize: 18, fontWeight: 'bold', lineHeight: '21px', padding: '12px 12px 12px 0', transition: 'all 250ms cubic-bezier(0.805, 0.125, 0.500, 0.750)', borderBottom: '1px solid #CED5D9', margin: '0 32px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}
           >
             <Link to={`/research/${area.slug}`}>{area.title}</Link>
             <span id={`${area.slug}-expander`}>
               {(active === area.slug || childActive !== '') ? '-' : '+'}
             </span>
-          </div>
+          </ResearchArea>
           <div id={`${area.slug}-programs`} style={{ height: areaHeight, overflow: 'hidden', transition: 'all 250ms cubic-bezier(0.805, 0.125, 0.500, 0.750)', marginLeft: 32, color: '#4D4D4D', fontSize: 14, lineHeight: '14px', width: '82%' }}>
             {programs}
           </div>

@@ -1,12 +1,16 @@
 import styled from 'styled-components';
+import * as mixins from 'styles/mixins';
 
 const Wrapper = styled.div`
-  width: 1000px;
+  max-width: 1000px;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  ${mixins.bp.xs.max`
+    flex-direction: column;
+  `}
 `;
 
 export default Wrapper;

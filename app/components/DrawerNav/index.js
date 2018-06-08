@@ -7,12 +7,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Button from '@material-ui/core/Button';
 import Nav from 'components/Nav';
+import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/icons/Menu';
 import Close from '@material-ui/icons/Close';
+import SearchIcon from '@material-ui/icons/Search';
+
+import Container from './Container';
 
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
@@ -65,6 +70,31 @@ class DrawerNav extends React.Component { // eslint-disable-line react/prefer-st
             <Button className={classes.menuButton} onClick={this.toggleDrawer}><Close /></Button>
           </div>
           <Nav active={this.props.active} />
+          <Container>
+            <IconButton className="search" aria-label="Search">
+              <SearchIcon />
+            </IconButton>
+            <Link to="/about">
+              <Button>
+                About
+              </Button>
+            </Link>
+            <Link to="/team">
+              <Button>
+                Team
+              </Button>
+            </Link>
+            <Link to="/media">
+              <Button>
+                Media
+              </Button>
+            </Link>
+            <Link to="/publications">
+              <Button>
+                Publications
+              </Button>
+            </Link>
+          </Container>
         </SwipeableDrawer>
       </div>
     );
