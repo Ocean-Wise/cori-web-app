@@ -8,6 +8,7 @@ import React from 'react';
 // import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import { graphql } from 'react-apollo';
 import getAllResearchAreas from 'graphql/queries/getAllResearchAreas.graphql';
 
@@ -39,7 +40,9 @@ function Nav({ data: { researchAreas }, active }) {
           const initiatives = program.initiatives.map((initiative) => { // eslint-disable-line
             return (
               <Initiative key={`initiative-${initiative.slug}`}>
-                {initiative.title}
+                <HashLink to={`/program/${program.slug}#${initiative.slug}`} scroll={(el) => setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 1000)}>
+                  {initiative.title}
+                </HashLink>
               </Initiative>
             );
           });

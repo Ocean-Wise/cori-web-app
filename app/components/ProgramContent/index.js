@@ -14,7 +14,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 
 import Breadcrumbs from 'components/Breadcrumbs';
-import ProjectFeatured from 'components/ProjectFeatured';
+import ProjectFeatured from 'components/ProjectFeatured/Loadable';
 import Hero from './Hero';
 import Section from './Section';
 import Hr from './Hr';
@@ -88,25 +88,27 @@ function ProgramContent({ data: { programs }, slug, match }) {
       ) : '';
 
       return (
-        <Paper zDepth={1} key={`card-${i.toString()}`}>
-          <div style={{ padding: '32px 32px 16px 32px' }}>
-            <H4>{initiative.title}</H4>
-          </div>
-          <div style={{ padding: '0 32px' }}>
-            <MarkdownWrapper>
-              <ReactMarkdown source={initiative.copy} />
-            </MarkdownWrapper>
-            <Hr style={{ marginBottom: 15 }} />
-            <H5>PROJECTS</H5>
-            <Grid fluid style={{ paddingLeft: 0 }}>
-              <Row>
-                {projects}
-              </Row>
-            </Grid>
-            {spotlight}
-            {SponsorComponent}
-          </div>
-        </Paper>
+        <div id={`${initiative.slug}`} key={`card-${i.toString()}`}>
+          <Paper zDepth={1}>
+            <div style={{ padding: '32px 32px 16px 32px' }}>
+              <H4>{initiative.title}</H4>
+            </div>
+            <div style={{ padding: '0 32px' }}>
+              <MarkdownWrapper>
+                <ReactMarkdown source={initiative.copy} />
+              </MarkdownWrapper>
+              <Hr style={{ marginBottom: 15 }} />
+              <H5>PROJECTS</H5>
+              <Grid fluid style={{ paddingLeft: 0 }}>
+                <Row>
+                  {projects}
+                </Row>
+              </Grid>
+              {spotlight}
+              {SponsorComponent}
+            </div>
+          </Paper>
+        </div>
       );
     });
 
