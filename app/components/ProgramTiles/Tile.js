@@ -5,8 +5,8 @@ const Tile = styled.div`
   position: relative;
   background-image: url(${(props) => props.image});
   background-size: cover;
-  height: 365px;
-  width: 365px;
+  height: 425px;
+  width: 425px;
   &::before {
     content: '';
     position: absolute;
@@ -18,12 +18,20 @@ const Tile = styled.div`
     opacity: 0.6;
   }
   ${mixins.bp.lg.max`
-    height: 308px;
-    width: 308px;
+    /**
+     * Math.clamp() here essentially works as max-width/max-height, but maintains
+     * the ability to pass dimention values to children via inherit
+     */
+    height: ${(props) => Math.clamp(((props.width / 3) - 118), 0, 425)}px;
+    width: ${(props) => Math.clamp(((props.width / 3) - 118), 0, 425)}px;
+  `}
+  ${mixins.bp.md.max`
+    height: ${(props) => ((props.width / 2) - 85)}px;
+    width: ${(props) => ((props.width / 2) - 85)}px;
   `}
   ${mixins.bp.xs.max`
-    height: ${(props) => (props.width - 50)}px;
-    width: ${(props) => (props.width - 50)}px;
+    height: ${(props) => (props.width - 70)}px;
+    width: ${(props) => (props.width - 70)}px;
   `}
 `;
 

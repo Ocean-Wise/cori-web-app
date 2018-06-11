@@ -96,7 +96,7 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
               </H1>
             </Container>
           </Col>
-          <Col xl={5}>
+          <Col xl={7} style={{ maxWidth: 850, padding: 0 }}>
             <Wrapper>
               {this.state.regular}
             </Wrapper>

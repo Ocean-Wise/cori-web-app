@@ -24,11 +24,25 @@ import reducer from './reducer';
 
 export class Project extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     width: window.innerWidth,
+  //   };
+  // }
+
   componentDidMount() {
+    // this.updateWindowDimensions();
     window.scrollTo(0, 0);
+    // window.addEventListener('resize', this.updateWindowDimensions);
   }
 
+  // updateWindowDimensions = () => {
+  //   this.setState({ width: window.innerWidth });
+  // }
+
   render() {
+    // const NAV = this.state.width < 1200 ? '' : <FloatingNav active={this.props.match.params.slug} location={this.props.match} />;
     return (
       <div>
         <Helmet>
@@ -36,7 +50,9 @@ export class Project extends React.PureComponent { // eslint-disable-line react/
           <meta name="description" content="Description of Project" />
         </Helmet>
         <Header active={this.props.match.params.slug} />
-        {/* <FloatingNav active={this.props.match.params.slug} /> */}
+        {/* <div style={{ left: 65 }}>
+          {NAV}
+        </div> */}
         <ProjectContent slug={this.props.match.params.slug} match={this.props.match} />
       </div>
     );

@@ -4,7 +4,7 @@ import * as mixins from 'styles/mixins';
 
 const Row2 = styled(Row)`
   ${(props) => props.tileContainer ? `
-    width: 730px;
+    width: 850px;
   ` : ''}
   ${mixins.bp.lg.max`
     ${(props) => props.tileContainer ? `

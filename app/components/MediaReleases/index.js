@@ -58,7 +58,7 @@ class MediaReleases extends React.PureComponent { // eslint-disable-line react/p
               </H1>
             </Container>
           </Col>
-          <Col xl={5}>
+          <Col xl={5} style={{ maxWidth: 850 }}>
             <div>
               {this.state.media}
             </div>
@@ -66,7 +66,7 @@ class MediaReleases extends React.PureComponent { // eslint-disable-line react/p
         </Row>
         <Row style={{ marginTop: 15 }}>
           <Col xl={4} />
-          <Col xl={5}>
+          <Col xl={5} style={{ maxWidth: 850 }}>
             <A href="https://ocean.org/media-releases" target="_blank">View more media releases <ChevronRight style={{ fontSize: 40 }} /></A>
           </Col>
         </Row>

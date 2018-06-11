@@ -119,7 +119,7 @@ function ProgramContent({ data: { programs }, slug, match }) {
               <H1 style={{ marginTop: 15, position: 'absolute' }}>Initiatives</H1>
             </TitleContainer>
           </Col>
-          <Col xl={7}>
+          <Col xl={7} style={{ maxWidth: 850 }}>
             {initiativesList}
           </Col>
         </Row>
@@ -133,7 +133,7 @@ function ProgramContent({ data: { programs }, slug, match }) {
           <Grid fluid>
             <Row>
               <Col xl={4} />
-              <Col xl={7}>
+              <Col xl={7} style={{ maxWidth: 850 }}>
                 <Breadcrumbs slug={slug} location={match} program />
                 <H1 style={{ marginTop: 15 }}>{program.title}</H1>
                 <H3>{program.subheader}</H3>
