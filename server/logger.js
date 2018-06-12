@@ -61,6 +61,14 @@ const logger = {
     console.log(`New project list inserted ${chalk.green('✓')}\n`);
   },
 
+  divider: () => {
+    console.log(divider);
+  },
+
+  dataGot: () => {
+    console.log(`Updated data pulled from Contentful ${chalk.green('✓')}\n`);
+  },
+
   // Called when express.js app starts on given port w/o errors
   appStarted: (port, host, tunnelStarted) => {
     console.log(`Web Server started! ${chalk.green('✓')}`);

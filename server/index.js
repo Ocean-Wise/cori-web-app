@@ -17,7 +17,6 @@ const bodyParser = require('body-parser');
 
 const initAlgolia = require('./algoliaInit');
 
-initAlgolia();
 
 const app = express();
 
@@ -37,11 +36,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 app.use('/api', theApi);
 
-// In production we need to pass these values in instead of relying on webpack
-setup(app, {
-  outputPath: resolve(process.cwd(), 'build'),
-  publicPath: '/',
-});
+initAlgolia()
+  .then(() => {
+    // In production we need to pass these values in instead of relying on webpack
+    setup(app, {
+      outputPath: resolve(process.cwd(), 'build'),
+      publicPath: '/',
+    });
+  });
 
 if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'development') {
   app.use(auth.connect(internalAuth));

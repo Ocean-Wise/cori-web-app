@@ -46,172 +46,243 @@ function slugify(str) {
   return out;
 }
 
-/**
- *
- * Begin initializing all the Algolia indicies
- *
- */
-function initAlgolia() {
-  // Resolve a promise so we can chain all this confusing async-yness
-  Promise.resolve()
-    .then(async () => {
-      // Wait for the publications from Contentful
-      await client.getEntries({
-        content_type: 'researchPapers',
-      })
-        .then((content) => {
-          content.items.forEach((entry) => {
-            // Create our Publication object for the current entry
-            const item = {
-              objectID: entry.fields.slug,
-              authors: entry.fields.authors.join(';'),
-              title: entry.fields.title,
-              journal: entry.fields.journal,
-              volume: entry.fields.volume,
-              number: entry.fields.number,
-              pages: entry.fields.pages,
-              year: parseInt(entry.fields.year, 10),
-            };
-            // Add our Publication object to our publications array
-            publications.push(item);
-          });
-        });
-      return true;
+function deletePubs() {
+  return new Promise((res, rej) => {
+    algolia.deleteIndex('Publications', (err) => {
+      if (err) rej();
+      logger.pubsDeleted();
+      res();
+    });
+  });
+}
+
+function deletePeeps() {
+  return new Promise((res, rej) => {
+    algolia.deleteIndex('People', (err) => {
+      if (err) rej();
+      logger.peepsDeleted();
+      res();
+    });
+  });
+}
+
+function deleteRA() {
+  return new Promise((res, rej) => {
+    algolia.deleteIndex('ResearchAreas', (err) => {
+      if (err) rej();
+      logger.raDeleted();
+      res();
+    });
+  });
+}
+
+function deleteProg() {
+  return new Promise((res, rej) => {
+    algolia.deleteIndex('Programs', (err) => {
+      if (err) rej();
+      logger.progDeleted();
+      res();
+    });
+  });
+}
+
+function deleteProj() {
+  return new Promise((res, rej) => {
+    algolia.deleteIndex('Projects', (err) => {
+      if (err) rej();
+      logger.projDeleted();
+      res();
+    });
+  });
+}
+
+function getPubs() {
+  return new Promise((res) => {
+    client.getEntries({
+      content_type: 'researchPapers',
     })
-    .then(async () => {
-      await client.getEntries({
-        content_type: 'people',
-      })
-        .then((content) => {
-          content.items.forEach((entry) => {
-            const item = {
-              objectID: `${slugify(entry.fields.first)}-${slugify(entry.fields.last)}`,
-              first: entry.fields.first,
-              last: entry.fields.last,
-              image: entry.fields.image.fields.url,
-            };
-            peeps.push(item);
-          });
-        });
-      return true;
-    })
-    .then(async () => {
-      await client.getEntries({
-        content_type: 'researchArea',
-      })
-      .then((content) => {
-        content.items.forEach((entry) => {
-          const item = {
-            objectID: entry.fields.slug,
-            title: entry.fields.title,
-            slug: entry.fields.slug,
-          };
-          areas.push(item);
-        });
-      });
-      return true;
-    })
-    .then(async () => {
-      await client.getEntries({
-        content_type: 'program',
-      })
-      .then((content) => {
-        content.items.forEach((entry) => {
-          const item = {
-            objectID: entry.fields.slug,
-            title: entry.fields.title,
-            slug: entry.fields.slug,
-          };
-          progs.push(item);
-        });
-      });
-    })
-    .then(async () => {
-      await client.getEntries({
-        content_type: 'projects',
-      })
-      .then((content) => {
-        content.items.forEach((entry) => {
-          const item = {
-            objectID: entry.fields.slug,
-            title: entry.fields.title,
-            slug: entry.fields.slug,
-          };
-          projs.push(item);
-        });
-      });
-    })
-    /**
-     *
-     * When we start the server we want to delete the old indicies
-     * to ensure that we remove entries that were deleted from the CMS
-     *
-     */
-    .then(() => {
-      algolia.deleteIndex('Publications', (err) => {
-        if (err) throw err;
-        logger.pubsDeleted();
-
-        algolia.deleteIndex('People', (err2) => {
-          if (err2) throw err2;
-          logger.peepsDeleted();
-
-          algolia.deleteIndex('ResearchAreas', (err3) => {
-            if (err3) throw err3;
-            logger.raDeleted();
-
-            algolia.deleteIndex('Programs', (err4) => {
-              if (err4) throw err4;
-              logger.progDeleted();
-
-              algolia.deleteIndex('Projects', (err5) => {
-                if (err5) throw err5;
-                logger.projDeleted();
-              });
-            });
-          });
-        });
-      });
-    })
-    /**
-     *
-     * Now that we have deleted the incidies we want to
-     * create them again and add all our new objects back
-     *
-     */
-    .then(() => {
-      // Init each Algolia index
-      const pubIndex = algolia.initIndex('Publications');
-      const peepIndex = algolia.initIndex('People');
-      const raIndex = algolia.initIndex('ResearchAreas');
-      const progIndex = algolia.initIndex('Programs');
-      const projIndex = algolia.initIndex('Projects');
-
-      pubIndex.addObjects(publications, (err) => {
-        if (err) throw err;
-        logger.pubsAdded();
-
-        peepIndex.addObjects(peeps, (err2) => {
-          if (err2) throw err2;
-          logger.peepsAdded();
-
-          raIndex.addObjects(areas, (err3) => {
-            if (err3) throw err3;
-            logger.raAdded();
-
-            progIndex.addObjects(progs, (err4) => {
-              if (err4) throw err4;
-              logger.progAdded();
-
-              projIndex.addObjects(projs, (err5) => {
-                if (err5) throw err5;
-                logger.projAdded();
-              });
-            });
-          });
-        });
+    .then((content) => {
+      content.items.forEach((entry) => {
+        // Create our Publication object for the current entry
+        const item = {
+          objectID: entry.fields.slug,
+          authors: entry.fields.authors.join(';'),
+          title: entry.fields.title,
+          journal: entry.fields.journal,
+          volume: entry.fields.volume,
+          number: entry.fields.number,
+          pages: entry.fields.pages,
+          year: parseInt(entry.fields.year, 10),
+        };
+        // Add our Publication object to our publications array
+        publications.push(item);
+        res();
       });
     });
+  });
+}
+
+function getPeeps() {
+  return new Promise((res) => {
+    client.getEntries({
+      content_type: 'people',
+    })
+    .then((content) => {
+      content.items.forEach((entry) => {
+        const item = {
+          objectID: `${slugify(entry.fields.first)}-${slugify(entry.fields.last)}`,
+          first: entry.fields.first,
+          last: entry.fields.last,
+          image: entry.fields.image.fields.url,
+        };
+        peeps.push(item);
+        res();
+      });
+    });
+  });
+}
+
+function getRA() {
+  return new Promise((res) => {
+    client.getEntries({
+      content_type: 'researchArea',
+    })
+    .then((content) => {
+      content.items.forEach((entry) => {
+        const item = {
+          objectID: entry.fields.slug,
+          title: entry.fields.title,
+          slug: entry.fields.slug,
+        };
+        areas.push(item);
+        res();
+      });
+    });
+  });
+}
+
+function getProg() {
+  return new Promise((res) => {
+    client.getEntries({
+      content_type: 'program',
+    })
+    .then((content) => {
+      content.items.forEach((entry) => {
+        const item = {
+          objectID: entry.fields.slug,
+          title: entry.fields.title,
+          slug: entry.fields.slug,
+        };
+        progs.push(item);
+        res();
+      });
+    });
+  });
+}
+
+function getProj() {
+  return new Promise((res) => {
+    client.getEntries({
+      content_type: 'projects',
+    })
+    .then((content) => {
+      content.items.forEach((entry) => {
+        const item = {
+          objectID: entry.fields.slug,
+          title: entry.fields.title,
+          slug: entry.fields.slug,
+        };
+        projs.push(item);
+        res();
+      });
+    });
+  });
+}
+
+function getData() {
+  return new Promise((res) => {
+    getPubs()
+    .then(() => getPeeps())
+    .then(() => getRA())
+    .then(() => getProg())
+    .then(() => getProj())
+    .then(() => {
+      logger.dataGot();
+      res();
+    });
+  });
+}
+
+function addPubs() {
+  return new Promise((res, rej) => {
+    const pubIndex = algolia.initIndex('Publications');
+    pubIndex.addObjects(publications, (err) => {
+      if (err) rej();
+      logger.pubsAdded();
+      res();
+    });
+  });
+}
+
+function addPeeps() {
+  return new Promise((res, rej) => {
+    const peepIndex = algolia.initIndex('People');
+    peepIndex.addObjects(peeps, (err) => {
+      if (err) rej();
+      logger.peepsAdded();
+      res();
+    });
+  });
+}
+
+function addRA() {
+  return new Promise((res, rej) => {
+    const raIndex = algolia.initIndex('ResearchAreas');
+    raIndex.addObjects(areas, (err) => {
+      if (err) rej();
+      logger.raAdded();
+      res();
+    });
+  });
+}
+
+function addProg() {
+  return new Promise((res, rej) => {
+    const progIndex = algolia.initIndex('Programs');
+    progIndex.addObjects(progs, (err) => {
+      if (err) rej();
+      logger.progAdded();
+      res();
+    });
+  });
+}
+
+function addProj() {
+  return new Promise((res, rej) => {
+    const projIndex = algolia.initIndex('Projects');
+    projIndex.addObjects(projs, (err) => {
+      if (err) rej();
+      logger.projAdded();
+      res();
+    });
+  });
+}
+
+function initAlgolia() {
+  return new Promise((res) => {
+    deletePubs()
+      .then(() => deletePeeps())
+      .then(() => deleteRA())
+      .then(() => deleteProg())
+      .then(() => deleteProj())
+      .then(() => getData())
+      .then(() => addPubs())
+      .then(() => addPeeps())
+      .then(() => addRA())
+      .then(() => addProg())
+      .then(() => addProj())
+      .then(() => res());
+  });
 }
 
 module.exports = initAlgolia;
