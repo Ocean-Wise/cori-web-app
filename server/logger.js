@@ -21,6 +21,46 @@ const logger = {
     console.log(`${chalk.bold('Contentful content types prepared: ')}${names}\n`);
   },
 
+  pubsDeleted: () => {
+    console.log(`Previous publication list deleted ${chalk.green('✓')}\n`);
+  },
+
+  pubsAdded: () => {
+    console.log(`New publication list inserted ${chalk.green('✓')}\n`);
+  },
+
+  peepsDeleted: () => {
+    console.log(`Previous person list deleted ${chalk.green('✓')}\n`);
+  },
+
+  peepsAdded: () => {
+    console.log(`New person list inserted ${chalk.green('✓')}\n`);
+  },
+
+  raDeleted: () => {
+    console.log(`Previous research area list deleted ${chalk.green('✓')}\n`);
+  },
+
+  raAdded: () => {
+    console.log(`New research area list inserted ${chalk.green('✓')}\n`);
+  },
+
+  progDeleted: () => {
+    console.log(`Previous program list deleted ${chalk.green('✓')}\n`);
+  },
+
+  progAdded: () => {
+    console.log(`New program list inserted ${chalk.green('✓')}\n`);
+  },
+
+  projDeleted: () => {
+    console.log(`Previous project list deleted ${chalk.green('✓')}\n`);
+  },
+
+  projAdded: () => {
+    console.log(`New project list inserted ${chalk.green('✓')}\n`);
+  },
+
   // Called when express.js app starts on given port w/o errors
   appStarted: (port, host, tunnelStarted) => {
     console.log(`Web Server started! ${chalk.green('✓')}`);

@@ -15,6 +15,10 @@ const resolve = require('path').resolve;
 // const cors = require('cors');
 const bodyParser = require('body-parser');
 
+const initAlgolia = require('./algoliaInit');
+
+initAlgolia();
+
 const app = express();
 
 const theApi = require('./api');

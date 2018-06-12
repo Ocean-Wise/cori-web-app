@@ -188,7 +188,8 @@
       "cors",
       "rss-parser",
       "body-parser",
-      "http-auth"
+      "http-auth",
+      "contentful"
     ],
     "include": [
       "core-js",
@@ -227,6 +228,7 @@
   "dependencies": {
     "@material-ui/core": "^1.2.0",
     "@material-ui/icons": "^1.1.0",
+    "algoliasearch": "^3.27.1",
     "apollo-boost": "^0.1.6",
     "apollo-client": "^2.2.3",
     "axios": "^0.18.0",
@@ -259,6 +261,7 @@
     "react-dom": "16.4.0",
     "react-flexbox-grid": "^2.1.0",
     "react-helmet": "5.1.3",
+    "react-instantsearch": "^5.1.0",
     "react-intl": "2.3.0",
     "react-loadable": "4.0.3",
     "react-markdown": "^3.3.2",
