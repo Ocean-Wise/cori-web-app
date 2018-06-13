@@ -26,7 +26,7 @@ import withMobileDialog from '@material-ui/core/withMobileDialog';
 
 const styles = () => ({
   paper: {
-    width: '85%',
+    // width: '85%',
   },
 });
 
@@ -128,6 +128,7 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
           onClose={this.toggleSearch}
           aria-labelledby="responsive-search-dialog"
           classes={classes}
+          PaperProps={{ className: 'search-paper' }}
         >
           <DialogTitle id="responsive-search-dialog">{'Search'}</DialogTitle>
           <DialogActions>

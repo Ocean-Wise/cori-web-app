@@ -45,4 +45,10 @@ injectGlobal`
     opacity: 1;
     right: 20px;
   }
+
+  @media all and (min-width: 1025px) {
+    .search-paper {
+      width: 35%;
+    }
+  }
 `;
