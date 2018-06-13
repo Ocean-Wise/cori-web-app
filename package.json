@@ -258,6 +258,7 @@
     "ramda": "^0.25.0",
     "react": "16.4.0",
     "react-apollo": "^2.1.4",
+    "react-autosuggest": "^9.3.4",
     "react-checkbox-group": "^3.3.4",
     "react-dom": "16.4.0",
     "react-flexbox-grid": "^2.1.0",

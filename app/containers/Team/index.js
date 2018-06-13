@@ -13,7 +13,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import R from 'ramda';
 
-import Header from 'components/Header/Loadable';
+import Header from 'components/Header';
 import TeamMembers from 'components/TeamMembers';
 // import ProjectMembers from 'components/ProjectMembers';
 import AreaMembers from 'components/AreaMembers';

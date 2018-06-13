@@ -61,6 +61,10 @@ const logger = {
     console.log(`New project list inserted ${chalk.green('✓')}\n`);
   },
 
+  indexDeleted: () => {
+    console.log(`Old search index deleted ${chalk.green('✓')}\n`);
+  },
+
   divider: () => {
     console.log(divider);
   },

@@ -6,14 +6,10 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-// import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-// import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
 import DrawerNav from 'components/DrawerNav';
-
+import Search from 'containers/Search/Loadable';
 
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
@@ -25,6 +21,7 @@ class NavLinks extends React.Component { // eslint-disable-line react/prefer-sta
     super(props);
     this.state = {
       width: window.innerWidth,
+      search: true,
     };
   }
 
@@ -60,9 +57,7 @@ class NavLinks extends React.Component { // eslint-disable-line react/prefer-sta
             Publications
           </Button>
         </Link>
-        <IconButton aria-label="Search">
-          <SearchIcon />
-        </IconButton>
+        <Search />
       </Container>
     );
     return NAV;

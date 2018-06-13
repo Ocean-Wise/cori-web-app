@@ -17,7 +17,7 @@ import HomeCopy from 'components/HomeCopy';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-import Header from 'components/Header/Loadable';
+import Header from 'components/Header';
 // import CenteredSection from './CenteredSection';
 import Wrapper from './Wrapper';
 // import messages from './messages';

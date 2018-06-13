@@ -11,6 +11,11 @@ const client = contentful.createClient({
 // Algolia client init
 const algoliasearch = require('algoliasearch');
 const algolia = algoliasearch(process.env.ALGOLIA_APPID, process.env.ALGOLIA_APIKEY);
+const pubIndex = algolia.initIndex('Publications');
+const peepIndex = algolia.initIndex('People');
+const raIndex = algolia.initIndex('ResearchAreas');
+const progIndex = algolia.initIndex('Programs');
+const projIndex = algolia.initIndex('Projects');
 
 // Arrays to hold all the objects for each Algolia index
 const publications = [];
@@ -129,11 +134,13 @@ function getPeeps() {
     })
     .then((content) => {
       content.items.forEach((entry) => {
+        const title = `${entry.fields.first} ${entry.fields.last}`;
         const item = {
           objectID: `${slugify(entry.fields.first)}-${slugify(entry.fields.last)}`,
+          title,
           first: entry.fields.first,
           last: entry.fields.last,
-          image: entry.fields.image.fields.url,
+          image: entry.fields.image.fields.file.url,
         };
         peeps.push(item);
         res();
@@ -152,7 +159,7 @@ function getRA() {
         const item = {
           objectID: entry.fields.slug,
           title: entry.fields.title,
-          slug: entry.fields.slug,
+          slug: `/research/${entry.fields.slug}`,
         };
         areas.push(item);
         res();
@@ -171,7 +178,7 @@ function getProg() {
         const item = {
           objectID: entry.fields.slug,
           title: entry.fields.title,
-          slug: entry.fields.slug,
+          slug: `/program/${entry.fields.slug}`,
         };
         progs.push(item);
         res();
@@ -189,8 +196,8 @@ function getProj() {
       content.items.forEach((entry) => {
         const item = {
           objectID: entry.fields.slug,
-          title: entry.fields.title,
-          slug: entry.fields.slug,
+          title: entry.fields.projectTitle,
+          slug: `/project/${entry.fields.slug}`,
         };
         projs.push(item);
         res();
@@ -215,7 +222,6 @@ function getData() {
 
 function addPubs() {
   return new Promise((res, rej) => {
-    const pubIndex = algolia.initIndex('Publications');
     pubIndex.addObjects(publications, (err) => {
       if (err) rej();
       logger.pubsAdded();
@@ -226,7 +232,6 @@ function addPubs() {
 
 function addPeeps() {
   return new Promise((res, rej) => {
-    const peepIndex = algolia.initIndex('People');
     peepIndex.addObjects(peeps, (err) => {
       if (err) rej();
       logger.peepsAdded();
@@ -237,7 +242,6 @@ function addPeeps() {
 
 function addRA() {
   return new Promise((res, rej) => {
-    const raIndex = algolia.initIndex('ResearchAreas');
     raIndex.addObjects(areas, (err) => {
       if (err) rej();
       logger.raAdded();
@@ -248,7 +252,6 @@ function addRA() {
 
 function addProg() {
   return new Promise((res, rej) => {
-    const progIndex = algolia.initIndex('Programs');
     progIndex.addObjects(progs, (err) => {
       if (err) rej();
       logger.progAdded();
@@ -259,7 +262,6 @@ function addProg() {
 
 function addProj() {
   return new Promise((res, rej) => {
-    const projIndex = algolia.initIndex('Projects');
     projIndex.addObjects(projs, (err) => {
       if (err) rej();
       logger.projAdded();
@@ -281,7 +283,24 @@ function initAlgolia() {
       .then(() => addRA())
       .then(() => addProg())
       .then(() => addProj())
-      .then(() => res());
+      .then(() => {
+        pubIndex.setSettings({
+          searchableAttributes: ['authors', 'title', 'journal'],
+        });
+        peepIndex.setSettings({
+          searchableAttributes: ['first', 'last', 'title'],
+        });
+        raIndex.setSettings({
+          searchableAttributes: ['title'],
+        });
+        progIndex.setSettings({
+          searchableAttributes: ['title'],
+        });
+        projIndex.setSettings({
+          searchableAttributes: ['title'],
+        });
+        res();
+      });
   });
 }
 
