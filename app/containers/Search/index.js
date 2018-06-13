@@ -145,7 +145,7 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
               apiKey="71bf64d883b42cdf7ee10f58595ff891"
               indexName="ResearchAreas"
             >
-              <SearchBox />
+              <SearchBox autoFocus />
               <Configure hitsPerPage={5} />
               <Results />
               <PoweredBy />
