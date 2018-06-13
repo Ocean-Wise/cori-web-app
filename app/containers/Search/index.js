@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 import { InstantSearch, SearchBox, Index, Highlight, PoweredBy, Configure } from 'react-instantsearch/dom';
-import { connectHits } from 'react-instantsearch/connectors';
+import { connectHits, connectStateResults } from 'react-instantsearch/connectors';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -35,12 +35,7 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
     super(props);
     this.state = {
       search: false,
-      searchState: {},
     };
-  }
-
-  onSearchStateChange = (searchState) => {
-    this.setState({ searchState });
   }
 
   toggleSearch = () => {
@@ -49,11 +44,22 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
 
   render() {
     const { fullScreen, classes } = this.props;
-    const showHits = Object.keys(this.state.searchState).length !== 0;
 
+    // The object to hold the Algolia query results
+    let queryResults = {};
+
+    /**
+     * CustomHits allows us to render our query results however
+     * we want. We check to ensure the query is not null which
+     * allows us to hide the category if so. We then return a
+     * div with the passed 'type' string as the category title
+     * before rendering all the results
+     */
     const CustomHits = connectHits(({ hits, type }) => { // eslint-disable-line
-      if (this.state.searchState.query === '') return null;
+      if (queryResults.query === '') return null;
       if (hits.length > 0) {
+        // If there is a slug in the current hit, render it as a Link
+        // otherwise just render the text
         return (
           <div style={{ borderBottom: '1px solid black' }}>
             <span style={{ fontWeight: 'bold', color: 'blue' }}>{type}</span>
@@ -79,6 +85,38 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
       }
     });
 
+    /**
+     * Results allows us to read the Algolia searchState without updating
+     * our component needlessly, thus resulting in a greatly reduced query
+     * per second rate.
+     */
+    const Results = connectStateResults(({ searchState }) => {
+      // Set our queryResults object
+      queryResults = searchState;
+      // Check if there are results
+      const hasResults = queryResults.query !== undefined;
+      // Return the results for each Algolia index
+      return (
+        <div>
+          <Index indexName="ResearchAreas">
+            {hasResults ? <CustomHits type="Research Areas" /> : ''}
+          </Index>
+          <Index indexName="Programs">
+            {hasResults ? <CustomHits type="Programs" /> : ''}
+          </Index>
+          <Index indexName="Projects">
+            {hasResults ? <CustomHits type="Projects" /> : ''}
+          </Index>
+          <Index indexName="Publications">
+            {hasResults ? <CustomHits type="Publications" /> : ''}
+          </Index>
+          <Index indexName="People">
+            {hasResults ? <CustomHits type="People" /> : ''}
+          </Index>
+        </div>
+      );
+    });
+
     return (
       <div>
         <IconButton aria-label="Search" onClick={this.toggleSearch}>
@@ -102,26 +140,10 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
               appId="KOG4SU5EI9"
               apiKey="71bf64d883b42cdf7ee10f58595ff891"
               indexName="ResearchAreas"
-              searchState={this.state.searchState}
-              onSearchStateChange={this.onSearchStateChange}
             >
               <SearchBox />
               <Configure hitsPerPage={5} />
-              <Index indexName="ResearchAreas">
-                {showHits ? <CustomHits type="Research Areas" /> : ''}
-              </Index>
-              <Index indexName="Programs">
-                {showHits ? <CustomHits type="Programs" /> : ''}
-              </Index>
-              <Index indexName="Projects">
-                {showHits ? <CustomHits type="Projects" /> : ''}
-              </Index>
-              <Index indexName="Publications">
-                {showHits ? <CustomHits type="Publications" /> : ''}
-              </Index>
-              <Index indexName="People">
-                {showHits ? <CustomHits type="People" /> : ''}
-              </Index>
+              <Results />
               <PoweredBy />
             </InstantSearch>
           </DialogContent>
