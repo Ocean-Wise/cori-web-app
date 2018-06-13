@@ -104,6 +104,9 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
           <Index indexName="Programs">
             {hasResults ? <CustomHits type="Programs" /> : ''}
           </Index>
+          <Index indexName="Initiatives">
+            {hasResults ? <CustomHits type="Initiatives" /> : ''}
+          </Index>
           <Index indexName="Projects">
             {hasResults ? <CustomHits type="Projects" /> : ''}
           </Index>

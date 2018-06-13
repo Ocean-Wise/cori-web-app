@@ -53,6 +53,14 @@ const logger = {
     console.log(`New program list inserted ${chalk.green('✓')}\n`);
   },
 
+  intvDeleted: () => {
+    console.log(`Previous initiative list deleted ${chalk.green('✓')}\n`);
+  },
+
+  intvAdded: () => {
+    console.log(`New initiative list inserted ${chalk.green('✓')}\n`);
+  },
+
   projDeleted: () => {
     console.log(`Previous project list deleted ${chalk.green('✓')}\n`);
   },

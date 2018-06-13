@@ -15,6 +15,7 @@ const pubIndex = algolia.initIndex('Publications');
 const peepIndex = algolia.initIndex('People');
 const raIndex = algolia.initIndex('ResearchAreas');
 const progIndex = algolia.initIndex('Programs');
+const intvIndex = algolia.initIndex('Initiatives');
 const projIndex = algolia.initIndex('Projects');
 
 // Arrays to hold all the objects for each Algolia index
@@ -22,6 +23,7 @@ const publications = [];
 const peeps = [];
 const areas = [];
 const progs = [];
+const intv = [];
 const projs = [];
 
 /**
@@ -91,6 +93,16 @@ function deleteProg() {
   });
 }
 
+function deleteIntv() {
+  return new Promise((res, rej) => {
+    algolia.deleteIndex('Initiatives', (err) => {
+      if (err) rej();
+      logger.intvDeleted();
+      res();
+    });
+  });
+}
+
 function deleteProj() {
   return new Promise((res, rej) => {
     algolia.deleteIndex('Projects', (err) => {
@@ -121,8 +133,8 @@ function getPubs() {
         };
         // Add our Publication object to our publications array
         publications.push(item);
-        res();
       });
+      res();
     });
   });
 }
@@ -143,8 +155,8 @@ function getPeeps() {
           image: entry.fields.image.fields.file.url,
         };
         peeps.push(item);
-        res();
       });
+      res();
     });
   });
 }
@@ -162,8 +174,8 @@ function getRA() {
           slug: `/research/${entry.fields.slug}`,
         };
         areas.push(item);
-        res();
       });
+      res();
     });
   });
 }
@@ -181,8 +193,34 @@ function getProg() {
           slug: `/program/${entry.fields.slug}`,
         };
         progs.push(item);
-        res();
       });
+      res();
+    });
+  });
+}
+
+function getIntv() {
+  return new Promise((res) => {
+    client.getEntries({
+      content_type: 'initiative',
+    })
+    .then((content) => {
+      content.items.forEach(async (entry) => {
+        let progSlug = '';
+        await client.getEntries({
+          links_to_entry: entry.sys.id,
+        })
+        .then((link) => {
+          progSlug = link.items[0].fields.slug;
+        });
+        const item = {
+          objectID: entry.fields.slug,
+          title: entry.fields.title,
+          slug: `/program/${progSlug}#${entry.fields.slug}`,
+        };
+        intv.push(item);
+      });
+      res();
     });
   });
 }
@@ -200,8 +238,8 @@ function getProj() {
           slug: `/project/${entry.fields.slug}`,
         };
         projs.push(item);
-        res();
       });
+      res();
     });
   });
 }
@@ -212,6 +250,7 @@ function getData() {
     .then(() => getPeeps())
     .then(() => getRA())
     .then(() => getProg())
+    .then(() => getIntv())
     .then(() => getProj())
     .then(() => {
       logger.dataGot();
@@ -260,6 +299,16 @@ function addProg() {
   });
 }
 
+function addIntv() {
+  return new Promise((res, rej) => {
+    intvIndex.addObjects(intv, (err) => {
+      if (err) rej();
+      logger.intvAdded();
+      res();
+    });
+  });
+}
+
 function addProj() {
   return new Promise((res, rej) => {
     projIndex.addObjects(projs, (err) => {
@@ -276,12 +325,14 @@ function initAlgolia() {
       .then(() => deletePeeps())
       .then(() => deleteRA())
       .then(() => deleteProg())
+      .then(() => deleteIntv())
       .then(() => deleteProj())
       .then(() => getData())
       .then(() => addPubs())
       .then(() => addPeeps())
       .then(() => addRA())
       .then(() => addProg())
+      .then(() => addIntv())
       .then(() => addProj())
       .then(() => {
         pubIndex.setSettings({
@@ -294,6 +345,9 @@ function initAlgolia() {
           searchableAttributes: ['title'],
         });
         progIndex.setSettings({
+          searchableAttributes: ['title'],
+        });
+        intvIndex.setSettings({
           searchableAttributes: ['title'],
         });
         projIndex.setSettings({
