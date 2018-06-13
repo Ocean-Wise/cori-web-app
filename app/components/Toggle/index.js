@@ -17,6 +17,8 @@ const styles = () => ({
   root: {
     fontSize: 14,
     color: '#FFF',
+    border: '1px solid white',
+    paddingLeft: 9,
   },
   icon: {
     color: '#FFF',

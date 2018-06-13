@@ -3,6 +3,10 @@ import * as mixins from 'styles/mixins';
 
 const Person = styled.div`
   margin: 0 15px;
+  ${mixins.bp.sm.min`
+    margin: 10px 15px;
+    height: 460px;
+  `}
   ${mixins.bp.xs.max`
     margin: 15px;
   `}

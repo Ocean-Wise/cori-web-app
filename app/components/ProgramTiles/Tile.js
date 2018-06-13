@@ -30,8 +30,8 @@ const Tile = styled.div`
     width: ${(props) => ((props.width / 2) - 85)}px;
   `}
   ${mixins.bp.xs.max`
-    height: ${(props) => (props.width - 70)}px;
-    width: ${(props) => (props.width - 70)}px;
+    height: ${(props) => (props.width - 50)}px;
+    width: ${(props) => (props.width - 50)}px;
   `}
 `;
 

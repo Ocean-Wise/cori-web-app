@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import * as mixins from 'styles/mixins';
+// import * as mixins from 'styles/mixins';
 
 export default styled.div`
-  transform: translateY(7px);
+  transform: translateY(5px);
+  margin-left: 10px;
   div#LocaleToggle {
     div:first-of-type {
       &::before {
@@ -13,7 +14,4 @@ export default styled.div`
   option {
     color: black;
   }
-  ${mixins.bp.xs.max`
-    margin-left: 10px;
-  `}
 `;

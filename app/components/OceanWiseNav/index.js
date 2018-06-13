@@ -50,12 +50,12 @@ class OceanWiseNav extends React.Component { // eslint-disable-line react/prefer
     return (
       <div className="hello-bar" ref={this.setWrapperRef}>
         <div style={{ display: 'inline-flex' }}>
-          <div className="hello-bar-text">
-            <FormattedMessage {...messages.explore} /> <span className="hello-bar-hide-mobile"><FormattedMessage {...messages.moreAt} /></span><a href="https://ocean.org" target="_blank">ocean.org</a>
-          </div>
           <LocaleWrapper>
             <LocaleToggle />
           </LocaleWrapper>
+          <div className="hello-bar-text">
+            <FormattedMessage {...messages.explore} /> <span className="hello-bar-hide-mobile"><FormattedMessage {...messages.moreAt} /></span><a href="https://ocean.org" target="_blank">ocean.org</a>
+          </div>
         </div>
 
 

@@ -188,8 +188,7 @@
       "cors",
       "rss-parser",
       "body-parser",
-      "http-auth",
-      "contentful"
+      "http-auth"
     ],
     "include": [
       "core-js",

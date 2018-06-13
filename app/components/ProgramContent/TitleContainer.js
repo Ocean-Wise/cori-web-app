@@ -10,6 +10,9 @@ const Container = styled.div`
     margin: unset;
     margin-bottom: 30px;
   `}
+  ${mixins.bp.md.max`
+    margin-bottom: 100px;
+  `}
   ${mixins.bp.xs.max`
     margin-bottom: 90px;
   `}
