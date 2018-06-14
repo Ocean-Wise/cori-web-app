@@ -46,9 +46,14 @@ injectGlobal`
     right: 20px;
   }
 
+  .search-paper {
+    width: 100%;
+    height: 100%;
+  }
   @media all and (min-width: 1025px) {
     .search-paper {
       width: 35%;
+      height: unset;
     }
   }
 `;

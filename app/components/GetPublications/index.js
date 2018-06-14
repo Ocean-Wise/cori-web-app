@@ -4,46 +4,32 @@
 *
 */
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import getPublications from 'graphql/queries/getPublications.graphql';
+import PublicationCard from 'components/PublicationCard';
 
-class ListItem extends Component { // eslint-disable-line react/prefer-stateless-function
-  render() {
-    const { publication } = this.props;
-    const listClass = `list-item card ${this.props.view}`;
-    const style = { zIndex: 100 - this.props.index };
-
-    return (
-      <li id={`publication-${this.props.index}`} className={listClass} style={style}>
-        <h3>{publication.title}</h3>
-        <h5>{publication.authors}</h5>
-        <h6>{publication.journal}</h6>
-        <span>{publication.year}</span>
-      </li>
-    );
-  }
-}
-
-ListItem.propTypes = {
-  publication: PropTypes.object,
-  view: PropTypes.string,
-  index: PropTypes.number,
-};
-
-function GetPublications({ data: { publications }, sort }) {
+function GetPublications({ data: { publications }, sort, alpha }) {
   const output = [];
   try {
     const sortDesc = (a, b) => parseInt(b.year, 10) - parseInt(a.year, 10);
     const sortAsc = (a, b) => parseInt(a.year, 10) - parseInt(b.year, 10);
-    const sorted = [...publications].sort(
-        sort ? sortAsc : sortDesc
+    let sorted = [...publications].sort(
+      sort === 'asc' ? sortAsc : sortDesc
+    );
+    if (alpha) {
+      sorted = sorted.sort(
+        (a, b) => {
+          if (a.title < b.title) return -1;
+          if (a.title > b.title) return 1;
+          return 0;
+        }
       );
+    }
     sorted.forEach((publication, i) => {
-      output.push(<ListItem key={publication.slug} view={'list'} index={i} publication={publication} />);
+      output.push(<PublicationCard data={publication} key={i.toString()} />);
     });
-    console.log(sorted);
     return output;
   } catch (err) {
     return null;
@@ -55,6 +41,7 @@ function GetPublications({ data: { publications }, sort }) {
 GetPublications.propTypes = {
   data: PropTypes.object.isRequired,
   sort: PropTypes.string,
+  alpha: PropTypes.bool,
 };
 
 export default graphql(getPublications)(GetPublications);

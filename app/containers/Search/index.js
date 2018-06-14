@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Link } from 'react-router-dom';
-import { InstantSearch, SearchBox, Index, Highlight, PoweredBy, Configure } from 'react-instantsearch/dom';
+import { InstantSearch, SearchBox, Index, Highlight, PoweredBy } from 'react-instantsearch/dom';
 import { connectHits, connectStateResults } from 'react-instantsearch/connectors';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -145,8 +145,8 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
               apiKey="71bf64d883b42cdf7ee10f58595ff891"
               indexName="ResearchAreas"
             >
-              <SearchBox autoFocus />
-              <Configure hitsPerPage={5} />
+              <SearchBox autoFocus searchAsYouType={false} />
+              {/* <Configure hitsPerPage={5} /> */}
               <Results />
               <PoweredBy />
             </InstantSearch>

@@ -1,6 +1,7 @@
 query Publications {
   publications {
     slug
+    citation
     title
     authors
     journal
