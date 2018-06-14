@@ -35,21 +35,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 app.use('/api', theApi);
 
-if (process.env.NODE_ENV === 'production') {
-  initAlgolia()
-    .then(() => {
-      // In production we need to pass these values in instead of relying on webpack
-      setup(app, {
-        outputPath: resolve(process.cwd(), 'build'),
-        publicPath: '/',
-      });
-    });
-} else {
+// if (process.env.NODE_ENV === 'production') {
+//   initAlgolia()
+//     .then(() => {
+//       // In production we need to pass these values in instead of relying on webpack
+//       setup(app, {
+//         outputPath: resolve(process.cwd(), 'build'),
+//         publicPath: '/',
+//       });
+//     });
+// } else {
   setup(app, {
     outputPath: resolve(process.cwd(), 'build'),
     publicPath: '/',
   });
-}
+// }
 
 if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'development') {
   app.use(auth.connect(internalAuth));

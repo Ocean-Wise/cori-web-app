@@ -98,7 +98,13 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
       }
       return true;
     });
-    subsequentRows.push(<Row key="row-last">{row}</Row>);
+
+    subsequentRows.push(
+      <div style={{ display: 'flex', boxSizing: 'border-box', flex: '0 1 auto', '-webkit-box-orient': 'horizontal', '-webkit-box-direction': 'normal', flexDirection: 'row', flexWrap: 'wrap', marginLeft: -8, marginRight: -8 }}>
+        {row}
+      </div>
+    );
+
     return (
       <Grid fluid style={{ padding: 0, overflow: 'hidden', marginBottom: -48 }}>
         <Row>
