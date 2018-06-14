@@ -21,7 +21,7 @@
     "preinstall": "npm run npmcheckversion",
     "postinstall": "npm run build:dll",
     "prebuild": "npm run build:clean",
-    "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
+    "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color --progress --hide-modules --display-optimization-bailout",
     "build:clean": "rimraf ./build",
     "build:dll": "node ./internals/scripts/dependencies.js",
     "start": "cross-env NODE_ENV=development node server",
@@ -188,7 +188,8 @@
       "cors",
       "rss-parser",
       "body-parser",
-      "http-auth"
+      "http-auth",
+      "uglifyjs-webpack-plugin"
     ],
     "include": [
       "core-js",
@@ -280,6 +281,7 @@
     "rss-parser": "^3.1.2",
     "sanitize.css": "4.1.0",
     "styled-components": "2.0.0",
+    "uglifyjs-webpack-plugin": "^1.2.5",
     "warning": "3.0.0",
     "whatwg-fetch": "2.0.3"
   },
@@ -288,7 +290,7 @@
     "babel-cli": "6.24.1",
     "babel-core": "6.24.1",
     "babel-eslint": "7.2.3",
-    "babel-loader": "7.1.0",
+    "babel-loader": "^7.1.4",
     "babel-plugin-dynamic-import-node": "1.0.2",
     "babel-plugin-react-intl": "2.3.1",
     "babel-plugin-react-transform": "2.0.2",
@@ -297,7 +299,7 @@
     "babel-plugin-transform-react-constant-elements": "6.23.0",
     "babel-plugin-transform-react-inline-elements": "6.22.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.5",
-    "babel-preset-env": "1.5.1",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-0": "6.24.1",
     "circular-dependency-plugin": "3.0.0",
