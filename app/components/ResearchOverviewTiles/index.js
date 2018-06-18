@@ -100,7 +100,7 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
     });
 
     subsequentRows.push(
-      <div style={{ display: 'flex', boxSizing: 'border-box', flex: '0 1 auto', '-webkit-box-orient': 'horizontal', '-webkit-box-direction': 'normal', flexDirection: 'row', flexWrap: 'wrap', marginLeft: -8, marginRight: -8 }}>
+      <div key={'subsequent'} style={{ display: 'flex', boxSizing: 'border-box', flex: '0 1 auto', WebkitBoxOrient: 'horizontal', WebkitBoxDirection: 'normal', flexDirection: 'row', flexWrap: 'wrap', marginLeft: -8, marginRight: -8 }}>
         {row}
       </div>
     );

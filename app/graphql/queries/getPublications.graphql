@@ -3,6 +3,7 @@ query Publications {
     slug
     citation
     title
+    abstract
     authors
     journal
     year

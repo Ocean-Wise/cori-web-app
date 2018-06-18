@@ -18,11 +18,16 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Cite from 'citation-js';
 
 // import messages from './messages';
 
 const styles = () => ({
+  label: {
+    flexDirection: 'row-reverse',
+  },
   card: {
     maxWidth: 1120,
     margin: '15px auto',
@@ -49,6 +54,7 @@ class PublicationCard extends React.PureComponent { // eslint-disable-line react
     expanded: false,
     citation: new Cite(this.props.data.citation),
     citationString: '',
+    checked: this.props.isSelected,
   };
 
   handleExpandClick = () => {
@@ -71,9 +77,26 @@ class PublicationCard extends React.PureComponent { // eslint-disable-line react
     this.setState({ citationString: this.state.citation.get({ style: 'citation-harvard1', type: 'string' }) });
   }
 
+  handleCheck = () => {
+    const item = { key: this.props.index, citation: this.props.data.citation };
+    if (!this.state.checked) {
+      this.props.addToList(item);
+      this.setState({ checked: !this.state.checked });
+    } else {
+      this.props.removeFromList(item);
+      this.setState({ checked: !this.state.checked });
+    }
+  }
+
   render() {
     const { classes, data } = this.props;
     const { citationString } = this.state;
+
+    const abstract = data.abstract !== null ? (
+      <Typography variant="body2">
+        {data.abstract.substring(0, 270)} [...]
+      </Typography>
+    ) : '';
 
     return (
       <div>
@@ -81,7 +104,22 @@ class PublicationCard extends React.PureComponent { // eslint-disable-line react
           <CardHeader
             title={data.title}
             subheader={data.year}
+            action={
+              <FormControlLabel
+                className={classes.label}
+                control={
+                  <Checkbox
+                    checked={this.state.checked}
+                    onChange={this.handleCheck}
+                  />
+                }
+                label="Add to reading list?"
+              />
+            }
           />
+          <CardContent>
+            {abstract}
+          </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
             <IconButton
               className={classnames(classes.expand, {
@@ -119,6 +157,10 @@ class PublicationCard extends React.PureComponent { // eslint-disable-line react
 PublicationCard.propTypes = {
   classes: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
+  isSelected: PropTypes.bool,
+  addToList: PropTypes.func,
+  removeFromList: PropTypes.func,
+  index: PropTypes.string,
 };
 
 export default withStyles(styles)(PublicationCard);
