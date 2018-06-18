@@ -30,6 +30,10 @@ class NavLinks extends React.Component { // eslint-disable-line react/prefer-sta
     window.addEventListener('resize', this.updateWindowDimensions);
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
   updateWindowDimensions = () => {
     this.setState({ width: window.innerWidth });
   }
