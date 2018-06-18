@@ -27,7 +27,7 @@ function GetPublications({ data: { publications }, sort, alpha, addToList, remov
         }
       );
     }
-    sorted.forEach((publication, i) => {
+    sorted.forEach((publication) => {
       let isSelected = false;
       selected.some((item, index) => {
         if (selected[index].key === publication.slug) {
@@ -36,7 +36,7 @@ function GetPublications({ data: { publications }, sort, alpha, addToList, remov
         }
         return false;
       });
-      output.push(<PublicationCard isSelected={isSelected} addToList={addToList} removeFromList={removeFromList} data={publication} index={publication.slug} key={i.toString()} />);
+      output.push(<PublicationCard isSelected={isSelected} addToList={addToList} removeFromList={removeFromList} data={publication} index={publication.slug} key={publication.slug} />);
     });
     return output;
   } catch (err) {

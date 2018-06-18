@@ -54,7 +54,7 @@ class PublicationCard extends React.PureComponent { // eslint-disable-line react
     expanded: false,
     citation: new Cite(this.props.data.citation),
     citationString: '',
-    checked: this.props.isSelected,
+    inArray: this.props.isSelected,
   };
 
   handleExpandClick = () => {
@@ -79,12 +79,12 @@ class PublicationCard extends React.PureComponent { // eslint-disable-line react
 
   handleCheck = () => {
     const item = { key: this.props.index, citation: this.props.data.citation };
-    if (!this.state.checked) {
+    if (!this.state.inArray) {
       this.props.addToList(item);
-      this.setState({ checked: !this.state.checked });
+      this.setState({ inArray: !this.state.inArray });
     } else {
       this.props.removeFromList(item);
-      this.setState({ checked: !this.state.checked });
+      this.setState({ inArray: !this.state.inArray });
     }
   }
 
@@ -109,7 +109,7 @@ class PublicationCard extends React.PureComponent { // eslint-disable-line react
                 className={classes.label}
                 control={
                   <Checkbox
-                    checked={this.state.checked}
+                    checked={this.props.isSelected && this.state.inArray}
                     onChange={this.handleCheck}
                   />
                 }
