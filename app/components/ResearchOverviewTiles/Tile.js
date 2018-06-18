@@ -29,6 +29,9 @@ const Tile = styled.div`
   ${'' /* ${mixins.bp.xs.max`
     height: 210px;
   `} */}
+  span.areaClassifier {
+    font-size: 26px;
+  }
   span.initialTitle {
     color: #FFFFFF;
     font-size: 36px;
@@ -78,6 +81,9 @@ const Tile = styled.div`
       background-image: unset;
       opacity: unset;
       border: 8px solid white;
+    }
+    span.areaClassifier {
+      display: none;
     }
     span.initialTitle {
       display: none;
