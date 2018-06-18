@@ -61,7 +61,14 @@ export class Publications extends React.PureComponent { // eslint-disable-line r
         <Button onClick={this.swapSort}>Sort Year {this.state.sorting === 'asc' ? 'Descending' : 'Ascending'}</Button>
         <Button onClick={this.setAlpha}>Sort Alphabetically</Button>
         <Button onClick={this.generateList}>Generate Reading List</Button>
-        <GetPublications selected={this.props.publications.list} sort={this.state.sorting} alpha={this.state.alpha} addToList={this.props.addItem} removeFromList={this.props.removeItem} />
+        <GetPublications
+          match={this.props.match}
+          selected={this.props.publications.list}
+          sort={this.state.sorting}
+          alpha={this.state.alpha}
+          addToList={this.props.addItem}
+          removeFromList={this.props.removeItem}
+        />
       </div>
     );
   }
@@ -69,6 +76,7 @@ export class Publications extends React.PureComponent { // eslint-disable-line r
 
 Publications.propTypes = {
   // updateList: PropTypes.func,
+  match: PropTypes.object,
   publications: PropTypes.object,
   addItem: PropTypes.func,
   removeItem: PropTypes.func,

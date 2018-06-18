@@ -10,7 +10,7 @@ import { graphql } from 'react-apollo';
 import getPublications from 'graphql/queries/getPublications.graphql';
 import PublicationCard from 'components/PublicationCard';
 
-function GetPublications({ data: { publications }, sort, alpha, addToList, removeFromList, selected }) {
+function GetPublications({ data: { publications }, sort, alpha, addToList, removeFromList, selected, match }) {
   const output = [];
   try {
     const sortDesc = (a, b) => parseInt(b.year, 10) - parseInt(a.year, 10);
@@ -36,7 +36,12 @@ function GetPublications({ data: { publications }, sort, alpha, addToList, remov
         }
         return false;
       });
-      output.push(<PublicationCard isSelected={isSelected} addToList={addToList} removeFromList={removeFromList} data={publication} index={publication.slug} key={publication.slug} />);
+
+      if (match.params.slug === undefined) {
+        output.push(<PublicationCard isSelected={isSelected} addToList={addToList} removeFromList={removeFromList} data={publication} index={publication.slug} key={publication.slug} />);
+      } else if (match.params.slug === publication.researchArea.slug) {
+        output.push(<PublicationCard isSelected={isSelected} addToList={addToList} removeFromList={removeFromList} data={publication} index={publication.slug} key={publication.slug} />);
+      }
     });
     return output;
   } catch (err) {

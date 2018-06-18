@@ -11,5 +11,8 @@ query Publications {
     number
     pages
     doi
+    researchArea {
+      slug
+    }
   }
 }
