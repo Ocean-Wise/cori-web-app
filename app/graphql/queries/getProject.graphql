@@ -11,5 +11,6 @@ query Project($slug: String!) {
         url
       }
     }
+    supportersCopy
   }
 }

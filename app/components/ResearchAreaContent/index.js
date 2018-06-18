@@ -45,7 +45,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match, width }) {
       <center>
         <H1 style={{ fontSize: 48, lineHeight: '50px', paddingTop: 15 }}>Our Supporters</H1>
         {/* <Divider /> */}
-        <p>Ut convallis, metus et convallis mattis, nunc velit placerat quam, sed consectetur risus tellus sed sem. Integer fermentum ue turpis vitae egestas.</p>
+        <p>{area.supportersCopy}</p>
         <div style={{ display: 'inline-flex', flexDirection: 'row' }}>{supporters}</div>
       </center>
     ) : '';
@@ -84,7 +84,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match, width }) {
               <Col xl={4} team>
                 <Container>
                   <H3>The Team</H3>
-                  <p>Ut convallis, metus et convallis mattis, nunc velit placerat quam, sed consectetur risus tellus sed sem. Integer fermentum ue turpis vitae egestas.</p>
+                  <p>{area.teamCopy}</p>
                   <Link to={`/team/${slug}`}>
                     <Button id="team">
                       Get to know our researchers <ChevronRight style={{ fontSize: 30 }} />
@@ -98,7 +98,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match, width }) {
               <Col xl={4}>
                 <Container second>
                   <H3>Read Our Work</H3>
-                  <p>Ut convallis, metus et convallis mattis, nunc velit placerat quam, sed consectetur risus tellus sed sem. Integer fermentum ue turpis vitae egestas.</p>
+                  <p>{area.publicationCopy}</p>
                   <Link to={`/publications/${slug}`}>
                     <Button id="publications">
                       Find our publications <ChevronRight style={{ fontSize: 30 }} />

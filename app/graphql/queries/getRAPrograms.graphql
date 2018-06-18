@@ -4,6 +4,7 @@ query Programs($slug: String!) {
   researchAreas(q: $slug) {
     programs {
       ...ProgramTeaser
+      overlay
     }
   }
 }

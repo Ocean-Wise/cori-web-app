@@ -40,13 +40,33 @@ function ProgramContent({ data: { programs }, slug, match }) {
           projects.push(column);
           column = [];
         }
-        column.push(
-          <div key={`project-${j.toString()}`} style={{ paddingBottom: 10 }}>
-            <Link to={`/project/${project.slug}`} style={{ fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>
-              <span style={{ color: '#00B398' }}>{project.projectTitle} <ChevronRight style={{ marginLeft: -5 }} /></span>
-            </Link>
-          </div>
-        );
+        if (project.type !== 'Internal') {
+          if (project.type === 'Link') {
+            column.push(
+              <div key={`project-${j.toString()}`} style={{ paddingBottom: 10 }}>
+                <a href={project.externalLink} style={{ fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>
+                  <span style={{ color: '#00B398' }}>{project.projectTitle} <ChevronRight style={{ marginLeft: -5 }} /></span>
+                </a>
+              </div>
+            );
+          } else {
+            column.push(
+              <div key={`project-${j.toString()}`} style={{ paddingBottom: 10 }}>
+                <a href={project.pdf.url} style={{ fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>
+                  <span style={{ color: '#00B398' }}>{project.projectTitle} <ChevronRight style={{ marginLeft: -5 }} /></span>
+                </a>
+              </div>
+            );
+          }
+        } else {
+          column.push(
+            <div key={`project-${j.toString()}`} style={{ paddingBottom: 10 }}>
+              <Link to={`/project/${project.slug}`} style={{ fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>
+                <span style={{ color: '#00B398' }}>{project.projectTitle} <ChevronRight style={{ marginLeft: -5 }} /></span>
+              </Link>
+            </div>
+          );
+        }
         if (j === initiative.projects.length - 1) {
           projects.push(<Col key={`projectCol-${j.toString()}`} md={6}>{column}</Col>);
         }
@@ -70,7 +90,7 @@ function ProgramContent({ data: { programs }, slug, match }) {
         <div>
           <Hr style={{ marginBottom: 15 }} />
           <H5>INITIATIVE SPONSORS</H5>
-          <p>Ut convallis, metus et convallis mattis, nunc velit placerat quam, sed consectetur risus tellus sed sem. Integer fermentum eu turpis vitae egestas.</p>
+          <p>{initiative.supportersCopy}</p>
           <Grid fluid style={{ padding: 0 }}>
             <Row>
               {sponsors}

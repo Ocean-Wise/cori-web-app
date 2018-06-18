@@ -36,7 +36,7 @@ function ProjectContent({ data: { projects }, slug, match }) {
       <div style={{ backgroundColor: '#F8F9F9', marginTop: 100, paddingBottom: 80, paddingTop: 80 }}>
         <center>
           <H1 style={{ fontSize: 48, lineHeight: '50px', marginTop: 0, marginBottom: 16 }}>Our Supporters</H1>
-          <p style={{ fontSize: 16, lineHeight: '26px', color: '#4D4D4D', maxWidth: 730 }}>Ut convallis, metus et convallis mattis, nunc velit placerat quam, sed consectetur risus tellus sed sem. Integer fermentum ue turpis vitae egestas.</p>
+          <p style={{ fontSize: 16, lineHeight: '26px', color: '#4D4D4D', maxWidth: 730 }}>{project.supportersCopy}</p>
           <div style={{ display: 'inline-flex', flexDirection: 'row', marginTop: 64 }}>{supporters}</div>
         </center>
       </div>

@@ -35,7 +35,7 @@ class ProjectFeatured extends React.PureComponent { // eslint-disable-line react
               <a href={data.featured[0].link} target="_blank"><img src={data.featured[0].img} alt="featured" style={{ width: '100%' }} /></a>
               <div style={{ padding: 20, marginBottom: 45 }}>
                 <H3 news>{title}</H3>
-                <P style={{ marginBottom: 60 }}>{teaser.substring(0, 250)} <Link to={`${data.featured[0].link}`}>[…]</Link></P>
+                <P style={{ marginBottom: 60 }}>{teaser.substring(0, 270)} <Link to={`${data.featured[0].link}`}>[…]</Link></P>
               </div>
               <div style={{ padding: 20, position: 'absolute', bottom: 5 }}>
                 <Divider style={{ width: 50, height: 1, marginBottom: 10 }} />

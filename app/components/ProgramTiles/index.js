@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import getRAPrograms from 'graphql/queries/getRAPrograms.graphql';
 import { Col } from 'react-flexbox-grid';
+import ChevronRight from '@material-ui/icons/ChevronRight';
+import Button from '@material-ui/core/Button';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
@@ -17,7 +19,10 @@ import messages from './messages';
 import Container from './Container';
 import Grid from './Grid';
 import Row from './Row';
+import HoverContainer from './HoverContainer';
 import H1 from './H1';
+import H2 from './H2';
+import P from './P';
 import Divider from './Divider';
 import Tile from './Tile';
 import Title from './Title';
@@ -27,11 +32,22 @@ function ProgramTiles({ data: { researchAreas }, width }) {
     const tiles = [];
     researchAreas[0].programs.map((program, i) => {
       tiles.push(
-        <Link to={`/program/${program.slug}`} key={`programLink-${i.toString()}`}>
-          <Tile image={program.hero.url} width={width}>
-            <Title>{program.title}</Title>
-          </Tile>
-        </Link>
+        // <Link to={`/program/${program.slug}`} key={`programLink-${i.toString()}`}>
+        <Tile image={program.hero.url} key={`programLink-${i.toString()}`} width={width}>
+          <HoverContainer>
+            <H2>{program.title}</H2>
+            <P>{program.overlay}</P>
+            <center>
+              <Link to={`/program/${program.slug}`}>
+                <Button style={{ border: '1px solid #FFFFFF', borderRadius: 0, padding: '10px 25px', marginTop: 32 }}>
+                  <span className="explore">Explore <ChevronRight style={{ fontSize: 35, marginLeft: -5, marginRight: -15 }} /></span>
+                </Button>
+              </Link>
+            </center>
+          </HoverContainer>
+          <Title className="initialTitle">{program.title}</Title>
+        </Tile>
+        // </Link>
       );
       return true;
     });

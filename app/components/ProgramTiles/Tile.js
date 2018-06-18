@@ -7,6 +7,16 @@ const Tile = styled.div`
   background-size: cover;
   height: 425px;
   width: 425px;
+  div {
+    opacity: 0;
+  }
+  span.explore {
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 12px;
+  }
   &::before {
     content: '';
     position: absolute;
@@ -33,6 +43,20 @@ const Tile = styled.div`
     height: ${(props) => (props.width - 50)}px;
     width: ${(props) => (props.width - 50)}px;
   `}
+  &:hover {
+    &::before {
+      background-color: rgba(0,179,152,0.8);
+      background-image: unset;
+      opacity: unset;
+      border: 8px solid white;
+    }
+    div {
+      opacity: 1;
+    }
+    .initialTitle {
+      display: none;
+    }
+  }
 `;
 
 export default Tile;
