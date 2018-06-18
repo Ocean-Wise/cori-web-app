@@ -5,12 +5,15 @@
 */
 
 import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 // import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import { graphql } from 'react-apollo';
 import getAllResearchAreas from 'graphql/queries/getAllResearchAreas.graphql';
+import PlusRaw from '@material-ui/icons/Add';
+import MinusRaw from '@material-ui/icons/Remove';
 
 import ResearchArea from './ResearchArea';
 import ProgramContainer from './ProgramContainer';
@@ -24,7 +27,8 @@ import Initiative from './Initiative';
 function Nav({ data: { researchAreas }, active }) {
   // Create our navigation array which holds the structures for each research area
   const nav = [];
-
+  const Plus = ReactDOMServer.renderToStaticMarkup(<PlusRaw />);
+  const Minus = ReactDOMServer.renderToStaticMarkup(<MinusRaw />);
   try {
     // Loop over the research areas
     researchAreas.map((area) => {
@@ -51,7 +55,6 @@ function Nav({ data: { researchAreas }, active }) {
           const initiativeHeight = active === program.slug ? initiatives.length * 26 : 0;
           // The user's active page is for the current program, so we want to set the slug to be accessable from the area's onClick function
           if (active === program.slug) childActive = program.slug;
-
           // Create our program row
           programs.push(
             <ProgramContainer key={`${program.slug}-program`} id={`${program.slug}-program`}>
@@ -78,10 +81,10 @@ function Nav({ data: { researchAreas }, active }) {
                   }
 
                   // Swap the expander icon state
-                  if (expanderEl.innerText === '-') {
-                    expanderEl.innerText = '+';
+                  if (expanderEl.innerHTML === Minus) {
+                    expanderEl.innerHTML = Plus;
                   } else {
-                    expanderEl.innerText = '-';
+                    expanderEl.innerHTML = Minus;
                   }
 
                   // Select the program's container
@@ -99,9 +102,7 @@ function Nav({ data: { researchAreas }, active }) {
                 <Link to={`/program/${program.slug}`} key={`program-${program.slug}`}>
                   {program.title}
                 </Link>
-                <span style={{ marginRight: 8 }} id={`${program.slug}-expander`}>
-                  {active === program.slug ? '-' : '+'}
-                </span>
+                <span style={{ marginRight: 5, color: 'rgb(0, 179, 152)' }} id={`${program.slug}-expander`} dangerouslySetInnerHTML={active === program.slug ? { __html: Minus } : { __html: Plus }} />
               </Program>
               <div id={`${program.slug}-initiatives`} className={active === program.slug ? 'active-program' : ''} style={{ height: initiativeHeight, overflow: 'hidden', transition: 'all 250ms cubic-bezier(0.805, 0.125, 0.500, 0.750)' }}>
                 {initiatives}
@@ -159,17 +160,15 @@ function Nav({ data: { researchAreas }, active }) {
               }
 
               // Swap the expander icon state
-              if (expanderEl.innerText === '-') {
-                expanderEl.innerText = '+';
+              if (expanderEl.innerHTML === Minus) {
+                expanderEl.innerHTML = Plus;
               } else {
-                expanderEl.innerText = '-';
+                expanderEl.innerHTML = Minus;
               }
             }}
           >
             <Link to={`/research/${area.slug}`}>{area.title}</Link>
-            <span id={`${area.slug}-expander`}>
-              {(active === area.slug || childActive !== '') ? '-' : '+'}
-            </span>
+            <span id={`${area.slug}-expander`} style={{ color: 'rgb(0, 179, 152)' }} dangerouslySetInnerHTML={active === area.slug || childActive !== '' ? { __html: Minus } : { __html: Plus }} />
           </ResearchArea>
           <div id={`${area.slug}-programs`} style={{ height: areaHeight, overflow: 'hidden', transition: 'all 250ms cubic-bezier(0.805, 0.125, 0.500, 0.750)', marginLeft: 32, color: '#4D4D4D', fontSize: 14, lineHeight: '14px', width: '82%' }}>
             {programs}
@@ -183,16 +182,19 @@ function Nav({ data: { researchAreas }, active }) {
     // Sort our array as we always want the order to be CORI --> VA --> Others
     let coriIndex;
     let vaIndex;
+    // Swap cori for first
     nav.map((item, i) => {
       if (item.key === 'area-cori') coriIndex = i;
-      if (item.key === 'area-vancouver-aquarium') vaIndex = i;
       return true;
     });
-    // Swap cori for first
     let tmp = nav[0];
     nav[0] = nav[coriIndex];
     nav[coriIndex] = tmp;
     // Swap va for second
+    nav.map((item, i) => {
+      if (item.key === 'area-vancouver-aquarium') vaIndex = i;
+      return true;
+    });
     tmp = nav[1];
     nav[1] = nav[vaIndex];
     nav[vaIndex] = tmp;

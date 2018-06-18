@@ -14,6 +14,9 @@ const ResearchArea = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  svg {
+    padding: 4px 0;
+  }
   ${mixins.bp.xs.max`
     max-width: 83vw;
   `}

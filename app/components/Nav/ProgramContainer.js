@@ -6,6 +6,9 @@ const ProgramContainer = styled.div`
   ${mixins.bp.xs.max`
     max-width: 83vw;
   `}
+  svg {
+    padding: 4px 0;
+  }
 `;
 
 export default ProgramContainer;
