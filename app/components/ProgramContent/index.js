@@ -27,7 +27,7 @@ import Paper from './Paper';
 import Divider from './Divider';
 import TitleContainer from './TitleContainer';
 
-function ProgramContent({ data: { programs }, slug, match }) {
+function ProgramContent({ data: { programs }, slug, match, width }) {
   let program = {};
 
   try {
@@ -61,7 +61,7 @@ function ProgramContent({ data: { programs }, slug, match }) {
         } else {
           column.push(
             <div key={`project-${j.toString()}`} style={{ paddingBottom: 10 }}>
-              <Link to={`/project/${project.slug}`} style={{ fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>
+              <Link to={`/project/${project.slug}`} style={{ fontSize: 15, lineHeight: '18px', fontWeight: 'bold' }}>
                 <span style={{ color: '#00B398' }}>{project.projectTitle} <ChevronRight style={{ marginLeft: -5 }} /></span>
               </Link>
             </div>
@@ -78,7 +78,7 @@ function ProgramContent({ data: { programs }, slug, match }) {
         initiative.sponsors.map((sponsor, j) => { // eslint-disable-line
           sponsors.push(
             <Col md={2} key={`sponsor-${j.toString()}`}>
-              <img style={{ padding: '16px 0 32px 0' }} src={sponsor.logo.url} alt={sponsor.logo.title} />
+              <img style={{ padding: '16px 0 32px 0', maxWidth: '100%' }} src={sponsor.logo.url} alt={sponsor.logo.title} />
             </Col>
           );
         });
@@ -132,6 +132,8 @@ function ProgramContent({ data: { programs }, slug, match }) {
       );
     });
 
+    const responsiveWidth = width < 769 ? '100%' : 850;
+
     const InitiativesComponent = (
       <Grid fluid style={{ padding: '60px 0' }}>
         <Row style={{ margin: 0 }}>
@@ -141,7 +143,7 @@ function ProgramContent({ data: { programs }, slug, match }) {
               <H1 className="initiative" style={{ marginTop: 15, position: 'absolute' }}>Initiatives</H1>
             </TitleContainer>
           </Col>
-          <Col xl={7} style={{ maxWidth: 850 }}>
+          <Col xl={7} style={{ maxWidth: responsiveWidth }}>
             {initiativesList}
           </Col>
         </Row>
@@ -155,7 +157,7 @@ function ProgramContent({ data: { programs }, slug, match }) {
           <Grid fluid>
             <Row>
               <Col xl={4} />
-              <Col xl={7} style={{ maxWidth: 850 }}>
+              <Col xl={7} style={{ maxWidth: responsiveWidth }}>
                 <Breadcrumbs slug={slug} location={match} program />
                 <H1 style={{ marginTop: 15 }}>{program.title}</H1>
                 <H3>{program.subheader}</H3>
@@ -177,6 +179,7 @@ function ProgramContent({ data: { programs }, slug, match }) {
 }
 
 ProgramContent.propTypes = {
+  width: PropTypes.number,
   data: PropTypes.object.isRequired,
   slug: PropTypes.string.isRequired,
   match: PropTypes.object.isRequired,

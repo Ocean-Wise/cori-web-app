@@ -14,7 +14,7 @@ import { compose } from 'redux';
 
 import Header from 'components/Header';
 import FloatingNav from 'components/FloatingNav/Loadable';
-import ProgramContent from 'components/ProgramContent';
+import ProgramContent from 'components/ProgramContent/Loadable';
 
 import injectReducer from 'utils/injectReducer';
 import makeSelectProgram from './selectors';
@@ -60,7 +60,7 @@ export class Program extends React.PureComponent { // eslint-disable-line react/
         </Helmet>
         <Header active={this.props.match.params.slug} />
         {NAV}
-        <ProgramContent slug={this.props.match.params.slug} match={this.props.match} />
+        <ProgramContent slug={this.props.match.params.slug} match={this.props.match} width={this.state.width} />
       </div>
     );
   }
