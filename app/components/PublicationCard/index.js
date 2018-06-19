@@ -20,6 +20,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FileIcon from '@material-ui/icons/Description';
 import Cite from 'citation-js';
 
 // import messages from './messages';
@@ -98,6 +99,12 @@ class PublicationCard extends React.PureComponent { // eslint-disable-line react
       </Typography>
     ) : '';
 
+    const downloadFile = data.pdf !== null ? (
+      <Typography variant="headline">
+        Download this publication <IconButton><a href={data.pdf.url} style={{ paddingBottom: 5, paddingLeft: 1 }}><FileIcon /></a></IconButton>
+      </Typography>
+    ) : '';
+
     return (
       <div>
         <Card className={classes.card}>
@@ -134,6 +141,7 @@ class PublicationCard extends React.PureComponent { // eslint-disable-line react
           </CardActions>
           <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
             <CardContent>
+              {downloadFile}
               <Typography variant="headline">
                 Generate a citation:
               </Typography>
