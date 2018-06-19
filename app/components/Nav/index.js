@@ -125,7 +125,7 @@ function Nav({ data: { researchAreas }, active }) {
 
       // If the research area is the user's current page or if a linked program of the RA is active, set the height to
       // the number of programs multiplied by 41 plus the number of visible initiatives multiplied by 26
-      const areaHeight = (active === area.slug || childActive !== '') ? (programs.length * 41) + (activeLen * 26) : 0;
+      const areaHeight = (active === area.slug || childActive !== '') ? (programs.length * 51) + (activeLen * 26) : 0;
       // Push the research area into our navigation array to be rendered
       nav.push(
         <div key={`area-${area.slug}`}>
@@ -153,7 +153,7 @@ function Nav({ data: { researchAreas }, active }) {
               // It was already hidden...
               if (programEl.style.height === '0px') {
                 // ...so set the height to 26px multiplied by the number of programs contained in the element
-                programEl.style.height = `${(programEl.children.length * 41) + (initiativesLen * 26)}px`;
+                programEl.style.height = `${(programEl.children.length * 51) + (initiativesLen * 26)}px`;
               } else {
                 // We want it hidden, so set the height to 0
                 programEl.style.height = '0px';
