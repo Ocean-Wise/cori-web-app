@@ -56,6 +56,7 @@ function Nav({ data: { researchAreas }, active }) {
           // The user's active page is for the current program, so we want to set the slug to be accessable from the area's onClick function
           if (active === program.slug) childActive = program.slug;
           // Create our program row
+          /* eslint-disable */
           programs.push(
             <ProgramContainer key={`${program.slug}-program`} id={`${program.slug}-program`}>
               <Program
@@ -113,6 +114,7 @@ function Nav({ data: { researchAreas }, active }) {
           return true;
         });
       }
+      /* eslint-enable */
 
 
       // How many initiatives are in active program's container? Default to 0
@@ -127,6 +129,7 @@ function Nav({ data: { researchAreas }, active }) {
       // the number of programs multiplied by 41 plus the number of visible initiatives multiplied by 26
       const areaHeight = (active === area.slug || childActive !== '') ? (programs.length * 51) + (activeLen * 26) : 0;
       // Push the research area into our navigation array to be rendered
+      /* eslint-disable */
       nav.push(
         <div key={`area-${area.slug}`}>
           <ResearchArea
@@ -178,6 +181,7 @@ function Nav({ data: { researchAreas }, active }) {
 
       return true;
     });
+    /* eslint-enable */
 
     // Sort our array as we always want the order to be CORI --> VA --> Others
     let coriIndex;

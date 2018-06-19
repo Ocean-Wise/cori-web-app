@@ -1,18 +1,18 @@
 
 import {
-  defaultAction,
+  addToList,
 } from '../actions';
 import {
-  DEFAULT_ACTION,
+  ADD_TO_LIST,
 } from '../constants';
 
 describe('Publications actions', () => {
-  describe('Default Action', () => {
-    it('has a type of DEFAULT_ACTION', () => {
+  describe('Add to list action', () => {
+    it('has a type of ADD_TO_LIST', () => {
       const expected = {
-        type: DEFAULT_ACTION,
+        type: ADD_TO_LIST,
       };
-      expect(defaultAction()).toEqual(expected);
+      expect(addToList()).toEqual(expected);
     });
   });
 });
