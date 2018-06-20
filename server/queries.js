@@ -1,5 +1,33 @@
+// PostgreSQL
+const promise = require('bluebird');
+const options = {
+  // Initialization oftion for database
+  promiseLib: promise,
+};
+// Connect to the Heroku PostgreSQL database
+const pgp = require('pg-promise')(options);
+const db = pgp(`${process.env.DATABASE_URL}?ssl=true`);
+
+// Rss Parser
 const Parser = require('rss-parser');
 const parser = new Parser();
+
+function handleSubmitSurvey(req, res, next) {
+  console.log(req);
+  // try {
+  //   db.any(`INSERT INTO ${req.type} VALUES (${req.data})`)
+  //     .then(() => {
+  //       res.status(200)
+  //         .json({
+  //           status: 'success',
+  //           message: `Entered data into ${req.type} table`,
+  //         });
+  //     })
+  //     .catch((err) => next(err));
+  // } catch (err) {
+  //   res.status(500).send('Error entering survey data');
+  // }
+}
 
 /*
  * handleGetRSS
@@ -83,5 +111,6 @@ async function handleGetRSS(req, res) {
 }
 
 module.exports = {
+  submitSurvey: handleSubmitSurvey,
   getRSS: handleGetRSS,
 };
