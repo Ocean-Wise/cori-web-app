@@ -7,6 +7,5 @@ fragment PersonInfo on Person {
     url
   }
   position
-  phone
-  email
+  copy
 }

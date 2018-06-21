@@ -8,11 +8,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import researchAreaQuery from 'graphql/queries/getResearchArea.graphql';
+import PersonModal from 'components/PersonModal/Loadable';
 
 import Wrapper from './Wrapper';
-import Divider from './Divider';
-import Person from './Person';
-import Img from './Img';
 
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
@@ -27,26 +25,9 @@ function AreaMembers({ data: { researchAreas } }) {
   let members;
   try {
     members = researchAreas[0].teamMembers.map((member, i) => { // eslint-disable-line
-      let honorific = '';
-      if (member.honorifictitle !== null) {
-        honorific = `${member.honorifictitle}. `;
-      }
-      let phone = '';
-      if (member.phone !== null) {
-        phone = <span>{member.phone}</span>;
-      }
 
       return (
-        <Person key={`member-${i.toString()}`}>
-          <Img src={member.image.url} alt={member.image.title} />
-          <div>{honorific}{member.first} {member.last}</div>
-          <Divider />
-          <div>
-            <span className="bold">{member.position}</span>
-            {phone}
-            <span>{member.email}</span>
-          </div>
-        </Person>
+        <PersonModal key={`person-${i.toString()}`} person={member} />
       );
     });
   } catch (err) {

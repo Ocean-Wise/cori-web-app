@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import * as mixins from 'styles/mixins';
 
 const Person = styled.div`
-  margin: 0 15px;
+  margin: 20px 15px;
   ${mixins.bp.xs.max`
     margin: 0 auto;
     margin-bottom: 30px;
@@ -32,6 +32,9 @@ const Person = styled.div`
         line-height: 21px;
         &.bold {
           font-weight: bold;
+          font-size: 12px;
+          letter-spacing: 1px;
+          line-height: 18px;
         }
       }
     }

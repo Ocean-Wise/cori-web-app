@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Person = styled.div`
-  margin: 0 15px;
+  margin: 20px 15px;
   div {
     &:first-of-type {
       color: #6A7B83;

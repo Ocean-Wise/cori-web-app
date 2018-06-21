@@ -3,12 +3,10 @@ import * as mixins from 'styles/mixins';
 
 const Person = styled.div`
   margin: 20px 15px;
-  ${mixins.bp.sm.min`
-    margin: 10px 15px;
-    height: 460px;
-  `}
+  cursor: pointer;
   ${mixins.bp.xs.max`
-    margin: 15px;
+    margin: 0 auto;
+    margin-bottom: 30px;
   `}
   div {
     &:first-of-type {
@@ -35,9 +33,17 @@ const Person = styled.div`
         line-height: 21px;
         &.bold {
           font-weight: bold;
+          font-size: 12px;
+          letter-spacing: 1px;
+          line-height: 18px;
         }
       }
     }
+  }
+  &.embed {
+    float: left;
+    margin-right: 55px;
+    cursor: default;
   }
 `;
 

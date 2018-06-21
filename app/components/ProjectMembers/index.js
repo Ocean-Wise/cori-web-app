@@ -8,13 +8,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import projectMemberQuery from 'graphql/queries/getProjectMembers.graphql';
+import PersonModal from 'components/PersonModal/Loadable';
 
 import Container from './Container';
-import Person from './Person';
-import Img from './Img';
 import H1 from './H1';
 import P from './P';
-import Divider from './Divider';
 
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
@@ -29,26 +27,9 @@ function ProjectMembers({ data: { projects } }) {
   let members;
   try {
     members = projects[0].members.map((member, i) => { // eslint-disable-line
-      let honorific = '';
-      if (member.honorifictitle !== null) {
-        honorific = `${member.honorifictitle}. `;
-      }
-      let phone = '';
-      if (member.phone !== null) {
-        phone = <span>{member.phone}</span>;
-      }
 
       return (
-        <Person key={`member-${i.toString()}`}>
-          <Img src={member.image.url} alt={member.image.title} />
-          <div>{honorific}{member.first} {member.last}</div>
-          <Divider />
-          <div>
-            <span className="bold">{member.position}</span>
-            {phone}
-            <span>{member.email}</span>
-          </div>
-        </Person>
+        <PersonModal key={`person-${i.toString()}`} person={member} />
       );
     });
   } catch (err) {

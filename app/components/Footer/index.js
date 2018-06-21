@@ -14,15 +14,17 @@ import Hr from './Hr';
 function Footer() {
   return (
     <div>
-      <Wrapper style={{ backgroundColor: '#fff' }}>
-        <Section>
-          <Links />
-        </Section>
-        <Hr />
-        <Section>
-          <Logo src={OWLogo} alt="Ocean Wise" />
-        </Section>
-      </Wrapper>
+      <div style={{ backgroundColor: '#fff' }}>
+        <Wrapper>
+          <Section>
+            <Links />
+          </Section>
+          <Hr />
+          <Section>
+            <Logo src={OWLogo} alt="Ocean Wise" />
+          </Section>
+        </Wrapper>
+      </div>
       <Wrapper style={{ backgroundColor: '#f8f9f9' }}>
         <Section>
           <Container>
