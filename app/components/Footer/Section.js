@@ -9,12 +9,17 @@ const Section = styled.section`
     font-weight: bold;
     font-size: 18px;
     color: #8D8D8D;
-    margin-right: 30px;
+    &:not(#copy) {
+      margin-right: 30px;
+    }
     ${mixins.bp.sm.max`
       font-size: 12px;
       // text-align: center;
       line-height: 18px;
       margin-bottom: 10px;
+    `}
+    ${mixins.bp.xs.max`
+      margin-right: 0 !important;
     `}
   }
 `;

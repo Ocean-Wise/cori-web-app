@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import DrawerNav from 'components/DrawerNav';
 import Search from 'containers/Search/Loadable';
+import OWButton from 'components/Button';
 
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
@@ -61,6 +62,11 @@ class NavLinks extends React.Component { // eslint-disable-line react/prefer-sta
             Publications
           </Button>
         </Link>
+        <OWButton inverted noMargin width={100} height={40} id="donate">
+          <a href="#donate">
+            Donate
+          </a>
+        </OWButton>
         <Search />
       </Container>
     );

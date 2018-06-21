@@ -8,6 +8,8 @@ const Wrapper = styled.footer`
     padding: 3em 12em;
   `}
   ${mixins.bp.lg.max`
+    width: 75%;
+    margin: 0 auto;
     padding: 40px 15px;
   `}
 

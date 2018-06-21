@@ -15,6 +15,7 @@ import Nav from 'components/Nav';
 import Menu from '@material-ui/icons/Menu';
 import Close from '@material-ui/icons/Close';
 import Search from 'containers/Search/Loadable';
+import OWButton from 'components/Button';
 
 import Container from './Container';
 
@@ -91,6 +92,11 @@ class DrawerNav extends React.Component { // eslint-disable-line react/prefer-st
                 Publications
               </Button>
             </Link>
+            <OWButton inverted noMargin width={100} height={40} id="donate">
+              <a href="#donate">
+                Donate
+              </a>
+            </OWButton>
           </Container>
         </SwipeableDrawer>
       </div>

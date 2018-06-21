@@ -3,16 +3,12 @@ import * as mixins from 'styles/mixins';
 
 const Container = styled.div`
   width: 59%;
-  margin: 10px auto -15px;
-  padding: 30px 0;
-  overflow-y: hidden;
+  color: #B2BEC4;
+  font-size: 14px;
+  margin: 0 auto;
+  padding: 10px 0;
   ${mixins.bp.lg.max`
     width: 95%;
-    display: flex;
-    justify-content: space-between;
-  `}
-  ${mixins.bp.xs.max`
-    padding: 20px 0;
   `}
 `;
 

@@ -13,6 +13,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import Header from 'components/Header';
+import Breadcrumbs from 'components/Breadcrumbs';
 import FloatingNav from 'components/FloatingNav/Loadable';
 import ProgramContent from 'components/ProgramContent/Loadable';
 
@@ -59,6 +60,7 @@ export class Program extends React.PureComponent { // eslint-disable-line react/
           <meta name="description" content="Description of Program" />
         </Helmet>
         <Header active={this.props.match.params.slug} />
+        <Breadcrumbs slug={this.props.match.params.slug} location={this.props.match} program />
         {NAV}
         <ProgramContent slug={this.props.match.params.slug} match={this.props.match} width={this.state.width} />
       </div>

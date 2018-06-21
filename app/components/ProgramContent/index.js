@@ -13,7 +13,7 @@ import getProgram from 'graphql/queries/getProgram.graphql';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 
-import Breadcrumbs from 'components/Breadcrumbs';
+import ResearchAreaTag from 'components/ResearchAreaTag';
 import ProjectFeatured from 'components/ProjectFeatured/Loadable';
 import Hero from './Hero';
 import Section from './Section';
@@ -158,7 +158,7 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
             <Row>
               <Col xl={4} />
               <Col xl={7} style={{ maxWidth: responsiveWidth }}>
-                <Breadcrumbs slug={slug} location={match} program />
+                <ResearchAreaTag slug={slug} match={match} program />
                 <H1 style={{ marginTop: 15 }}>{program.title}</H1>
                 <H3>{program.subheader}</H3>
                 <MarkdownWrapper>

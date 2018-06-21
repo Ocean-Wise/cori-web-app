@@ -14,7 +14,7 @@ import { Grid, Row } from 'react-flexbox-grid';
 
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import ProgramTiles from 'components/ProgramTiles';
-import Breadcrumbs from 'components/Breadcrumbs';
+// import Breadcrumbs from 'components/Breadcrumbs';
 import LatestNews from 'components/LatestNews/Loadable';
 import MediaReleases from 'components/MediaReleases/Loadable';
 import Button from 'components/Button';
@@ -28,7 +28,7 @@ import MarkdownWrapper from './MarkdownWrapper';
 import H3 from './H3';
 import Col from './Col';
 
-function ResearchAreaContent({ data: { researchAreas }, slug, match, width }) {
+function ResearchAreaContent({ data: { researchAreas }, slug, width }) {
   let area = {};
   try {
     area = researchAreas[0];
@@ -58,7 +58,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match, width }) {
             <Row>
               <Col xl={4} />
               <Col xl={7} style={{ paddingLeft: 0, maxWidth: 850 }}>
-                <Breadcrumbs slug={slug} location={match} research />
+                {/* <Breadcrumbs slug={slug} location={match} research /> */}
                 <H1 style={{ marginTop: 25 }}>{area.title}</H1>
                 <H2>{area.subheader}</H2>
                 <MarkdownWrapper>
@@ -122,7 +122,6 @@ function ResearchAreaContent({ data: { researchAreas }, slug, match, width }) {
 ResearchAreaContent.propTypes = {
   data: PropTypes.object.isRequired,
   slug: PropTypes.string.isRequired,
-  match: PropTypes.object.isRequired,
   width: PropTypes.number,
 };
 

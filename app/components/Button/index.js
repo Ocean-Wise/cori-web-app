@@ -65,8 +65,9 @@ function Button(props) {
       line-height: 12px;
       border: 1px solid #00B398 !important;
       transition: ${transition};
-      width: 200px;
-      height: 45px;
+      width: ${props.width ? `${props.width}px` : '200px'};
+      height: ${props.height ? `${props.height}px` : '45px'};
+      ${props.noMargin ? 'margin: 0px !important;' : ''}
     }
     #${props.id} {
       background-color: transparent !important;
@@ -76,8 +77,9 @@ function Button(props) {
       line-height: 12px;
       border: 1px solid #00B398 !important;
       transition: ${transition};
-      width: 200px;
-      height: 45px;
+      width: ${props.width ? `${props.width}px` : '200px'};
+      height: ${props.height ? `${props.height}px` : '45px'};
+      ${props.noMargin ? 'margin: 0px !important;' : ''}
     }
   `;
 
@@ -107,6 +109,9 @@ Button.propTypes = {
   inverted: PropTypes.bool,
   id: PropTypes.string,
   children: PropTypes.node.isRequired,
+  width: PropTypes.number,
+  height: PropTypes.number,
+  noMargin: PropTypes.bool,
 };
 
 export default Button;

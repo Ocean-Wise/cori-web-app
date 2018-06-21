@@ -16,11 +16,11 @@ function Footer() {
     <div>
       <Wrapper style={{ backgroundColor: '#fff' }}>
         <Section>
-          <Logo src={OWLogo} alt="Ocean Wise" />
+          <Links />
         </Section>
         <Hr />
         <Section>
-          <Links />
+          <Logo src={OWLogo} alt="Ocean Wise" />
         </Section>
       </Wrapper>
       <Wrapper style={{ backgroundColor: '#f8f9f9' }}>
@@ -32,7 +32,7 @@ function Footer() {
           </Container>
         </Section>
         <Section>
-          <span>&copy; 2018 Ocean Wise</span>
+          <span id="copy">&copy; 2018 Ocean Wise</span>
         </Section>
       </Wrapper>
     </div>

@@ -11,7 +11,7 @@ import ReactMarkdown from 'react-markdown';
 import getProject from 'graphql/queries/getProject.graphql';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
-import Breadcrumbs from 'components/Breadcrumbs';
+import ResearchAreaTag from 'components/ResearchAreaTag';
 import ProjectMembers from 'components/ProjectMembers';
 import Hero from './Hero';
 import Section from './Section';
@@ -59,7 +59,7 @@ function ProjectContent({ data: { projects }, slug, match }) {
             <Row>
               <Col xl={2} />
               <Col xl={8}>
-                <Breadcrumbs slug={slug} location={match} project />
+                <ResearchAreaTag slug={slug} match={match} project />
                 <H1>{project.projectTitle}</H1>
                 <H3>{project.subheader}</H3>
                 <MarkdownWrapper>

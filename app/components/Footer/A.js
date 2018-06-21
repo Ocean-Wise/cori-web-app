@@ -13,7 +13,9 @@ const A = NormalA.extend`
   ${mixins.bp.sm.max`
     line-height: 14px;
     font-size: 12px;
-
+  `}
+  ${mixins.bp.xs.max`
+    text-align: center;
   `}
 `;
 

@@ -15,6 +15,9 @@ import ProjectTeaser from 'graphql/queries/getProjectTeaser.graphql';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
+import Wrapper from './Wrapper';
+import Container from './Container';
+
 // TODO: This will need an extra check to see if the /program/ is actually a 'Working Group'. Will need an extra query.
 function Breadcrumbs({ data, location, slug }) {
   try {
@@ -68,9 +71,11 @@ function Breadcrumbs({ data, location, slug }) {
         string = '';
     }
     return (
-      <div style={{ paddingTop: 15, color: '#B2BEC4', fontSize: 14 }}>
-        <Link to={'/'}><FormattedMessage {...messages.home} /></Link> / {string}
-      </div>
+      <Wrapper>
+        <Container>
+          <Link to={'/'}><FormattedMessage {...messages.home} /></Link> / {string}
+        </Container>
+      </Wrapper>
     );
   } catch (err) {
     return <div></div>;
@@ -87,7 +92,7 @@ Breadcrumbs.propTypes = {
  * Run the appropriate query based on whether or not
  * the 'research' boolean property has been passed.
  * If research is true run ResearchAreaTeaser
- * else run ProgramTeaser
+ * else run subsequently tagged queries
  */
 export default compose(
   graphql(ResearchAreaTeaser, {

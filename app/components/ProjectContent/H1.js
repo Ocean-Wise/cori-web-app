@@ -7,6 +7,7 @@ const H1 = styled(NormalH1)`
   font-size: 72px;
   font-weight: bold;
   line-height: 79px;
+  margin-top: 16px;
   ${mixins.bp.xs.max`
     font-size: 56px;
     line-height: 61px;

@@ -5,6 +5,7 @@ const LinkSection = styled.section`
   display: flex;
   ${mixins.bp.sm.max`
     flex-wrap: wrap;
+    justify-content: center;
   `}
 `;
 

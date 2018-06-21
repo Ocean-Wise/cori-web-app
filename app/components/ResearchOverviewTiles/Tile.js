@@ -57,10 +57,10 @@ const Tile = styled.div`
     width: 400px;
     ${mixins.bp.lg.max`
       width: 90%;
-      bottom: 42px;
+      // bottom: 42px;
     `}
     ${mixins.bp.sm.max`
-      bottom: 60px;
+      bottom: 23px;
     `}
   }
   span.explore {
@@ -73,6 +73,19 @@ const Tile = styled.div`
 
   div {
     opacity: 0;
+  }
+
+  div#hotTopic {
+    height: 23px;
+    width: 106px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    color: #FFFFFF;
+    font-size: 12px;
+    line-height: 22px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.4);
+    opacity: 1;
   }
 
   &:hover {

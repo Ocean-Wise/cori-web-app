@@ -84,7 +84,7 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
                 </Link>
               </center>
             </HoverContainer>
-            <span className="initialTitle subsequent"><span className="areaClassifier">Hot Topic: </span><br />{area.title}</span>
+            <span className="initialTitle subsequent"><div id="hotTopic">Hot Topic</div>{area.title}</span>
           </Tile>
         </Col>
       );

@@ -13,6 +13,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import Header from 'components/Header';
+import Breadcrumbs from 'components/Breadcrumbs';
 import ResearchAreaContent from 'components/ResearchAreaContent';
 import FloatingNav from 'components/FloatingNav';
 
@@ -47,6 +48,7 @@ export class ResearchArea extends React.PureComponent { // eslint-disable-line r
           <meta name="description" content="Description of ResearchArea" />
         </Helmet>
         <Header active={this.props.match.params.slug} />
+        <Breadcrumbs slug={this.props.match.params.slug} location={this.props.match} research />
         {NAV}
         <ResearchAreaContent slug={this.props.match.params.slug} match={this.props.match} width={this.state.width} />
       </div>

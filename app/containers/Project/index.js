@@ -14,6 +14,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import Header from 'components/Header';
+import Breadcrumbs from 'components/Breadcrumbs';
 import ProjectContent from 'components/ProjectContent';
 // import FloatingNav from 'components/FloatingNav';
 
@@ -50,6 +51,7 @@ export class Project extends React.PureComponent { // eslint-disable-line react/
           <meta name="description" content="Description of Project" />
         </Helmet>
         <Header active={this.props.match.params.slug} />
+        <Breadcrumbs slug={this.props.match.params.slug} location={this.props.match} project />
         {/* <div style={{ left: 65 }}>
           {NAV}
         </div> */}
