@@ -6,6 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import ReactMarkdown from 'react-markdown';
 import getHomeCopy from 'graphql/queries/getHomeCopy.graphql';
@@ -13,7 +14,6 @@ import getHomeCopy from 'graphql/queries/getHomeCopy.graphql';
 import Button from 'components/Button';
 
 import H1 from './H1';
-import A from './A';
 import Blockquote from './Blockquote';
 import IntroContainer from './IntroContainer';
 import Wrapper from './Wrapper';
@@ -31,11 +31,11 @@ function HomeCopy({ data: { homeCopies } }) {
     Object.entries(firstButtonData).forEach(
       ([key, value], i) => { // eslint-disable-line
         firstButtons.push(
-          <A href={value} key={i.toString()}>
+          <Link to={value} key={i.toString()}>
             <Button inverted id={`link-${i.toString()}`}>
               {key}
             </Button>
-          </A>
+          </Link>
         );
       }
     );
@@ -45,11 +45,11 @@ function HomeCopy({ data: { homeCopies } }) {
     Object.entries(secondButtonData).forEach(
       ([key, value], i) => { // eslint-disable-line
         secondButtons.push(
-          <A href={value} key={i.toString()}>
+          <Link to={value} key={i.toString()}>
             <Button inverted id={`link-${i.toString()}`}>
               {key}
             </Button>
-          </A>
+          </Link>
         );
       }
     );
@@ -59,11 +59,11 @@ function HomeCopy({ data: { homeCopies } }) {
     Object.entries(thirdButtonData).forEach(
       ([key, value], i) => { // eslint-disable-line
         thirdButtons.push(
-          <A href={value} key={i.toString()}>
+          <Link to={value} key={i.toString()}>
             <Button inverted id={`link-${i.toString()}`}>
               {key}
             </Button>
-          </A>
+          </Link>
         );
       }
     );

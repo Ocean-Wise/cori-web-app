@@ -12,7 +12,7 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import Button from '@material-ui/core/Button';
-import GetPublications from 'components/GetPublications';
+import GetPublications from 'components/GetPublications/Loadable';
 import Header from 'components/Header';
 import Cite from 'citation-js';
 
