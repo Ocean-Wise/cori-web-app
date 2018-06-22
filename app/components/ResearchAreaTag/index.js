@@ -38,7 +38,6 @@ function ResearchAreaTag({ data, slug, match }) {
         string = data[dataQuery][0]._backrefs.researchAreas__via__programs[0].title; // eslint-disable-line
         break;
       case 'projects':
-        console.log(data);
         string = data[dataQuery][0]._backrefs.initiatives__via__projects[0]._backrefs.programs__via__initiatives[0]._backrefs.researchAreas__via__programs[0].title; // eslint-disable-line
         break;
       default:
@@ -52,7 +51,6 @@ function ResearchAreaTag({ data, slug, match }) {
       </Container>
     );
   } catch (err) {
-    console.log(err);
     return <div></div>;
   }
 }

@@ -18,7 +18,6 @@ import ResearchArea from 'containers/ResearchArea/Loadable';
 import Program from 'containers/Program/Loadable';
 import Project from 'containers/Project/Loadable';
 import Publications from 'containers/Publications';
-// import Surveys from 'containers/Surveys';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Footer from 'components/Footer';
 
@@ -60,7 +59,6 @@ export default function App() {
           <Route path="/project/:slug" component={Project} />
           <Route path="/publications/:slug" component={Publications} />
           <Route path="/publications" component={Publications} />
-          {/* <Route path="/surveys" component={Surveys} /> */}
           <Route path="" component={NotFoundPage} />
         </Switch>
         <Footer />
