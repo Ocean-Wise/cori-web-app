@@ -18,18 +18,17 @@ function TeamFilterButtons({ data: { researchAreas }, isFiltered }) {
     researchAreas.forEach((area) => {
       const key = `button-${area.slug}`;
       buttons.push(
-        <Button noBorder id={key} key={key}>
-          <Link to={`/team/${area.slug}`}>
+        <Link key={key} to={`/team/${area.slug}`}>
+          <Button noBorder id={key}>
             {area.title}
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       );
     });
     // Sort for CORI and VA to be 0 and 1, respectively
     let coriIndex;
     let vaIndex;
     buttons.map((item, i) => {
-      console.log(item);
       if (item.key === 'button-cori') coriIndex = i;
       return true;
     });
@@ -48,11 +47,11 @@ function TeamFilterButtons({ data: { researchAreas }, isFiltered }) {
     // Has the user filtered by Research Area?
     if (isFiltered) {
       buttons.unshift(
-        <Button noBorder id="button-all">
-          <Link to="/team">
+        <Link to="/team">
+          <Button noBorder id="button-all">
             All researchers
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       );
     }
 
@@ -63,7 +62,6 @@ function TeamFilterButtons({ data: { researchAreas }, isFiltered }) {
     );
   } catch (err) {
     // An error occurred
-    console.log(err);
     return <div></div>;
   }
 }

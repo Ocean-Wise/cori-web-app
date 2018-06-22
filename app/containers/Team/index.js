@@ -32,7 +32,6 @@ export class Team extends React.PureComponent { // eslint-disable-line react/pre
   }
 
   render() {
-    console.log(this.props.match);
     const MemberComponent = R.isEmpty(this.props.match.params) ? <TeamMembers /> : <AreaMembers slug={this.props.match.params.slug} />;
     return (
       <div>

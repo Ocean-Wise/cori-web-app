@@ -12,8 +12,8 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import ResearchOverviewTiles from 'components/ResearchOverviewTiles';
-import HomeCopy from 'components/HomeCopy';
+import ResearchOverviewTiles from 'components/ResearchOverviewTiles/Loadable';
+import HomeCopy from 'components/HomeCopy/Loadable';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';

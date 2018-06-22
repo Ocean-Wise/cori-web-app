@@ -13,7 +13,6 @@ import Container from './Container';
 
 function TeamCopy({ data: { teamCopies } }) {
   try {
-    console.log(teamCopies);
     return (
       <Container>
         <h1>{teamCopies[0].headline}</h1>
