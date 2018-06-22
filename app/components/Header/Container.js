@@ -12,7 +12,8 @@ const Container = styled.div`
     justify-content: space-between;
   `}
   ${mixins.bp.xs.max`
-    padding: 20px 0;
+    padding-top: 20px;
+    padding-bottom: 45px;
   `}
 `;
 

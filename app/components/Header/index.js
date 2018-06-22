@@ -19,7 +19,7 @@ import Container from './Container';
 
 function Header({ active }) {
   return (
-    <div>
+    <div style={{ borderBottom: '1px solid #CED5E9' }}>
       <OceanWiseNav />
       <Container>
         <Link to="/">

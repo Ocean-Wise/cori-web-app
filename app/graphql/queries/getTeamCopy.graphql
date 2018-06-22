@@ -1,0 +1,6 @@
+query TeamCopy {
+  teamCopies {
+    headline
+    copy
+  }
+}

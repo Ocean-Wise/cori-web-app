@@ -83,9 +83,25 @@ function Button(props) {
     }
   `;
 
+  const noBorder = `
+    #${props.id} {
+      background-color: trasparent !important;
+      color: #00B398 !important;
+      font-size: 12px;
+      line-height: 18px;
+      text-transform: uppercase !important;
+    }
+    #${props.id}:hover {
+      background-color: #00B398 !important;
+      color: #F5F5F5 !important;
+    }
+  `;
+
   let theme;
   if (props.inverted) {
     theme = inverted;
+  } else if (props.noBorder) {
+    theme = noBorder;
   } else {
     theme = primary;
   }
@@ -107,6 +123,7 @@ function Button(props) {
 
 Button.propTypes = {
   inverted: PropTypes.bool,
+  noBorder: PropTypes.bool,
   id: PropTypes.string,
   children: PropTypes.node.isRequired,
   width: PropTypes.number,

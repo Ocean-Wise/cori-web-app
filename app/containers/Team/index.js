@@ -12,13 +12,15 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import R from 'ramda';
+import injectReducer from 'utils/injectReducer';
 
 import Header from 'components/Header';
-import TeamMembers from 'components/TeamMembers';
+import TeamMembers from 'components/TeamMembers/Loadable';
+import TeamCopy from 'components/TeamCopy';
 // import ProjectMembers from 'components/ProjectMembers';
-import AreaMembers from 'components/AreaMembers';
+import AreaMembers from 'components/AreaMembers/Loadable';
+import TeamFilterButtons from 'components/TeamFilterButtons';
 
-import injectReducer from 'utils/injectReducer';
 import makeSelectTeam from './selectors';
 import reducer from './reducer';
 // import messages from './messages';
@@ -30,6 +32,7 @@ export class Team extends React.PureComponent { // eslint-disable-line react/pre
   }
 
   render() {
+    console.log(this.props.match);
     const MemberComponent = R.isEmpty(this.props.match.params) ? <TeamMembers /> : <AreaMembers slug={this.props.match.params.slug} />;
     return (
       <div>
@@ -38,6 +41,8 @@ export class Team extends React.PureComponent { // eslint-disable-line react/pre
           <meta name="description" content="Description of Team" />
         </Helmet>
         <Header active={this.props.match.params.slug} />
+        <TeamCopy />
+        <TeamFilterButtons isFiltered={this.props.match.path.includes(':slug')} />
         {MemberComponent}
       </div>
     );

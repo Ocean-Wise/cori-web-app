@@ -5,7 +5,6 @@ const Person = styled.div`
   margin: 20px 15px;
   cursor: pointer;
   ${mixins.bp.xs.max`
-    margin: 0 auto;
     margin-bottom: 30px;
   `}
   div {
