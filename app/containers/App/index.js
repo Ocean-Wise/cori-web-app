@@ -10,7 +10,6 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import HomePage from 'containers/HomePage/Loadable';
 import Team from 'containers/Team/Loadable';
@@ -41,7 +40,6 @@ const ScrollWrapper = styled.div`
 
 export default function App() {
   return (
-    // <MuiThemeProvider>
     <AppWrapper>
       <ApolloWrapper>
         <Helmet
@@ -57,6 +55,7 @@ export default function App() {
           <Route path="/research/:slug" component={ResearchArea} />
           <Route path="/program/:slug" component={Program} />
           <Route path="/project/:slug" component={Project} />
+          {/* This comment is, for some reason, required for routes to actually render when Linked to... */}
           <Route path="/publications/:slug" component={Publications} />
           <Route path="/publications" component={Publications} />
           <Route path="" component={NotFoundPage} />
@@ -78,6 +77,5 @@ export default function App() {
         </ScrollUpButton>
       </ScrollWrapper>
     </AppWrapper>
-    // </MuiThemeProvider>
   );
 }
