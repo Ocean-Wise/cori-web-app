@@ -189,8 +189,7 @@
       "rss-parser",
       "body-parser",
       "http-auth",
-      "uglifyjs-webpack-plugin",
-      "pg-promise"
+      "uglifyjs-webpack-plugin"
     ],
     "include": [
       "core-js",
@@ -256,7 +255,6 @@
     "ip": "1.1.5",
     "lodash": "4.17.4",
     "minimist": "1.2.0",
-    "pg-promise": "^8.4.4",
     "prop-types": "15.5.10",
     "ramda": "^0.25.0",
     "react": "16.4.0",

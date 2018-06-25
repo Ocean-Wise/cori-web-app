@@ -6,8 +6,6 @@ FROM node
 ENV NPM_CONFIG_LOGLEVEL warn
 ARG app_env
 ENV NODE_ENV $app_env
-ARG database_url
-ENV DATABASE_URL $database_url
 
 RUN mkdir -p /web
 WORKDIR /web
