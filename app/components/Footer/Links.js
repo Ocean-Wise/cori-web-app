@@ -23,6 +23,9 @@ function Links() {
             Ocean Pollution
           </A>
           <A href="#">
+            Plastics Lab
+          </A>
+          <A href="#">
             Coastal Ocean Health
           </A>
           <A href="#">
@@ -40,7 +43,7 @@ function Links() {
             Fish Propagation
           </A>
           <A href="#">
-            Animal Rehabilitation
+            Animal Health
           </A>
           <A href="#">
             Energetics and Metabolism
@@ -63,7 +66,7 @@ function Links() {
             Special Places
           </A>
           <A href="#">
-            Threatened Species
+            Species Under Threat
           </A>
         </Row>
         <Row>
@@ -72,6 +75,9 @@ function Links() {
           </H4>
           <A href="#">
             About
+          </A>
+          <A href="#">
+            Contact
           </A>
           <A href="#">
             Team

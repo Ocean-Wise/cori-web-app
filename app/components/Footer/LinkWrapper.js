@@ -5,7 +5,7 @@ import Wrapper from './Wrapper';
 const LinkWrapper = styled.div`
   ${Wrapper}
   border-top: none;
-  ${mixins.bp.xs.min`
+  ${mixins.bp.xs.max`
     max-width: 530px;
   `}
   ${mixins.bp.md.min`

@@ -8,12 +8,9 @@ const A = NormalA.extend`
   justify-content: space-between;
   color: #6A7B83 !important;
   text-decoration: none;
-  font-size: 14px;
-  text-align: left;
-  ${mixins.bp.sm.max`
-    line-height: 14px;
-    font-size: 12px;
-  `}
+  line-height: 14px;
+  font-size: 12px;
+  margin-top: 20px;
   ${mixins.bp.xs.max`
     text-align: center;
   `}

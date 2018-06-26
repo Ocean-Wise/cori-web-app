@@ -8,7 +8,7 @@ const Row = styled.div`
   &:not(:first-of-type) {
     margin-left: 3em;
   }
-  max-width: 180px;
+  max-width: 190px;
   ${mixins.bp.lg.max`
     &:not(:first-of-type) {
       margin-left: 2em;

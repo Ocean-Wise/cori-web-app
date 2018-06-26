@@ -9,6 +9,7 @@ const Hr = styled.div`
     border-top: 1px solid #E9EEF6;
     width: 95%;
     height: 1px;
+    margin-bottom: 30px;
   `}
 `;
 

@@ -2,11 +2,12 @@ import NormalH4 from 'components/H4';
 import * as mixins from 'styles/mixins';
 
 const H4 = NormalH4.extend`
-  font-size: 18px;
+  font-size: 12px;
   font-weight: bold;
   line-height: 18px;
   color: #6A7B83;
   margin-top: 0;
+  margin-bottom: 0;
   text-align: left;
   ${mixins.bp.sm.max`
     font-size: 12px;
