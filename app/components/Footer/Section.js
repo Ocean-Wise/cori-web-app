@@ -7,10 +7,14 @@ const Section = styled.section`
   `}; */}
   span {
     font-weight: bold;
-    font-size: 18px;
-    color: #8D8D8D;
+    font-size: 12px;
+    color: #B2BEC4;
+    line-height: 18px;
     &:not(#copy) {
       margin-right: 30px;
+    }
+    &#copy {
+      font-weight: normal;
     }
     ${mixins.bp.sm.max`
       font-size: 12px;

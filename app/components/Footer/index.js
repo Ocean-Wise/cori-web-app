@@ -31,10 +31,11 @@ function Footer() {
             <span>About Ocean Wise&reg;</span>
             <span>Terms</span>
             <span>Privacy</span>
+            <span id="copy">&copy; 2018 Ocean Wise</span>
           </Container>
         </Section>
         <Section>
-          <span id="copy">&copy; 2018 Ocean Wise</span>
+          Social Media Icons
         </Section>
       </Wrapper>
     </div>
