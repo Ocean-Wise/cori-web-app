@@ -92,11 +92,13 @@ class DrawerNav extends React.Component { // eslint-disable-line react/prefer-st
                 Publications
               </Button>
             </Link>
-            <OWButton inverted noMargin width={100} height={40} id="donate">
-              <a href="#donate">
-                Donate
-              </a>
-            </OWButton>
+            <div style={{ marginLeft: 31 }}>
+              <OWButton inverted noMargin width={100} height={40} id="donate">
+                <a href="#donate">
+                  Donate
+                </a>
+              </OWButton>
+            </div>
           </Container>
         </SwipeableDrawer>
       </div>

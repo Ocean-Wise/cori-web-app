@@ -15,9 +15,6 @@ import Paper from './Paper';
 function FloatingNav({ active }) {
   return (
     <Paper elevation={8}>
-      <div style={{ color: '#6A7B83', fontSize: 24, fontWeight: '300', lineHeight: '30px', letterSpacing: '3px', padding: '32px' }}>
-        Research Areas
-      </div>
       <Nav active={active} />
     </Paper>
   );

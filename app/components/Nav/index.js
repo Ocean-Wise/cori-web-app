@@ -17,6 +17,7 @@ import MinusRaw from '@material-ui/icons/Remove';
 
 import ResearchArea from './ResearchArea';
 import ProgramContainer from './ProgramContainer';
+import TitleContainer from './TitleContainer';
 import Program from './Program';
 import Initiative from './Initiative';
 
@@ -202,6 +203,18 @@ function Nav({ data: { researchAreas }, active }) {
     tmp = nav[1];
     nav[1] = nav[vaIndex];
     nav[vaIndex] = tmp;
+
+    // Insert Research Area and Hot Topic titles
+    nav.unshift(
+      <TitleContainer>
+        Research Areas
+      </TitleContainer>
+    );
+    nav.splice(3, 0, (
+      <TitleContainer>
+        Hot Topics
+      </TitleContainer>
+    ));
   } catch (err) {
     // An error happened, but we don't really care
   }
