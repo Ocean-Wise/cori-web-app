@@ -17,6 +17,7 @@ import createHistory from 'history/createBrowserHistory';
 import 'sanitize.css/sanitize.css';
 import throttle from 'lodash/throttle';
 import { ThemeProvider } from 'styled-components';
+import browserUpdate from 'browser-update';
 
 // Import root app
 import App from 'containers/App';
@@ -66,6 +67,8 @@ store.subscribe(throttle(() => {
     language: store.getState().get('language'), // Get and set only the language from the state
   });
 }, 1000));
+
+browserUpdate({ required: { i: 12 }, unsupported: true, url: 'http://outdatedbrowser.com', no_permanent_hide: true, reminder: 0 });
 
 const MOUNT_NODE = document.getElementById('app');
 

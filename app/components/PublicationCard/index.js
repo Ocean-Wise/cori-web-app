@@ -7,6 +7,7 @@
 import React from 'react';
 // import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -21,7 +22,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FileIcon from '@material-ui/icons/Description';
-import Cite from 'citation-js';
 
 // import messages from './messages';
 
@@ -53,7 +53,7 @@ const styles = () => ({
 class PublicationCard extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   state = {
     expanded: false,
-    citation: new Cite(this.props.data.citation),
+    citation: this.props.data.citation,
     citationString: '',
     inArray: this.props.isSelected,
   };
@@ -63,19 +63,35 @@ class PublicationCard extends React.PureComponent { // eslint-disable-line react
   }
 
   bibtex = () => {
-    this.setState({ citationString: this.state.citation.get({ style: 'bibtex', type: 'string' }) });
+    axios.post(`${window.location.origin}/api/citation`, { citations: this.state.citation, style: 'bibtex' })
+      .then((res) => {
+        this.setState({ citationString: res.data });
+      })
+      .catch();
   }
 
   apa = () => {
-    this.setState({ citationString: this.state.citation.get({ style: 'citation-apa', type: 'string' }) });
+    axios.post(`${window.location.origin}/api/citation`, { citations: this.state.citation, style: 'apa' })
+      .then((res) => {
+        this.setState({ citationString: res.data });
+      })
+      .catch();
   }
 
   vancouver = () => {
-    this.setState({ citationString: this.state.citation.get({ style: 'citation-vancouver', type: 'string' }) });
+    axios.post(`${window.location.origin}/api/citation`, { citations: this.state.citation, style: 'vancouver' })
+      .then((res) => {
+        this.setState({ citationString: res.data });
+      })
+      .catch();
   }
 
   harvard = () => {
-    this.setState({ citationString: this.state.citation.get({ style: 'citation-harvard1', type: 'string' }) });
+    axios.post(`${window.location.origin}/api/citation`, { citations: this.state.citation, style: 'harvard' })
+      .then((res) => {
+        this.setState({ citationString: res.data });
+      })
+      .catch();
   }
 
   handleCheck = () => {

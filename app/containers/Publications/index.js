@@ -6,6 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 // import { FormattedMessage } from 'react-intl';
@@ -14,7 +15,6 @@ import { compose } from 'redux';
 import Button from '@material-ui/core/Button';
 import GetPublications from 'components/GetPublications/Loadable';
 import Header from 'components/Header';
-import Cite from 'citation-js';
 
 import injectReducer from 'utils/injectReducer';
 import makeSelectPublications from './selectors';
@@ -38,16 +38,16 @@ export class Publications extends React.PureComponent { // eslint-disable-line r
 
   generateList = () => {
     const list = this.props.publications.list;
-    const citationList = new Cite();
-    list.forEach((item) => {
-      citationList.add(item.citation);
-    });
-
-    const element = document.createElement('a');
-    const file = new Blob([citationList.get({ style: 'bibtex', type: 'string' })], { type: 'text/plain' });
-    element.href = URL.createObjectURL(file);
-    element.download = 'OceanWiseResearch.bib';
-    element.click();
+    axios.post(`${window.location.origin}/api/citation`, { list })
+      .then((res) => {
+        // BUG: This does not work in Firefox. Why?
+        const element = document.createElement('a');
+        const file = new Blob([res.data], { type: 'text/plain' });
+        element.href = URL.createObjectURL(file);
+        element.download = 'OceanWiseResearch.bib';
+        element.click();
+      })
+      .catch();
   }
 
   render() {

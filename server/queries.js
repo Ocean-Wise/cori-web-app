@@ -1,3 +1,52 @@
+// Research Citation generator
+const Cite = require('citation-js');
+
+/*
+ * handleGenerateCitation
+ *
+ * Creates a single citation or citation list
+ * for a passed BibTeX entry. Return them as
+ * a string.
+ *
+ */
+function handleGenerateCitation(req, res) {
+  try {
+    let output;
+    const citations = new Cite();
+
+    if (req.body.list !== undefined) {
+      req.body.list.forEach((item) => {
+        citations.add(item.citation);
+      });
+      output = citations.get({ style: 'bibtex', type: 'string' });
+    } else {
+      citations.add(req.body.citations);
+      switch (req.body.style) {
+        case 'bibtex':
+          output = citations.get({ style: 'bibtex', type: 'string' });
+          break;
+        case 'apa':
+          output = citations.get({ style: 'citation-apa', type: 'string' });
+          break;
+        case 'vancouver':
+          output = citations.get({ style: 'citation-vancouver', type: 'string' });
+          break;
+        case 'harvard':
+          output = citations.get({ style: 'citation-harvard1', type: 'string' });
+          break;
+        default:
+          output = citations.get({ style: 'bibtex', type: 'string' });
+          break;
+      }
+    }
+
+    res.status(200).send(output);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+}
+
 // Rss Parser
 const Parser = require('rss-parser');
 const parser = new Parser();
@@ -84,5 +133,6 @@ async function handleGetRSS(req, res) {
 }
 
 module.exports = {
+  getCitation: handleGenerateCitation,
   getRSS: handleGetRSS,
 };
