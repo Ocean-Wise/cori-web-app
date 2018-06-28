@@ -14,6 +14,9 @@ const ResearchArea = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  &:focus {
+    outline: none;
+  }
   svg {
     padding: 4px 0;
   }
