@@ -49,7 +49,7 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
                 </a>
               </div>
             );
-          } else {
+          } else if (project.type === 'PDF') {
             column.push(
               <div key={`project-${j.toString()}`} style={{ paddingBottom: 10 }}>
                 <a href={project.pdf.url} style={{ fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>

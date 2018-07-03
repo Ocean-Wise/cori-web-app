@@ -41,6 +41,8 @@ export class ResearchArea extends React.PureComponent { // eslint-disable-line r
 
   render() {
     const NAV = this.state.width < 1200 ? '' : <FloatingNav active={this.props.match.params.slug} location={this.props.match} />;
+    const hotTopic = !(this.props.match.params.slug === 'cori' || this.props.match.params.slug === 'vancouver-aquarium');
+
     return (
       <div>
         <Helmet>
@@ -50,7 +52,7 @@ export class ResearchArea extends React.PureComponent { // eslint-disable-line r
         <Header active={this.props.match.params.slug} />
         <Breadcrumbs slug={this.props.match.params.slug} location={this.props.match} research />
         {NAV}
-        <ResearchAreaContent slug={this.props.match.params.slug} match={this.props.match} width={this.state.width} />
+        <ResearchAreaContent hotTopic={hotTopic} slug={this.props.match.params.slug} match={this.props.match} width={this.state.width} />
       </div>
     );
   }

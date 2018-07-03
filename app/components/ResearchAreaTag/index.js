@@ -13,8 +13,9 @@ import ProgramTeaser from 'graphql/queries/getProgramTeaser.graphql';
 import ProjectTeaser from 'graphql/queries/getProjectTeaser.graphql';
 
 import Container from './Container';
+import HotTopicContainer from './HotTopicContainer';
 
-function ResearchAreaTag({ data, slug, match }) {
+function ResearchAreaTag({ data, match }) {
   try {
     // Set up our variables pertaining to the query
     let dataQuery;
@@ -30,24 +31,37 @@ function ResearchAreaTag({ data, slug, match }) {
     }
 
     let string;
+    let linkSlug;
     switch (dataQuery) {
       case 'researchAreas':
         string = data[dataQuery][0].title;
+        linkSlug = data[dataQuery][0].slug;
         break;
       case 'programs':
         string = data[dataQuery][0]._backrefs.researchAreas__via__programs[0].title; // eslint-disable-line
+        linkSlug = data[dataQuery][0]._backrefs.researchAreas__via__programs[0].slug; // eslint-disable-line
         break;
       case 'projects':
         string = data[dataQuery][0]._backrefs.initiatives__via__projects[0]._backrefs.programs__via__initiatives[0]._backrefs.researchAreas__via__programs[0].title; // eslint-disable-line
+        linkSlug = data[dataQuery][0]._backrefs.initiatives__via__projects[0]._backrefs.programs__via__initiatives[0]._backrefs.researchAreas__via__programs[0].slug; // eslint-disable-line
         break;
       default:
         string = '';
+        linkSlug = '';
         break;
+    }
+
+    if (linkSlug !== ('cori' || 'vancouver-aquarium')) {
+      return (
+        <HotTopicContainer>
+          <Link to={`/research/${linkSlug}`}>Hot Topic</Link>
+        </HotTopicContainer>
+      );
     }
 
     return (
       <Container>
-        <Link to={`/research/${slug}`}>{string}</Link>
+        <Link to={`/research/${linkSlug}`}>{string}</Link>
       </Container>
     );
   } catch (err) {
@@ -57,7 +71,6 @@ function ResearchAreaTag({ data, slug, match }) {
 
 ResearchAreaTag.propTypes = {
   data: PropTypes.object.isRequired,
-  slug: PropTypes.string.isRequired,
   match: PropTypes.object.isRequired,
 };
 
