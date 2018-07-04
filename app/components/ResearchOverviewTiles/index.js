@@ -28,7 +28,7 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
     topRow.push(
       <Col key="cori-tile" md={6} style={{ padding: 0 }}>
         <Tile id="tile-1" image={cori.hero.url} width="100%">
-          <div style={{ zIndex: 10, position: 'relative', top: 65, padding: 30 }}>
+          <div id="hover" style={{ zIndex: 10, position: 'relative', top: 65, padding: 30 }}>
             <H1>{cori.title}</H1>
             <P>{cori.subheader}</P>
             <center>
@@ -39,14 +39,14 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
               </Link>
             </center>
           </div>
-          <span className="initialTitle">{cori.title}</span>
+          <span id="topTitle" className="initialTitle">{cori.title}</span>
         </Tile>
       </Col>
     );
     topRow.push(
       <Col key="va-tile" md={6} style={{ padding: 0 }}>
         <Tile id="tile-1" image={va.hero.url} width="100%">
-          <div style={{ zIndex: 10, position: 'relative', top: 65, padding: 30 }}>
+          <div id="hover" style={{ zIndex: 10, position: 'relative', top: 65, padding: 30 }}>
             <H1>{va.title}</H1>
             <P>{va.subheader}</P>
             <center>
@@ -57,7 +57,7 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
               </Link>
             </center>
           </div>
-          <span className="initialTitle">{va.title}</span>
+          <span id="topTitle" className="initialTitle">{va.title}</span>
         </Tile>
       </Col>
     );

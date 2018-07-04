@@ -10,7 +10,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
-import ChevronRight from '@material-ui/icons/ChevronRight';
+import ChevronRight from 'styles/icons/ChevronRight.svg';
 import P from 'components/P';
 
 import { FormattedMessage } from 'react-intl';
@@ -106,7 +106,7 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
         <Row>
           <Col xl={4} />
           <Col xl={5} style={{ margin: '-10px 0' }}>
-            <A href="https://aquablog.ca/" target="_blank">See more on Aquablog.ca <ChevronRight style={{ fontSize: 40 }} /></A>
+            <A href="https://aquablog.ca/" target="_blank">See more on Aquablog.ca <img style={{ width: 25 }} alt="ChevronRight" src={ChevronRight} /></A>
           </Col>
         </Row>
       </Grid>

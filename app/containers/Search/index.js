@@ -14,7 +14,7 @@ import { connectHits, connectStateResults } from 'react-instantsearch/connectors
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from 'styles/icons/search.svg';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -123,7 +123,7 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
     return (
       <div>
         <IconButton aria-label="Search" onClick={this.toggleSearch}>
-          <SearchIcon />
+          <img alt="Search" src={SearchIcon} style={{ width: 25 }} />
         </IconButton>
         <Dialog
           fullScreen={fullScreen}

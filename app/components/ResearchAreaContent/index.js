@@ -91,7 +91,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, width, hotTopic })
                   <p>{area.teamCopy}</p>
                   <Link to={`/team/${slug}`}>
                     <Button id="team">
-                      Get to know our researchers <ChevronRight style={{ fontSize: 30 }} />
+                      Get to know our researchers <ChevronRight style={{ fontSize: 30, marginLeft: 15 }} />
                     </Button>
                   </Link>
                 </Container>
@@ -105,7 +105,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, width, hotTopic })
                   <p>{area.publicationCopy}</p>
                   <Link to={`/publications/${slug}`}>
                     <Button id="publications">
-                      Find our publications <ChevronRight style={{ fontSize: 30 }} />
+                      Find our publications <ChevronRight style={{ fontSize: 30, marginLeft: 15 }} />
                     </Button>
                   </Link>
                 </Container>

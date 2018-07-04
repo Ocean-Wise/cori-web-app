@@ -10,7 +10,7 @@ import axios from 'axios';
 // import { Link } from 'react-router-dom';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
-import ChevronRight from '@material-ui/icons/ChevronRight';
+import ChevronRight from 'styles/icons/ChevronRight.svg';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
@@ -67,7 +67,7 @@ class MediaReleases extends React.PureComponent { // eslint-disable-line react/p
         <Row style={{ marginTop: 15 }}>
           <Col xl={4} />
           <Col xl={5} style={{ maxWidth: 850 }}>
-            <A href="https://ocean.org/media-releases" target="_blank">View more media releases <ChevronRight style={{ fontSize: 40 }} /></A>
+            <A href="https://ocean.org/media-releases" target="_blank">View more media releases <img style={{ width: 25 }} alt="ChevronRight" src={ChevronRight} /></A>
           </Col>
         </Row>
       </Grid>

@@ -7,6 +7,7 @@ const Container = styled.div`
   font-weight: 700;
   font-size: 1rem;
   float: right;
+  margin-top: -10px;
   button {
     color: #6A7B83;
     font-size: 14px;
@@ -17,7 +18,11 @@ const Container = styled.div`
     text-transform: capitalize;
     min-width: 66px;
     min-height: 45px;
-    padding: 6px 12px;
+    padding: 6px 16px;
+  }
+  button#donate {
+    margin-left: 15px !important;
+    margin-right: 5px !important;
   }
 `;
 

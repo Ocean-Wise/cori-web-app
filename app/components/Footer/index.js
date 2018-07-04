@@ -1,10 +1,16 @@
 import React from 'react';
+import Facebook from 'styles/icons/facebook.svg';
+import Twitter from 'styles/icons/twitter.svg';
+import Instagram from 'styles/icons/instagram.svg';
+import YouTube from 'styles/icons/youtube.svg';
+import Snapchat from 'styles/icons/snapchat.svg';
 // import { FormattedMessage } from 'react-intl';
+// import messages from './messages';
 
 // import A from 'components/A';
 import Wrapper from './Wrapper';
 import Section from './Section';
-// import messages from './messages';
+import SocialWrapper from './SocialWrapper';
 import Logo from './Logo';
 import OWLogo from './logo.svg';
 import Links from './Links';
@@ -35,7 +41,23 @@ function Footer() {
           </Container>
         </Section>
         <Section>
-          Social Media Icons
+          <SocialWrapper>
+            <a href="https://facebook.com/oceanwise" target="_blank">
+              <img alt="Facebook" src={Facebook} />
+            </a>
+            <a href="https://twitter.com/Oceanwise" target="_blank">
+              <img alt="Twitter" src={Twitter} />
+            </a>
+            <a href="https://www.instagram.com/oceanwise" target="_blank">
+              <img alt="Instagram" src={Instagram} />
+            </a>
+            <a href="https://www.youtube.com/channel/UC0hLWXESQRctgaVPT-8N7Rw" target="_blank">
+              <img alt="YouTube" src={YouTube} />
+            </a>
+            <a href="https://www.snapchat.com/add/oceanwise" target="_blank">
+              <img alt="Snapchat" src={Snapchat} />
+            </a>
+          </SocialWrapper>
         </Section>
       </Wrapper>
     </div>

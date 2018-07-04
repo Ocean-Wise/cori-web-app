@@ -106,6 +106,17 @@ const Tile = styled.div`
     }
   }
 
+  ${mixins.bp.xs.max`
+    div#hover {
+      position: unset !important;
+    }
+  `}
+
+  @media all and (max-width: 321px) {
+    span#topTitle {
+      bottom: 62px;
+    }
+  }
 
 `;
 

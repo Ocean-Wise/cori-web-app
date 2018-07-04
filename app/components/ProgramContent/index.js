@@ -11,7 +11,8 @@ import { graphql } from 'react-apollo';
 import ReactMarkdown from 'react-markdown';
 import getProgram from 'graphql/queries/getProgram.graphql';
 import { Grid, Row, Col } from 'react-flexbox-grid';
-import ChevronRight from '@material-ui/icons/ChevronRight';
+// import ChevronRight from '@material-ui/icons/ChevronRight';
+import ChevronRight from 'styles/icons/ChevronRight.svg';
 
 import ResearchAreaTag from 'components/ResearchAreaTag';
 import ProjectFeatured from 'components/ProjectFeatured/Loadable';
@@ -45,7 +46,7 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
             column.push(
               <div key={`project-${j.toString()}`} style={{ paddingBottom: 10 }}>
                 <a href={project.externalLink} style={{ fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>
-                  <span style={{ color: '#00B398' }}>{project.projectTitle} <ChevronRight style={{ marginLeft: -5 }} /></span>
+                  <span style={{ color: '#00B398' }}>{project.projectTitle} <img alt="Chevron" style={{ width: 25, marginLeft: 0 }} src={ChevronRight} /></span>
                 </a>
               </div>
             );
@@ -53,7 +54,7 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
             column.push(
               <div key={`project-${j.toString()}`} style={{ paddingBottom: 10 }}>
                 <a href={project.pdf.url} style={{ fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>
-                  <span style={{ color: '#00B398' }}>{project.projectTitle} <ChevronRight style={{ marginLeft: -5 }} /></span>
+                  <span style={{ color: '#00B398' }}>{project.projectTitle} <img alt="Chevron" style={{ width: 25, marginLeft: 0 }} src={ChevronRight} /></span>
                 </a>
               </div>
             );
@@ -62,7 +63,7 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
           column.push(
             <div key={`project-${j.toString()}`} style={{ paddingBottom: 10 }}>
               <Link to={`/project/${project.slug}`} style={{ fontSize: 15, lineHeight: '18px', fontWeight: 'bold' }}>
-                <span style={{ color: '#00B398' }}>{project.projectTitle} <ChevronRight style={{ marginLeft: -5 }} /></span>
+                <span style={{ color: '#00B398' }}>{project.projectTitle} <img alt="Chevron" style={{ width: 25, marginLeft: 0 }} src={ChevronRight} /></span>
               </Link>
             </div>
           );
