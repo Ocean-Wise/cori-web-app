@@ -21,6 +21,8 @@ import injectReducer from 'utils/injectReducer';
 import makeSelectPublications from './selectors';
 import reducer from './reducer';
 import { addToList, removeFromList } from './actions';
+
+import Container from './Container';
 // import messages from './messages';
 
 export class Publications extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -39,16 +41,18 @@ export class Publications extends React.PureComponent { // eslint-disable-line r
 
   generateList = () => {
     const list = this.props.publications.list;
-    axios.post(`${window.location.origin}/api/citation`, { list })
-      .then((res) => {
-        // BUG: This does not work in Firefox. Why?
-        const element = document.createElement('a');
-        const file = new Blob([res.data], { type: 'text/plain' });
-        element.href = URL.createObjectURL(file);
-        element.download = 'OceanWiseResearch.bib';
-        element.click();
-      })
-      .catch();
+    if (list.length > 0) {
+      axios.post(`${window.location.origin}/api/citation`, { list })
+        .then((res) => {
+          // BUG: This does not work in Firefox. Why?
+          const element = document.createElement('a');
+          const file = new Blob([res.data], { type: 'text/plain' });
+          element.href = URL.createObjectURL(file);
+          element.download = 'OceanWiseResearch.bib';
+          element.click();
+        })
+        .catch();
+    }
   }
 
   render() {
@@ -60,18 +64,18 @@ export class Publications extends React.PureComponent { // eslint-disable-line r
         </Helmet>
         <Header />
         {/* TODO: Make this a function component that pulls in CMS data */}
-        <div style={{ maxWidth: 730, margin: '0 auto' }}>
+        <Container>
           <center>
             <h1>Publications</h1>
             <p>Vivamus non quam, efficitur, consectetur ante sed, tincidunt tortor. Fusce ut tincidunt nisi, ac condimentum quam.</p>
           </center>
-        </div>
-        {/* TODO: Make this a select menu. Make this div into a styled component
-                  Add a function to the backend that ensures there is at least one citation!
-         */}
-        <div style={{ borderBottom: '1px solid #00B398', maxWidth: 1120, margin: '63px auto' }}>
-          <Button onClick={this.swapSort}>Sort Year {this.state.sorting === 'asc' ? 'Descending' : 'Ascending'}</Button>
-          <Button onClick={this.setAlpha}>Sort Alphabetically</Button>
+        </Container>
+        {/* TODO: Make this a select menu. Make this div into a styled component */}
+        <div style={{ borderBottom: '1px solid #00B398', maxWidth: 1120, margin: '63px auto', display: 'flex', justifyContent: 'space-between' }}>
+          <div>
+            <Button onClick={this.swapSort}>Sort Year {this.state.sorting === 'asc' ? 'Descending' : 'Ascending'}</Button>
+            <Button onClick={this.setAlpha}>Sort Alphabetically</Button>
+          </div>
           <Button onClick={this.generateList}>Generate Citation List <img src={DownloadIcon} alt="Download" style={{ height: 25 }} /></Button>
         </div>
         {/* TODO: Make this div into a styled component. Update styles within GetPublications' PublicationCard */}
