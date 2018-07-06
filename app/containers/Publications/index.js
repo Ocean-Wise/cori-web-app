@@ -58,17 +58,30 @@ export class Publications extends React.PureComponent { // eslint-disable-line r
           <meta name="description" content="Description of Publications" />
         </Helmet>
         <Header />
-        <Button onClick={this.swapSort}>Sort Year {this.state.sorting === 'asc' ? 'Descending' : 'Ascending'}</Button>
-        <Button onClick={this.setAlpha}>Sort Alphabetically</Button>
-        <Button onClick={this.generateList}>Generate Reading List</Button>
-        <GetPublications
-          match={this.props.match}
-          selected={this.props.publications.list}
-          sort={this.state.sorting}
-          alpha={this.state.alpha}
-          addToList={this.props.addItem}
-          removeFromList={this.props.removeItem}
-        />
+        {/* TODO: Make this a function component that pulls in CMS data */}
+        <div style={{ maxWidth: 730, margin: '0 auto' }}>
+          <center>
+            <h1>Publications</h1>
+            <p>Vivamus non quam, efficitur, consectetur ante sed, tincidunt tortor. Fusce ut tincidunt nisi, ac condimentum quam.</p>
+          </center>
+        </div>
+        {/* TODO: Make this a select menu. Make this div into a styled component */}
+        <div style={{ borderBottom: '1px solid #00B398', maxWidth: 1120, margin: '63px auto' }}>
+          <Button onClick={this.swapSort}>Sort Year {this.state.sorting === 'asc' ? 'Descending' : 'Ascending'}</Button>
+          <Button onClick={this.setAlpha}>Sort Alphabetically</Button>
+          <Button onClick={this.generateList}>Generate Reading List</Button>
+        </div>
+        {/* TODO: Make this div into a styled component. Update styles within GetPublications' PublicationCard */}
+        <div style={{ boxShadow: '0 1px 3px 0 rgba(0,0,0,0.24), 8px -8px 0 0 #CCF0EA', maxWidth: 1120, margin: '0 auto 120px' }}>
+          <GetPublications
+            match={this.props.match}
+            selected={this.props.publications.list}
+            sort={this.state.sorting}
+            alpha={this.state.alpha}
+            addToList={this.props.addItem}
+            removeFromList={this.props.removeItem}
+          />
+        </div>
       </div>
     );
   }
