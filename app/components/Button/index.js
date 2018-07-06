@@ -43,6 +43,9 @@ function Button(props) {
       border: 1px solid transparent !important;
       transition: ${transition};
     }
+    #${props.id}:hover #svg {
+      filter: brightness(0) invert(0.93);
+    }
     #${props.id} {
       background-color: transparent !important;
       color: rgb(0, 179, 152) !important;
@@ -111,7 +114,7 @@ function Button(props) {
       <style>
         {theme}
       </style>
-      <RaisedButton id={props.id} style={style.root}>
+      <RaisedButton id={props.id} style={style.root} href={props.href}>
         {Children.toArray(props.children)}
       </RaisedButton>
       {/* <RaisedButton style={style.root} buttonStyle={style.button} overlayStyle={style.overlay} rippleStyle={{height: '55px'}}>
@@ -129,6 +132,7 @@ Button.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
   noMargin: PropTypes.bool,
+  href: PropTypes.string,
 };
 
 export default Button;

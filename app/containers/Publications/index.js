@@ -15,6 +15,7 @@ import { compose } from 'redux';
 import Button from '@material-ui/core/Button';
 import GetPublications from 'components/GetPublications/Loadable';
 import Header from 'components/Header';
+import DownloadIcon from 'styles/icons/download.svg';
 
 import injectReducer from 'utils/injectReducer';
 import makeSelectPublications from './selectors';
@@ -65,11 +66,13 @@ export class Publications extends React.PureComponent { // eslint-disable-line r
             <p>Vivamus non quam, efficitur, consectetur ante sed, tincidunt tortor. Fusce ut tincidunt nisi, ac condimentum quam.</p>
           </center>
         </div>
-        {/* TODO: Make this a select menu. Make this div into a styled component */}
+        {/* TODO: Make this a select menu. Make this div into a styled component
+                  Add a function to the backend that ensures there is at least one citation!
+         */}
         <div style={{ borderBottom: '1px solid #00B398', maxWidth: 1120, margin: '63px auto' }}>
           <Button onClick={this.swapSort}>Sort Year {this.state.sorting === 'asc' ? 'Descending' : 'Ascending'}</Button>
           <Button onClick={this.setAlpha}>Sort Alphabetically</Button>
-          <Button onClick={this.generateList}>Generate Reading List</Button>
+          <Button onClick={this.generateList}>Generate Citation List <img src={DownloadIcon} alt="Download" style={{ height: 25 }} /></Button>
         </div>
         {/* TODO: Make this div into a styled component. Update styles within GetPublications' PublicationCard */}
         <div style={{ boxShadow: '0 1px 3px 0 rgba(0,0,0,0.24), 8px -8px 0 0 #CCF0EA', maxWidth: 1120, margin: '0 auto 120px' }}>

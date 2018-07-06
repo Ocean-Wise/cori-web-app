@@ -16,18 +16,26 @@ import { withStyles } from '@material-ui/core/styles';
 // import CardContent from '@material-ui/core/CardContent';
 // import CardActions from '@material-ui/core/CardActions';
 // import Collapse from '@material-ui/core/Collapse';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
+import Button from 'components/Button';
+// import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 // import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FileIcon from '@material-ui/icons/Description';
+// import FileIcon from '@material-ui/icons/Description';
+import PDFIcon from 'styles/icons/pdf.svg';
 import Container from './Container';
 
 // import messages from './messages';
 
 const styles = () => ({
+  checkRoot: {
+    color: '#00B398',
+    '&$checked': {
+      color: '#00B398',
+    },
+  },
+  checked: {},
   label: {
     flexDirection: 'row-reverse',
     marginRight: 0,
@@ -120,8 +128,13 @@ class PublicationCard extends React.PureComponent { // eslint-disable-line react
     ) : '';
 
     const downloadFile = data.pdf !== null ? (
-      <div>
-        <IconButton><a href={data.pdf.url} style={{ paddingBottom: 5, paddingLeft: 1 }}><FileIcon /></a></IconButton>
+      <div style={{ marginRight: 12 }}>
+        <Button id="download" href={data.pdf.url}>
+          <div style={{ padding: '0 10px 5px' }}>
+            <span style={{ position: 'relative', top: 2, marginRight: 10 }}>Download</span>
+            <img id="svg" style={{ height: 25 }} src={PDFIcon} alt="Download PDF" />
+          </div>
+        </Button>
       </div>
     ) : '';
 
@@ -153,6 +166,10 @@ class PublicationCard extends React.PureComponent { // eslint-disable-line react
                   className={classes.label}
                   control={
                     <Checkbox
+                      classes={{
+                        root: classes.checkRoot,
+                        checked: classes.checked,
+                      }}
                       checked={this.props.isSelected && this.state.inArray}
                       onChange={this.handleCheck}
                     />
