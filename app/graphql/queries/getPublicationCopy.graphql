@@ -1,0 +1,6 @@
+query PublicationCopy {
+  publicationCopies {
+    title
+    copy
+  }
+}

@@ -19,13 +19,23 @@ function GetPublications({ data: { publications }, sort, alpha, addToList, remov
       sort === 'asc' ? sortAsc : sortDesc
     );
     if (alpha) {
-      sorted = sorted.sort(
-        (a, b) => {
-          if (a.title < b.title) return -1;
-          if (a.title > b.title) return 1;
-          return 0;
-        }
-      );
+      if (sort === 'asc') {
+        sorted = sorted.sort(
+          (a, b) => {
+            if (a.title < b.title) return -1;
+            if (a.title > b.title) return 1;
+            return 0;
+          }
+        );
+      } else {
+        sorted = sorted.sort(
+          (a, b) => {
+            if (a.title < b.title) return 1;
+            if (a.title > b.title) return -1;
+            return 0;
+          }
+        );
+      }
     }
     sorted.forEach((publication, i) => {
       let isSelected = false;

@@ -95,8 +95,35 @@ function Button(props) {
       text-transform: uppercase !important;
     }
     #${props.id}:hover {
-      background-color: #00B398 !important;
-      color: #F5F5F5 !important;
+      background-color: #E9EEF6 !important;
+    }
+  `;
+
+  const publication = `
+    #${props.id}:hover {
+      background-color: rgb(0, 179, 152) !important;
+      color: #efefef !important;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 12px;
+      text-transform: unset;
+      border: 1px solid transparent !important;
+      transition: ${transition};
+    }
+    #${props.id}:hover #svg {
+      filter: brightness(0) invert(0.93);
+    }
+    #${props.id} {
+      background-color: transparent !important;
+      color: rgb(0, 179, 152) !important;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 12px;
+      text-transform: unset;
+      border: 1px solid rgb(0, 179, 152) !important;
+      transition: ${transition};
+      max-width: 144px;
+      margin-left: 0 !important;
     }
   `;
 
@@ -105,6 +132,8 @@ function Button(props) {
     theme = inverted;
   } else if (props.noBorder) {
     theme = noBorder;
+  } else if (props.publication) {
+    theme = publication;
   } else {
     theme = primary;
   }
@@ -114,12 +143,9 @@ function Button(props) {
       <style>
         {theme}
       </style>
-      <RaisedButton id={props.id} style={style.root} href={props.href}>
+      <RaisedButton id={props.id} style={style.root} href={props.href} onClick={props.onClick}>
         {Children.toArray(props.children)}
       </RaisedButton>
-      {/* <RaisedButton style={style.root} buttonStyle={style.button} overlayStyle={style.overlay} rippleStyle={{height: '55px'}}>
-        {Children.toArray(props.children)}
-      </RaisedButton> */}
     </div>
   );
 }
@@ -132,7 +158,9 @@ Button.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
   noMargin: PropTypes.bool,
+  publication: PropTypes.bool,
   href: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export default Button;
