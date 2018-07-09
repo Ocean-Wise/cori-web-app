@@ -11,14 +11,18 @@ import getPublicationCopy from 'graphql/queries/getPublicationCopy.graphql';
 import Container from './Container';
 
 function PublicationContent({ data: { publicationCopies } }) {
-  return (
-    <Container>
-      <center>
-        <h1>Publications</h1>
-        <p>{publicationCopies[0].copy}</p>
-      </center>
-    </Container>
-  );
+  try {
+    return (
+      <Container>
+        <center>
+          <h1>Publications</h1>
+          <p>{publicationCopies[0].copy}</p>
+        </center>
+      </Container>
+    );
+  } catch (err) {
+    return <div></div>;
+  }
 }
 
 PublicationContent.propTypes = {
