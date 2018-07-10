@@ -1,6 +1,7 @@
 fragment ProjectTeaser on Project {
   projectTitle
   slug
+  showOnSite
   subheader
   type
   hero {

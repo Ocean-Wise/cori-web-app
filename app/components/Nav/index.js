@@ -206,17 +206,17 @@ function Nav({ data: { researchAreas }, active }) {
 
     // Insert Research Area and Hot Topic titles
     nav.unshift(
-      <TitleContainer>
+      <TitleContainer key="researchAreas">
         Research Areas
       </TitleContainer>
     );
     nav.splice(3, 0, (
-      <TitleContainer>
+      <TitleContainer key="hotTopics">
         Hot Topics
       </TitleContainer>
     ));
   } catch (err) {
-    // An error happened, but we don't really care
+    // An error happened
   }
   return nav;
 }

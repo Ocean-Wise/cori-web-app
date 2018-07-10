@@ -24,9 +24,9 @@ function ProjectContent({ data: { projects }, slug, match }) {
   let project = {};
   try {
     project = projects[0];
-    const supporters = project.supporters.map((supporter) => { // eslint-disable-line
+    const supporters = project.supporters.map((supporter, i) => { // eslint-disable-line
       return (
-        <div>
+        <div key={`supporter-${i.toString()}`}>
           <img src={supporter.logo.url} alt={supporter.name} />
         </div>
       );

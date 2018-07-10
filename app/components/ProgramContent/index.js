@@ -30,7 +30,6 @@ import TitleContainer from './TitleContainer';
 
 function ProgramContent({ data: { programs }, slug, match, width }) {
   let program = {};
-
   try {
     program = programs[0];
     const initiativesList = program.initiatives.map((initiative, i) => {
@@ -41,33 +40,42 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
           projects.push(column);
           column = [];
         }
-        if (project.type !== 'Internal') {
-          if (project.type === 'Link') {
+        if (project.showOnSite) {
+          if (project.type !== 'Internal') {
+            if (project.type === 'Link') {
+              column.push(
+                <div key={`project-${j.toString()}`} style={{ paddingBottom: 10 }}>
+                  <a href={project.externalLink} style={{ fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>
+                    <span style={{ color: '#00B398' }}>{project.projectTitle} <img alt="Chevron" style={{ width: 25, marginLeft: 0 }} src={ChevronRight} /></span>
+                  </a>
+                </div>
+              );
+            } else if (project.type === 'PDF') {
+              column.push(
+                <div key={`project-${j.toString()}`} style={{ paddingBottom: 10 }}>
+                  <a href={project.pdf.url} style={{ fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>
+                    <span style={{ color: '#00B398' }}>{project.projectTitle} <img alt="Chevron" style={{ width: 25, marginLeft: 0 }} src={ChevronRight} /></span>
+                  </a>
+                </div>
+              );
+            }
+          } else {
             column.push(
               <div key={`project-${j.toString()}`} style={{ paddingBottom: 10 }}>
-                <a href={project.externalLink} style={{ fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>
+                <Link to={`/project/${project.slug}`} style={{ fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>
                   <span style={{ color: '#00B398' }}>{project.projectTitle} <img alt="Chevron" style={{ width: 25, marginLeft: 0 }} src={ChevronRight} /></span>
-                </a>
-              </div>
-            );
-          } else if (project.type === 'PDF') {
-            column.push(
-              <div key={`project-${j.toString()}`} style={{ paddingBottom: 10 }}>
-                <a href={project.pdf.url} style={{ fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>
-                  <span style={{ color: '#00B398' }}>{project.projectTitle} <img alt="Chevron" style={{ width: 25, marginLeft: 0 }} src={ChevronRight} /></span>
-                </a>
+                </Link>
               </div>
             );
           }
         } else {
           column.push(
             <div key={`project-${j.toString()}`} style={{ paddingBottom: 10 }}>
-              <Link to={`/project/${project.slug}`} style={{ fontSize: 15, lineHeight: '18px', fontWeight: 'bold' }}>
-                <span style={{ color: '#00B398' }}>{project.projectTitle} <img alt="Chevron" style={{ width: 25, marginLeft: 0 }} src={ChevronRight} /></span>
-              </Link>
+              <span style={{ color: '#00B398', fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>{project.projectTitle}</span>
             </div>
           );
         }
+
         if (j === initiative.projects.length - 1) {
           projects.push(<Col key={`projectCol-${j.toString()}`} md={6}>{column}</Col>);
         }
@@ -120,7 +128,7 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
               </MarkdownWrapper>
               <Hr style={{ marginBottom: 15 }} />
               <H5>PROJECTS</H5>
-              <Grid fluid style={{ paddingLeft: 0 }}>
+              <Grid fluid style={{ paddingLeft: 8 }}>
                 <Row>
                   {projects}
                 </Row>
