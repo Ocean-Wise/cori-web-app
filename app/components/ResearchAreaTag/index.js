@@ -51,7 +51,7 @@ function ResearchAreaTag({ data, match }) {
         break;
     }
 
-    if (linkSlug !== ('cori' || 'vancouver-aquarium')) {
+    if (!(linkSlug === 'cori' || linkSlug === 'vancouver-aquarium')) {
       return (
         <HotTopicContainer>
           <Link to={`/research/${linkSlug}`}>Hot Topic</Link>
