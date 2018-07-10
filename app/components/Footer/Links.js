@@ -77,9 +77,6 @@ function Links() {
             About
           </A>
           <A href="#">
-            Contact
-          </A>
-          <A href="#">
             Team
           </A>
           <A href="#">
@@ -87,6 +84,9 @@ function Links() {
           </A>
           <A href="#">
             Publications
+          </A>
+          <A href="#">
+            Contact
           </A>
         </Row>
       </LinkSection>
