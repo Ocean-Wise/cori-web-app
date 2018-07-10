@@ -14,6 +14,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import Header from 'components/Header';
 import Button from '@material-ui/core/Button';
+import Badge from '@material-ui/core/Badge';
 import PublicationContent from 'components/PublicationContent';
 import GetPublications from 'components/GetPublications/Loadable';
 import DownloadIcon from 'styles/icons/download.svg';
@@ -43,9 +44,13 @@ const styles = () => ({
   icon: {
     color: '#00B398',
   },
+  badge: {
+    paddingTop: 2,
+    paddingLeft: 1,
+  },
 });
 
-export class Publications extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class Publications extends React.Component { // eslint-disable-line react/prefer-stateless-function
   state = {
     sorting: 'desc',
     alpha: false,
@@ -109,7 +114,7 @@ export class Publications extends React.PureComponent { // eslint-disable-line r
         <SelectContainer>
           <div>
             <span style={{ fontSize: 12, lineHeight: '12px', color: '#4D4D4D' }}>SORT:&nbsp;&nbsp;</span>
-            <Select value={this.state.sortType} onChange={this.toggleSort} displayEmpty name="sort" classes={this.props.classes}>
+            <Select value={this.state.sortType} onChange={this.toggleSort} displayEmpty name="sort" classes={{ root: this.props.classes.root, selectMenu: this.props.classes.selectMenu, icon: this.props.classes.icon }}>
               <MenuItem value="descending">
                 Year: Descending
               </MenuItem>
@@ -124,7 +129,7 @@ export class Publications extends React.PureComponent { // eslint-disable-line r
               </MenuItem>
             </Select>
           </div>
-          <Button onClick={this.generateList}>Generate Citation List <img src={DownloadIcon} alt="Download" style={{ height: 25 }} /></Button>
+          <Button onClick={this.generateList}>Generate Citation List <Badge classes={{ badge: this.props.classes.badge }} badgeContent={this.props.publications.list.length > 0 ? this.props.publications.list.length : ''} color={this.props.publications.list.length > 0 ? 'primary' : 'default'}><img src={DownloadIcon} alt="Download" style={{ height: 25 }} /></Badge></Button>
         </SelectContainer>
         <div style={{ boxShadow: '0 1px 3px 0 rgba(0,0,0,0.24), 8px -8px 0 0 #CCF0EA', maxWidth: 1120, margin: '0 auto 120px', overflow: 'hidden' }}>
           <GetPublications

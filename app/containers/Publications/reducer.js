@@ -32,10 +32,9 @@ function publicationsReducer(state = initialState, action) {
       return state
         .set('list', [...list, action.item]);
     case REMOVE_FROM_LIST: // eslint-disable-line
-      let list2 = state.get('list'); // eslint-disable-line
-      list2 = removeByKey(list2, { key: 'key', value: action.item.key }); // eslint-disable-line
+      const list2 = removeByKey(state.get('list'), { key: 'key', value: action.item.key });
       return state
-        .set('list', list2);
+        .set('list', [...list2]);
     default:
       return state;
   }

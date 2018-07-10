@@ -9,20 +9,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Grid, Row, Col } from 'react-flexbox-grid';
-// import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-// import Card from '@material-ui/core/Card';
-// import CardHeader from '@material-ui/core/CardHeader';
-// import CardContent from '@material-ui/core/CardContent';
-// import CardActions from '@material-ui/core/CardActions';
-// import Collapse from '@material-ui/core/Collapse';
 import Button from 'components/Button';
-// import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Checkbox from '@material-ui/core/Checkbox';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import FileIcon from '@material-ui/icons/Description';
 import PDFIcon from 'styles/icons/pdf.svg';
 import Container from './Container';
 import P from './P';
@@ -41,47 +30,26 @@ const styles = () => ({
     },
   },
   checked: {},
-  label: {
-    flexDirection: 'row-reverse',
-    marginRight: 0,
-    fontSize: '12 !important',
-    lineHeight: '14px !important',
-    fontWeight: 'bold !important',
-    color: '#8D8D8D !important',
-  },
-  card: {
-    maxWidth: 1120,
-    margin: '0px auto',
-    boxShadow: '0 0px 0px 0 rgba(0,0,0,0.24), 8px -8px 0 0 #CCF0EA',
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-  actions: {
-    display: 'flex',
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    transition: 'all 0.4s cubic-bezier(0.4, -0.2, 0.6, 1.2)',
-    marginLeft: 'auto',
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
 });
 
 class PublicationCard extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   state = {
-    expanded: false,
     citation: this.props.data.citation,
     citationString: '',
     inArray: this.props.isSelected,
   };
 
-  handleExpandClick = () => {
-    this.setState({ expanded: !this.state.expanded });
-  }
+  /*
+   * Enable and comment out selection button
+   * if decision made to only have Harvard displayed
+   */
+  // componentWillMount() {
+  //   axios.post(`${window.location.origin}/api/citation`, { citations: this.state.citation, style: 'harvard' })
+  //     .then((res) => {
+  //       this.setState({ citationString: res.data });
+  //     })
+  //     .catch();
+  // }
 
   bibtex = () => {
     axios.post(`${window.location.origin}/api/citation`, { citations: this.state.citation, style: 'bibtex' })
@@ -130,11 +98,7 @@ class PublicationCard extends React.PureComponent { // eslint-disable-line react
     const { classes, data } = this.props;
     const { citationString } = this.state;
 
-    const abstract = data.abstract !== null ? (
-      <Typography variant="body2">
-        {data.abstract.substring(0, 270)} [...]
-      </Typography>
-    ) : '';
+    const abstract = data.abstract !== null ? `${data.abstract.substring(0, 270)} [...]` : '';
 
     const downloadFile = data.pdf !== null ? (
       <div style={{ marginRight: 12 }}>
@@ -146,6 +110,17 @@ class PublicationCard extends React.PureComponent { // eslint-disable-line react
         </Button>
       </div>
     ) : '';
+
+    const abstractSection = abstract !== '' ? (
+      <Row>
+        <P>{abstract}</P>
+        <Hr />
+      </Row>
+    ) : (
+      <Row>
+        <Hr />
+      </Row>
+    );
 
     return (
       <Container className="publicationCard" index={`${this.props.max - this.props.index}`}>
@@ -160,10 +135,7 @@ class PublicationCard extends React.PureComponent { // eslint-disable-line react
               <Row>
                 <Title>{data.title}</Title>
               </Row>
-              <Row>
-                <P>{abstract}</P>
-                <Hr />
-              </Row>
+              {abstractSection}
               <Row>
                 <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                   <Title citation style={{ marginTop: 7 }}>Citation Format:</Title>
