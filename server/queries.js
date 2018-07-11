@@ -18,7 +18,7 @@ function handleGenerateCitation(req, res) {
       req.body.list.forEach((item) => {
         citations.add(item.citation);
       });
-      output = citations.get({ style: 'citation-harvard1', type: 'string' });
+      output = citations.get({ style: 'citation-harvard1', type: 'string', append: '\n' });
     } else {
       citations.add(req.body.citations);
       switch (req.body.style) {

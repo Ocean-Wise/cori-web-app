@@ -72,9 +72,9 @@ export class Publications extends React.Component { // eslint-disable-line react
         .then((res) => {
           // BUG: This does not work in Firefox. Why?
           const element = document.createElement('a');
-          const file = new Blob([res.data], { type: 'text/plain' });
+          const file = new Blob([res.data], { type: 'text/richtext' });
           element.href = URL.createObjectURL(file);
-          element.download = 'OceanWiseResearch.bib';
+          element.download = 'OceanWiseResearchCitations.rtf';
           element.click();
         })
         .catch();
