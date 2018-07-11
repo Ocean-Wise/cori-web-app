@@ -9,8 +9,11 @@ import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import getPublications from 'graphql/queries/getPublications.graphql';
 import PublicationCard from 'components/PublicationCard';
+import { createFilter } from 'react-search-input';
 
-function GetPublications({ data: { publications }, sort, alpha, addToList, removeFromList, selected, match }) {
+const KEYS_TO_FILTER = ['title', 'authors'];
+
+function GetPublications({ data: { publications }, sort, alpha, addToList, removeFromList, selected, match, searchTerm }) {
   const output = [];
   try {
     const sortDesc = (a, b) => parseInt(b.year, 10) - parseInt(a.year, 10);
@@ -46,14 +49,27 @@ function GetPublications({ data: { publications }, sort, alpha, addToList, remov
         }
         return false;
       });
-
       if (match.params.slug === undefined) {
-        output.push(<PublicationCard isSelected={isSelected} addToList={addToList} removeFromList={removeFromList} data={publication} name={publication.slug} index={i} max={sorted.length} key={publication.slug} />);
+        output.push({
+          title: publication.title,
+          authors: publication.authors.join(),
+          item: <PublicationCard isSelected={isSelected} addToList={addToList} removeFromList={removeFromList} data={publication} name={publication.slug} index={i} max={sorted.length} key={publication.slug} />,
+        });
       } else if (match.params.slug === publication.researchArea.slug) {
-        output.push(<PublicationCard isSelected={isSelected} addToList={addToList} removeFromList={removeFromList} data={publication} name={publication.slug} index={i} max={sorted.length} key={publication.slug} />);
+        output.push({
+          title: publication.title,
+          authors: publication.authors.join(),
+          item: <PublicationCard isSelected={isSelected} addToList={addToList} removeFromList={removeFromList} data={publication} name={publication.slug} index={i} max={sorted.length} key={publication.slug} />,
+        });
       }
     });
-    return output;
+    // return output;
+    const filteredOutput = output.filter(createFilter(searchTerm, KEYS_TO_FILTER));
+    return (
+      <div>
+        {filteredOutput.map((item) => item.item)}
+      </div>
+    );
   } catch (err) {
     return null;
   }
@@ -66,6 +82,10 @@ GetPublications.propTypes = {
   data: PropTypes.object.isRequired,
   sort: PropTypes.string,
   alpha: PropTypes.bool,
+  addToList: PropTypes.func,
+  removeFromList: PropTypes.func,
+  match: PropTypes.object,
+  searchTerm: PropTypes.string,
 };
 
 export default graphql(getPublications)(GetPublications);

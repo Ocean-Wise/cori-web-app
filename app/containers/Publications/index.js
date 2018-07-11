@@ -29,6 +29,7 @@ import reducer from './reducer';
 import { addToList, removeFromList } from './actions';
 
 import SelectContainer from './SelectContainer';
+import SearchInput from './SearchInput';
 // import messages from './messages';
 
 const styles = () => ({
@@ -55,6 +56,7 @@ export class Publications extends React.Component { // eslint-disable-line react
     sorting: 'desc',
     alpha: false,
     sortType: 'descending',
+    searchTerm: '',
   };
 
   setAlpha = () => {
@@ -102,6 +104,10 @@ export class Publications extends React.Component { // eslint-disable-line react
     }
   };
 
+  searchUpdated = (term) => {
+    this.setState({ searchTerm: term });
+  }
+
   render() {
     return (
       <div>
@@ -111,6 +117,7 @@ export class Publications extends React.Component { // eslint-disable-line react
         </Helmet>
         <Header />
         <PublicationContent />
+        <SearchInput className="search-input" onChange={this.searchUpdated} placeholder="Search publications..." />
         <SelectContainer>
           <div>
             <span style={{ fontSize: 12, lineHeight: '12px', color: '#4D4D4D' }}>SORT:&nbsp;&nbsp;</span>
@@ -139,6 +146,7 @@ export class Publications extends React.Component { // eslint-disable-line react
             alpha={this.state.alpha}
             addToList={this.props.addItem}
             removeFromList={this.props.removeItem}
+            searchTerm={this.state.searchTerm}
           />
         </div>
       </div>
