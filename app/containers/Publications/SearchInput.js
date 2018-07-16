@@ -3,10 +3,12 @@ import SearchInput from 'react-search-input';
 
 const StyledSearch = styled(SearchInput)`
   margin: 0 auto;
-  border: 1px solid black;
-  border-radius: 25px;
+  margin-right: 16px;
+  border: 1px solid #B2BEC4;
+  border-radius: 2px;
   max-width: 650px;
-  padding: 8px 22px;
+  max-height: 32px;
+  padding: 3px 10px;
   input {
     width: 100%;
     &:focus {

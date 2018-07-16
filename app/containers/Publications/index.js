@@ -20,6 +20,7 @@ import GetPublications from 'components/GetPublications/Loadable';
 import DownloadIcon from 'styles/icons/download.svg';
 
 import { withStyles } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -37,17 +38,32 @@ const styles = () => ({
     fontSize: 12,
     border: '1px solid #B2BEC4',
     borderRadius: 2,
+    height: 32,
+  },
+  buttonRoot: {
+    minHeight: 'unset',
+    maxHeight: 32,
+    padding: '3px',
+    position: 'relative',
+    top: 13,
   },
   selectMenu: {
     paddingLeft: 9,
-    paddingTop: 7,
+    paddingTop: 6,
   },
   icon: {
     color: '#00B398',
   },
   badge: {
-    paddingTop: 2,
-    paddingLeft: 1,
+    paddingTop: 1,
+    paddingLeft: 0,
+    height: 19,
+    width: 19,
+    fontSize: 12,
+    lineHeight: '18px',
+  },
+  badgeColor: {
+    backgroundColor: '#6A7B83',
   },
 });
 
@@ -117,11 +133,11 @@ export class Publications extends React.Component { // eslint-disable-line react
         </Helmet>
         <Header />
         <PublicationContent />
-        <SearchInput className="search-input" onChange={this.searchUpdated} placeholder="Search publications..." />
         <SelectContainer>
-          <div>
-            <span style={{ fontSize: 12, lineHeight: '12px', color: '#4D4D4D' }}>SORT:&nbsp;&nbsp;</span>
-            <Select value={this.state.sortType} onChange={this.toggleSort} displayEmpty name="sort" classes={{ root: this.props.classes.root, selectMenu: this.props.classes.selectMenu, icon: this.props.classes.icon }}>
+          <div style={{ display: 'flex', paddingTop: 8 }}>
+            <SearchInput className="search-input" onChange={this.searchUpdated} placeholder="Search publications..." />
+            <span style={{ fontSize: 12, lineHeight: '12px', color: '#4D4D4D', marginTop: 12 }}>SORT:&nbsp;&nbsp;</span>
+            <Select value={this.state.sortType} onChange={this.toggleSort} displayEmpty name="sort" input={<Input disableUnderline />} classes={{ root: this.props.classes.root, selectMenu: this.props.classes.selectMenu, icon: this.props.classes.icon }}>
               <MenuItem value="descending">
                 Year: Descending
               </MenuItem>
@@ -136,7 +152,7 @@ export class Publications extends React.Component { // eslint-disable-line react
               </MenuItem>
             </Select>
           </div>
-          <Button onClick={this.generateList}>Generate Citation List <Badge classes={{ badge: this.props.classes.badge }} badgeContent={this.props.publications.list.length > 0 ? this.props.publications.list.length : ''} color={this.props.publications.list.length > 0 ? 'primary' : 'default'}><img src={DownloadIcon} alt="Download" style={{ height: 25 }} /></Badge></Button>
+          <Button classes={{ root: this.props.classes.buttonRoot }} onClick={this.generateList}>Generate Citation List <Badge classes={{ badge: this.props.classes.badge, colorPrimary: this.props.classes.badgeColor }} badgeContent={this.props.publications.list.length > 0 ? this.props.publications.list.length : ''} color={this.props.publications.list.length > 0 ? 'primary' : 'default'}><img src={DownloadIcon} alt="Download" style={{ height: 25 }} /></Badge></Button>
         </SelectContainer>
         <div style={{ boxShadow: '0 1px 3px 0 rgba(0,0,0,0.24), 8px -8px 0 0 #CCF0EA', maxWidth: 1120, margin: '0 auto 120px', overflow: 'hidden' }}>
           <GetPublications
