@@ -60,4 +60,31 @@ injectGlobal`
   #menu-sort {
     top: 46px;
   }
+
+  .ais-SearchBox-input {
+    padding-left: 45px;
+    border: 1px solid #B2BEC4;
+    border-radius: 2px;
+    height: 56px;
+    &::placeholder {
+      color: #8D8D8D;
+    }
+  }
+  .ais-SearchBox-submit {
+    left: 0.8rem;
+  }
+  .ais-SearchBox-submitIcon {
+    width: 20px;
+    height: 20px;
+    margin-left: 4px;
+  }
+  .ais-SearchBox-submitIcon path {
+    fill: #CED5D9;
+  }
+  .ais-Highlight-highlighted {
+    background-color: rgba(0, 179, 152, 0.3);
+  }
+  .ais-MultiIndex__root {
+    margin-top: 8px;
+  }
 `;

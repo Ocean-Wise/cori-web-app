@@ -9,17 +9,16 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Link } from 'react-router-dom';
-import { InstantSearch, SearchBox, Index, Highlight, PoweredBy } from 'react-instantsearch/dom';
+import { InstantSearch, SearchBox, Index, Highlight } from 'react-instantsearch/dom';
 import { connectHits, connectStateResults } from 'react-instantsearch/connectors';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import OWButton from 'components/Button';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from 'styles/icons/search.svg';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
+import PoweredBy from 'styles/icons/algolia.svg';
 
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
@@ -61,8 +60,8 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
         // If there is a slug in the current hit, render it as a Link
         // otherwise just render the text
         return (
-          <div style={{ borderBottom: '1px solid black' }}>
-            <span style={{ fontWeight: 'bold', color: 'blue' }}>{type}</span>
+          <div style={{ borderBottom: '1px solid #00B398' }}>
+            <span style={{ fontWeight: 'bold', color: '#4D4D4D', fontSize: 18, lineHeight: '21px', paddingBottom: 8 }}>{type}</span>
             {hits.map((hit) => { // eslint-disable-line
               const result = hit.slug ? (
                 <Link to={hit.slug}>
@@ -71,7 +70,7 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
               ) : <Highlight attribute="title" hit={hit} />;
 
               return (
-                <div key={hit.objectID}>
+                <div key={hit.objectID} style={{ paddingBottom: 8 }}>
                   <span>
                     {result}
                   </span>
@@ -94,10 +93,11 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
       // Set our queryResults object
       queryResults = searchState;
       // Check if there are results
-      const hasResults = queryResults.query !== undefined;
+      const hasResults = queryResults.query !== undefined && queryResults.query !== '';
       // Return the results for each Algolia index
       return (
         <div>
+          {hasResults ? <h2 style={{ color: '#00B398', fontSize: 24, fontWeight: 300, letterSpacing: '2.57px', lineHeight: '35px', textTransform: 'uppercase' }}>Results</h2> : ''}
           <Index indexName="ResearchAreas">
             {hasResults ? <CustomHits type="Research Areas" /> : ''}
           </Index>
@@ -133,22 +133,18 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
           classes={classes}
           PaperProps={{ className: 'search-paper' }}
         >
-          <DialogTitle id="responsive-search-dialog">{'Search'}</DialogTitle>
-          <DialogActions>
-            <Button onClick={this.toggleSearch} color="primary">
-              Close
-            </Button>
-          </DialogActions>
           <DialogContent>
             <InstantSearch
               appId="KOG4SU5EI9"
               apiKey="71bf64d883b42cdf7ee10f58595ff891"
               indexName="ResearchAreas"
             >
-              <SearchBox autoFocus searchAsYouType={false} />
-              {/* <Configure hitsPerPage={5} /> */}
+              <SearchBox autoFocus searchAsYouType={false} translations={{ placeholder: 'Searching for...' }} />
               <Results />
-              <PoweredBy />
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div style={{ marginTop: 29, color: '#CCD0D2', fontSize: 12, lineHeight: '18px' }}>SEARCH BY <img style={{ height: 20 }} src={PoweredBy} alt="Algolia" /></div>
+                <div style={{ marginTop: 18 }}><OWButton id="close-search">Close</OWButton></div>
+              </div>
             </InstantSearch>
           </DialogContent>
         </Dialog>
