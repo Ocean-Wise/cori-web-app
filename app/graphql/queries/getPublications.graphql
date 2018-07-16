@@ -5,17 +5,11 @@ query Publications {
     title
     abstract
     authors
-    journal
     year
-    volume
-    number
-    pages
     doi
-    researchArea {
-      slug
-    }
     pdf {
       url
     }
+    url
   }
 }

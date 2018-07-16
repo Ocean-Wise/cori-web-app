@@ -13,6 +13,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from 'components/Button';
 import Checkbox from '@material-ui/core/Checkbox';
 import PDFIcon from 'styles/icons/pdf.svg';
+import ExternalLink from 'styles/icons/externalLink.svg';
 import Container from './Container';
 import P from './P';
 import Title from './Title';
@@ -37,48 +38,25 @@ class PublicationCard extends React.PureComponent { // eslint-disable-line react
     citation: this.props.data.citation,
     citationString: '',
     inArray: this.props.isSelected,
+    semanticScholar: {},
   };
 
-  /*
-   * Enable and comment out selection button
-   * if decision made to only have Harvard displayed
-   */
-  // componentWillMount() {
-  //   axios.post(`${window.location.origin}/api/citation`, { citations: this.state.citation, style: 'harvard' })
-  //     .then((res) => {
-  //       this.setState({ citationString: res.data });
-  //     })
-  //     .catch();
-  // }
-
-  bibtex = () => {
-    axios.post(`${window.location.origin}/api/citation`, { citations: this.state.citation, style: 'bibtex' })
-      .then((res) => {
-        this.setState({ citationString: res.data });
-      })
-      .catch();
-  }
-
-  apa = () => {
-    axios.post(`${window.location.origin}/api/citation`, { citations: this.state.citation, style: 'apa' })
-      .then((res) => {
-        this.setState({ citationString: res.data });
-      })
-      .catch();
-  }
-
-  vancouver = () => {
-    axios.post(`${window.location.origin}/api/citation`, { citations: this.state.citation, style: 'vancouver' })
-      .then((res) => {
-        this.setState({ citationString: res.data });
-      })
-      .catch();
-  }
-
-  harvard = () => {
+  componentWillMount() {
     axios.post(`${window.location.origin}/api/citation`, { citations: this.state.citation, style: 'harvard' })
       .then((res) => {
         this.setState({ citationString: res.data });
+      })
+      .then(() => {
+        if (this.props.data.pdf === null && this.props.data.doi !== null) {
+          try {
+            axios.get(`https://api.semanticscholar.org/v1/paper/${this.props.data.doi}`)
+              .then((pub) => {
+                this.setState({ semanticScholar: pub.data });
+              });
+          } catch (err) {
+            // Semantic Scholar gave a 404, so leave the semanticScholar state object empty
+          }
+        }
       })
       .catch();
   }
@@ -111,6 +89,31 @@ class PublicationCard extends React.PureComponent { // eslint-disable-line react
       </div>
     ) : '';
 
+    const linkToJournal = data.url !== null ? (
+      <div style={{ marginRight: 12 }}>
+        <Button id="journalLink" publication href={data.url}>
+          <div style={{ padding: '0 0px 5px' }}>
+            <span style={{ position: 'relative', top: 2, marginRight: 5 }}>Full Article</span>
+            <img id="svg" style={{ height: 22 }} src={ExternalLink} alt="Full Article" />
+          </div>
+        </Button>
+      </div>
+    ) : '';
+
+    const semanticScholarButton = Object.keys(this.state.semanticScholar).length !== 0 ? (
+      <div style={{ marginRight: 12 }}>
+        <Button id="journalLink" publication href={this.state.semanticScholar.url}>
+          <div style={{ padding: '0 0px 5px' }}>
+            <span style={{ position: 'relative', top: 2, marginRight: 5 }}>Full Article</span>
+            <img id="svg" style={{ height: 22 }} src={ExternalLink} alt="Full Article" />
+          </div>
+        </Button>
+      </div>
+    ) : '';
+
+    // eslint-disable-next-line
+    const actionButton = downloadFile !== '' ? downloadFile : semanticScholarButton !== '' ? semanticScholarButton : linkToJournal;
+
     const abstractSection = abstract !== '' ? (
       <Row>
         <P>{abstract}</P>
@@ -137,15 +140,8 @@ class PublicationCard extends React.PureComponent { // eslint-disable-line react
               </Row>
               {abstractSection}
               <Row>
-                <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-                  <Title citation style={{ marginTop: 7 }}>Citation Format:</Title>
-                  <Button id="BibTeX" noBorder onClick={this.bibtex}>BibTeX</Button>
-                  <Button id="APA" noBorder style={{ margin: '0 5px' }} onClick={this.apa}>APA</Button>
-                  <Button id="Vancouver" noBorder style={{ margin: '0 5px' }} onClick={this.vancouver}>Vancouver</Button>
-                  <Button id="Harvard" noBorder style={{ margin: '0 5px' }} onClick={this.harvard}>Harvard</Button>
-                </div>
                 <div>
-                  <P>{citationString}</P>
+                  <P citation>{citationString}</P>
                 </div>
               </Row>
             </Col>
@@ -162,7 +158,7 @@ class PublicationCard extends React.PureComponent { // eslint-disable-line react
                     onChange={this.handleCheck}
                   />
                 </div>
-                {downloadFile}
+                {actionButton}
               </Row>
             </Col>
           </Row>

@@ -56,4 +56,8 @@ injectGlobal`
       height: unset;
     }
   }
+
+  #menu-sort {
+    top: 46px;
+  }
 `;

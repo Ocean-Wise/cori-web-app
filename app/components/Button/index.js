@@ -143,7 +143,7 @@ function Button(props) {
       <style>
         {theme}
       </style>
-      <RaisedButton id={props.id} style={style.root} href={props.href} onClick={props.onClick}>
+      <RaisedButton id={props.id} style={style.root} target={props.href ? '_blank' : ''} href={props.href} onClick={props.onClick}>
         {Children.toArray(props.children)}
       </RaisedButton>
     </div>
