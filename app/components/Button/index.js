@@ -88,14 +88,25 @@ function Button(props) {
 
   const noBorder = `
     #${props.id} {
-      background-color: trasparent !important;
-      color: #00B398 !important;
+      ${props.selected ? `
+        background-color: #00B398 !important;
+        color: #FFFFFF;
+      ` : `
+        background-color: trasparent !important;
+        color: #00B398 !important;
+      `}
       font-size: 12px;
       line-height: 18px;
       text-transform: uppercase !important;
     }
     #${props.id}:hover {
-      background-color: #E9EEF6 !important;
+      ${props.selected ? `
+        // background-color: transparent !important;
+        background-color: #E9EEF6 !important;
+        color: #00B398 !important;
+      ` : `
+        background-color: #E9EEF6 !important;
+      `}
     }
   `;
 
@@ -161,6 +172,7 @@ Button.propTypes = {
   publication: PropTypes.bool,
   href: PropTypes.string,
   onClick: PropTypes.func,
+  selected: PropTypes.bool,
 };
 
 export default Button;

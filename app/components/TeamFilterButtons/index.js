@@ -12,14 +12,15 @@ import getAreas from 'graphql/queries/getResearchAreaTeasers.graphql';
 import Button from 'components/Button';
 import Container from './Container';
 
-function TeamFilterButtons({ data: { researchAreas }, isFiltered }) {
+function TeamFilterButtons({ data: { researchAreas }, filter }) {
   try {
     const buttons = [];
+    console.log(filter);
     researchAreas.forEach((area) => {
       const key = `button-${area.slug}`;
       buttons.push(
         <Link key={key} to={`/team/${area.slug}`}>
-          <Button noBorder id={key}>
+          <Button noBorder selected={filter.params.slug === area.slug} id={key}>
             {area.title}
           </Button>
         </Link>
@@ -44,16 +45,14 @@ function TeamFilterButtons({ data: { researchAreas }, isFiltered }) {
     buttons[1] = buttons[vaIndex];
     buttons[vaIndex] = tmp;
 
-    // Has the user filtered by Research Area?
-    if (isFiltered) {
-      buttons.unshift(
-        <Link to="/team">
-          <Button noBorder id="button-all">
-            All researchers
-          </Button>
-        </Link>
-      );
-    }
+    // Add All button to position 0
+    buttons.unshift(
+      <Link to="/team">
+        <Button noBorder selected={filter.path === '/team'} id="button-all">
+          All
+        </Button>
+      </Link>
+    );
 
     return (
       <Container>
@@ -68,7 +67,7 @@ function TeamFilterButtons({ data: { researchAreas }, isFiltered }) {
 
 TeamFilterButtons.propTypes = {
   data: PropTypes.object.isRequired,
-  isFiltered: PropTypes.bool,
+  filter: PropTypes.object,
 };
 
 export default graphql(getAreas)(TeamFilterButtons);

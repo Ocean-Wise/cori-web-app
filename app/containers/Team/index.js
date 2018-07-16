@@ -41,7 +41,7 @@ export class Team extends React.PureComponent { // eslint-disable-line react/pre
         </Helmet>
         <Header active={this.props.match.params.slug} />
         <TeamCopy />
-        <TeamFilterButtons isFiltered={this.props.match.path.includes(':slug')} />
+        <TeamFilterButtons filter={this.props.match} />
         {MemberComponent}
       </div>
     );
