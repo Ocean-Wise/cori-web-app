@@ -12,6 +12,7 @@ import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
+import About from 'containers/About/Loadable';
 import Team from 'containers/Team/Loadable';
 import ResearchArea from 'containers/ResearchArea/Loadable';
 import Program from 'containers/Program/Loadable';
@@ -50,6 +51,7 @@ export default function App() {
         </Helmet>
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route path="/about" component={About} />
           <Route path="/team/:slug" component={Team} />
           <Route path="/team" component={Team} />
           <Route path="/research/:slug" component={ResearchArea} />
