@@ -13,7 +13,11 @@ const TitleContainer = styled.div`
   padding-bottom: 16px;
   text-transform: uppercase;
   color: #00B398;
-  ${mixins.bp.sm.max`
+  ${mixins.bp.md.max`
+    margin-right: 30px;
+    width: unset;
+  `}
+  ${mixins.bp.xs.max`
     width: 256px;
   `}
 `;

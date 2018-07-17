@@ -32,7 +32,6 @@ export class Media extends React.PureComponent { // eslint-disable-line react/pr
     axios.post(`${window.location.origin}/api/rss`, { url: 'https://ocean.org/media-releases/feed/', news: false, mediaPage: true })
       .then((res) => {
         const data = res.data;
-        console.log(data);
         data.forEach((item, i) => {
           media.push(
             <div key={`release-${i.toString()}`}>
@@ -61,7 +60,7 @@ export class Media extends React.PureComponent { // eslint-disable-line react/pr
               <Col xl={3} />
               <Col xl={6}>
                 <H1><FormattedMessage {...messages.header} /></H1>
-              <p style={{ color: '#4D4D4D', fontSize: '16px', lineHeight: '26px', textAlign: 'center', marginBottom: 80 }}><FormattedMessage {...messages.inquires} values={{ email }} /></p>
+                <p style={{ color: '#4D4D4D', fontSize: '16px', lineHeight: '26px', textAlign: 'center', marginBottom: 80 }}><FormattedMessage {...messages.inquires} values={{ email }} /></p>
               </Col>
             </Row>
             <Row>
