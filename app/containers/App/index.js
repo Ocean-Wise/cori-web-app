@@ -13,6 +13,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
 import About from 'containers/About/Loadable';
+import Media from 'containers/Media/Loadable';
 import Team from 'containers/Team/Loadable';
 import ResearchArea from 'containers/ResearchArea/Loadable';
 import Program from 'containers/Program/Loadable';
@@ -52,6 +53,7 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/about" component={About} />
+          <Route path="/media" component={Media} />
           <Route path="/team/:slug" component={Team} />
           <Route path="/team" component={Team} />
           <Route path="/research/:slug" component={ResearchArea} />

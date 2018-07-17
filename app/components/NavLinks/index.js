@@ -63,7 +63,7 @@ class NavLinks extends React.Component { // eslint-disable-line react/prefer-sta
           </Button>
         </Link>
         <OWButton inverted noMargin width={100} height={40} id="donate">
-          <a href="#donate">
+          <a target="_blank" href="http://support.ocean.org/site/Donation2?df_id=3006&3006.donation=form1&mfc_pref=T">
             Donate
           </a>
         </OWButton>

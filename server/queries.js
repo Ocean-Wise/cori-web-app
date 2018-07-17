@@ -113,7 +113,7 @@ async function handleGetRSS(req, res) {
     } else {
       const output = [];
       feed.items.forEach((item, i) => {
-        if (i > 2) return;
+        if (i > 2 && !req.body.mediaPage) return;
         const data = {};
         data.title = item.title;
         data.link = item.link;

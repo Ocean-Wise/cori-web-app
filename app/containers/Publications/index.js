@@ -134,23 +134,25 @@ export class Publications extends React.Component { // eslint-disable-line react
         <Header />
         <PublicationContent />
         <SelectContainer>
-          <div style={{ display: 'flex', paddingTop: 8 }}>
+          <div style={{ display: 'flex', paddingTop: 8, flexWrap: 'wrap' }}>
             <SearchInput className="search-input" onChange={this.searchUpdated} placeholder="Search publications..." />
-            <span style={{ fontSize: 12, lineHeight: '12px', color: '#4D4D4D', marginTop: 12 }}>SORT:&nbsp;&nbsp;</span>
-            <Select value={this.state.sortType} onChange={this.toggleSort} displayEmpty name="sort" input={<Input disableUnderline />} classes={{ root: this.props.classes.root, selectMenu: this.props.classes.selectMenu, icon: this.props.classes.icon }}>
-              <MenuItem value="descending">
-                Year: Descending
-              </MenuItem>
-              <MenuItem value="ascending">
-                Year: Ascending
-              </MenuItem>
-              <MenuItem value="az">
-                Title: A-Z
-              </MenuItem>
-              <MenuItem value="za">
-                Title: Z-A
-              </MenuItem>
-            </Select>
+            <div>
+              <span style={{ fontSize: 12, lineHeight: '12px', color: '#4D4D4D', marginTop: 12 }}>SORT:&nbsp;&nbsp;</span>
+              <Select value={this.state.sortType} onChange={this.toggleSort} displayEmpty name="sort" input={<Input disableUnderline />} classes={{ root: this.props.classes.root, selectMenu: this.props.classes.selectMenu, icon: this.props.classes.icon }}>
+                <MenuItem value="descending">
+                  Year: Descending
+                </MenuItem>
+                <MenuItem value="ascending">
+                  Year: Ascending
+                </MenuItem>
+                <MenuItem value="az">
+                  Title: A-Z
+                </MenuItem>
+                <MenuItem value="za">
+                  Title: Z-A
+                </MenuItem>
+              </Select>
+            </div>
           </div>
           <Button classes={{ root: this.props.classes.buttonRoot }} onClick={this.generateList}>Generate Citation List <Badge classes={{ badge: this.props.classes.badge, colorPrimary: this.props.classes.badgeColor }} badgeContent={this.props.publications.list.length > 0 ? this.props.publications.list.length : ''} color={this.props.publications.list.length > 0 ? 'primary' : 'default'}><img src={DownloadIcon} alt="Download" style={{ height: 25 }} /></Badge></Button>
         </SelectContainer>

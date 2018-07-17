@@ -15,7 +15,6 @@ import Container from './Container';
 function TeamFilterButtons({ data: { researchAreas }, filter }) {
   try {
     const buttons = [];
-    console.log(filter);
     researchAreas.forEach((area) => {
       const key = `button-${area.slug}`;
       buttons.push(
@@ -47,7 +46,7 @@ function TeamFilterButtons({ data: { researchAreas }, filter }) {
 
     // Add All button to position 0
     buttons.unshift(
-      <Link to="/team">
+      <Link to="/team" key="button-all">
         <Button noBorder selected={filter.path === '/team'} id="button-all">
           All
         </Button>

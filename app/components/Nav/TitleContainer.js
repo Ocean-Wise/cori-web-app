@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import * as mixins from 'styles/mixins';
 
 const TitleContainer = styled.div`
   font-size: 24px;
@@ -12,6 +13,9 @@ const TitleContainer = styled.div`
   padding-bottom: 16px;
   text-transform: uppercase;
   color: #00B398;
+  ${mixins.bp.sm.max`
+    width: 256px;
+  `}
 `;
 
 export default TitleContainer;
