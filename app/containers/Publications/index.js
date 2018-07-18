@@ -18,6 +18,7 @@ import Badge from '@material-ui/core/Badge';
 import PublicationContent from 'components/PublicationContent';
 import GetPublications from 'components/GetPublications/Loadable';
 import DownloadIcon from 'styles/icons/download.svg';
+import { saveAs } from 'file-saver/FileSaver';
 
 import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
@@ -88,12 +89,13 @@ export class Publications extends React.Component { // eslint-disable-line react
     if (list.length > 0) {
       axios.post(`${window.location.origin}/api/citation`, { list })
         .then((res) => {
-          // BUG: This does not work in Firefox. Why?
-          const element = document.createElement('a');
-          const file = new Blob([res.data], { type: 'text/richtext' });
-          element.href = URL.createObjectURL(file);
-          element.download = 'OceanWiseResearchCitations.rtf';
-          element.click();
+          // Split the data by new line, then add Carriage Return and New Line
+          // to each line before rejoining
+          let data = res.data.split('\n').map((x) => `${x}\r\n`).join('');
+          // Make a new UTF-8 file blob
+          const file = new Blob([data], { type: 'text/plain;charset=utf-8' });
+          // Download it
+          saveAs(file, "OceanWiseResearchCitations.txt");
         })
         .catch();
     }

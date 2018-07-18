@@ -1,1 +1,2 @@
 app/graphql/queries/**
+citation-js/**/*.js

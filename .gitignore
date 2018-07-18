@@ -8,3 +8,11 @@ stats.json
 .DS_Store
 npm-debug.log
 .idea
+
+# Citation.js
+citation.js/npm-debug.log
+citation.js/npm-debug.log.*
+citation.js/node_modules
+citation.js/coverage/
+citation.js/jsdoc/
+citation.js/lib/

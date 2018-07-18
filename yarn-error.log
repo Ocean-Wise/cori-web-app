@@ -1,11 +1,11 @@
 Arguments: 
-  /home/ethand/.nvm/versions/node/v9.0.0/bin/node /home/ethand/.yarn/bin/yarn.js build
+  /home/ethand/.nvm/versions/node/v9.0.0/bin/node /home/ethand/.yarn/bin/yarn.js add xmlData
 
 PATH: 
   /home/ethand/.yarn/bin:/home/ethand/.config/yarn/global/node_modules/.bin:/home/ethand/.config/composer/vendor/bin:/home/ethand/.nvm/versions/node/v9.0.0/bin:/bin:/usr/bin:/usr/X11R6/bin:/usr/local/bin
 
 Yarn version: 
-  1.6.0
+  1.7.0
 
 Node version: 
   9.0.0
@@ -14,13 +14,17 @@ Platform:
   linux x64
 
 Trace: 
-  SyntaxError: /home/ethand/Documents/CORI/package.json: Unexpected token ] in JSON at position 2827
-      at JSON.parse (<anonymous>)
-      at /home/ethand/.yarn/lib/cli.js:1130:59
-      at Generator.next (<anonymous>)
-      at step (/home/ethand/.yarn/lib/cli.js:98:30)
-      at /home/ethand/.yarn/lib/cli.js:109:13
-      at <anonymous>
+  Error: https://registry.yarnpkg.com/xmlData: Not found
+      at Request.params.callback [as _callback] (/home/ethand/.yarn/lib/cli.js:65656:18)
+      at Request.self.callback (/home/ethand/.yarn/lib/cli.js:134675:22)
+      at emitTwo (events.js:135:13)
+      at Request.emit (events.js:224:7)
+      at Request.<anonymous> (/home/ethand/.yarn/lib/cli.js:135658:10)
+      at emitOne (events.js:125:13)
+      at Request.emit (events.js:221:7)
+      at IncomingMessage.<anonymous> (/home/ethand/.yarn/lib/cli.js:135578:12)
+      at Object.onceWrapper (events.js:322:30)
+      at emitNone (events.js:120:20)
 
 npm manifest: 
   {
@@ -46,12 +50,12 @@ npm manifest:
       "preinstall": "npm run npmcheckversion",
       "postinstall": "npm run build:dll",
       "prebuild": "npm run build:clean",
-      "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
+      "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color --progress --hide-modules --display-optimization-bailout",
       "build:clean": "rimraf ./build",
       "build:dll": "node ./internals/scripts/dependencies.js",
       "start": "cross-env NODE_ENV=development node server",
       "start:tunnel": "cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
-      "start:production": "npm run test && npm run build && npm run start:prod",
+      "start:production": "npm run start:prod",
       "start:prod": "cross-env NODE_ENV=production node server",
       "start:staging": "cross-env NODE_ENV=staging node server",
       "presetup": "npm i chalk shelljs",
@@ -71,7 +75,7 @@ npm manifest:
       "coveralls": "cat ./coverage/lcov.info | coveralls",
       "deploy": "npm run deploy:staging",
       "deploy:staging": "heroku container:push web -a cori-staging && heroku container:release web -a cori-staging",
-      "deploy:prod": "heroku container:push web -a cori && heroku container:release web -a cori"
+      "deploy:prod": "npm run test && npm run build && heroku container:push web -a cori && heroku container:release web -a cori"
     },
     "lint-staged": {
       "*.js": "lint:eslint"
@@ -85,12 +89,8 @@ npm manifest:
         [
           "env",
           {
-            "targets": {
-              "node": "current",
-              "uglify": true
-            },
             "modules": false
-          },
+          }
         ],
         "react",
         "stage-0"
@@ -218,7 +218,9 @@ npm manifest:
         "rss-parser",
         "body-parser",
         "http-auth",
-        "uglifyjs-webpack-plugin"
+        "uglifyjs-webpack-plugin",
+        "citation-js",
+        "xml2js"
       ],
       "include": [
         "core-js",
@@ -263,9 +265,10 @@ npm manifest:
       "axios": "^0.18.0",
       "babel-polyfill": "6.23.0",
       "body-parser": "^1.18.3",
+      "browser-update": "^3.1.13",
       "cf-graphql": "^0.5.0",
       "chalk": "^1.1.3",
-      "citation-js": "^0.4.0-5",
+      "citation-js": "0.4.0-8",
       "compression": "1.6.2",
       "contentful": "^6.1.1",
       "cors": "^2.8.4",
@@ -273,6 +276,7 @@ npm manifest:
       "dotenv": "^5.0.1",
       "express": "4.15.3",
       "express-graphql": "^0.6.12",
+      "fast-xml-parser": "^3.11.1",
       "fontfaceobserver": "2.0.9",
       "graphql-tag": "^2.9.2",
       "history": "4.6.3",
@@ -293,6 +297,7 @@ npm manifest:
       "react-dom": "16.4.0",
       "react-flexbox-grid": "^2.1.0",
       "react-helmet": "5.1.3",
+      "react-image-filter": "^0.1.2",
       "react-instantsearch": "^5.1.0",
       "react-intl": "2.3.0",
       "react-loadable": "4.0.3",
@@ -303,6 +308,7 @@ npm manifest:
       "react-router-hash-link": "^1.2.0",
       "react-router-redux": "5.0.0-alpha.6",
       "react-scroll-up-button": "^1.5.11",
+      "react-search-input": "^0.11.3",
       "redux": "3.6.0",
       "redux-immutable": "4.0.0",
       "redux-saga": "0.15.3",
@@ -377,9 +383,9 @@ Lockfile:
   # yarn lockfile v1
   
   
-  "@babel/polyfill@^7.0.0-beta.44":
-    version "7.0.0-beta.51"
-    resolved "https://registry.yarnpkg.com/@babel/polyfill/-/polyfill-7.0.0-beta.51.tgz#f880a16825571729dceeb76a9bbe74c06321e756"
+  "@babel/polyfill@^7.0.0-beta.49":
+    version "7.0.0-beta.54"
+    resolved "https://registry.yarnpkg.com/@babel/polyfill/-/polyfill-7.0.0-beta.54.tgz#b703ad310b57fa2291cb5b0ffd7c78a7dc52cc6c"
     dependencies:
       core-js "^2.5.7"
       regenerator-runtime "^0.11.1"
@@ -2000,6 +2006,10 @@ Lockfile:
     dependencies:
       resolve "1.1.7"
   
+  browser-update@^3.1.13:
+    version "3.1.13"
+    resolved "https://registry.yarnpkg.com/browser-update/-/browser-update-3.1.13.tgz#9264f9889156e2fbbddfd4fd975e69d038369c6d"
+  
   browserify-aes@^1.0.0, browserify-aes@^1.0.4:
     version "1.0.8"
     resolved "https://registry.yarnpkg.com/browserify-aes/-/browserify-aes-1.0.8.tgz#c8fa3b1b7585bb7ba77c5560b60996ddec6d5309"
@@ -2381,20 +2391,20 @@ Lockfile:
     version "0.3.3"
     resolved "https://registry.yarnpkg.com/circular-json/-/circular-json-0.3.3.tgz#815c99ea84f6809529d2f45791bdf82711352d66"
   
-  citation-js@^0.4.0-5:
-    version "0.4.0-5"
-    resolved "https://registry.yarnpkg.com/citation-js/-/citation-js-0.4.0-5.tgz#947bfc2c1e4e49db1aec8a05bcb363e9bd81295b"
+  citation-js@0.4.0-8:
+    version "0.4.0-8"
+    resolved "https://registry.yarnpkg.com/citation-js/-/citation-js-0.4.0-8.tgz#aa67a4b3a2d140426beee7f0153329def857ea6c"
     dependencies:
-      "@babel/polyfill" "^7.0.0-beta.44"
-      citeproc "^2.1.204"
+      "@babel/polyfill" "^7.0.0-beta.49"
+      citeproc "^2.1.206"
       commander "^2.15.1"
       isomorphic-fetch "^2.2.1"
       sync-request "^5.0.0"
-      wikidata-sdk "^5.9.0"
+      wikidata-sdk "^5.11.0"
   
-  citeproc@^2.1.204:
-    version "2.1.206"
-    resolved "https://registry.yarnpkg.com/citeproc/-/citeproc-2.1.206.tgz#5bc6dd8cfd759fd1b456fd6bd3e310d8e7c88fb8"
+  citeproc@^2.1.206:
+    version "2.1.210"
+    resolved "https://registry.yarnpkg.com/citeproc/-/citeproc-2.1.210.tgz#2d8475c3ecd051e5ec6770ad5c2d33eb8e80300c"
   
   clap@^1.0.9:
     version "1.2.0"
@@ -3945,6 +3955,12 @@ Lockfile:
     version "2.0.6"
     resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   
+  fast-xml-parser@^3.11.1:
+    version "3.11.1"
+    resolved "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-3.11.1.tgz#cdb64d4b553354bca50712f2dccb34787e3923ab"
+    dependencies:
+      nimnjs "^1.3.2"
+  
   fastparse@^1.1.1:
     version "1.1.1"
     resolved "https://registry.yarnpkg.com/fastparse/-/fastparse-1.1.1.tgz#d1e2643b38a94d7583b479060e6c4affc94071f8"
@@ -4290,6 +4306,10 @@ Lockfile:
       define-properties "^1.1.2"
       function-bind "^1.1.0"
       is-callable "^1.1.3"
+  
+  fuse.js@^3.0.0:
+    version "3.2.1"
+    resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-3.2.1.tgz#6320cb94ce56ec9755c89ade775bcdbb0358d425"
   
   gauge@~2.7.3:
     version "2.7.4"
@@ -6683,6 +6703,21 @@ Lockfile:
       request "^2.55.0"
       uuid "^3.0.0"
   
+  nimn-date-parser@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/nimn-date-parser/-/nimn-date-parser-1.0.0.tgz#4ce55d1fd5ea206bbe82b76276f7b7c582139351"
+  
+  nimn_schema_builder@^1.0.0:
+    version "1.1.0"
+    resolved "https://registry.yarnpkg.com/nimn_schema_builder/-/nimn_schema_builder-1.1.0.tgz#b370ccf5b647d66e50b2dcfb20d0aa12468cd247"
+  
+  nimnjs@^1.3.2:
+    version "1.3.2"
+    resolved "https://registry.yarnpkg.com/nimnjs/-/nimnjs-1.3.2.tgz#a6a877968d87fad836375a4f616525e55079a5ba"
+    dependencies:
+      nimn-date-parser "^1.0.0"
+      nimn_schema_builder "^1.0.0"
+  
   no-case@^2.2.0:
     version "2.3.2"
     resolved "https://registry.yarnpkg.com/no-case/-/no-case-2.3.2.tgz#60b813396be39b3f1288a4c1ed5d1e7d28b464ac"
@@ -7919,6 +7954,12 @@ Lockfile:
       prop-types "^15.5.4"
       react-side-effect "^1.1.0"
   
+  react-image-filter@^0.1.2:
+    version "0.1.2"
+    resolved "https://registry.yarnpkg.com/react-image-filter/-/react-image-filter-0.1.2.tgz#ca4be228046b62b280fab40f9c354b6d3db9708b"
+    dependencies:
+      prop-types "^15.5.8"
+  
   react-instantsearch@^5.1.0:
     version "5.1.0"
     resolved "https://registry.yarnpkg.com/react-instantsearch/-/react-instantsearch-5.1.0.tgz#f7267fbc38e58c339b068be40dfc6b6ab93fbe10"
@@ -8037,6 +8078,13 @@ Lockfile:
       detect-passive-events "^1.0.2"
       prop-types "^15.5.8"
       tween-functions "^1.2.0"
+  
+  react-search-input@^0.11.3:
+    version "0.11.3"
+    resolved "https://registry.yarnpkg.com/react-search-input/-/react-search-input-0.11.3.tgz#3dd1f9fc584b6bc40a6ee133ae042b6fbb7ae8dd"
+    dependencies:
+      fuse.js "^3.0.0"
+      prop-types "^15.5.8"
   
   react-side-effect@^1.1.0:
     version "1.1.3"
@@ -9901,9 +9949,9 @@ Lockfile:
     dependencies:
       string-width "^1.0.2"
   
-  wikidata-sdk@^5.9.0:
-    version "5.11.2"
-    resolved "https://registry.yarnpkg.com/wikidata-sdk/-/wikidata-sdk-5.11.2.tgz#52e7277b2e5e6a0ba8833ad30a3498351f5a189a"
+  wikidata-sdk@^5.11.0:
+    version "5.14.0"
+    resolved "https://registry.yarnpkg.com/wikidata-sdk/-/wikidata-sdk-5.14.0.tgz#94a54b1d8776f92ae9b678a1eb9484b4530c0604"
   
   window-size@0.1.0:
     version "0.1.0"

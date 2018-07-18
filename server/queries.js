@@ -18,7 +18,7 @@ function handleGenerateCitation(req, res) {
       req.body.list.forEach((item) => {
         citations.add(item.citation);
       });
-      output = citations.get({ style: 'citation-harvard1', type: 'string', append: '\n' });
+      output = citations.get({ style: 'citation-fas', type: 'string', append: '\n' });
     } else {
       citations.add(req.body.citations);
       switch (req.body.style) {
@@ -31,8 +31,8 @@ function handleGenerateCitation(req, res) {
         case 'vancouver':
           output = citations.get({ style: 'citation-vancouver', type: 'string' });
           break;
-        case 'harvard':
-          output = citations.get({ style: 'citation-harvard1', type: 'string' });
+        case 'fas':
+          output = citations.get({ style: 'citation-fas', type: 'string' });
           break;
         default:
           output = citations.get({ style: 'bibtex', type: 'string' });
@@ -42,7 +42,7 @@ function handleGenerateCitation(req, res) {
 
     res.status(200).send(output);
   } catch (err) {
-    res.status(500).send(err);
+    res.status(500).send(err.stack);
   }
 }
 

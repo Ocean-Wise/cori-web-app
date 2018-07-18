@@ -42,7 +42,7 @@ class PublicationCard extends React.PureComponent { // eslint-disable-line react
   };
 
   componentWillMount() {
-    axios.post(`${window.location.origin}/api/citation`, { citations: this.state.citation, style: 'harvard' })
+    axios.post(`${window.location.origin}/api/citation`, { citations: this.state.citation, style: 'fas' })
       .then((res) => {
         this.setState({ citationString: res.data });
       })

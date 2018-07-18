@@ -1,7 +1,7 @@
 // Load environment variables
 require('dotenv').config();
 
-const logger = require('./logger');
+const logger = require('../logger');
 const contentful = require('contentful');
 // Contentful client init
 const client = contentful.createClient({

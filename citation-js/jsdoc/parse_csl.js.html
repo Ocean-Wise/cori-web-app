@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>parse/csl.js - Docs - Citation.js</title>
+    <meta name="theme-color" content="#FFC107">
+    <link rel="shortcut icon" type="image/png" href="../favicon.png"/>
+    <link rel="icon" type="image/png" href="../favicon.png"/>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+    <!--<link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">-->
+    <link type="text/css" rel="stylesheet" href="https://cdn.rawgit.com/jmblog/color-themes-for-google-code-prettify/be5aa6fe/dist/themes/tomorrow-night.min.css">
+
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+
+    <link type="text/css" rel="stylesheet" href="../static/css/api.css">
+</head>
+
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Tutorials</li><li class="nav-item"><a href="tutorial-cite_.html">Cite</a></li><li class="nav-item"><a href="tutorial-cli.html">CLI</a></li><li class="nav-item"><a href="tutorial-getting_started.html">Getting Started</a></li><li class="nav-item"><a href="tutorial-input.html">Input</a></li><li class="nav-item"><a href="tutorial-output.html">Output</a></li><li class="nav-item"><a href="tutorial-plugins.html">Plugins</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Cite.html">Cite</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.html#.async">async</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.html#.validateOptions">validateOptions</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.html#.validateOutputOptions">validateOutputOptions</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.html#add">add</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.html#addAsync">addAsync</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.html#currentVersion">currentVersion</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.html#format">format</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.html#get">get</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.html#getIds">getIds</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.html#options">options</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.html#reset">reset</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.html#retrieveLastVersion">retrieveLastVersion</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.html#retrieveVersion">retrieveVersion</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.html#save">save</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.html#set">set</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.html#setAsync">setAsync</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.html#sort">sort</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.html#undo">undo</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Cite.parse.util.DataParser.html">DataParser</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Cite.parse.util.FormatParser.html">FormatParser</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Cite.parse.util.TypeParser.html">TypeParser</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Cite.plugins.input.util.DataParser.html">DataParser</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Cite.plugins.input.util.FormatParser.html">FormatParser</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Cite.plugins.input.util.TypeParser.html">TypeParser</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Cite.util.Register.html">Register</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.Register.html#add">add</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.Register.html#delete">delete</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.Register.html#get">get</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.Register.html#has">has</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.Register.html#list">list</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.Register.html#set">set</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Cite.util.TokenStack.html">TokenStack</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.TokenStack.html#.getMatchCallback">getMatchCallback</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.TokenStack.html#.getPatternText">getPatternText</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.TokenStack.html#consume">consume</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.TokenStack.html#consumeN">consumeN</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.TokenStack.html#consumeSequence">consumeSequence</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.TokenStack.html#consumeToken">consumeToken</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.TokenStack.html#consumeWhitespace">consumeWhitespace</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.TokenStack.html#matches">matches</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.TokenStack.html#matchesSequence">matchesSequence</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.TokenStack.html#tokensLeft">tokensLeft</a></span></li><li class="nav-heading">Modules</li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-input_bibjson.html">input/bibjson</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-input_bibjson.html#~parseBibJson">parseBibJson</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-input_bibjson.html#~parseContentMine">parseContentMine</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-input_bibtex.html">input/bibtex</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-input_bibtex.html#~parseBibTeX">parseBibTeX</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-input_bibtex.html#~parseBibTeXJSON">parseBibTeXJSON</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-input_bibtex.html#~parseBibTeXProp">parseBibTeXProp</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-input_bibtex.html#~parseBibTeXType">parseBibTeXType</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-input_bibtex.html#~parseBibTxt">parseBibTxt</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-input_bibtex.html#~parseBibTxtEntry">parseBibTxtEntry</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-input_doi.html">input/doi</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-input_doi.html#~fetchDoiType">fetchDoiType</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-input_doi.html#~parseDoi">parseDoi</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-input_doi.html#~parseDoiApi">parseDoiApi</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-input_doi.html#~parseDoiApiAsync">parseDoiApiAsync</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-input_doi.html#~parseDoiJson">parseDoiJson</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-input_other.html">input/other</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-input_other.html#~parseJSON">parseJSON</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-input_wikidata.html">input/wikidata</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-input_wikidata.html#~fetchWikidataType">fetchWikidataType</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-input_wikidata.html#~parseWikidata">parseWikidata</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-input_wikidata.html#~parseWikidataJSON">parseWikidataJSON</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-input_wikidata.html#~parseWikidataJSONAsync">parseWikidataJSONAsync</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-input_wikidata.html#~parseWikidataProp">parseWikidataProp</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-input_wikidata.html#~parseWikidataPropAsync">parseWikidataPropAsync</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-output_bibtex.html">output/bibtex</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-output_bibtex.html#~fetchBibTeXType">fetchBibTeXType</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-output_bibtex.html#~getBibtex">getBibtex</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-output_bibtex.html#~getBibTeXJSON">getBibTeXJSON</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-output_bibtex.html#~getBibTeXLabel">getBibTeXLabel</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-output_bibtex.html#~getBibTeXWrapper">getBibTeXWrapper</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-output_bibtex.html#~getBibtxt">getBibtxt</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-output_bibtex.html#~getBibtxtWrapper">getBibtxtWrapper</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-output_csl.html">output/csl</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-output_csl.html#~bibliography">bibliography</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-output_csl.html#~citation">citation</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-output_csl.html#~fetchEngine">fetchEngine</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-output_csl.html#~fetchLocale">fetchLocale</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-output_csl.html#~fetchStyle">fetchStyle</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-output_csl.html#~getAttributedEntry">getAttributedEntry</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-output_csl.html#~getPrefixedEntry">getPrefixedEntry</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-output_csl.html#~getWrappedEntry">getWrappedEntry</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-output_csl.html#~prepareEngine">prepareEngine</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-output_json.html">output/json</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-output_json.html#~getJson">getJson</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-output_json.html#~getJsonWrapper">getJsonWrapper</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-output_label.html">output/label</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-output_label.html#~getLabel">getLabel</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-output_ris.html">output/ris</a></span></li><li class="nav-heading">Namespaces</li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Cite.get.html">get</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.get.html#.add">add</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.get.html#.format">format</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.get.html#.getDate">getDate</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.get.html#.getName">getName</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.get.html#.has">has</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.get.html#.remove">remove</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Cite.get.dict.html">dict</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.get.dict.html#.add">add</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.get.dict.html#.get">get</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.get.dict.html#.has">has</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.get.dict.html#.remove">remove</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Cite.parse.html">parse</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.html#.chain">chain</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.html#.chainAsync">chainAsync</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.html#.chainLink">chainLink</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.html#.chainLinkAsync">chainLinkAsync</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.html#.parseCsl">parseCsl</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.html#.parseDate">parseDate</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.html#.parseName">parseName</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Cite.parse.bibtex.html">bibtex</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.bibtex.html#.json">json</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.bibtex.html#.prop">prop</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.bibtex.html#.text">text</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.bibtex.html#.type">type</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Cite.parse.bibtxt.html">bibtxt</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.bibtxt.html#.text">text</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.bibtxt.html#.textEntry">textEntry</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Cite.parse.date.html">date</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Cite.parse.doi.html">doi</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.doi.html#.api">api</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.doi.html#.id">id</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Cite.parse.doi.async.html">async</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.doi.async.html#.api">api</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Cite.parse.input.html">input</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.input.html#.chain">chain</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.input.html#.chainAsync">chainAsync</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.input.html#.chainLink">chainLink</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.input.html#.chainLinkAsync">chainLinkAsync</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Cite.parse.input.async.html">async</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.input.async.html#.chainAsync">chainAsync</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.input.async.html#.chainLinkAsync">chainLinkAsync</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Cite.parse.util.html">util</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Cite.parse.wikidata.html">wikidata</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.wikidata.html#.json">json</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.wikidata.html#.list">list</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.wikidata.html#.prop">prop</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Cite.parse.wikidata.async.html">async</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.wikidata.async.html#.json">json</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.parse.wikidata.async.html#.prop">prop</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Cite.plugins.html">plugins</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.plugins.html#.add">add</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.plugins.html#.has">has</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.plugins.html#.list">list</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.plugins.html#.remove">remove</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Cite.plugins.config.html">config</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.plugins.config.html#.add">add</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.plugins.config.html#.get">get</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.plugins.config.html#.remove">remove</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Cite.plugins.dict.html">dict</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.plugins.dict.html#.add">add</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.plugins.dict.html#.get">get</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.plugins.dict.html#.has">has</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.plugins.dict.html#.list">list</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.plugins.dict.html#.remove">remove</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Cite.plugins.input.html">input</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.plugins.input.html#.chain">chain</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.plugins.input.html#.chainAsync">chainAsync</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.plugins.input.html#.chainLink">chainLink</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.plugins.input.html#.chainLinkAsync">chainLinkAsync</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Cite.plugins.input.util.html">util</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Cite.plugins.output.html">output</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.plugins.output.html#.add">add</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.plugins.output.html#.format">format</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.plugins.output.html#.has">has</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.plugins.output.html#.list">list</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.plugins.output.html#.remove">remove</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Cite.util.html">util</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.html#.deepCopy">deepCopy</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.html#.fetchFile">fetchFile</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.html#.fetchFileAsync">fetchFileAsync</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.html#.fetchId">fetchId</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Cite.util.attr.html">attr</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.attr.html#.getAttributedEntry">getAttributedEntry</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.attr.html#.getPrefixedEntry">getPrefixedEntry</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Cite.util.attr.html#.getWrappedEntry">getWrappedEntry</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Cite.version.html">version</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">parse/csl.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import parseName from './name'
+
+const NAME = 1
+const NAME_LIST = 2
+const DATE = 3
+
+/**
+ * Object containing type info on CSL-JSON fields.
+ *
+ * * string: primitive value type
+ * * array: list of primitive value types
+ * * number: special type
+ *
+ * Data from https://github.com/citation-style-language/schema/blob/master/csl-data.json
+ *
+ * @access private
+ * @constant fieldTypes
+ * @memberof Cite.parse
+ * @default
+ */
+const fieldTypes = {
+  author: NAME_LIST,
+  'collection-editor': NAME_LIST,
+  composer: NAME_LIST,
+  'container-author': NAME_LIST,
+  editor: NAME_LIST,
+  'editorial-director': NAME_LIST,
+  director: NAME_LIST,
+  interviewer: NAME_LIST,
+  illustrator: NAME_LIST,
+  'original-author': NAME_LIST,
+  'reviewed-author': NAME_LIST,
+  recipient: NAME_LIST,
+  translator: NAME_LIST,
+
+  accessed: DATE,
+  container: DATE,
+  'event-date': DATE,
+  issued: DATE,
+  'original-date': DATE,
+  submitted: DATE,
+
+  categories: 'object', // TODO Array&lt;String>
+
+  id: ['string', 'number'],
+  type: 'string',
+  language: 'string',
+  journalAbbreviation: 'string',
+  shortTitle: 'string',
+  abstract: 'string',
+  annote: 'string',
+  archive: 'string',
+  archive_location: 'string',
+  'archive-place': 'string',
+  authority: 'string',
+  'call-number': 'string',
+  'chapter-number': 'string',
+  'citation-number': 'string',
+  'citation-label': 'string',
+  'collection-number': 'string',
+  'collection-title': 'string',
+  'container-title': 'string',
+  'container-title-short': 'string',
+  dimensions: 'string',
+  DOI: 'string',
+  edition: ['string', 'number'],
+  event: 'string',
+  'event-place': 'string',
+  'first-reference-note-number': 'string',
+  genre: 'string',
+  ISBN: 'string',
+  ISSN: 'string',
+  issue: ['string', 'number'],
+  jurisdiction: 'string',
+  keyword: 'string',
+  locator: 'string',
+  medium: 'string',
+  note: 'string',
+  number: ['string', 'number'],
+  'number-of-pages': 'string',
+  'number-of-volumes': ['string', 'number'],
+  'original-publisher': 'string',
+  'original-publisher-place': 'string',
+  'original-title': 'string',
+  page: 'string',
+  'page-first': 'string',
+  PMCID: 'string',
+  PMID: 'string',
+  publisher: 'string',
+  'publisher-place': 'string',
+  references: 'string',
+  'reviewed-title': 'string',
+  scale: 'string',
+  section: 'string',
+  source: 'string',
+  status: 'string',
+  title: 'string',
+  'title-short': 'string',
+  URL: 'string',
+  version: 'string',
+  volume: ['string', 'number'],
+  'year-suffix': 'string'
+}
+
+/**
+ * Correct a name.
+ *
+ * @access private
+ * @memberof Cite.parse
+ *
+ * @param {*} name - name
+ * @param {Boolean} [bestGuessConversions=true] - make some best guess conversions on type mismatch, default: true
+ *
+ * @return {Object} returns the (corrected) value if possible, otherwise undefined
+ */
+const correctName = function (name, bestGuessConversions = true) {
+  if (typeof name === 'object' &amp;&amp; (name.literal || (name.given || name.family))) {
+    return name
+  } else if (!bestGuessConversions) {
+    return undefined
+  } else if (typeof name === 'string') {
+    return parseName(name)
+  }
+}
+
+/**
+ * Correct a name field.
+ *
+ * @access private
+ * @memberof Cite.parse
+ *
+ * @param {*} nameList - name list
+ * @param {Boolean} [bestGuessConversions=true] - make some best guess conversions on type mismatch, default: true
+ *
+ * @return {Array&lt;Object>|undefined} returns the (corrected) value if possible, otherwise undefined
+ */
+const correctNameList = function (nameList, bestGuessConversions = true) {
+  if (nameList instanceof Array) {
+    return nameList.map(name => correctName(name, bestGuessConversions)).filter(Boolean) || undefined
+  }
+}
+
+/**
+ * Correct a date field.
+ *
+ * @access private
+ * @memberof Cite.parse
+ *
+ * @param {*} date - date
+ * @param {Boolean} [bestGuessConversions=true] - make some best guess conversions on type mismatch, default: true
+ *
+ * @return {Array&lt;Object>|undefined} returns the (corrected) value if possible, otherwise undefined
+ */
+const correctDate = function (date, bestGuessConversions = true) {
+  const dp = 'date-parts'
+
+  // "{'date-parts': [[2000, 1, 1], ...]}"
+  if (date &amp;&amp; date[dp] instanceof Array &amp;&amp; date[dp].every(part => part instanceof Array)) {
+    if (date[dp].every(part => part.every(datePart => typeof datePart === 'number'))) {
+      return {[dp]: date[dp].map(part => part.slice())}
+    } else if (!bestGuessConversions) {
+      return undefined
+    } else if (date[dp].some(part => part.some(datePart => typeof datePart === 'string'))) {
+      return {[dp]: date[dp].map(part => part.map(parseFloat))}
+    }
+
+  // LEGACY support
+  // "[{'date-parts': [2000, 1, 1]}, ...]"
+  } else if (date &amp;&amp; date instanceof Array &amp;&amp; date[0][dp] instanceof Array) {
+    if (date[0][dp].every(datePart => typeof datePart === 'number')) {
+      return {[dp]: [date[0][dp].slice()]}
+    } else if (!bestGuessConversions) {
+      return undefined
+    } else if (date[0][dp].every(datePart => typeof datePart === 'string')) {
+      return {[dp]: [date[0][dp].map(parseFloat)]}
+    }
+  }
+}
+
+/**
+ * Correct a field.
+ *
+ * @access private
+ * @memberof Cite.parse
+ *
+ * @param {String} fieldName - field name
+ * @param {*} value - value
+ * @param {Boolean} [bestGuessConversions=true] - make some best guess conversions on type mismatch, default: true
+ *
+ * @return {*|undefined} returns the (corrected) value if possible, otherwise undefined
+ */
+const correctField = function (fieldName, value, bestGuessConversions = true) {
+  const fieldType = [].concat(fieldTypes[fieldName])
+
+  switch (fieldTypes[fieldName]) {
+    case NAME:
+      return correctName(value, bestGuessConversions)
+    case NAME_LIST:
+      return correctNameList(value, bestGuessConversions)
+    case DATE:
+      return correctDate(value, bestGuessConversions)
+  }
+
+  if (fieldType.includes(typeof value)) {
+    return value
+  } else if (/^_/.test(value)) {
+    return value
+  } else if (!bestGuessConversions) {
+    return undefined
+  } else if (typeof value === 'string' &amp;&amp; fieldType.includes('number') &amp;&amp; parseFloat(value)) {
+    return parseFloat(value)
+  } else if (typeof value === 'number' &amp;&amp; fieldType.includes('string') &amp;&amp; !fieldType.includes('number')) {
+    return value.toString()
+  } else if (Array.isArray(value) &amp;&amp; value.length) {
+    return correctField(fieldName, value[0])
+  }
+}
+
+/**
+ * Make CSL JSON conform to standards so that plugins don't have to typecheck all the time.
+ *
+ * @access protected
+ * @memberof Cite.parse
+ *
+ * @param {Array&lt;CSL>} data - Array of CSL
+ *
+ * @return {Array&lt;CSL>} Array of clean CSL
+ */
+const parseCsl = function (data) {
+  return data.map(function (entry) {
+    const clean = {}
+
+    for (let field in entry) {
+      const correction = correctField(field, entry[field])
+      if (correction !== undefined) {
+        clean[field] = correction
+      }
+    }
+
+    return clean
+  })
+}
+
+export default parseCsl
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

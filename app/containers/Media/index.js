@@ -13,6 +13,7 @@ import { compose } from 'redux';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import axios from 'axios';
 import Header from 'components/Header';
+import LoadingIndicator from 'components/LoadingIndicator';
 
 import H1 from './H1';
 import H2 from './H2';
@@ -47,6 +48,7 @@ export class Media extends React.PureComponent { // eslint-disable-line react/pr
   render() {
     const { media } = this.state;
     const email = <A href="mailto:publicrelations@ocean.org">publicrelations@ocean.org</A>;
+    const mediaReleases = media.length === 0 ? <LoadingIndicator /> : media;
     return (
       <div>
         <Helmet>
@@ -66,7 +68,7 @@ export class Media extends React.PureComponent { // eslint-disable-line react/pr
             <Row>
               <Col xl={3} />
               <Col xl={6}>
-                {media}
+                {mediaReleases}
               </Col>
             </Row>
           </Grid>
