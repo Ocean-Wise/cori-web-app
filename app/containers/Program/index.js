@@ -51,12 +51,17 @@ export class Program extends React.PureComponent { // eslint-disable-line react/
     this.setState({ width: window.innerWidth });
   }
 
+  deslugify = (slug) =>
+    slug
+      .replace(/-/g, ' ')
+      .replace(/\w\S*/g, (str) => str.charAt(0).toUpperCase() + str.substr(1).toLowerCase());
+
   render() {
     const NAV = this.state.width < 1200 ? '' : <FloatingNav active={this.props.match.params.slug} location={this.props.match} />;
     return (
       <div>
         <Helmet>
-          <title>Program</title>
+          <title>{this.deslugify(this.props.match.params.slug)}</title>
           <meta name="description" content="Description of Program" />
         </Helmet>
         <Header active={this.props.match.params.slug} />

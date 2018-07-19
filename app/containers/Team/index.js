@@ -37,7 +37,7 @@ export class Team extends React.PureComponent { // eslint-disable-line react/pre
     return (
       <div>
         <Helmet>
-          <title>Team</title>
+          <title>Our Team</title>
           <meta name="description" content="Description of Team" />
         </Helmet>
         <Header active={this.props.match.params.slug} />

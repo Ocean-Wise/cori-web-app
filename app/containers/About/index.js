@@ -58,7 +58,7 @@ export class About extends React.PureComponent { // eslint-disable-line react/pr
       <div>
         <Helmet>
           <title>About</title>
-          <meta name="description" content="Description of About" />
+          <meta name="description" content="About Ocean Wise Research" />
         </Helmet>
         <Header active={this.props.match.params.slug} />
         <AboutContent width={this.state.width} />

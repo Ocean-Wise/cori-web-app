@@ -39,6 +39,11 @@ export class ResearchArea extends React.PureComponent { // eslint-disable-line r
     this.setState({ width: window.innerWidth });
   }
 
+  deslugify = (slug) =>
+    slug
+      .replace(/-/g, ' ')
+      .replace(/\w\S*/g, (str) => str.charAt(0).toUpperCase() + str.substr(1).toLowerCase());
+
   render() {
     const NAV = this.state.width < 1200 ? '' : <FloatingNav active={this.props.match.params.slug} location={this.props.match} />;
     const spotlight = !(this.props.match.params.slug === 'cori' || this.props.match.params.slug === 'vancouver-aquarium');
@@ -46,7 +51,7 @@ export class ResearchArea extends React.PureComponent { // eslint-disable-line r
     return (
       <div>
         <Helmet>
-          <title>Research</title>
+          <title>{this.deslugify(this.props.match.params.slug)}</title>
           <meta name="description" content="Description of ResearchArea" />
         </Helmet>
         <Header active={this.props.match.params.slug} />

@@ -36,7 +36,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
       <article>
         <Header active={this.props.match.params.slug} />
         <Helmet>
-          <title>Home Page</title>
+          <title>Home</title>
           <meta name="description" content="Ocean Wise Research" />
         </Helmet>
         <Wrapper>
