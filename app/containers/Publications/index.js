@@ -91,11 +91,11 @@ export class Publications extends React.Component { // eslint-disable-line react
         .then((res) => {
           // Split the data by new line, then add Carriage Return and New Line
           // to each line before rejoining
-          let data = res.data.split('\n').map((x) => `${x}\r\n`).join('');
+          const data = res.data.split('\n').map((x) => `${x}\r\n`).join('');
           // Make a new UTF-8 file blob
           const file = new Blob([data], { type: 'text/plain;charset=utf-8' });
           // Download it
-          saveAs(file, "OceanWiseResearchCitations.txt");
+          saveAs(file, 'OceanWiseResearchCitations.txt');
         })
         .catch();
     }

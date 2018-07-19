@@ -12,5 +12,8 @@ query Publications {
       url
     }
     url
+    researchArea {
+      slug
+    }
   }
 }
