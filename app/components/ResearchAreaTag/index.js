@@ -13,7 +13,7 @@ import ProgramTeaser from 'graphql/queries/getProgramTeaser.graphql';
 import ProjectTeaser from 'graphql/queries/getProjectTeaser.graphql';
 
 import Container from './Container';
-import HotTopicContainer from './HotTopicContainer';
+import SpotlightContainer from './SpotlightContainer';
 
 function ResearchAreaTag({ data, match }) {
   try {
@@ -53,9 +53,9 @@ function ResearchAreaTag({ data, match }) {
 
     if (!(linkSlug === 'cori' || linkSlug === 'vancouver-aquarium')) {
       return (
-        <HotTopicContainer>
-          <Link to={`/research/${linkSlug}`}>Hot Topic</Link>
-        </HotTopicContainer>
+        <SpotlightContainer>
+          <Link to={`/research/${linkSlug}`}>Spotlight</Link>
+        </SpotlightContainer>
       );
     }
 

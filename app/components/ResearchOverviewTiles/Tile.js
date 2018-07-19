@@ -75,7 +75,7 @@ const Tile = styled.div`
     opacity: 0;
   }
 
-  div#hotTopic {
+  div#spotlight {
     height: 23px;
     width: 106px;
     margin: 0 auto;

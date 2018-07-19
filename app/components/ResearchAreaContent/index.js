@@ -18,7 +18,7 @@ import ProgramTiles from 'components/ProgramTiles';
 import LatestNews from 'components/LatestNews/Loadable';
 import MediaReleases from 'components/MediaReleases/Loadable';
 import Button from 'components/Button';
-import HotTopicTag from 'components/HotTopicTag';
+import SpotlightTag from 'components/SpotlightTag';
 import Hero from './Hero';
 import Section from './Section';
 import Container from './Container';
@@ -29,7 +29,7 @@ import MarkdownWrapper from './MarkdownWrapper';
 import H3 from './H3';
 import Col from './Col';
 
-function ResearchAreaContent({ data: { researchAreas }, slug, width, hotTopic }) {
+function ResearchAreaContent({ data: { researchAreas }, slug, width, spotlight }) {
   let area = {};
   try {
     area = researchAreas[0];
@@ -51,7 +51,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, width, hotTopic })
       </center>
     ) : '';
 
-    const HotTopic = hotTopic ? <HotTopicTag /> : '';
+    const Spotlight = spotlight ? <SpotlightTag /> : '';
 
     return (
       <div style={{ overflow: 'hidden' }}>
@@ -62,7 +62,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, width, hotTopic })
               <Col xl={4} />
               <Col xl={7} style={{ paddingLeft: 0, maxWidth: 850 }}>
                 {/* <Breadcrumbs slug={slug} location={match} research /> */}
-                {HotTopic}
+                {Spotlight}
                 <H1 style={{ marginTop: 25 }}>{area.title}</H1>
                 <H2>{area.subheader}</H2>
                 <MarkdownWrapper>
@@ -126,7 +126,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, width, hotTopic })
 ResearchAreaContent.propTypes = {
   data: PropTypes.object.isRequired,
   slug: PropTypes.string.isRequired,
-  hotTopic: PropTypes.bool.isRequired,
+  spotlight: PropTypes.bool.isRequired,
   width: PropTypes.number,
 };
 

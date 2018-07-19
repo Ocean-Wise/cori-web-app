@@ -1,21 +1,21 @@
 /**
 *
-* HotTopicTag
+* SpotlightTag
 *
 */
 
 import React from 'react';
 import Container from './Container';
 
-function HotTopicTag() {
+function SpotlightTag() {
   return (
     <Container>
-      Hot Topic
+      Spotlight
     </Container>
   );
 }
 
-HotTopicTag.propTypes = {
+SpotlightTag.propTypes = {
 };
 
-export default HotTopicTag;
+export default SpotlightTag;

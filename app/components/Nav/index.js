@@ -204,15 +204,15 @@ function Nav({ data: { researchAreas }, active }) {
     nav[1] = nav[vaIndex];
     nav[vaIndex] = tmp;
 
-    // Insert Research Area and Hot Topic titles
+    // Insert Research Area and Spotlight titles
     nav.unshift(
       <TitleContainer key="researchAreas">
         Research Areas
       </TitleContainer>
     );
     nav.splice(3, 0, (
-      <TitleContainer key="hotTopics">
-        Hot Topics
+      <TitleContainer key="spotlight">
+        Spotlight
       </TitleContainer>
     ));
   } catch (err) {
