@@ -95,11 +95,14 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
       queryResults = searchState;
       // Check if there are results
       const hasResults = queryResults.query !== undefined && queryResults.query !== '';
+      // Set the height appropiately.
+      // If there are results set the height not 0. If we are mobile set 700 else 550
+      const height = hasResults ? fullScreen ? 700 : 550 : 0; // eslint-disable-line
       // Return the results for each Algolia index
       return (
         <div>
           {hasResults ? <h2 style={{ color: '#00B398', fontSize: 24, fontWeight: 300, letterSpacing: '2.57px', lineHeight: '35px', textTransform: 'uppercase' }}>Results</h2> : ''}
-          <Scrollbars style={{ height: hasResults ? 550 : 0, width: 'auto' }}>
+          <Scrollbars style={{ height, width: 'auto' }}>
             <Index indexName="ResearchAreas">
               {hasResults ? <CustomHits type="Research Areas" /> : ''}
             </Index>

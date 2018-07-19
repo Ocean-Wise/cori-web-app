@@ -174,7 +174,7 @@ function Nav({ data: { researchAreas }, active }) {
             <Link to={`/research/${area.slug}`}>{area.title}</Link>
             <span id={`${area.slug}-expander`} style={{ color: 'rgb(0, 179, 152)' }} dangerouslySetInnerHTML={active === area.slug || childActive !== '' ? { __html: Minus } : { __html: Plus }} />
           </ResearchArea>
-          <div id={`${area.slug}-programs`} style={{ height: areaHeight, overflow: 'hidden', transition: 'all 250ms cubic-bezier(0.805, 0.125, 0.500, 0.750)', marginLeft: 32, color: '#4D4D4D', fontSize: 14, lineHeight: '14px', width: '82%' }}>
+          <div id={`${area.slug}-programs`} style={{ height: areaHeight, overflow: 'hidden', transition: 'all 250ms cubic-bezier(0.805, 0.125, 0.500, 0.750)', marginLeft: 32, color: '#4D4D4D', fontSize: 14, lineHeight: '14px', width: '83%' }}>
             {programs}
           </div>
         </div>

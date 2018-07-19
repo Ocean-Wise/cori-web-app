@@ -7,7 +7,6 @@ const TitleContainer = styled.div`
   line-height: 35px;
   letter-spacing: 2.57px;
   border-bottom: 1px solid #CED5D9;
-  width: 286px;
   margin-left: 32px;
   padding-top: 24px;
   padding-bottom: 16px;
@@ -15,10 +14,9 @@ const TitleContainer = styled.div`
   color: #00B398;
   ${mixins.bp.md.max`
     margin-right: 30px;
-    width: unset;
   `}
   ${mixins.bp.xs.max`
-    width: 256px;
+    max-width: 83vw;
   `}
 `;
 
