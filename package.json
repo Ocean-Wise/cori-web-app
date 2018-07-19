@@ -45,16 +45,15 @@
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "deploy": "npm run deploy:staging",
-    "deploy:staging": "heroku container:push web -a cori-staging && heroku container:release web -a cori-staging",
+    "deploy:staging": "npm run build && heroku container:push web -a cori-staging && heroku container:release web -a cori-staging",
     "deploy:prod": "npm run test && npm run build && heroku container:push web -a cori && heroku container:release web -a cori"
   },
   "lint-staged": {
     "linters": {
-      "app/**/**.js": "lint:eslint",
-      "server/**.js": "lint:eslint"
+      "*.js": "lint:eslint"
     },
     "ignore": [
-      "**/citation-js/**/*.js"
+      "citation-js/**/**.js"
     ]
   },
   "pre-commit": "lint:staged",
