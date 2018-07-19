@@ -19,7 +19,7 @@ import TeamMembers from 'components/TeamMembers/Loadable';
 import TeamCopy from 'components/TeamCopy';
 // import ProjectMembers from 'components/ProjectMembers';
 import AreaMembers from 'components/AreaMembers/Loadable';
-import TeamFilterButtons from 'components/TeamFilterButtons';
+import RAFilterButtons from 'components/RAFilterButtons';
 
 import makeSelectTeam from './selectors';
 import reducer from './reducer';
@@ -41,7 +41,7 @@ export class Team extends React.PureComponent { // eslint-disable-line react/pre
         </Helmet>
         <Header active={this.props.match.params.slug} />
         <TeamCopy />
-        <TeamFilterButtons filter={this.props.match} />
+        <RAFilterButtons filter={this.props.match} />
         {MemberComponent}
       </div>
     );

@@ -17,6 +17,7 @@ import Button from '@material-ui/core/Button';
 import Badge from '@material-ui/core/Badge';
 import PublicationContent from 'components/PublicationContent';
 import GetPublications from 'components/GetPublications/Loadable';
+import RAFilterButtons from 'components/RAFilterButtons';
 import DownloadIcon from 'styles/icons/download.svg';
 import { saveAs } from 'file-saver/FileSaver';
 
@@ -135,6 +136,7 @@ export class Publications extends React.Component { // eslint-disable-line react
         </Helmet>
         <Header />
         <PublicationContent />
+        <RAFilterButtons filter={this.props.match} />
         <SelectContainer>
           <div style={{ display: 'flex', paddingTop: 8, flexWrap: 'wrap' }}>
             <SearchInput className="search-input" onChange={this.searchUpdated} placeholder="Search publications..." />

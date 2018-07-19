@@ -1,6 +1,6 @@
 /**
 *
-* TeamFilterButtons
+* RAFilterButtons
 *
 */
 
@@ -12,13 +12,14 @@ import getAreas from 'graphql/queries/getResearchAreaTeasers.graphql';
 import Button from 'components/Button';
 import Container from './Container';
 
-function TeamFilterButtons({ data: { researchAreas }, filter }) {
+function RAFilterButtons({ data: { researchAreas }, filter }) {
   try {
     const buttons = [];
+    const location = /[a-z]+/g.exec(filter.url)[0];
     researchAreas.forEach((area) => {
       const key = `button-${area.slug}`;
       buttons.push(
-        <Link key={key} to={`/team/${area.slug}`}>
+        <Link key={key} to={`/${location}/${area.slug}`}>
           <Button noBorder selected={filter.params.slug === area.slug} id={key}>
             {area.title}
           </Button>
@@ -46,8 +47,8 @@ function TeamFilterButtons({ data: { researchAreas }, filter }) {
 
     // Add All button to position 0
     buttons.unshift(
-      <Link to="/team" key="button-all">
-        <Button noBorder selected={filter.path === '/team'} id="button-all">
+      <Link to={`/${location}`} key="button-all">
+        <Button noBorder selected={filter.path === `/${location}`} id="button-all">
           All
         </Button>
       </Link>
@@ -64,9 +65,9 @@ function TeamFilterButtons({ data: { researchAreas }, filter }) {
   }
 }
 
-TeamFilterButtons.propTypes = {
+RAFilterButtons.propTypes = {
   data: PropTypes.object.isRequired,
   filter: PropTypes.object,
 };
 
-export default graphql(getAreas)(TeamFilterButtons);
+export default graphql(getAreas)(RAFilterButtons);
