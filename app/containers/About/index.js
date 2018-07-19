@@ -33,7 +33,18 @@ export class About extends React.PureComponent { // eslint-disable-line react/pr
 
   componentDidMount() {
     this.updateWindowDimensions();
-    window.scrollTo(0, 0);
+    if (this.props.location.hash === '') {
+      window.scrollTo(0, 0);
+    } else {
+      setTimeout(() => {
+        try {
+          const el = document.getElementById(this.props.location.hash.substring(1));
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } catch (err) {
+          // Element didn't exist yet, but we don't want to stop the page from rendering
+        }
+      });
+    }
     window.addEventListener('resize', this.updateWindowDimensions);
   }
 
@@ -59,6 +70,7 @@ export class About extends React.PureComponent { // eslint-disable-line react/pr
 About.propTypes = {
   // dispatch: PropTypes.func.isRequired,
   match: PropTypes.object,
+  location: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({

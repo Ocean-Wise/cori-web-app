@@ -52,7 +52,7 @@ function AboutContent({ data: { aboutPages }, width }) {
           </Grid>
         </Section>
         <Section>
-          <Grid fluid>
+          <Grid fluid id="contact">
             <Row>
               <Col xl={1} />
               <Col xl={4}>

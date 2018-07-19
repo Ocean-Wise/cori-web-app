@@ -28,8 +28,6 @@ import IconButton from '@material-ui/core/IconButton';
 
 import ApolloWrapper from 'containers/ApolloWrapper';
 
-import { Scrollbars } from 'react-custom-scrollbars';
-
 const AppWrapper = styled.div`
   max-width: 100%;
   margin: 0 auto;
@@ -42,6 +40,7 @@ const ScrollWrapper = styled.div`
   z-index: 15;
 `;
 
+
 export default function App() {
   return (
     <AppWrapper>
@@ -52,28 +51,21 @@ export default function App() {
         >
           <meta name="description" content="Ocean Wise Research" />
         </Helmet>
-        <Scrollbars
-          style={{ height: '100vh', width: '100vw' }}
-          autoHide
-          autoHideTimeout={2500}
-          autoHideDuration={1000}
-        >
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route path="/about" component={About} />
-            <Route path="/media" component={Media} />
-            <Route path="/team/:slug" component={Team} />
-            <Route path="/team" component={Team} />
-            <Route path="/research/:slug" component={ResearchArea} />
-            <Route path="/program/:slug" component={Program} />
-            <Route path="/project/:slug" component={Project} />
-            {/* This comment is, for some reason, required for routes to actually render when Linked to... */}
-            <Route path="/publications/:slug" component={Publications} />
-            <Route path="/publications" component={Publications} />
-            <Route path="" component={NotFoundPage} />
-          </Switch>
-          <Footer />
-        </Scrollbars>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/about" component={About} />
+          <Route path="/media" component={Media} />
+          <Route path="/team/:slug" component={Team} />
+          <Route path="/team" component={Team} />
+          <Route path="/research/:slug" component={ResearchArea} />
+          <Route path="/program/:slug" component={Program} />
+          <Route path="/project/:slug" component={Project} />
+          {/* This comment is, for some reason, required for routes to actually render when Linked to... */}
+          <Route path="/publications/:slug" component={Publications} />
+          <Route path="/publications" component={Publications} />
+          <Route path="" component={NotFoundPage} />
+        </Switch>
+        <Footer />
       </ApolloWrapper>
       <ScrollWrapper>
         <ScrollUpButton

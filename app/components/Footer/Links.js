@@ -16,19 +16,19 @@ function Links() {
           <H4>
             Coastal Ocean Research Institute
           </H4>
-          <A href="#">
+          <A to="/program/marine-mammals">
             Marine Mammals
           </A>
-          <A href="#">
+          <A to="/program/ocean-pollution">
             Ocean Pollution
           </A>
-          <A href="#">
+          <A to="#">
             Plastics Lab
           </A>
-          <A href="#">
+          <A to="/program/coastal-ocean-health">
             Coastal Ocean Health
           </A>
-          <A href="#">
+          <A to="/program/howe-sound-biodiversity">
             Howe Sound Biodiversity
           </A>
         </Row>
@@ -36,19 +36,19 @@ function Links() {
           <H4>
             Vancouver Aquarium
           </H4>
-          <A href="#">
+          <A to="#">
             Frog Conservation
           </A>
-          <A href="#">
+          <A to="#">
             Fish Propagation
           </A>
-          <A href="#">
+          <A to="#">
             Animal Health
           </A>
-          <A href="#">
+          <A to="/program/energetics-and-metabolism">
             Energetics and Metabolism
           </A>
-          <A href="#">
+          <A to="#">
             Jellyfish Rearing
           </A>
         </Row>
@@ -56,16 +56,16 @@ function Links() {
           <H4>
             Working Groups
           </H4>
-          <A href="#">
+          <A to="/research/arctic">
             Arctic
           </A>
-          <A href="#">
+          <A to="/research/plastic">
             Plastic
           </A>
-          <A href="#">
+          <A to="/research/special-places">
             Special Places
           </A>
-          <A href="#">
+          <A to="#">
             Species Under Threat
           </A>
         </Row>
@@ -73,19 +73,19 @@ function Links() {
           <H4>
             Ocean Wise Research
           </H4>
-          <A href="#">
+          <A to="/about">
             About
           </A>
-          <A href="#">
+          <A to="/team">
             Team
           </A>
-          <A href="#">
+          <A to="/media">
             Media
           </A>
-          <A href="#">
+          <A to="/publications">
             Publications
           </A>
-          <A href="#">
+          <A to="/about#contact">
             Contact
           </A>
         </Row>

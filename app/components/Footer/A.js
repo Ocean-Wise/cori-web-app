@@ -1,7 +1,8 @@
-import NormalA from 'components/A';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import * as mixins from 'styles/mixins';
 
-const A = NormalA.extend`
+const A = styled(Link)`
   padding: 0.25em 0;
   display: flex;
   flex-direction: column;
