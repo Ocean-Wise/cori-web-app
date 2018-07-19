@@ -15,7 +15,6 @@ const KEYS_TO_FILTER = ['title', 'authors', 'year', 'abstract', 'keywords'];
 
 function GetPublications({ data: { publications }, sort, alpha, addToList, removeFromList, selected, match, searchTerm }) {
   const output = [];
-  console.log(match);
   try {
     const sortDesc = (a, b) => parseInt(b.year, 10) - parseInt(a.year, 10);
     const sortAsc = (a, b) => parseInt(a.year, 10) - parseInt(b.year, 10);
