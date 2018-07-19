@@ -64,7 +64,12 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
           <div style={{ borderBottom: '1px solid #00B398' }}>
             <span style={{ fontWeight: 'bold', color: '#4D4D4D', fontSize: 18, lineHeight: '21px', paddingBottom: 8 }}>{type}</span>
             {hits.map((hit) => { // eslint-disable-line
-              const result = hit.slug ? (
+              // eslint-disable-next-line
+              const result = hit.slug ? hit.slug.match(/https?:\/\//g) ? (
+                <a href={hit.slug} target="_blank">
+                  <Highlight attribute="title" hit={hit} />
+                </a>
+              ) : (
                 <Link to={hit.slug}>
                   <Highlight attribute="title" hit={hit} />
                 </Link>

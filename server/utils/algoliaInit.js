@@ -1,6 +1,8 @@
 // Load environment variables
 require('dotenv').config();
 
+const axios = require('axios');
+
 const logger = require('../logger');
 const contentful = require('contentful');
 // Contentful client init
@@ -119,15 +121,28 @@ function getPubs() {
       content_type: 'researchPapers',
     })
     .then((content) => {
-      content.items.forEach((entry) => {
+      content.items.forEach(async (entry) => {
+        let link;
+        if (entry.fields.pdf) {
+          link = entry.fields.pdf.fields.file.url;
+        } else if (entry.fields.url) {
+          link = entry.fields.url;
+        } else if (entry.fields.doi) {
+          await axios.get(`https://api.semanticscholar.org/v1/paper/${entry.fields.doi}`)
+            .then((pub) => {
+              link = pub.data.url;
+            });
+        }
         // Create our Publication object for the current entry
         const item = {
           objectID: entry.fields.slug,
+          slug: link,
           authors: entry.fields.authors.join(';'),
           title: entry.fields.title,
           journal: entry.fields.journal,
           volume: entry.fields.volume,
           number: entry.fields.number,
+          keywords: entry.fields.keywords.join(),
           pages: entry.fields.pages,
           year: parseInt(entry.fields.year, 10),
         };
@@ -147,8 +162,10 @@ function getPeeps() {
     .then((content) => {
       content.items.forEach((entry) => {
         const title = `${entry.fields.first} ${entry.fields.last}`;
+        const slug = `/team/${entry.fields.slug}`;
         const item = {
           objectID: `${slugify(entry.fields.first)}-${slugify(entry.fields.last)}`,
+          slug,
           title,
           first: entry.fields.first,
           last: entry.fields.last,
@@ -336,7 +353,7 @@ function initAlgolia() {
       .then(() => addProj())
       .then(() => {
         pubIndex.setSettings({
-          searchableAttributes: ['authors', 'title', 'journal'],
+          searchableAttributes: ['authors', 'title', 'journal', 'keywords', 'year'],
         });
         peepIndex.setSettings({
           searchableAttributes: ['first', 'last', 'title'],
