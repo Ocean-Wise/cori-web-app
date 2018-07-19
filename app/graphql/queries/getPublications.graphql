@@ -6,6 +6,7 @@ query Publications {
     abstract
     authors
     year
+    keywords
     doi
     pdf {
       url

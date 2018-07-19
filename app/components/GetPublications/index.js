@@ -11,7 +11,7 @@ import getPublications from 'graphql/queries/getPublications.graphql';
 import PublicationCard from 'components/PublicationCard';
 import { createFilter } from 'react-search-input';
 
-const KEYS_TO_FILTER = ['title', 'authors'];
+const KEYS_TO_FILTER = ['title', 'authors', 'year', 'abstract', 'keywords'];
 
 function GetPublications({ data: { publications }, sort, alpha, addToList, removeFromList, selected, match, searchTerm }) {
   const output = [];
@@ -53,12 +53,18 @@ function GetPublications({ data: { publications }, sort, alpha, addToList, remov
         output.push({
           title: publication.title,
           authors: publication.authors.join(),
+          year: publication.year,
+          abstract: publication.abstract,
+          keywords: publication.keywords.join(),
           item: <PublicationCard isSelected={isSelected} addToList={addToList} removeFromList={removeFromList} data={publication} name={publication.slug} index={i} max={sorted.length} key={publication.slug} />,
         });
       } else if (match.params.slug === publication.researchArea.slug) {
         output.push({
           title: publication.title,
           authors: publication.authors.join(),
+          year: publication.year,
+          abstract: publication.abstract,
+          keywords: publication.keywords.join(),
           item: <PublicationCard isSelected={isSelected} addToList={addToList} removeFromList={removeFromList} data={publication} name={publication.slug} index={i} max={sorted.length} key={publication.slug} />,
         });
       }
