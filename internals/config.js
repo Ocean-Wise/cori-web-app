@@ -28,6 +28,16 @@ const ReactBoilerplate = {
         'ip',
         'minimist',
         'sanitize.css',
+        'cors',
+        'cf-graphql',
+        'express-graphql',
+        'dotenv',
+        'graphql-tag',
+        'rss-parser',
+        'body-parser',
+        'http-auth',
+        'uglifyjs-webpack-plugin',
+        'citation-js',
       ],
 
       /**

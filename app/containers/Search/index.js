@@ -19,6 +19,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import PoweredBy from 'styles/icons/algolia.svg';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
@@ -98,24 +99,26 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
       return (
         <div>
           {hasResults ? <h2 style={{ color: '#00B398', fontSize: 24, fontWeight: 300, letterSpacing: '2.57px', lineHeight: '35px', textTransform: 'uppercase' }}>Results</h2> : ''}
-          <Index indexName="ResearchAreas">
-            {hasResults ? <CustomHits type="Research Areas" /> : ''}
-          </Index>
-          <Index indexName="Programs">
-            {hasResults ? <CustomHits type="Programs" /> : ''}
-          </Index>
-          <Index indexName="Initiatives">
-            {hasResults ? <CustomHits type="Initiatives" /> : ''}
-          </Index>
-          <Index indexName="Projects">
-            {hasResults ? <CustomHits type="Projects" /> : ''}
-          </Index>
-          <Index indexName="Publications">
-            {hasResults ? <CustomHits type="Publications" /> : ''}
-          </Index>
-          <Index indexName="People">
-            {hasResults ? <CustomHits type="People" /> : ''}
-          </Index>
+          <Scrollbars style={{ height: hasResults ? 550 : 0, width: 'auto' }}>
+            <Index indexName="ResearchAreas">
+              {hasResults ? <CustomHits type="Research Areas" /> : ''}
+            </Index>
+            <Index indexName="Programs">
+              {hasResults ? <CustomHits type="Programs" /> : ''}
+            </Index>
+            <Index indexName="Initiatives">
+              {hasResults ? <CustomHits type="Initiatives" /> : ''}
+            </Index>
+            <Index indexName="Projects">
+              {hasResults ? <CustomHits type="Projects" /> : ''}
+            </Index>
+            <Index indexName="Publications">
+              {hasResults ? <CustomHits type="Publications" /> : ''}
+            </Index>
+            <Index indexName="People">
+              {hasResults ? <CustomHits type="People" /> : ''}
+            </Index>
+          </Scrollbars>
         </div>
       );
     });
@@ -143,7 +146,7 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
               <Results />
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <div style={{ marginTop: 29, color: '#CCD0D2', fontSize: 12, lineHeight: '18px' }}>SEARCH BY <img style={{ height: 20 }} src={PoweredBy} alt="Algolia" /></div>
-                <div style={{ marginTop: 18 }}><OWButton id="close-search">Close</OWButton></div>
+                <div style={{ marginTop: 18 }}><OWButton id="close-search" onClick={this.toggleSearch}>Close</OWButton></div>
               </div>
             </InstantSearch>
           </DialogContent>
