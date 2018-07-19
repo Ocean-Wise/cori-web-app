@@ -64,7 +64,7 @@ function Breadcrumbs({ data, location, slug }) {
           const currentProgram = data[dataQuery][0]._backrefs.initiatives__via__projects[0]._backrefs.programs__via__initiatives[0]; // eslint-disable-line
           const currentArea = data[dataQuery][0]._backrefs.initiatives__via__projects[0]._backrefs.programs__via__initiatives[0]._backrefs.researchAreas__via__programs[0]; // eslint-disable-line
 
-          string = <span><Link to={`/research/${currentArea.slug}`}>{currentArea.title}</Link> / <Link to={`/program/${currentProgram.slug}`}>{currentProgram.title}</Link> / {currentInitiative.title} / <span style={{ color: 'rgb(0, 179, 152)', fontWeight: 'bold', lineHeight: '18px' }}>{data[dataQuery][0].projectTitle}</span></span>;
+          string = <span><Link to={`/research/${currentArea.slug}`}>{currentArea.title}</Link> / <Link to={`/program/${currentProgram.slug}`}>{currentProgram.title}</Link> / <Link to={`/program/${currentProgram.slug}#${currentInitiative.slug}`}>{currentInitiative.title}</Link> / <span style={{ color: 'rgb(0, 179, 152)', fontWeight: 'bold', lineHeight: '18px' }}>{data[dataQuery][0].projectTitle}</span></span>;
         }
         break;
       default:
