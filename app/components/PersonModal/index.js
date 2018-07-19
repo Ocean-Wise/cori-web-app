@@ -39,7 +39,7 @@ const styles = () => ({
 
 class PersonModal extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   state = {
-    open: false,
+    open: this.props.active,
   }
 
   handleToggle = () => {
@@ -97,6 +97,7 @@ PersonModal.propTypes = {
   person: PropTypes.object.isRequired,
   fullScreen: PropTypes.bool.isRequired,
   classes: PropTypes.object,
+  active: PropTypes.bool,
 };
 
 export default compose(

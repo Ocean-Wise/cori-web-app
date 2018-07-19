@@ -32,7 +32,8 @@ export class Team extends React.PureComponent { // eslint-disable-line react/pre
   }
 
   render() {
-    const MemberComponent = R.isEmpty(this.props.match.params) ? <TeamMembers /> : <AreaMembers slug={this.props.match.params.slug} />;
+    const member = /[^#]*$/g.exec(this.props.location.hash)[0];
+    const MemberComponent = R.isEmpty(this.props.match.params) ? <TeamMembers member={member} /> : <AreaMembers slug={this.props.match.params.slug} />;
     return (
       <div>
         <Helmet>
@@ -50,6 +51,7 @@ export class Team extends React.PureComponent { // eslint-disable-line react/pre
 
 Team.propTypes = {
   match: PropTypes.object,
+  location: PropTypes.object,
   // dispatch: PropTypes.func.isRequired,
 };
 

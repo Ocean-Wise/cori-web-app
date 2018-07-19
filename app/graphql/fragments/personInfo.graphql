@@ -1,6 +1,7 @@
 fragment PersonInfo on Person {
   first
   last
+  slug
   honorifictitle
   image {
     title

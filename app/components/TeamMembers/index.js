@@ -16,12 +16,12 @@ import Wrapper from './Wrapper';
  * Returns all the people in the CMS
  *
  */
-function Teampersons({ data: { people } }) {
+function Teampersons({ data: { people }, member }) {
   let renderedPeople;
   try {
     renderedPeople = people.map((person, i) => { // eslint-disable-line
       return (
-        <PersonModal key={`person-${i.toString()}`} person={person} />
+        <PersonModal key={`person-${i.toString()}`} person={person} active={person.slug === member} />
       );
     });
   } catch (err) {
@@ -36,6 +36,7 @@ function Teampersons({ data: { people } }) {
 
 Teampersons.propTypes = {
   data: PropTypes.object.isRequired,
+  member: PropTypes.string,
 };
 
 export default graphql(teamQuery)(Teampersons);
