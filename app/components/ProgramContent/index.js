@@ -111,7 +111,7 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
       const spotlight = initiative.rssLink !== null ? (
         <div>
           <Hr style={{ marginBottom: 15 }} />
-          <H5>SPOTLIGHT</H5>
+          <H5>FEATURE STORY</H5>
           <ProjectFeatured url={initiative.rssLink} />
         </div>
       ) : '';
