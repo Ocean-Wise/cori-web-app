@@ -42,7 +42,8 @@ export class ResearchArea extends React.PureComponent { // eslint-disable-line r
   deslugify = (slug) =>
     slug
       .replace(/-/g, ' ')
-      .replace(/\w\S*/g, (str) => str.charAt(0).toUpperCase() + str.substr(1).toLowerCase());
+      .replace(/\w\S*/g, (str) => str.charAt(0).toUpperCase() + str.substr(1).toLowerCase())
+      .replace(/Cori/g, (str) => str.toUpperCase());
 
   render() {
     const NAV = this.state.width < 1200 ? '' : <FloatingNav active={this.props.match.params.slug} location={this.props.match} />;
