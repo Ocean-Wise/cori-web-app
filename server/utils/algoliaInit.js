@@ -162,7 +162,7 @@ function getPeeps() {
     .then((content) => {
       content.items.forEach((entry) => {
         const title = `${entry.fields.first} ${entry.fields.last}`;
-        const slug = `/team/${entry.fields.slug}`;
+        const slug = `/team#${entry.fields.slug}`;
         const item = {
           objectID: `${slugify(entry.fields.first)}-${slugify(entry.fields.last)}`,
           slug,
