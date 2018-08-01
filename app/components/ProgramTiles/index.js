@@ -51,6 +51,25 @@ function ProgramTiles({ data: { researchAreas }, width }) {
       );
       return true;
     });
+    researchAreas[0].projects.map((project, i) => {
+      tiles.push(
+        <Tile image={project.hero.url} key={`programLink-${i.toString()}`} width={width}>
+          <HoverContainer>
+            <H2>{project.projectTitle}</H2>
+            <P>{project.subheader}</P>
+            <center>
+              <Link to={`/project/${project.slug}`}>
+                <Button style={{ border: '1px solid #FFFFFF', borderRadius: 0, padding: '10px 25px', marginTop: 32 }}>
+                  <span className="explore">Explore <ChevronRight style={{ fontSize: 35, marginLeft: -5, marginRight: -15 }} /></span>
+                </Button>
+              </Link>
+            </center>
+          </HoverContainer>
+          <Title className="initialTitle">{project.projectTitle}</Title>
+        </Tile>
+      );
+      return true;
+    });
     return (
       <Grid fluid>
         <Row>

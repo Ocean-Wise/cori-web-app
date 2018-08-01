@@ -117,6 +117,141 @@ function Nav({ data: { researchAreas }, active }) {
       }
       /* eslint-enable */
 
+      // Loop over the projects if there are any
+      if (area.projects !== null) {
+        area.projects.map((project) => {
+          // Set as active if it is active
+          if (active === project.slug) childActive = project.slug;
+          /* eslint-disable */
+          // Is this an internal project page?
+          // If so link it to the page
+          if (project.type === 'Internal') {
+            programs.push(
+              <ProgramContainer key={`${project.slug}-project`} id={`${project.slug}-program`}>
+                <Program
+                  role="menuitem"
+                  tabIndex={-1}
+                  id={`${project.slug}-program-container`}
+                >
+                  <Link
+                    to={`/project/${project.slug}`}
+                    key={`project-upper-${project.slug}`}
+                    onClick={() => {
+                      const expanderEl = document.getElementById(`${project.slug}-expander`);
+                      if (expanderEl.innerHTML === Minus) {
+                        expanderEl.innerHTML = Plus;
+                      } else {
+                        expanderEl.innerHTML = Minus;
+                      }
+                    }}
+                  >
+                    {project.projectTitle}
+                  </Link>
+                  <Link
+                    to={`/project/${project.slug}`}
+                    key={`project-upper-expander-${project.slug}`}
+                    onClick={() => {
+                      const expanderEl = document.getElementById(`${project.slug}-expander`);
+                      if (expanderEl.innerHTML === Minus) {
+                        expanderEl.innerHTML = Plus;
+                      } else {
+                        expanderEl.innerHTML = Minus;
+                      }
+                    }}
+                  >
+                    <span style={{ marginRight: 5, color: 'rgb(0, 179, 152)' }} id={`${project.slug}-expander`} dangerouslySetInnerHTML={active === project.slug ? { __html: Minus } : { __html: Plus }} />
+                  </Link>
+                </Program>
+              </ProgramContainer>
+            );
+          // Is this page an external link?
+          // If so link out via <a>
+          } else if (project.type === 'Link') {
+            programs.push(
+              <ProgramContainer key={`${project.slug}-project`} id={`${project.slug}-program`}>
+                <Program
+                  role="menuitem"
+                  tabIndex={-1}
+                  id={`${project.slug}-program-container`}
+                >
+                  <a
+                    href={project.externalLink}
+                    key={`project-upper-${project.slug}`}
+                    onClick={() => {
+                      const expanderEl = document.getElementById(`${project.slug}-expander`);
+                      if (expanderEl.innerHTML === Minus) {
+                        expanderEl.innerHTML = Plus;
+                      } else {
+                        expanderEl.innerHTML = Minus;
+                      }
+                    }}
+                  >
+                    {project.projectTitle}
+                  </a>
+                  <a
+                    href={project.externalLink}
+                    key={`project-upper-expander-${project.slug}`}
+                    onClick={() => {
+                      const expanderEl = document.getElementById(`${project.slug}-expander`);
+                      if (expanderEl.innerHTML === Minus) {
+                        expanderEl.innerHTML = Plus;
+                      } else {
+                        expanderEl.innerHTML = Minus;
+                      }
+                    }}
+                  >
+                    <span style={{ marginRight: 5, color: 'rgb(0, 179, 152)' }} id={`${project.slug}-expander`} dangerouslySetInnerHTML={active === project.slug ? { __html: Minus } : { __html: Plus }} />
+                  </a>
+                </Program>
+              </ProgramContainer>
+            );
+          // Is this project a PDF?
+          // If so link to PDF via <a>
+          } else if (project.type === 'PDF') {
+            programs.push(
+              <ProgramContainer key={`${project.slug}-project`} id={`${project.slug}-program`}>
+                <Program
+                  role="menuitem"
+                  tabIndex={-1}
+                  id={`${project.slug}-program-container`}
+                >
+                  <a
+                    href={project.pdf.url}
+                    key={`project-upper-${project.slug}`}
+                    onClick={() => {
+                      const expanderEl = document.getElementById(`${project.slug}-expander`);
+                      if (expanderEl.innerHTML === Minus) {
+                        expanderEl.innerHTML = Plus;
+                      } else {
+                        expanderEl.innerHTML = Minus;
+                      }
+                    }}
+                  >
+                    {project.projectTitle}
+                  </a>
+                  <a
+                    href={project.pdf.url}
+                    key={`project-upper-expander-${project.slug}`}
+                    onClick={() => {
+                      const expanderEl = document.getElementById(`${project.slug}-expander`);
+                      if (expanderEl.innerHTML === Minus) {
+                        expanderEl.innerHTML = Plus;
+                      } else {
+                        expanderEl.innerHTML = Minus;
+                      }
+                    }}
+                  >
+                    <span style={{ marginRight: 5, color: 'rgb(0, 179, 152)' }} id={`${project.slug}-expander`} dangerouslySetInnerHTML={active === project.slug ? { __html: Minus } : { __html: Plus }} />
+                  </a>
+                </Program>
+              </ProgramContainer>
+            );
+          }
+          /* eslint-enable */
+          return true;
+        });
+      }
+
 
       // How many initiatives are in active program's container? Default to 0
       let activeLen = 0;

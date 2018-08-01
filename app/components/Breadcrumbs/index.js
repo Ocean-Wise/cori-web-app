@@ -48,7 +48,7 @@ function Breadcrumbs({ data, location, slug }) {
       case 'projects':
         // This is a project, so Link to the research area and program via backref, then highlight the program project title
         if (data[dataQuery][0]._backrefs.researchAreas__via__projects.length !== 0) { // eslint-disable-line
-          string = <span><Link to={`/research/${data[dataQuery][0]._backrefs.researchAreas__via__projects[0].slug}`}>{data[dataQuery][0]._backrefs.researchAreas__via__projects[0].title}</Link> /  <span style={{ color: 'rgb(0, 179, 152)', fontWeight: 'bold', lineHeight: '18px' }}>{data[dataQuery][0].title}</span></span>; // eslint-disable-line
+          string = <span><Link to={`/research/${data[dataQuery][0]._backrefs.researchAreas__via__projects[0].slug}`}>{data[dataQuery][0]._backrefs.researchAreas__via__projects[0].title}</Link> /  <span style={{ color: 'rgb(0, 179, 152)', fontWeight: 'bold', lineHeight: '18px' }}>{data[dataQuery][0].projectTitle}</span></span>; // eslint-disable-line
         } else {
           const initiatives = data[dataQuery][0]._backrefs.initiatives__via__projects; // eslint-disable-line
 

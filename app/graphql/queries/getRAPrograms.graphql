@@ -1,10 +1,14 @@
 #import "../fragments/programTeaser.graphql"
+#import "../fragments/projectTeaser.graphql"
 
 query Programs($slug: String!) {
   researchAreas(q: $slug) {
     programs {
       ...ProgramTeaser
       overlay
+    }
+    projects {
+      ...ProjectTeaser
     }
   }
 }

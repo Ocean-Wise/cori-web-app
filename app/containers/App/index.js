@@ -19,6 +19,7 @@ import ResearchArea from 'containers/ResearchArea/Loadable';
 import Program from 'containers/Program/Loadable';
 import Project from 'containers/Project/Loadable';
 import Publications from 'containers/Publications';
+import Survey from 'containers/Survey';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Footer from 'components/Footer';
 
@@ -63,6 +64,7 @@ export default function App() {
           {/* This comment is, for some reason, required for routes to actually render when Linked to... */}
           <Route path="/publications/:slug" component={Publications} />
           <Route path="/publications" component={Publications} />
+          <Route path="/survey/:slug" component={Survey} />
           <Route path="" component={NotFoundPage} />
         </Switch>
         <Footer />
