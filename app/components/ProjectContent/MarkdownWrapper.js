@@ -35,6 +35,9 @@ const MarkdownWrapper = styled.div`
       line-height: 34px;
     }
   }
+  a {
+    color: rgb(0, 179, 152) !important;
+  }
 `;
 
 export default MarkdownWrapper;

@@ -19,6 +19,7 @@ import H1 from './H1';
 import H3 from './H3';
 import MarkdownWrapper from './MarkdownWrapper';
 import Hr from './Hr';
+import SupporterRow from './SupporterRow';
 
 function ProjectContent({ data: { projects }, slug, match }) {
   let project = {};
@@ -29,8 +30,8 @@ function ProjectContent({ data: { projects }, slug, match }) {
     try {
       supporters = project.supporters.map((supporter, i) => { // eslint-disable-line
         return (
-          <div key={`supporter-${i.toString()}`}>
-            <img src={supporter.logo.url} alt={supporter.name} />
+          <div key={`supporter-${i.toString()}`} style={{ margin: 10 }}>
+            <img src={supporter.logo.url} alt={supporter.name} width={250} />
           </div>
         );
       });
@@ -40,7 +41,15 @@ function ProjectContent({ data: { projects }, slug, match }) {
           <center>
             <H1 style={{ fontSize: 48, lineHeight: '50px', marginTop: 0, marginBottom: 16 }}>Our Supporters</H1>
             <p style={{ fontSize: 16, lineHeight: '26px', color: '#4D4D4D', maxWidth: 730 }}>{project.supportersCopy}</p>
-            <div style={{ display: 'inline-flex', flexDirection: 'row', marginTop: 64 }}>{supporters}</div>
+            <Grid fluid>
+              <Row>
+                <Col xl={8} style={{ margin: '0 auto' }}>
+                  <SupporterRow>
+                    {supporters}
+                  </SupporterRow>
+                </Col>
+              </Row>
+            </Grid>
           </center>
         </div>
       ) : '';

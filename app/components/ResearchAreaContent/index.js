@@ -28,6 +28,7 @@ import H2 from './H2';
 import MarkdownWrapper from './MarkdownWrapper';
 import H3 from './H3';
 import Col from './Col';
+import SupporterRow from './SupporterRow';
 
 function ResearchAreaContent({ data: { researchAreas }, slug, width, spotlight }) {
   let area = {};
@@ -49,8 +50,8 @@ function ResearchAreaContent({ data: { researchAreas }, slug, width, spotlight }
     try {
       supporters = area.supporters.map((supporter) => { // eslint-disable-line
         return (
-          <div key={`supporter-${supporter.name}`}>
-            <img src={supporter.logo.url} alt={supporter.name} />
+          <div key={`supporter-${supporter.name}`} style={{ margin: 10 }}>
+            <img src={supporter.logo.url} alt={supporter.name} width={250} />
           </div>
         );
       });
@@ -60,7 +61,15 @@ function ResearchAreaContent({ data: { researchAreas }, slug, width, spotlight }
             <H1 style={{ fontSize: 48, lineHeight: '50px', paddingTop: 15 }}>Our Supporters</H1>
             {/* <Divider /> */}
             <p>{area.supportersCopy}</p>
-            <div style={{ display: 'inline-flex', flexDirection: 'row' }}>{supporters}</div>
+            <Grid fluid>
+              <Row>
+                <Col xl={8} style={{ margin: '0 auto' }}>
+                  <SupporterRow>
+                    {supporters}
+                  </SupporterRow>
+                </Col>
+              </Row>
+            </Grid>
           </center>
         </Section>
       ) : '';
