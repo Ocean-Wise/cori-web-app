@@ -55,7 +55,7 @@ function GetPublications({ data: { publications }, sort, alpha, addToList, remov
           authors: publication.authors.join(),
           year: publication.year,
           abstract: publication.abstract,
-          keywords: publication.keywords.join(),
+          keywords: publication.keywords ? publication.keywords.join() : null,
           item: <PublicationCard isSelected={isSelected} addToList={addToList} removeFromList={removeFromList} data={publication} name={publication.slug} index={i} max={sorted.length} key={publication.slug} />,
         });
       } else if (match.params.slug === publication.researchArea.slug) {
@@ -64,7 +64,7 @@ function GetPublications({ data: { publications }, sort, alpha, addToList, remov
           authors: publication.authors.join(),
           year: publication.year,
           abstract: publication.abstract,
-          keywords: publication.keywords.join(),
+          keywords: publication.keywords ? publication.keywords.join() : null,
           item: <PublicationCard isSelected={isSelected} addToList={addToList} removeFromList={removeFromList} data={publication} name={publication.slug} index={i} max={sorted.length} key={publication.slug} />,
         });
       }
@@ -77,6 +77,7 @@ function GetPublications({ data: { publications }, sort, alpha, addToList, remov
       </div>
     );
   } catch (err) {
+    console.log(err.stack);
     return null;
   }
 
