@@ -33,7 +33,6 @@ function ProgramTiles({ data: { researchAreas }, width }) {
     try {
       researchAreas[0].programs.map((program, i) => {
         tiles.push(
-          // <Link to={`/program/${program.slug}`} key={`programLink-${i.toString()}`}>
           <Tile image={program.hero.url} key={`programLink-${i.toString()}`} width={width}>
             <HoverContainer>
               <H2>{program.title}</H2>
@@ -48,7 +47,6 @@ function ProgramTiles({ data: { researchAreas }, width }) {
             </HoverContainer>
             <Title className="initialTitle">{program.title}</Title>
           </Tile>
-          // </Link>
         );
         return true;
       });
@@ -57,22 +55,60 @@ function ProgramTiles({ data: { researchAreas }, width }) {
     }
     try {
       researchAreas[0].projects.map((project, i) => {
-        tiles.push(
-          <Tile image={project.hero.url} key={`programLink-${i.toString()}`} width={width}>
-            <HoverContainer>
-              <H2>{project.projectTitle}</H2>
-              <P>{project.subheader}</P>
-              <center>
-                <Link to={`/project/${project.slug}`}>
-                  <Button style={{ border: '1px solid #FFFFFF', borderRadius: 0, padding: '10px 25px', marginTop: 32 }}>
-                    <span className="explore">Explore <ChevronRight style={{ fontSize: 35, marginLeft: -5, marginRight: -15 }} /></span>
-                  </Button>
-                </Link>
-              </center>
-            </HoverContainer>
-            <Title className="initialTitle">{project.projectTitle}</Title>
-          </Tile>
-        );
+        if (project.showOnSite) {
+          if (project.type === 'Link') {
+            tiles.push(
+              <Tile image={project.hero.url} key={`programLink-${i.toString()}`} width={width}>
+                <HoverContainer>
+                  <H2>{project.projectTitle}</H2>
+                  <P>{project.subheader}</P>
+                  <center>
+                    <a href={project.externalLink} target="_blank">
+                      <Button style={{ border: '1px solid #FFFFFF', borderRadius: 0, padding: '10px 25px', marginTop: 32 }}>
+                        <span className="explore">Visit <ChevronRight style={{ fontSize: 35, marginLeft: -5, marginRight: -15 }} /></span>
+                      </Button>
+                    </a>
+                  </center>
+                </HoverContainer>
+                <Title className="initialTitle">{project.projectTitle}</Title>
+              </Tile>
+            );
+          } else if (project.type === 'PDF') {
+            tiles.push(
+              <Tile image={project.hero.url} key={`programLink-${i.toString()}`} width={width}>
+                <HoverContainer>
+                  <H2>{project.projectTitle}</H2>
+                  <P>{project.subheader}</P>
+                  <center>
+                    <a href={project.pdf.url} target="_blank">
+                      <Button style={{ border: '1px solid #FFFFFF', borderRadius: 0, padding: '10px 25px', marginTop: 32 }}>
+                        <span className="explore">Read <ChevronRight style={{ fontSize: 35, marginLeft: -5, marginRight: -15 }} /></span>
+                      </Button>
+                    </a>
+                  </center>
+                </HoverContainer>
+                <Title className="initialTitle">{project.projectTitle}</Title>
+              </Tile>
+            );
+          } else {
+            tiles.push(
+              <Tile image={project.hero.url} key={`programLink-${i.toString()}`} width={width}>
+                <HoverContainer>
+                  <H2>{project.projectTitle}</H2>
+                  <P>{project.subheader}</P>
+                  <center>
+                    <Link to={`/project/${project.slug}`}>
+                      <Button style={{ border: '1px solid #FFFFFF', borderRadius: 0, padding: '10px 25px', marginTop: 32 }}>
+                        <span className="explore">Explore <ChevronRight style={{ fontSize: 35, marginLeft: -5, marginRight: -15 }} /></span>
+                      </Button>
+                    </Link>
+                  </center>
+                </HoverContainer>
+                <Title className="initialTitle">{project.projectTitle}</Title>
+              </Tile>
+            );
+          }
+        }
         return true;
       });
     } catch (err) {
@@ -98,7 +134,6 @@ function ProgramTiles({ data: { researchAreas }, width }) {
       </Grid>
     );
   } catch (err) {
-    console.log(err.stack);
     return <div></div>;
   }
 }
