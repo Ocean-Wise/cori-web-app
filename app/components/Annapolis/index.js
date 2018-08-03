@@ -142,7 +142,7 @@ class Annapolis extends React.Component { // eslint-disable-line react/prefer-st
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: 25 }}>
         <aside>
           <h2 style={{ textAlign: 'center' }}>Selected image files</h2>
-          <div style={{ display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap', width: 550 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap', maxWidth: 550 }}>
             {
               this.state.files.map((f) => (
                 <div key={f.name} style={{ display: 'flex', flexDirection: 'column' }}>
@@ -171,10 +171,10 @@ class Annapolis extends React.Component { // eslint-disable-line react/prefer-st
     );
 
     return (
-      <div>
+      <div style={{ overflowX: 'hidden' }}>
         <Hero src={HEROIMG} alt={`${this.props.slug}-hero`} />
-        <div style={{ paddingBottom: 20 }}>
-          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '0 auto', minWidth: 580, maxWidth: 1100 }}>
+        <div style={{ padding: 20 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '0 auto', maxWidth: 1100 }}>
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '0 auto', marginBottom: 20 }}>
               <H1>Annapolis</H1>
               <Divider />
@@ -193,20 +193,20 @@ class Annapolis extends React.Component { // eslint-disable-line react/prefer-st
                 It helps to know where your photos were taken so try to be aware of your surroundings. Structural features on the ship, depth and whether you are diving on the port or starboard side are very useful tools. Landmarks like the front deck forward or aft of the splash wall, in the bridge, hangar, mortar bay, engine room, boiler room or on the flight deck, are all useful information. Don&rsquo;t be concerned about the quality of your photos. We can get details from all photos and videos.
               </P>
             </div>
-            <div style={{ width: 580, margin: '0 auto' }}>
-              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+            <div style={{ maxWidth: 580, margin: '0 auto' }}>
+              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
                 <TextField error={this.state.nameError} placeholder="Full Name (required)" margin="normal" value={this.state.name} onChange={this.handleText('name')} />
                 <TextField error={this.state.emailError} placeholder="Email (required)" margin="normal" value={this.state.email} onChange={this.handleText('email')} />
               </div>
-              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
                 <TextField error={this.state.dateError} type="date" label="Dive Date (required)" InputLabelProps={{ shrink: true }} value={this.state.divedate} onChange={this.handleText('divedate')} />
                 <TextField placeholder="Video Link" margin="normal" value={this.state.videoLink} onChange={this.handleText('videoLink')} />
               </div>
-              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
                 <TextField placeholder="Comments" margin="normal" fullWidth multiline value={this.state.comments} onChange={this.handleText('comments')} />
               </div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', margin: '0 auto', width: 580, paddingTop: 20 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', margin: '0 auto', maxWidth: 580, paddingTop: 20 }}>
               <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
                 <Dropzone onDrop={this.onDrop} accept={['image/png', 'image/jpeg']}>
                   <p style={{ margin: '0 auto', position: 'relative', textAlign: 'center', top: 64 }}>Drop your PNG or JPEG images here, or click to select</p>
