@@ -11,6 +11,7 @@ import { Helmet } from 'react-helmet';
 // import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import Header from 'components/Header';
 import Annapolis from 'components/Annapolis';
 
 import injectReducer from 'utils/injectReducer';
@@ -24,36 +25,61 @@ import saga from './saga';
 let SURVEY;
 
 export class Survey extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  componentWillMount() {
-    switch (this.props.match.params.slug) {
-      case 'annapolis':
-        SURVEY = <Annapolis upload={this.handleFileUpload} />;
-        break;
-      default:
-        break;
+  constructor(props) {
+    super(props);
+    this.state = {
+      submitted: false,
+    };
+  }
+
+  // Check if we have received an updated survey prop from our submission saga
+  componentDidUpdate(prevProps) {
+    if (prevProps.survey !== this.props.survey) {
+      // The survey prop has changed. Update the submitted state value to be equal to the value in the prop
+      this.updateSubmit();
     }
   }
 
-  handleFileUpload = ({ files, name }) => {
-    // const file = files[0];
+  updateSubmit = () => {
+    this.setState({ submitted: this.props.survey.submitted });
+  }
+
+  // Handle the dispatch our uploadRequest Redux action
+  handleFileUpload = ({ files, name, surveyData }) => {
     this.props.dispatch(uploadRequest({
+      // Send our files to upload...
       files,
+      // the survey name...
       name,
+      // and the survey data
+      surveyData,
     }));
   }
 
+  // Make a passed slug into a well formatted string
   deslugify = (slug) =>
     slug
       .replace(/-/g, ' ')
       .replace(/\w\S*/g, (str) => str.charAt(0).toUpperCase() + str.substr(1).toLowerCase());
 
   render() {
+    // Select which survey to show based on the current slug
+    switch (this.props.match.params.slug) {
+      case 'annapolis':
+        // Set the SURVEY variable. Pass our handleFileUpload function as upload() and our submitted boolean state value to the component
+        SURVEY = <Annapolis upload={this.handleFileUpload} submitted={this.state.submitted} />;
+        break;
+      default:
+        break;
+    }
+
     return (
       <div>
         <Helmet>
           <title>{this.deslugify(this.props.match.params.slug)} Survey</title>
           <meta name="description" content="Completing our citizen science surveys helps us our researchers by providing valuable data for research projects." />
         </Helmet>
+        <Header active={this.props.match.params.slug} />
         {SURVEY}
       </div>
     );
@@ -63,6 +89,7 @@ export class Survey extends React.Component { // eslint-disable-line react/prefe
 Survey.propTypes = {
   dispatch: PropTypes.func.isRequired,
   match: PropTypes.object,
+  survey: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({

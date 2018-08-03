@@ -30,8 +30,8 @@ const internalAuth = auth.basic({
 }
 );
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 app.use('/api', theApi);
 

@@ -15,10 +15,9 @@ export function defaultAction() {
   };
 }
 
-export function uploadSuccess({ data }) {
+export function uploadSuccess() {
   return {
     type: UPLOAD_DOCUMENT_SUCCESS,
-    data,
   };
 }
 
@@ -29,10 +28,11 @@ export function uploadFail(error) {
   };
 }
 
-export function uploadRequest({ files, name }) {
+export function uploadRequest({ files, name, surveyData }) {
   return {
     type: UPLOAD_DOCUMENT_REQUEST,
     files,
     name,
+    surveyData,
   };
 }

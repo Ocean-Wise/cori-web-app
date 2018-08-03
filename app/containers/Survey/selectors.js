@@ -19,9 +19,14 @@ const makeSelectSurvey = () => createSelector(
   (substate) => substate.toJS()
 );
 
-const makeSelectFile = () => createSelector(
+const makeSelectFiles = () => createSelector(
   selectSurveyDomain,
   (substate) => substate.get('file')
+);
+
+const makeSelectSurveyData = () => createSelector(
+  selectSurveyDomain,
+  (substate) => substate.get('surveyData')
 );
 
 const makeSelectName = () => createSelector(
@@ -29,9 +34,16 @@ const makeSelectName = () => createSelector(
   (substate) => substate.get('name')
 );
 
+const makeSelectSubmitted = () => createSelector(
+  selectSurveyDomain,
+  (substate) => substate.get('submitted')
+);
+
 export default makeSelectSurvey;
 export {
   selectSurveyDomain,
-  makeSelectFile,
+  makeSelectFiles,
+  makeSelectSurveyData,
   makeSelectName,
+  makeSelectSubmitted,
 };

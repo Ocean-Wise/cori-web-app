@@ -33,23 +33,41 @@ function ResearchAreaContent({ data: { researchAreas }, slug, width, spotlight }
   let area = {};
   try {
     area = researchAreas[0];
-    const LatestNewsComponent = area.newsRSS !== null ? <LatestNews url={area.newsRSS} /> : '';
-    const MediaReleasesComponent = area.mediaRSS !== null ? <MediaReleases url={area.mediaRSS} /> : '';
-    const supporters = area.supporters.map((supporter) => { // eslint-disable-line
-      return (
-        <div key={`supporter-${supporter.name}`}>
-          <img src={supporter.logo.url} alt={supporter.name} />
-        </div>
-      );
-    });
-    const supportersComponent = area.supporters !== null ? (
-      <center>
-        <H1 style={{ fontSize: 48, lineHeight: '50px', paddingTop: 15 }}>Our Supporters</H1>
-        {/* <Divider /> */}
-        <p>{area.supportersCopy}</p>
-        <div style={{ display: 'inline-flex', flexDirection: 'row' }}>{supporters}</div>
-      </center>
+    const LatestNewsComponent = area.newsRSS !== null ? (
+      <Section>
+        <LatestNews url={area.newsRSS} />
+      </Section>
     ) : '';
+    const MediaReleasesComponent = area.mediaRSS !== null ? (
+      <Section>
+        <MediaReleases url={area.mediaRSS} />
+      </Section>
+    ) : '';
+
+    let supporters;
+    let supportersComponent;
+    try {
+      supporters = area.supporters.map((supporter) => { // eslint-disable-line
+        return (
+          <div key={`supporter-${supporter.name}`}>
+            <img src={supporter.logo.url} alt={supporter.name} />
+          </div>
+        );
+      });
+      supportersComponent = area.supporters !== null ? (
+        <Section>
+          <center>
+            <H1 style={{ fontSize: 48, lineHeight: '50px', paddingTop: 15 }}>Our Supporters</H1>
+            {/* <Divider /> */}
+            <p>{area.supportersCopy}</p>
+            <div style={{ display: 'inline-flex', flexDirection: 'row' }}>{supporters}</div>
+          </center>
+        </Section>
+      ) : '';
+    } catch (err) {
+      supporters = '';
+      supportersComponent = '';
+    }
 
     const Spotlight = spotlight ? <SpotlightTag /> : '';
 
@@ -75,12 +93,8 @@ function ResearchAreaContent({ data: { researchAreas }, slug, width, spotlight }
         <Section>
           <ProgramTiles slug={slug} width={width} />
         </Section>
-        <Section>
-          {LatestNewsComponent}
-        </Section>
-        <Section>
-          {MediaReleasesComponent}
-        </Section>
+        {LatestNewsComponent}
+        {MediaReleasesComponent}
         <Section>
           <Grid fluid>
             <Row style={{ position: 'relative', zIndex: 10 }}>
@@ -113,12 +127,11 @@ function ResearchAreaContent({ data: { researchAreas }, slug, width, spotlight }
             </Row>
           </Grid>
         </Section>
-        <Section>
-          {supportersComponent}
-        </Section>
+        {supportersComponent}
       </div>
     );
   } catch (err) {
+    console.log(err.stack);
     return <div></div>;
   }
 }

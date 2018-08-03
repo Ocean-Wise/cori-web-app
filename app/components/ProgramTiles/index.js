@@ -30,46 +30,54 @@ import Title from './Title';
 function ProgramTiles({ data: { researchAreas }, width }) {
   try {
     const tiles = [];
-    researchAreas[0].programs.map((program, i) => {
-      tiles.push(
-        // <Link to={`/program/${program.slug}`} key={`programLink-${i.toString()}`}>
-        <Tile image={program.hero.url} key={`programLink-${i.toString()}`} width={width}>
-          <HoverContainer>
-            <H2>{program.title}</H2>
-            <P>{program.overlay}</P>
-            <center>
-              <Link to={`/program/${program.slug}`}>
-                <Button style={{ border: '1px solid #FFFFFF', borderRadius: 0, padding: '10px 25px', marginTop: 32 }}>
-                  <span className="explore">Explore <ChevronRight style={{ fontSize: 35, marginLeft: -5, marginRight: -15 }} /></span>
-                </Button>
-              </Link>
-            </center>
-          </HoverContainer>
-          <Title className="initialTitle">{program.title}</Title>
-        </Tile>
-        // </Link>
-      );
-      return true;
-    });
-    researchAreas[0].projects.map((project, i) => {
-      tiles.push(
-        <Tile image={project.hero.url} key={`programLink-${i.toString()}`} width={width}>
-          <HoverContainer>
-            <H2>{project.projectTitle}</H2>
-            <P>{project.subheader}</P>
-            <center>
-              <Link to={`/project/${project.slug}`}>
-                <Button style={{ border: '1px solid #FFFFFF', borderRadius: 0, padding: '10px 25px', marginTop: 32 }}>
-                  <span className="explore">Explore <ChevronRight style={{ fontSize: 35, marginLeft: -5, marginRight: -15 }} /></span>
-                </Button>
-              </Link>
-            </center>
-          </HoverContainer>
-          <Title className="initialTitle">{project.projectTitle}</Title>
-        </Tile>
-      );
-      return true;
-    });
+    try {
+      researchAreas[0].programs.map((program, i) => {
+        tiles.push(
+          // <Link to={`/program/${program.slug}`} key={`programLink-${i.toString()}`}>
+          <Tile image={program.hero.url} key={`programLink-${i.toString()}`} width={width}>
+            <HoverContainer>
+              <H2>{program.title}</H2>
+              <P>{program.overlay}</P>
+              <center>
+                <Link to={`/program/${program.slug}`}>
+                  <Button style={{ border: '1px solid #FFFFFF', borderRadius: 0, padding: '10px 25px', marginTop: 32 }}>
+                    <span className="explore">Explore <ChevronRight style={{ fontSize: 35, marginLeft: -5, marginRight: -15 }} /></span>
+                  </Button>
+                </Link>
+              </center>
+            </HoverContainer>
+            <Title className="initialTitle">{program.title}</Title>
+          </Tile>
+          // </Link>
+        );
+        return true;
+      });
+    } catch (err) {
+      // No programs, so skip
+    }
+    try {
+      researchAreas[0].projects.map((project, i) => {
+        tiles.push(
+          <Tile image={project.hero.url} key={`programLink-${i.toString()}`} width={width}>
+            <HoverContainer>
+              <H2>{project.projectTitle}</H2>
+              <P>{project.subheader}</P>
+              <center>
+                <Link to={`/project/${project.slug}`}>
+                  <Button style={{ border: '1px solid #FFFFFF', borderRadius: 0, padding: '10px 25px', marginTop: 32 }}>
+                    <span className="explore">Explore <ChevronRight style={{ fontSize: 35, marginLeft: -5, marginRight: -15 }} /></span>
+                  </Button>
+                </Link>
+              </center>
+            </HoverContainer>
+            <Title className="initialTitle">{project.projectTitle}</Title>
+          </Tile>
+        );
+        return true;
+      });
+    } catch (err) {
+      // No projects, so skip
+    }
     return (
       <Grid fluid>
         <Row>
@@ -90,6 +98,7 @@ function ProgramTiles({ data: { researchAreas }, width }) {
       </Grid>
     );
   } catch (err) {
+    console.log(err.stack);
     return <div></div>;
   }
 }

@@ -131,7 +131,106 @@ async function handleGetRSS(req, res) {
   }
 }
 
+// Connect to our database for survey submission
+const promise = require('bluebird');
+const options = {
+  promiseLib: promise,
+};
+
+const pgp = require('pg-promise')(options);
+const db = pgp(`${process.env.DATABASE_URL}?ssl=true`);
+
+// Handle the submission of survey data
+function handleSurveyData(req, res) {
+  try {
+    // Select the correct survey logic
+    switch (req.body.surveyName) {
+      case 'annapolis':
+        // The user has selected some files for upload
+        if (req.body.data.files.length > 0) {
+          // Attempt to upload the files to the survey's Cloudinary CDN directory
+          handleUploadFiles(req.body.data.files, req.body.surveyName)
+            .then((result) => {
+              // The files were uploaded to Cloudinary successfully, so store the survey data and CDN URLs in the appropriate database table
+              handleAnnapolisSurvey(req.body.data.survey, JSON.stringify(result))
+                .then(() => res.status(200).send('Successfully uploaded survey data')) // Success! Return status 200
+                .catch((err) => res.status(500).send(err.stack));
+            })
+            .catch((err) => {
+              res.status(500).send(err.stack);
+            });
+        } else {
+          // The User has not chosen to upload any files, so just upload the survey data
+          handleAnnapolisSurvey(req.body.data.survey, '')
+            .then(() => res.status(200).send('Successfully uploaded survey data'))
+            .catch((err) => res.status(500).send(err.stack));
+        }
+        break;
+      default:
+        res.status(500).send('You must supply the surveyName value and associated data object');
+        break;
+    }
+  } catch (err) {
+    res.status(500).send(err.stack);
+  }
+}
+
+// Insert the survey data for the Annapolis survey into the database
+function handleAnnapolisSurvey(data, images) {
+  return new Promise((res, rej) => {
+    db.any(`INSERT INTO annapolis(name, email, divedate, images, videolink, comments) VALUES ('${data.name}', '${data.email}', '${data.divedate}', '${images}', '${data.videoLink}', '${data.comments}')`)
+      .then(() => res())
+      .catch((err) => rej(err.stack, images));
+  });
+}
+
+// Configure our connection to the Cloudinary CDN
+const cloudinary = require('cloudinary');
+cloudinary.config({
+  cloud_name: 'oceanwise',
+  api_key: '228634121724575',
+  api_secret: '_GyZxzo8z0Q1VSyRPxlLRokURQM',
+});
+
+// Upload the given data to the appropriate CDN folder for the passed surveyName
+async function handleUploadFiles(data, surveyName) {
+  // Create a new promise to upload multiple files
+  const multipleUpload = new Promise(async (resolve, reject) => {
+    // Initialize number of files to upload and results array
+    const uploadLen = data.length;
+    const uploadRes = [];
+
+    // Loop over files
+    for (let i = 0; i < uploadLen; i += 1) {
+      // Get the base64 data
+      const base64 = data[i].base64;
+      // Await for the upload to complete before continuing loop
+      await cloudinary.v2.uploader.upload(base64, { folder: surveyName }, (error, result) => { // eslint-disable-line
+        if (result) {
+          // Push publicId and url into array
+          uploadRes.push({ id: result.public_id, url: result.url });
+          // If we have uploaded all the files resolve the promise
+          if (uploadRes.length === uploadLen) {
+            resolve(uploadRes);
+          }
+        } else if (error) {
+          console.log(error.stack); // eslint-disable-line
+          // We had an error so reject the promise
+          reject(error);
+        }
+      });
+    }
+  })
+  .then((result) => result)
+  .catch((error) => error);
+
+  // Waits until promise is resolved before sending back response to the caller
+  const upload = await multipleUpload;
+  return upload;
+}
+
 module.exports = {
   getCitation: handleGenerateCitation,
   getRSS: handleGetRSS,
+  uploadSurvey: handleSurveyData,
 };
