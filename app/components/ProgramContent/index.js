@@ -37,7 +37,7 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
       let column = [];
       initiative.projects.map((project, j) => {
         if (j % 3 && j !== 0) {
-          projects.push(column);
+          projects.push(<Col md={6} key={`column-${j.toString()}`}>{column}</Col>);
           column = [];
         }
         if (project.showOnSite) {
@@ -94,7 +94,7 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
       } catch (err) {
         // Error
       }
-
+      console.log(projects);
       const SponsorComponent = sponsors.length === 0 ? '' : (
         <div>
           <Hr style={{ marginBottom: 15 }} />
