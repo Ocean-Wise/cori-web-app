@@ -38,7 +38,7 @@ const AppWrapper = styled.div`
 `;
 
 const ScrollWrapper = styled.div`
-  z-index: 15;
+  z-index: 2147483647;
 `;
 
 
