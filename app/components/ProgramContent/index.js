@@ -71,7 +71,7 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
         } else {
           column.push(
             <div key={`project-${j.toString()}`} style={{ paddingBottom: 10 }}>
-              <span style={{ color: '#00B398', fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>{project.projectTitle}</span>
+              <span style={{ color: '#B2BEC4', fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>{project.projectTitle}</span>
             </div>
           );
         }
@@ -94,7 +94,6 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
       } catch (err) {
         // Error
       }
-      console.log(projects);
       const SponsorComponent = sponsors.length === 0 ? '' : (
         <div>
           <Hr style={{ marginBottom: 15 }} />

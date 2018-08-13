@@ -6,10 +6,10 @@
 
 import React from 'react';
 // import styled from 'styled-components';
-import LocaleToggle from 'containers/LocaleToggle';
+// import LocaleToggle from 'containers/LocaleToggle';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import LocaleWrapper from './LocaleWrapper';
+// import LocaleWrapper from './LocaleWrapper';
 require('./style.css');
 
 
@@ -50,9 +50,9 @@ class OceanWiseNav extends React.Component { // eslint-disable-line react/prefer
     return (
       <div className="hello-bar" ref={this.setWrapperRef}>
         <div style={{ display: 'inline-flex' }}>
-          <LocaleWrapper>
+          {/* <LocaleWrapper>
             <LocaleToggle />
-          </LocaleWrapper>
+          </LocaleWrapper> */}
           <div className="hello-bar-text">
             <FormattedMessage {...messages.explore} /> <span className="hello-bar-hide-mobile"><FormattedMessage {...messages.moreAt} /></span><a href="https://ocean.org" target="_blank">ocean.org</a>
           </div>

@@ -103,7 +103,7 @@ const propMap = {
  */
 const parseWikidataProp = function (name, value, lang) {
   if (!propMap.hasOwnProperty(name)) {
-    logger.info('[set]', `Unknown property: ${name}`)
+    // logger.info('[set]', `Unknown property: ${name}`)
     return undefined
   } else if (propMap[name] === false) {
     return undefined
