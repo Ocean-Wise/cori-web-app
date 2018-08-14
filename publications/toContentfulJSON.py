@@ -62,8 +62,10 @@ def unescape(s):
         return s
 
 def unescapeBibTexEntry(entry):
-    out = re.sub(r'\$\\backslash\$', '', entry)
-    out = re.sub(r'\{\\textless\}', '', entry)
+    out = re.sub(r'\$\\\\backslash\$', '', entry)
+    out = re.sub(r'\{\\\\textless\}i\{\\\\textgreater\}', '', out)
+    out = re.sub(r'\{\\\\textless\}', '', out)
+    out = re.sub(r'\{\\\\textgreater\}', '', out)
     return out
 
 
@@ -135,6 +137,8 @@ with open('import.json', 'w') as f:
             citationString = citationString.replace('\n', '')
             citationString = json.dumps(citationString)
             citationString = unescapeBibTexEntry(citationString)
+            if 'textless' in citationString:
+                print(citationString)
         except:
             with open('errors.txt', 'a') as errors:
                 errors.write('Error with entry {0}n'.format(entry['ID']))
