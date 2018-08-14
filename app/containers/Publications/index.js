@@ -69,12 +69,16 @@ const styles = () => ({
   },
 });
 
+// TODO: ADD PAGINATION AND FIX SORTING
 export class Publications extends React.Component { // eslint-disable-line react/prefer-stateless-function
   state = {
     sorting: 'desc',
     alpha: false,
     sortType: 'descending',
     searchTerm: '',
+    pubLimit: 25,
+    pubSkip: 0,
+    pubOrder: '-fields.year',
   };
 
   setAlpha = () => {
@@ -169,6 +173,9 @@ export class Publications extends React.Component { // eslint-disable-line react
             addToList={this.props.addItem}
             removeFromList={this.props.removeItem}
             searchTerm={this.state.searchTerm}
+            limit={this.state.pubLimit}
+            skip={this.state.pubSkip}
+            order={this.state.pubOrder}
           />
         </div>
       </div>

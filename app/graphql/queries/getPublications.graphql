@@ -1,5 +1,5 @@
-query Publications {
-  publications {
+query Publications($limit: Int, $skip: Int, $sort: String) {
+  publications(skip: $skip, limit: $limit, q: $sort) {
     slug
     citation
     title
