@@ -1,6 +1,6 @@
 [
   {
-    "ts": "2018-08-14T18:59:38.997Z",
+    "ts": "2018-08-14T19:25:05.159Z",
     "level": "error",
     "error": {
       "name": "VersionMismatch",
@@ -99,18 +99,18 @@
             "Authorization": "Bearer ...4138b",
             "user-agent": "node.js/v9.0.0",
             "Accept-Encoding": "gzip",
-            "X-Contentful-Content-Type": "researchPapers",
+            "X-Contentful-Version": 2,
             "Content-Length": 1201
           },
           "method": "put",
           "payloadData": "{\"fields\":{\"citation\":{\"en-US\":\"@article{Winship2006, author = {Winship, Arliss J. and Trites, Andrew W.}, doi = {10.1111/j.1748-7692.2006.00009.x}, journal = {Marine Mammal Science}, month = {jan}, number = {1}, pages = {124--155}, publisher = {Wiley/Blackwell (10.1111)}, title = {{Risk of extirpation of Steller sea lions in the Gulf of Alaska and Aleutian Islands: a population viability analysis based on alternative hypotheses for why sea lions declined in Western Alaska}}, url = {http://doi.wiley.com/10.1111/j.1748-7692.2006.00009.x}, volume = {22}, year = {2006}}\"},\"url\":{\"en-US\":\"http://doi.wiley.com/10.1111/j.1748-7692.2006.00009.x\"},\"title\":{\"en-US\":\"Risk of extirpation of Steller sea lions in the Gulf of Alaska and Aleutian Islands: a population viability analysis based on alternative hypotheses for why sea lions declined in Western Alaska\"},\"slug\":{\"en-US\":\"risk-of-extirpation-of-steller-sea-lions-in-the-gulf-of-alaska-and-aleutian-islands-a-population-viability-analysis-based-on-alternative-hypotheses-for-why-sea-lions-declined-in-western-alaska\"},\"authors\":{\"en-US\":[\"Winship, AJ.\",\"Trites, AW.\"]},\"doi\":{\"en-US\":\"10.1111/j.1748-7692.2006.00009.x\"},\"year\":{\"en-US\":\"2006\"}}}"
         },
-        "requestId": "1f235a63175a578f5c4582fb92ea6a7f"
+        "requestId": "460c8cec8ac1096c286505aa431cf170"
       }
     }
   },
   {
-    "ts": "2018-08-14T18:59:39.071Z",
+    "ts": "2018-08-14T19:25:05.837Z",
     "level": "error",
     "error": {
       "name": "VersionMismatch",
@@ -207,18 +207,18 @@
             "Authorization": "Bearer ...4138b",
             "user-agent": "node.js/v9.0.0",
             "Accept-Encoding": "gzip",
-            "X-Contentful-Content-Type": "researchPapers",
+            "X-Contentful-Version": 2,
             "Content-Length": 936
           },
           "method": "put",
           "payloadData": "{\"fields\":{\"citation\":{\"en-US\":\"@article{Gerlinsky2013, author = {Gerlinsky, Carling Dawn}, doi = {10.14288/1.0165519}, publisher = {University of British Columbia}, title = {{Oxygen stores, carbon dioxide accumulation and nutritional status as determinants of diving ability of Steller sea lions (Eumetopias jubatus)}}, url = {https://open.library.ubc.ca/cIRcle/collections/ubctheses/24/items/1.0165519}, year = {2013}}\"},\"url\":{\"en-US\":\"https://open.library.ubc.ca/cIRcle/collections/ubctheses/24tems/1.0165519\"},\"title\":{\"en-US\":\"Oxygen stores, carbon dioxide accumulation and nutritional status as determinants of diving ability of Steller sea lions (Eumetopias jubatus)\"},\"slug\":{\"en-US\":\"oxygen-stores-carbon-dioxide-accumulation-and-nutritional-status-as-determinants-of-diving-ability-of-steller-sea-lions-eumetopias-jubatus\"},\"authors\":{\"en-US\":[\"Gerlinsky, CD.\"]},\"doi\":{\"en-US\":\"10.14288/1.0165519\"},\"year\":{\"en-US\":\"2013\"}}}"
         },
-        "requestId": "15b7be30763ec16fd6513a80ebbd8279"
+        "requestId": "cb910114ac0a005b03750e81a8d20057"
       }
     }
   },
   {
-    "ts": "2018-08-14T19:00:37.768Z",
+    "ts": "2018-08-14T19:26:03.309Z",
     "level": "error",
     "error": {
       "name": "InvalidEntry",
@@ -233,8 +233,8 @@
           },
           "id": "Rosen2010",
           "type": "Entry",
-          "createdAt": "2018-08-14T18:59:04.107Z",
-          "updatedAt": "2018-08-14T18:59:04.107Z",
+          "createdAt": "2018-08-14T19:24:34.748Z",
+          "updatedAt": "2018-08-14T19:24:34.748Z",
           "environment": {
             "sys": {
               "id": "master",
@@ -327,12 +327,12 @@
           "method": "put",
           "payloadData": null
         },
-        "requestId": "ed0dcfd289df0a57175181f428f8e6d8"
+        "requestId": "0e47ee84a9f6e1c004b2468f0dad5d7f"
       }
     }
   },
   {
-    "ts": "2018-08-14T19:00:40.589Z",
+    "ts": "2018-08-14T19:26:06.027Z",
     "level": "error",
     "error": {
       "name": "InvalidEntry",
@@ -347,8 +347,8 @@
           },
           "id": "Young2011a",
           "type": "Entry",
-          "createdAt": "2018-08-14T18:59:05.539Z",
-          "updatedAt": "2018-08-14T18:59:05.539Z",
+          "createdAt": "2018-08-14T19:24:35.402Z",
+          "updatedAt": "2018-08-14T19:24:35.402Z",
           "environment": {
             "sys": {
               "id": "master",
@@ -444,12 +444,12 @@
           "method": "put",
           "payloadData": null
         },
-        "requestId": "749c79b4a5355335513f4daa88945811"
+        "requestId": "d2dd63a9cdffe95252a542bbeb0b071e"
       }
     }
   },
   {
-    "ts": "2018-08-14T19:00:44.172Z",
+    "ts": "2018-08-14T19:26:10.282Z",
     "level": "error",
     "error": {
       "name": "InvalidEntry",
@@ -464,8 +464,8 @@
           },
           "id": "Fahlman2016",
           "type": "Entry",
-          "createdAt": "2018-08-14T18:59:06.366Z",
-          "updatedAt": "2018-08-14T18:59:06.366Z",
+          "createdAt": "2018-08-14T19:24:37.770Z",
+          "updatedAt": "2018-08-14T19:24:37.770Z",
           "environment": {
             "sys": {
               "id": "master",
@@ -568,12 +568,12 @@
           "method": "put",
           "payloadData": null
         },
-        "requestId": "78de459a05a75b238eea6b0580663760"
+        "requestId": "d66fe5bf3387b50b3319e17d678aa708"
       }
     }
   },
   {
-    "ts": "2018-08-14T19:00:58.494Z",
+    "ts": "2018-08-14T19:26:28.007Z",
     "level": "error",
     "error": {
       "name": "InvalidEntry",
@@ -588,8 +588,8 @@
           },
           "id": "Walker2012",
           "type": "Entry",
-          "createdAt": "2018-08-14T18:59:11.868Z",
-          "updatedAt": "2018-08-14T18:59:11.868Z",
+          "createdAt": "2018-08-14T19:24:41.613Z",
+          "updatedAt": "2018-08-14T19:24:41.613Z",
           "environment": {
             "sys": {
               "id": "master",
@@ -690,12 +690,12 @@
           "method": "put",
           "payloadData": null
         },
-        "requestId": "11b3ce65f27ab47b583994dc9c0f9dc1"
+        "requestId": "22a4f5798ceb54ef23dc797f9cfd4d3c"
       }
     }
   },
   {
-    "ts": "2018-08-14T19:01:15.460Z",
+    "ts": "2018-08-14T19:26:41.486Z",
     "level": "error",
     "error": {
       "name": "InvalidEntry",
@@ -710,8 +710,8 @@
           },
           "id": "Marliave2009br",
           "type": "Entry",
-          "createdAt": "2018-08-14T18:59:15.123Z",
-          "updatedAt": "2018-08-14T18:59:15.123Z",
+          "createdAt": "2018-08-14T19:24:43.740Z",
+          "updatedAt": "2018-08-14T19:24:43.740Z",
           "environment": {
             "sys": {
               "id": "master",
@@ -805,12 +805,12 @@
           "method": "put",
           "payloadData": null
         },
-        "requestId": "efbe8518531d2ac26a038901562acea9"
+        "requestId": "7756adf0f1f82d20fa8f958492adcb96"
       }
     }
   },
   {
-    "ts": "2018-08-14T19:01:22.313Z",
+    "ts": "2018-08-14T19:26:47.841Z",
     "level": "error",
     "error": {
       "name": "InvalidEntry",
@@ -825,8 +825,8 @@
           },
           "id": "Marliave2009gx",
           "type": "Entry",
-          "createdAt": "2018-08-14T18:59:18.169Z",
-          "updatedAt": "2018-08-14T18:59:18.169Z",
+          "createdAt": "2018-08-14T19:24:45.111Z",
+          "updatedAt": "2018-08-14T19:24:45.111Z",
           "environment": {
             "sys": {
               "id": "master",
@@ -919,12 +919,12 @@
           "method": "put",
           "payloadData": null
         },
-        "requestId": "5d1979f6dcdf860a9ba5d0cadeff4f4e"
+        "requestId": "0c69ec34d5566c294746720bced14839"
       }
     }
   },
   {
-    "ts": "2018-08-14T19:01:24.894Z",
+    "ts": "2018-08-14T19:26:49.955Z",
     "level": "error",
     "error": {
       "name": "InvalidEntry",
@@ -939,8 +939,8 @@
           },
           "id": "Marliave2013vw",
           "type": "Entry",
-          "createdAt": "2018-08-14T18:59:18.468Z",
-          "updatedAt": "2018-08-14T18:59:18.468Z",
+          "createdAt": "2018-08-14T19:24:45.458Z",
+          "updatedAt": "2018-08-14T19:24:45.458Z",
           "environment": {
             "sys": {
               "id": "master",
@@ -1035,12 +1035,12 @@
           "method": "put",
           "payloadData": null
         },
-        "requestId": "2a4cfbbc8e54e434e6af5af798a609ca"
+        "requestId": "2dae7006896515e43ae903bb1639c403"
       }
     }
   },
   {
-    "ts": "2018-08-14T19:01:29.611Z",
+    "ts": "2018-08-14T19:26:54.655Z",
     "level": "error",
     "error": {
       "name": "InvalidEntry",
@@ -1055,8 +1055,8 @@
           },
           "id": "Marliave2011vm",
           "type": "Entry",
-          "createdAt": "2018-08-14T18:59:21.107Z",
-          "updatedAt": "2018-08-14T18:59:21.107Z",
+          "createdAt": "2018-08-14T19:24:46.270Z",
+          "updatedAt": "2018-08-14T19:24:46.270Z",
           "environment": {
             "sys": {
               "id": "master",
@@ -1152,12 +1152,12 @@
           "method": "put",
           "payloadData": null
         },
-        "requestId": "a1376b7807cdfa405cab78843819014f"
+        "requestId": "f8e5775a841a1b52eaf8ae32394ee9cd"
       }
     }
   },
   {
-    "ts": "2018-08-14T19:01:46.405Z",
+    "ts": "2018-08-14T19:27:14.148Z",
     "level": "error",
     "error": {
       "name": "InvalidEntry",
@@ -1172,8 +1172,8 @@
           },
           "id": "Frid2012hw",
           "type": "Entry",
-          "createdAt": "2018-08-14T18:59:24.071Z",
-          "updatedAt": "2018-08-14T18:59:24.071Z",
+          "createdAt": "2018-08-14T19:24:51.096Z",
+          "updatedAt": "2018-08-14T19:24:51.096Z",
           "environment": {
             "sys": {
               "id": "master",
@@ -1267,15 +1267,15 @@
           "method": "put",
           "payloadData": null
         },
-        "requestId": "fd26718548555ac1e3b47a68dd0cefb8"
+        "requestId": "c16bb5148422e262a34d0b7c7df09627"
       }
     }
   },
   {
-    "ts": "2018-08-14T19:02:30.322Z",
+    "ts": "2018-08-14T19:28:14.388Z",
     "level": "error",
     "error": {
-      "name": "VersionMismatch",
+      "name": "InvalidEntry",
       "entity": {
         "sys": {
           "space": {
@@ -1285,10 +1285,10 @@
               "id": "fsquhe7zbn68"
             }
           },
-          "id": "Graham1985c",
+          "id": "Frid2012hw",
           "type": "Entry",
-          "createdAt": "2018-08-14T18:59:27.540Z",
-          "updatedAt": "2018-08-14T18:59:27.540Z",
+          "createdAt": "2018-08-14T19:24:51.096Z",
+          "updatedAt": "2018-08-14T19:24:51.096Z",
           "environment": {
             "sys": {
               "id": "master",
@@ -1321,52 +1321,55 @@
         },
         "fields": {
           "citation": {
-            "en-US": "@article{Graham1985c, abstract = {Blood was collected from three species of fish, Antimora rostrata (Moridae), Lycodes esmarkii (Zoarcidae), Macrurus berglax (Macrouridae), caught at depths ranging from 280 to 2300 m. Hemoglobin concentrations were low in all three species, ranging from 4.4 to 5.4 g/100 ml. Mean erythrocyte volumes were relatively large, and ranged from 277 micron3 in M. berglax to 672 micron3 in A. rostrata. Blood oxygen dissociation curves were hyperbolic, with relatively low Hill constants (0.95-1.26). Mean P50 values ranged from 10 mmHg in M. berglax to 28 mmHg in L. esmarkii. It is concluded that the hematology and oxygen-binding characteristics of the blood of these three deep-sea fish reflects adaptations to low metabolic rates and low general activity habits.}, author = {Graham, M S and Haedrich, R L and Fletcher, G L}, doi = {10.1016/0300-9629(85)90682-6}, issn = {0300-9629}, journal = {Comparative biochemistry and physiology. A, Comparative physiology}, keywords = {Adaptation, Physiological,Animals,Erythrocyte Indices,Fishes,Hemoglobins,Oxygen,Pressure}, number = {1}, pages = {79--84}, pmid = {2858294}, title = {{Hematology of three deep-sea fishes: a reflection of low metabolic rates.}}, url = {http://www.ncbi.nlm.nih.gov/pubmed/2858294}, volume = {80}, year = {1985}}"
-          },
-          "url": {
-            "en-US": "http://www.ncbi.nlm.nih.gov/pubmed/2858294"
+            "en-US": "@article{Frid:2012hw, author = {Frid, Alejandro and Marliave, Jeff and Heithaus, Michael R}, journal = {PLoS ONE}, month = {jun}, number = {6}, pages = {e40083}, title = {{Interspecific Variation in Life History Relates to Antipredator Decisions by Marine Mesopredators on Temperate Reefs}}, volume = {7}, year = {2012}}"
           },
           "title": {
-            "en-US": "Hematology of three deep-sea fishes: a reflection of low metabolic rates."
+            "en-US": "Interspecific Variation in Life History Relates to Antipredator Decisions by Marine Mesopredators on Temperate Reefs"
           },
           "slug": {
-            "en-US": "hematology-of-three-deep-sea-fishes-a-reflection-of-low-metabolic-rates"
+            "en-US": "interspecific-variation-in-life-history-relates-to-antipredator-decisions-by-marine-mesopredators-on-temperate-reefs"
           },
           "authors": {
             "en-US": [
-              "Graham, MS.",
-              "Haedrich, RL.",
-              "Fletcher, GL."
+              "Frid, A.",
+              "Marliave, J.",
+              "Heithaus, MR."
             ]
           },
           "year": {
-            "en-US": "1985"
-          },
-          "keywords": {
-            "en-US": [
-              "Adaptation",
-              " Physiological",
-              "Animals",
-              "Erythrocyte Indices",
-              "Fishes",
-              "Hemoglobins",
-              "Oxygen",
-              "Pressure"
-            ]
-          },
-          "doi": {
-            "en-US": "10.1016/0300-9629(85)90682-6"
+            "en-US": "2012"
           }
         }
       },
       "data": {
-        "status": 409,
-        "statusText": "Conflict",
-        "message": "",
+        "status": 422,
+        "statusText": "Unprocessable Entity",
+        "message": "Validation error",
         "details": {
+          "errors": [
+            {
+              "name": "unique",
+              "details": "Same field value present in other entry",
+              "path": [
+                "fields",
+                "slug",
+                "en-US"
+              ],
+              "value": "interspecific-variation-in-life-history-relates-to-antipredator-decisions-by-marine-mesopredators-on-temperate-reefs",
+              "conflicting": [
+                {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Entry",
+                    "id": "Frid2012"
+                  }
+                }
+              ]
+            }
+          ]
         },
         "request": {
-          "url": "https://api.contentful.com:443/spaces/fsquhe7zbn68/environments/master/entries/Graham1985c/published",
+          "url": "https://api.contentful.com:443/spaces/fsquhe7zbn68/environments/master/entries/Frid2012hw/published",
           "headers": {
             "Accept": "application/json, text/plain, */*",
             "Content-Type": "application/vnd.contentful.management.v1+json",
@@ -1379,124 +1382,12 @@
           "method": "put",
           "payloadData": null
         },
-        "requestId": "300f3005c27568ebf0325b8e6ba78199"
+        "requestId": "d3ebecbffb8564b475c30750a9986d13"
       }
     }
   },
   {
-    "ts": "2018-08-14T19:03:21.863Z",
-    "level": "error",
-    "error": {
-      "name": "VersionMismatch",
-      "entity": {
-        "sys": {
-          "space": {
-            "sys": {
-              "type": "Link",
-              "linkType": "Space",
-              "id": "fsquhe7zbn68"
-            }
-          },
-          "id": "Graham1985c",
-          "type": "Entry",
-          "createdAt": "2018-08-14T18:59:27.540Z",
-          "updatedAt": "2018-08-14T18:59:27.540Z",
-          "environment": {
-            "sys": {
-              "id": "master",
-              "type": "Link",
-              "linkType": "Environment"
-            }
-          },
-          "createdBy": {
-            "sys": {
-              "type": "Link",
-              "linkType": "User",
-              "id": "7f7IBX3VmFpFee6y5TGPtG"
-            }
-          },
-          "updatedBy": {
-            "sys": {
-              "type": "Link",
-              "linkType": "User",
-              "id": "7f7IBX3VmFpFee6y5TGPtG"
-            }
-          },
-          "version": 1,
-          "contentType": {
-            "sys": {
-              "type": "Link",
-              "linkType": "ContentType",
-              "id": "researchPapers"
-            }
-          }
-        },
-        "fields": {
-          "citation": {
-            "en-US": "@article{Graham1985c, abstract = {Blood was collected from three species of fish, Antimora rostrata (Moridae), Lycodes esmarkii (Zoarcidae), Macrurus berglax (Macrouridae), caught at depths ranging from 280 to 2300 m. Hemoglobin concentrations were low in all three species, ranging from 4.4 to 5.4 g/100 ml. Mean erythrocyte volumes were relatively large, and ranged from 277 micron3 in M. berglax to 672 micron3 in A. rostrata. Blood oxygen dissociation curves were hyperbolic, with relatively low Hill constants (0.95-1.26). Mean P50 values ranged from 10 mmHg in M. berglax to 28 mmHg in L. esmarkii. It is concluded that the hematology and oxygen-binding characteristics of the blood of these three deep-sea fish reflects adaptations to low metabolic rates and low general activity habits.}, author = {Graham, M S and Haedrich, R L and Fletcher, G L}, doi = {10.1016/0300-9629(85)90682-6}, issn = {0300-9629}, journal = {Comparative biochemistry and physiology. A, Comparative physiology}, keywords = {Adaptation, Physiological,Animals,Erythrocyte Indices,Fishes,Hemoglobins,Oxygen,Pressure}, number = {1}, pages = {79--84}, pmid = {2858294}, title = {{Hematology of three deep-sea fishes: a reflection of low metabolic rates.}}, url = {http://www.ncbi.nlm.nih.gov/pubmed/2858294}, volume = {80}, year = {1985}}"
-          },
-          "url": {
-            "en-US": "http://www.ncbi.nlm.nih.gov/pubmed/2858294"
-          },
-          "title": {
-            "en-US": "Hematology of three deep-sea fishes: a reflection of low metabolic rates."
-          },
-          "slug": {
-            "en-US": "hematology-of-three-deep-sea-fishes-a-reflection-of-low-metabolic-rates"
-          },
-          "authors": {
-            "en-US": [
-              "Graham, MS.",
-              "Haedrich, RL.",
-              "Fletcher, GL."
-            ]
-          },
-          "year": {
-            "en-US": "1985"
-          },
-          "keywords": {
-            "en-US": [
-              "Adaptation",
-              " Physiological",
-              "Animals",
-              "Erythrocyte Indices",
-              "Fishes",
-              "Hemoglobins",
-              "Oxygen",
-              "Pressure"
-            ]
-          },
-          "doi": {
-            "en-US": "10.1016/0300-9629(85)90682-6"
-          }
-        }
-      },
-      "data": {
-        "status": 409,
-        "statusText": "Conflict",
-        "message": "",
-        "details": {
-        },
-        "request": {
-          "url": "https://api.contentful.com:443/spaces/fsquhe7zbn68/environments/master/entries/Graham1985c/published",
-          "headers": {
-            "Accept": "application/json, text/plain, */*",
-            "Content-Type": "application/vnd.contentful.management.v1+json",
-            "X-Contentful-User-Agent": "app contentful.cli/0.16.1; feature space-import; sdk contentful-management.js/5.2.1; platform node.js/v9.0.0; os Linux/4.15.0-29-generic;",
-            "Authorization": "Bearer ...4138b",
-            "user-agent": "node.js/v9.0.0",
-            "Accept-Encoding": "gzip",
-            "X-Contentful-Version": 1
-          },
-          "method": "put",
-          "payloadData": null
-        },
-        "requestId": "674a119158f14e9565526a9561e5c345"
-      }
-    }
-  },
-  {
-    "ts": "2018-08-14T19:03:39.146Z",
+    "ts": "2018-08-14T19:28:16.678Z",
     "level": "error",
     "error": {
       "name": "InvalidEntry",
@@ -1511,8 +1402,8 @@
           },
           "id": "Rosen2010",
           "type": "Entry",
-          "createdAt": "2018-08-14T18:59:04.107Z",
-          "updatedAt": "2018-08-14T18:59:04.107Z",
+          "createdAt": "2018-08-14T19:24:34.748Z",
+          "updatedAt": "2018-08-14T19:24:34.748Z",
           "environment": {
             "sys": {
               "id": "master",
@@ -1605,12 +1496,12 @@
           "method": "put",
           "payloadData": null
         },
-        "requestId": "de0402c8b459a8ba342054f36844bc05"
+        "requestId": "4fddfce5c3a14223dac7eaaf7f71e083"
       }
     }
   },
   {
-    "ts": "2018-08-14T19:03:39.465Z",
+    "ts": "2018-08-14T19:28:17.018Z",
     "level": "error",
     "error": {
       "name": "InvalidEntry",
@@ -1625,8 +1516,8 @@
           },
           "id": "Young2011a",
           "type": "Entry",
-          "createdAt": "2018-08-14T18:59:05.539Z",
-          "updatedAt": "2018-08-14T18:59:05.539Z",
+          "createdAt": "2018-08-14T19:24:35.402Z",
+          "updatedAt": "2018-08-14T19:24:35.402Z",
           "environment": {
             "sys": {
               "id": "master",
@@ -1722,12 +1613,12 @@
           "method": "put",
           "payloadData": null
         },
-        "requestId": "9e7bf64dbd75a1a8e681b2833298e946"
+        "requestId": "073fcc0b7dd39419a8bc0e1cd9498ead"
       }
     }
   },
   {
-    "ts": "2018-08-14T19:03:44.805Z",
+    "ts": "2018-08-14T19:28:17.672Z",
     "level": "error",
     "error": {
       "name": "InvalidEntry",
@@ -1742,8 +1633,8 @@
           },
           "id": "Fahlman2016",
           "type": "Entry",
-          "createdAt": "2018-08-14T18:59:06.366Z",
-          "updatedAt": "2018-08-14T18:59:06.366Z",
+          "createdAt": "2018-08-14T19:24:37.770Z",
+          "updatedAt": "2018-08-14T19:24:37.770Z",
           "environment": {
             "sys": {
               "id": "master",
@@ -1846,12 +1737,12 @@
           "method": "put",
           "payloadData": null
         },
-        "requestId": "d326f93eb14607d79fb73935402aa5cf"
+        "requestId": "c9bed86d4172715f32396490f215d4f2"
       }
     }
   },
   {
-    "ts": "2018-08-14T19:03:50.148Z",
+    "ts": "2018-08-14T19:28:17.974Z",
     "level": "error",
     "error": {
       "name": "InvalidEntry",
@@ -1866,8 +1757,8 @@
           },
           "id": "Walker2012",
           "type": "Entry",
-          "createdAt": "2018-08-14T18:59:11.868Z",
-          "updatedAt": "2018-08-14T18:59:11.868Z",
+          "createdAt": "2018-08-14T19:24:41.613Z",
+          "updatedAt": "2018-08-14T19:24:41.613Z",
           "environment": {
             "sys": {
               "id": "master",
@@ -1968,12 +1859,12 @@
           "method": "put",
           "payloadData": null
         },
-        "requestId": "40ed5ab8085dc85866a9590d786b6f16"
+        "requestId": "5320fbdd3bb76b5bcc85aba93a43b34c"
       }
     }
   },
   {
-    "ts": "2018-08-14T19:04:07.479Z",
+    "ts": "2018-08-14T19:28:18.286Z",
     "level": "error",
     "error": {
       "name": "InvalidEntry",
@@ -1988,8 +1879,8 @@
           },
           "id": "Marliave2009br",
           "type": "Entry",
-          "createdAt": "2018-08-14T18:59:15.123Z",
-          "updatedAt": "2018-08-14T18:59:15.123Z",
+          "createdAt": "2018-08-14T19:24:43.740Z",
+          "updatedAt": "2018-08-14T19:24:43.740Z",
           "environment": {
             "sys": {
               "id": "master",
@@ -2083,12 +1974,12 @@
           "method": "put",
           "payloadData": null
         },
-        "requestId": "141fe05abdaf3a070d624dd18431a25f"
+        "requestId": "6e52a0332d98cc8ab0439e326b88cf6b"
       }
     }
   },
   {
-    "ts": "2018-08-14T19:04:12.812Z",
+    "ts": "2018-08-14T19:28:18.617Z",
     "level": "error",
     "error": {
       "name": "InvalidEntry",
@@ -2103,8 +1994,8 @@
           },
           "id": "Marliave2009gx",
           "type": "Entry",
-          "createdAt": "2018-08-14T18:59:18.169Z",
-          "updatedAt": "2018-08-14T18:59:18.169Z",
+          "createdAt": "2018-08-14T19:24:45.111Z",
+          "updatedAt": "2018-08-14T19:24:45.111Z",
           "environment": {
             "sys": {
               "id": "master",
@@ -2197,12 +2088,12 @@
           "method": "put",
           "payloadData": null
         },
-        "requestId": "6e6c003d36f29a154bd0b0c548774351"
+        "requestId": "337834efaa02dcbde20cc155f754644e"
       }
     }
   },
   {
-    "ts": "2018-08-14T19:04:18.185Z",
+    "ts": "2018-08-14T19:28:18.998Z",
     "level": "error",
     "error": {
       "name": "InvalidEntry",
@@ -2217,8 +2108,8 @@
           },
           "id": "Marliave2013vw",
           "type": "Entry",
-          "createdAt": "2018-08-14T18:59:18.468Z",
-          "updatedAt": "2018-08-14T18:59:18.468Z",
+          "createdAt": "2018-08-14T19:24:45.458Z",
+          "updatedAt": "2018-08-14T19:24:45.458Z",
           "environment": {
             "sys": {
               "id": "master",
@@ -2313,12 +2204,12 @@
           "method": "put",
           "payloadData": null
         },
-        "requestId": "582630233b538462c67411544ae9124d"
+        "requestId": "d022ad87f1d9fb559b89dbacd07a6f3d"
       }
     }
   },
   {
-    "ts": "2018-08-14T19:04:23.596Z",
+    "ts": "2018-08-14T19:28:19.317Z",
     "level": "error",
     "error": {
       "name": "InvalidEntry",
@@ -2333,8 +2224,8 @@
           },
           "id": "Marliave2011vm",
           "type": "Entry",
-          "createdAt": "2018-08-14T18:59:21.107Z",
-          "updatedAt": "2018-08-14T18:59:21.107Z",
+          "createdAt": "2018-08-14T19:24:46.270Z",
+          "updatedAt": "2018-08-14T19:24:46.270Z",
           "environment": {
             "sys": {
               "id": "master",
@@ -2430,128 +2321,13 @@
           "method": "put",
           "payloadData": null
         },
-        "requestId": "e0fe609d4b9e377780703fb974815ac5"
+        "requestId": "a59ac2be7673e9f86fd2c3fcda01e9a0"
       }
     }
   },
   {
-    "ts": "2018-08-14T19:04:23.924Z",
+    "ts": "2018-08-14T19:28:19.318Z",
     "level": "error",
-    "error": {
-      "name": "InvalidEntry",
-      "entity": {
-        "sys": {
-          "space": {
-            "sys": {
-              "type": "Link",
-              "linkType": "Space",
-              "id": "fsquhe7zbn68"
-            }
-          },
-          "id": "Frid2012hw",
-          "type": "Entry",
-          "createdAt": "2018-08-14T18:59:24.071Z",
-          "updatedAt": "2018-08-14T18:59:24.071Z",
-          "environment": {
-            "sys": {
-              "id": "master",
-              "type": "Link",
-              "linkType": "Environment"
-            }
-          },
-          "createdBy": {
-            "sys": {
-              "type": "Link",
-              "linkType": "User",
-              "id": "7f7IBX3VmFpFee6y5TGPtG"
-            }
-          },
-          "updatedBy": {
-            "sys": {
-              "type": "Link",
-              "linkType": "User",
-              "id": "7f7IBX3VmFpFee6y5TGPtG"
-            }
-          },
-          "version": 1,
-          "contentType": {
-            "sys": {
-              "type": "Link",
-              "linkType": "ContentType",
-              "id": "researchPapers"
-            }
-          }
-        },
-        "fields": {
-          "citation": {
-            "en-US": "@article{Frid:2012hw, author = {Frid, Alejandro and Marliave, Jeff and Heithaus, Michael R}, journal = {PLoS ONE}, month = {jun}, number = {6}, pages = {e40083}, title = {{Interspecific Variation in Life History Relates to Antipredator Decisions by Marine Mesopredators on Temperate Reefs}}, volume = {7}, year = {2012}}"
-          },
-          "title": {
-            "en-US": "Interspecific Variation in Life History Relates to Antipredator Decisions by Marine Mesopredators on Temperate Reefs"
-          },
-          "slug": {
-            "en-US": "interspecific-variation-in-life-history-relates-to-antipredator-decisions-by-marine-mesopredators-on-temperate-reefs"
-          },
-          "authors": {
-            "en-US": [
-              "Frid, A.",
-              "Marliave, J.",
-              "Heithaus, MR."
-            ]
-          },
-          "year": {
-            "en-US": "2012"
-          }
-        }
-      },
-      "data": {
-        "status": 422,
-        "statusText": "Unprocessable Entity",
-        "message": "Validation error",
-        "details": {
-          "errors": [
-            {
-              "name": "unique",
-              "details": "Same field value present in other entry",
-              "path": [
-                "fields",
-                "slug",
-                "en-US"
-              ],
-              "value": "interspecific-variation-in-life-history-relates-to-antipredator-decisions-by-marine-mesopredators-on-temperate-reefs",
-              "conflicting": [
-                {
-                  "sys": {
-                    "type": "Link",
-                    "linkType": "Entry",
-                    "id": "Frid2012"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        "request": {
-          "url": "https://api.contentful.com:443/spaces/fsquhe7zbn68/environments/master/entries/Frid2012hw/published",
-          "headers": {
-            "Accept": "application/json, text/plain, */*",
-            "Content-Type": "application/vnd.contentful.management.v1+json",
-            "X-Contentful-User-Agent": "app contentful.cli/0.16.1; feature space-import; sdk contentful-management.js/5.2.1; platform node.js/v9.0.0; os Linux/4.15.0-29-generic;",
-            "Authorization": "Bearer ...4138b",
-            "user-agent": "node.js/v9.0.0",
-            "Accept-Encoding": "gzip",
-            "X-Contentful-Version": 1
-          },
-          "method": "put",
-          "payloadData": null
-        },
-        "requestId": "a311ebef1354a3454769f404b67a1725"
-      }
-    }
-  },
-  {
-    "ts": "2018-08-14T19:04:23.924Z",
-    "level": "error",
-    "error": "Could not publish the following entities: Hematology of three deep-sea fishes: a reflection of low metabolic rates. (Graham1985c), Interspecific Variation in Life History Relates to Antipredator Decisions by Marine Mesopredators on Temperate Reefs (Frid2012hw), Biodiversity stability of shallow marine benthos in Strait of Georgia, British Columbia, Canada through climate regimes, overfishing and ocean acidification (Marliave2011vm), Home site fidelity in Black Rockfish, Sebastes melanops, reintroduced into a fjord environment (Marliave2013vw), Monitoring and evaluating rockfish conservation areas in British Columbia (Marliave2009gx), Larval development of Asemichthys taylori (Cottidae) (Marliave2009br), A review of the effects of different marking and tagging techniques on marine mammals (Walker2012), Dive, food and exercise effects on blood microparticles in Steller sea lions (Eumetopias jubatus): exploring a biomarker for decompression sickness (Fahlman2016), Dive behaviour impacts the ability of heart rate to predict oxygen consumption in Steller sea ions (Eumetopias jubatus) foraging at depth (Young2011a), Split personalities: Seasonal energetic priorities in young northern fur seals (Rosen2010)"
+    "error": "Could not publish the following entities: Interspecific Variation in Life History Relates to Antipredator Decisions by Marine Mesopredators on Temperate Reefs (Frid2012hw), Biodiversity stability of shallow marine benthos in Strait of Georgia, British Columbia, Canada through climate regimes, overfishing and ocean acidification (Marliave2011vm), Home site fidelity in Black Rockfish, Sebastes melanops, reintroduced into a fjord environment (Marliave2013vw), Monitoring and evaluating rockfish conservation areas in British Columbia (Marliave2009gx), Larval development of Asemichthys taylori (Cottidae) (Marliave2009br), A review of the effects of different marking and tagging techniques on marine mammals (Walker2012), Dive, food and exercise effects on blood microparticles in Steller sea lions (Eumetopias jubatus): exploring a biomarker for decompression sickness (Fahlman2016), Dive behaviour impacts the ability of heart rate to predict oxygen consumption in Steller sea ions (Eumetopias jubatus) foraging at depth (Young2011a), Split personalities: Seasonal energetic priorities in young northern fur seals (Rosen2010)"
   }
 ]

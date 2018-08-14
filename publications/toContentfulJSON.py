@@ -61,6 +61,11 @@ def unescape(s):
     except:
         return s
 
+def unescapeBibTexEntry(entry):
+    out = re.sub(r'\$\\backslash\$', '', entry)
+    out = re.sub(r'\{\\textless\}', '', entry)
+    return out
+
 
 def joinNames(arr):
     out = []
@@ -129,6 +134,7 @@ with open('import.json', 'w') as f:
             citationString = bibtexparser.dumps(db)
             citationString = citationString.replace('\n', '')
             citationString = json.dumps(citationString)
+            citationString = unescapeBibTexEntry(citationString)
         except:
             with open('errors.txt', 'a') as errors:
                 errors.write('Error with entry {0}n'.format(entry['ID']))
