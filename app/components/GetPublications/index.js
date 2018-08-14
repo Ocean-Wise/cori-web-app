@@ -13,8 +13,9 @@ import { createFilter } from 'react-search-input';
 
 const KEYS_TO_FILTER = ['title', 'authors', 'year', 'abstract', 'keywords'];
 
-function GetPublications({ data: { publications }, addToList, removeFromList, selected, match, searchTerm }) {
+function GetPublications({ data, data: { publications }, addToList, removeFromList, selected, match, searchTerm }) {
   const output = [];
+  console.log(data);
   console.log(publications);
   try {
     // const sortDesc = (a, b) => parseInt(b.year, 10) - parseInt(a.year, 10);

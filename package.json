@@ -284,6 +284,7 @@
     "react-intl": "2.3.0",
     "react-loadable": "4.0.3",
     "react-markdown": "^3.3.2",
+    "react-paginate": "^5.2.4",
     "react-radio-group": "^3.0.2",
     "react-redux": "5.0.5",
     "react-router-dom": "4.1.1",

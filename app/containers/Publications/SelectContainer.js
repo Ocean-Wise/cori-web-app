@@ -4,7 +4,7 @@ import * as mixins from 'styles/mixins';
 const SelectContainer = styled.div`
   border-bottom: 1px solid #00B398;
   max-width: 1120px;
-  margin: 63px auto;
+  margin: 63px auto 0px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
