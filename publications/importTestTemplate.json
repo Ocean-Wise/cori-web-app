@@ -1,0 +1,63 @@
+{
+  "entries": [
+    {
+      "sys": {
+        "id": "Rosenberg2016",
+        "publishedVersion": 1,
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "researchPapers"
+          }
+        }
+      },
+      "fields": {
+        "citation": {
+          "en-US": "@article{BOWEN2012,\nauthor = {BOWEN, LIZABETH and MILES, A. KEITH and MURRAY, MICHAEL and HAULENA, MARTIN and TUTTLE, JUDY and {VAN BONN}, WILLIAM and ADAMS, LANCE and BODKIN, JAMES L. and BALLACHEY, BRENDA and ESTES, JAMES and TINKER, M. TIM and KEISTER, ROBIN and STOTT, JEFFREY L.},\ndoi = {10.1111/j.1755-0998.2011.03060.x},\nissn = {1755098X},\njournal = {Molecular Ecology Resources},\nkeywords = {diagnostics,gene transcript,marine ecosystem health,quantitative real‐time polymerase chain reaction,sea otter},\nmonth = {jan},\nnumber = {1},\npages = {67--74},\npublisher = {Wiley/Blackwell (10.1111)},\ntitle = {{Gene transcription in sea otters (Enhydra lutris); development of a diagnostic tool for sea otter and ecosystem health}},\nurl = {http://doi.wiley.com/10.1111/j.1755-0998.2011.03060.x},\nvolume = {12},\nyear = {2012}\n}"
+        },
+        "url": {
+          "en-US": "http://doi.wiley.com/10.1111/j.1755-0998.2011.03060.x"
+        },
+        "title": {
+          "en-US": "I AM A TEST OF IMPORTATION YO"
+        },
+        "slug": {
+          "en-US": "i-am-a-test-of-importation-yo"
+        },
+        "authors": {
+          "en-US": [
+            "Bowen, L.",
+            "Miles, AK.",
+            "Murray, M.",
+            "Haulena, M.",
+            "Tuttle, J.",
+            "Van Bonn, W.",
+            "Adams, L.",
+            "Bodkin, JL.",
+            "Ballachey, B.",
+            "Estes, J.",
+            "Tinker, MT.",
+            "Keister, R.",
+            "Stott, JL."
+          ]
+        },
+        "year": {
+          "en-US": "2012"
+        },
+        "keywords": {
+          "en-US": [
+            "Diagnostics",
+            "Gene transcript",
+            "Marine ecosystem health",
+            "Quantitative real-time ploymerase chain reaction",
+            "Sea otter"
+          ]
+        },
+        "doi": {
+          "en-US": "10.1111/j.1755-0998.2011.03060.x"
+        }
+      }
+    }
+  ]
+}
