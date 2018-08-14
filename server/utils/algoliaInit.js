@@ -122,32 +122,41 @@ function getPubs() {
     })
     .then((content) => {
       content.items.forEach(async (entry) => {
-        let link;
-        if (entry.fields.pdf) {
-          link = entry.fields.pdf.fields.file.url;
-        } else if (entry.fields.url) {
-          link = entry.fields.url;
-        } else if (entry.fields.doi) {
-          await axios.get(`https://api.semanticscholar.org/v1/paper/${entry.fields.doi}`)
-            .then((pub) => {
-              link = pub.data.url;
-            });
+        try {
+          let link;
+          if (entry.fields.pdf) {
+            link = entry.fields.pdf.fields.file.url;
+          } else if (entry.fields.url) {
+            link = entry.fields.url;
+          } else if (entry.fields.doi) {
+            try {
+              await axios.get(`https://api.semanticscholar.org/v1/paper/${entry.fields.doi}`)
+                .then((pub) => {
+                  link = pub.data.url;
+                });
+            } catch (err) {
+              link = null;
+            }
+          }
+          // Create our Publication object for the current entry
+          const keywords = entry.fields.keywords ? entry.fields.keywords.join() : '';
+          const item = {
+            objectID: entry.fields.slug,
+            slug: link,
+            authors: entry.fields.authors.join(';'),
+            title: entry.fields.title,
+            journal: entry.fields.journal,
+            volume: entry.fields.volume,
+            number: entry.fields.number,
+            keywords,
+            pages: entry.fields.pages,
+            year: parseInt(entry.fields.year, 10),
+          };
+          // Add our Publication object to our publications array
+          publications.push(item);
+        } catch (err) {
+          // Error
         }
-        // Create our Publication object for the current entry
-        const item = {
-          objectID: entry.fields.slug,
-          slug: link,
-          authors: entry.fields.authors.join(';'),
-          title: entry.fields.title,
-          journal: entry.fields.journal,
-          volume: entry.fields.volume,
-          number: entry.fields.number,
-          keywords: entry.fields.keywords.join(),
-          pages: entry.fields.pages,
-          year: parseInt(entry.fields.year, 10),
-        };
-        // Add our Publication object to our publications array
-        publications.push(item);
       });
       res();
     });
@@ -353,7 +362,7 @@ function initAlgolia() {
       .then(() => addProj())
       .then(() => {
         pubIndex.setSettings({
-          searchableAttributes: ['authors', 'title', 'journal', 'keywords', 'year'],
+          searchableAttributes: ['authors', 'title', 'keywords', 'year', 'abstract'],
         });
         peepIndex.setSettings({
           searchableAttributes: ['first', 'last', 'title'],

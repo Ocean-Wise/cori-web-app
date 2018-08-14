@@ -26,13 +26,15 @@ import Input from '@material-ui/core/Input';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
+import PubSearch from 'containers/PubSearch';
+
 import injectReducer from 'utils/injectReducer';
 import makeSelectPublications from './selectors';
 import reducer from './reducer';
 import { addToList, removeFromList } from './actions';
 
 import SelectContainer from './SelectContainer';
-import SearchInput from './SearchInput';
+// import SearchInput from './SearchInput';
 // import messages from './messages';
 
 const styles = () => ({
@@ -72,21 +74,29 @@ const styles = () => ({
 // TODO: ADD PAGINATION AND FIX SORTING
 export class Publications extends React.Component { // eslint-disable-line react/prefer-stateless-function
   state = {
-    sorting: 'desc',
-    alpha: false,
+    // sorting: 'desc',
+    // alpha: false,
     sortType: 'descending',
     searchTerm: '',
     pubLimit: 25,
     pubSkip: 0,
-    pubOrder: '-fields.year',
+    pubOrder: 'order=-fields.year',
   };
 
-  setAlpha = () => {
-    this.setState({ alpha: !this.state.alpha, sorting: 'asc' });
-  }
+  // setAlpha = () => {
+    // this.setState({ alpha: !this.state.alpha, sorting: 'asc' });
+  // }
 
-  swapSort = () => {
-    this.setState({ sorting: this.state.sorting === 'desc' ? 'asc' : 'desc', alpha: false });
+  // swapSort = () => {
+    // this.setState({ sorting: this.state.sorting === 'desc' ? 'asc' : 'desc', alpha: false });
+  // }
+
+  setOrder = (alpha, dir) => {
+    if (alpha) {
+      this.setState({ pubOrder: dir ? 'order=-fields.title' : 'order=fields.title' });
+    } else {
+      this.setState({ pubOrder: dir ? 'order=-fields.year' : 'order=fields.year' });
+    }
   }
 
   generateList = () => {
@@ -108,23 +118,28 @@ export class Publications extends React.Component { // eslint-disable-line react
 
   toggleSort = (evt) => {
     const sort = evt.target.value;
-
+    let alpha = false;
+    let dir = false;
     switch (sort) {
       case 'descending':
-        this.setState({ sortType: 'descending', sorting: 'desc', alpha: false });
+        dir = true;
         break;
       case 'ascending':
-        this.setState({ sortType: 'ascending', sorting: 'asc', alpha: false });
+        dir = false;
         break;
       case 'az':
-        this.setState({ sortType: 'az', alpha: true, sorting: 'asc' });
+        alpha = true;
+        dir = false;
         break;
       case 'za':
-        this.setState({ sortType: 'za', alpha: true, sorting: 'desc' });
+        alpha = true;
+        dir = true;
         break;
       default:
-        this.setState({ sortType: 'descending', sorting: 'desc', alpha: false });
+        break;
     }
+    this.setState({ sortType: sort });
+    this.setOrder(alpha, dir);
   };
 
   searchUpdated = (term) => {
@@ -143,7 +158,8 @@ export class Publications extends React.Component { // eslint-disable-line react
         <RAFilterButtons filter={this.props.match} />
         <SelectContainer>
           <div style={{ display: 'flex', paddingTop: 8, flexWrap: 'wrap' }}>
-            <SearchInput className="search-input" onChange={this.searchUpdated} placeholder="Search publications..." />
+            {/* <SearchInput classame="search-input" onChange={this.searchUpdated} placeholder="Search publications..." /> */}
+            <PubSearch />
             <div>
               <span style={{ fontSize: 12, lineHeight: '12px', color: '#4D4D4D', marginTop: 12 }}>SORT:&nbsp;&nbsp;</span>
               <Select value={this.state.sortType} onChange={this.toggleSort} displayEmpty name="sort" input={<Input disableUnderline />} classes={{ root: this.props.classes.root, selectMenu: this.props.classes.selectMenu, icon: this.props.classes.icon }}>
@@ -168,8 +184,8 @@ export class Publications extends React.Component { // eslint-disable-line react
           <GetPublications
             match={this.props.match}
             selected={this.props.publications.list}
-            sort={this.state.sorting}
-            alpha={this.state.alpha}
+            // sort={this.state.sorting}
+            // alpha={this.state.alpha}
             addToList={this.props.addItem}
             removeFromList={this.props.removeItem}
             searchTerm={this.state.searchTerm}

@@ -1,6 +1,6 @@
 /**
  *
- * Search
+ * PubSearch
  *
  */
 
@@ -8,7 +8,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { Link } from 'react-router-dom';
 import { InstantSearch, SearchBox, Index, Highlight } from 'react-instantsearch/dom';
 import { connectHits, connectStateResults } from 'react-instantsearch/connectors';
 import { withStyles } from '@material-ui/core/styles';
@@ -21,6 +20,8 @@ import withMobileDialog from '@material-ui/core/withMobileDialog';
 import PoweredBy from 'styles/icons/algolia.svg';
 import { Scrollbars } from 'react-custom-scrollbars';
 
+import Link from './Link';
+import A from './A';
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
 
@@ -30,7 +31,7 @@ const styles = () => ({
   },
 });
 
-class Search extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class PubSearch extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
     this.state = {
@@ -66,11 +67,11 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
             {hits.map((hit) => { // eslint-disable-line
               // eslint-disable-next-line
               const result = hit.slug ? hit.slug.match(/https?:\/\//g) ? (
-                <a href={hit.slug} target="_blank" style={{ color: 'rgb(0, 179, 152) !important' }}>
+                <A href={hit.slug} target="_blank">
                   <Highlight attribute="title" hit={hit} />
-                </a>
+                </A>
               ) : (
-                <Link to={hit.slug} style={{ color: 'rgb(0, 179, 152) !important' }}>
+                <Link to={hit.slug} style={{ color: '' }}>
                   <Highlight attribute="title" hit={hit} />
                 </Link>
               ) : <Highlight attribute="title" hit={hit} />;
@@ -108,23 +109,8 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
         <div>
           {hasResults ? <h2 style={{ color: '#00B398', fontSize: 24, fontWeight: 300, letterSpacing: '2.57px', lineHeight: '35px', textTransform: 'uppercase' }}>Results</h2> : ''}
           <Scrollbars style={{ height, width: 'auto' }}>
-            <Index indexName="ResearchAreas">
-              {hasResults ? <CustomHits type="Research Areas" /> : ''}
-            </Index>
-            <Index indexName="Programs">
-              {hasResults ? <CustomHits type="Programs" /> : ''}
-            </Index>
-            <Index indexName="Initiatives">
-              {hasResults ? <CustomHits type="Initiatives" /> : ''}
-            </Index>
-            <Index indexName="Projects">
-              {hasResults ? <CustomHits type="Projects" /> : ''}
-            </Index>
             <Index indexName="Publications">
               {hasResults ? <CustomHits type="Publications" /> : ''}
-            </Index>
-            <Index indexName="People">
-              {hasResults ? <CustomHits type="People" /> : ''}
             </Index>
           </Scrollbars>
         </div>
@@ -133,9 +119,11 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
 
     return (
       <div>
-        <IconButton aria-label="Search" onClick={this.toggleSearch}>
-          <img alt="Search" src={SearchIcon} style={{ width: 25 }} />
-        </IconButton>
+        <div style={{ position: 'relative', bottom: 5 }}>
+          <IconButton aria-label="Search" onClick={this.toggleSearch} >
+            <img alt="Search" src={SearchIcon} style={{ width: 25 }} />
+          </IconButton>
+        </div>
         <Dialog
           fullScreen={fullScreen}
           open={this.state.search}
@@ -150,7 +138,7 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
               apiKey="71bf64d883b42cdf7ee10f58595ff891"
               indexName="ResearchAreas"
             >
-              <SearchBox autoFocus searchAsYouType={false} translations={{ placeholder: 'Searching for...' }} />
+              <SearchBox autoFocus searchAsYouType={false} translations={{ placeholder: 'Searching publications...' }} />
               <Results />
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <div style={{ marginTop: 29, color: '#CCD0D2', fontSize: 12, lineHeight: '18px' }}>SEARCH BY <img style={{ height: 20 }} src={PoweredBy} alt="Algolia" /></div>
@@ -164,7 +152,7 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
   }
 }
 
-Search.propTypes = {
+PubSearch.propTypes = {
   fullScreen: PropTypes.bool.isRequired,
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired, // eslint-disable-line
@@ -183,4 +171,4 @@ export default compose(
   withConnect,
   withMobileDialog(),
   withStyles(styles)
-)(Search);
+)(PubSearch);
