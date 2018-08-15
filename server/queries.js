@@ -163,8 +163,13 @@ function handleSurveyData(req, res) {
           // The User has not chosen to upload any files, so just upload the survey data
           handleAnnapolisSurvey(req.body.data.survey, '')
             .then(() => res.status(200).send('Successfully uploaded survey data'))
-            .catch((err) => res.status(500).send(err.stack));
+            .catch((err) => res.status(500).send(err));
         }
+        break;
+      case 'lingcod':
+        handleLingcodSurvey(req.body.data.survey)
+          .then(() => res.status(200).send('Successfully uploaded survey data'))
+          .catch((err) => res.status(500).send(err.stack));
         break;
       default:
         res.status(500).send('You must supply the surveyName value and associated data object');
@@ -181,6 +186,20 @@ function handleAnnapolisSurvey(data, images) {
     db.any(`INSERT INTO annapolis(name, email, divedate, images, videolink, comments) VALUES ('${data.name}', '${data.email}', '${data.divedate}', '${images}', '${data.videoLink}', '${data.comments}')`)
       .then(() => res())
       .catch((err) => rej(err.stack, images));
+  });
+}
+
+function handleLingcodSurvey(data) {
+  // console.log(data);
+  console.log(JSON.stringify(data.divera));
+
+  return new Promise((res, rej) => {
+    db.any(`INSERT INTO lingcod(divera, diverb, divedate, generalLocation, specificLocation, bottomTime, nests, additionalComments) VALUES ('${JSON.stringify(data.divera)}', '${JSON.stringify(data.diverb)}', '${JSON.stringify(data.divedate)}', '${JSON.stringify(data.generalLocation)}', '${JSON.stringify(data.specificLocation)}', '${JSON.stringify(data.bottomTime)}', '${JSON.stringify(data.nests)}', '${JSON.stringify(data.additionalComments)}')`)
+      .then(() => res())
+      .catch((err) => {
+        console.log(err.stack);
+        rej(err.stack);
+      });
   });
 }
 

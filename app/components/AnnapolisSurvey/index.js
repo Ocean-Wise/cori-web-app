@@ -1,6 +1,6 @@
 /**
 *
-* Annapolis
+* AnnapolisSurvey
 *
 */
 
@@ -17,7 +17,7 @@ import H1 from './H1';
 import Divider from './Divider';
 import P from './P';
 
-class Annapolis extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class AnnapolisSurvey extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
     this.state = {
@@ -224,10 +224,10 @@ class Annapolis extends React.Component { // eslint-disable-line react/prefer-st
   }
 }
 
-Annapolis.propTypes = {
+AnnapolisSurvey.propTypes = {
   upload: PropTypes.func.isRequired,
   slug: PropTypes.string,
   submitted: PropTypes.bool,
 };
 
-export default Annapolis;
+export default AnnapolisSurvey;

@@ -12,7 +12,8 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import Header from 'components/Header';
-import Annapolis from 'components/Annapolis';
+import AnnapolisSurvey from 'components/AnnapolisSurvey';
+import LingcodSurvey from 'components/LingcodSurvey';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
@@ -45,7 +46,7 @@ export class Survey extends React.Component { // eslint-disable-line react/prefe
   }
 
   // Handle the dispatch our uploadRequest Redux action
-  handleFileUpload = ({ files, name, surveyData }) => {
+  handleSubmit = ({ files, name, surveyData }) => {
     this.props.dispatch(uploadRequest({
       // Send our files to upload...
       files,
@@ -67,7 +68,10 @@ export class Survey extends React.Component { // eslint-disable-line react/prefe
     switch (this.props.match.params.slug) {
       case 'annapolis':
         // Set the SURVEY variable. Pass our handleFileUpload function as upload() and our submitted boolean state value to the component
-        SURVEY = <Annapolis upload={this.handleFileUpload} submitted={this.state.submitted} />;
+        SURVEY = <AnnapolisSurvey upload={this.handleSubmit} submitted={this.state.submitted} />;
+        break;
+      case 'lingcod':
+        SURVEY = <LingcodSurvey upload={this.handleSubmit} submitted={this.state.submitted} />;
         break;
       default:
         break;
