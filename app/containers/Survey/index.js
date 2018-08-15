@@ -14,6 +14,7 @@ import { compose } from 'redux';
 import Header from 'components/Header';
 import AnnapolisSurvey from 'components/AnnapolisSurvey';
 import LingcodSurvey from 'components/LingcodSurvey';
+import RockfishSurvey from 'components/RockfishSurvey';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
@@ -72,6 +73,9 @@ export class Survey extends React.Component { // eslint-disable-line react/prefe
         break;
       case 'lingcod':
         SURVEY = <LingcodSurvey upload={this.handleSubmit} submitted={this.state.submitted} />;
+        break;
+      case 'rockfish':
+        SURVEY = <RockfishSurvey upload={this.handleSubmit} submitted={this.state.submitted} />;
         break;
       default:
         break;

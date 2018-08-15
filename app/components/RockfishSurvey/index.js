@@ -1,0 +1,386 @@
+/**
+*
+* RockfishSurvey
+*
+*/
+
+import React from 'react';
+// import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import Button from 'components/Button';
+import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import { Grid, Row, Col } from 'react-flexbox-grid';
+
+import Hero from './Hero';
+import HEROIMG from './hero.jpg';
+import H1 from './H1';
+import H2 from './H2';
+import Divider from './Divider';
+import P from './P';
+
+class RockfishSurvey extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
+    super(props);
+    this.state = {
+      instructionsOpen: false,
+      instructionsRead: false,
+      divedate: '',
+      name: '',
+      address: '',
+      phone: '',
+      email: '',
+      generalLocation: '',
+      specificLocation: '',
+      bottomTime: '',
+      averageDepth: '',
+      maximumDepth: '',
+      speciesData: {
+        quillbackAdults: '',
+        quillbackJuvenile: '',
+        quillbackBaby: '',
+        copperAdults: '',
+        copperJuvenile: '',
+        copperBaby: '',
+        yelloweyeAdults: '',
+        yelloweyeJuvenile: '',
+        yelloweyeBaby: '',
+        yellowtailAdults: '',
+        yellowtailJuvenile: '',
+        yellowtailBaby: '',
+        blackAdults: '',
+        blackJuvenile: '',
+        blackBaby: '',
+        tigerAdults: '',
+        tigerJuvenile: '',
+        tigerBaby: '',
+        pugetSoundAdults: '',
+        pugetSoundJuvenile: '',
+        pugetSoundBaby: '',
+        otherAdults: '',
+        otherJuvenile: '',
+        otherBaby: '',
+        unknownAdults: '',
+        unknownJuvenile: '',
+        unknownBaby: '',
+      },
+      additionalComments: '',
+    };
+  }
+
+  updateSubmitted = () => {
+    this.setState({ submitted: this.props.submitted });
+  }
+
+
+  doUpload = async () => {
+    const { divera, diverb, divedate, generalLocation, specificLocation, bottomTime, nests, additionalComments } = this.state;
+    const surveyData = {
+      divera,
+      diverb,
+      divedate,
+      generalLocation,
+      specificLocation,
+      bottomTime,
+      nests,
+      additionalComments,
+    };
+
+    this.props.upload({ files: [], name: 'lingcod', surveyData });
+  }
+
+  handleInstructions = (dir) => {
+    let instructionsRead = false;
+    if (dir) {
+      instructionsRead = true;
+    }
+    this.setState({ instructionsOpen: !this.state.instructionsOpen, instructionsRead });
+  }
+
+  handleText = (type) => (event) => {
+    if (type.includes('Adult') || type.includes('Juvenile') || type.includes('Baby')) {
+      const { speciesData } = this.state;
+      speciesData[type] = event.target.value;
+      this.setState({ speciesData });
+    } else {
+      this.setState({ [type]: event.target.value });
+    }
+  }
+
+  render() {
+    const submitButton = this.state.submitted ? ( // eslint-disable-line
+      <P><strong>Thank you for your submission!</strong></P>
+    ) : this.state.submitting ? (
+      <Button id="upload">Submitting...</Button>
+    ) : (
+      <Button id="upload" onClick={this.doUpload}>Submit Survey</Button>
+    );
+
+    const instructions = (
+      <Dialog onClose={this.handleInstructions} open={this.state.instructionsOpen} aria-labelledby="instructions-dialog">
+        <DialogTitle id="instructions-title">Instructions</DialogTitle>
+        <DialogContent>
+          <H2>Determining The Age Of Rockfish</H2>
+          <P>Adult rockfish are approximately 20 cm in length or longer. For most divers, this is length of your hand from your fingertip to wrist (looking at your palm). Please check your hand against this length before conducting the survey in order to be as accurate as possible.</P>
+          <P>Rockfish smaller than your hand (20 cm) should be counted as Juvenile*.<br />Very young rockfish, pinky-finger-length and smaller, are differently coloured and should be counted as Baby**.</P>
+          <P>* The only exception to this rule is a Puget Sound rockfish. Due to their small adult size, all Puget Sound rockfish should be counted as Adult.<br />** Baby rockfish, often up to 18 months age, can look very different from Juveniles and Adults and as such if you can send us video or a photo of the baby rockfish you encounter we can ID them for you.</P>
+          <H2>Species Identification</H2>
+          <P>Divers must be able to identify local rockfish species as adults and juveniles (but note that babies are differently coloured). If you are unsure of species ID let us help by sending us your dive videos or photos of rockfish and we’ll count and ID them for you. Please upload your video to <a href="https://youtube.com/" target="_blank">YouTube</a> or <a href="https://vimeo.com/" target="_blank">Vimeo</a>, and then <a href="mailto:fishlab@vanaqua.org">email</a> us the link. </P>
+          <P>The most common species in the Strait of Georgia/Johnstone Strait/Haro Strait include: copper, quillback, yelloweye (red snapper), yellowtail, tiger and Puget Sound rockfish. Other species that may be seen include brown, black and vermilion rockfish amongst others. If you are unsure of a species, record it as UNKNOWN or capture it in a photo for us to ID.</P>
+          <H2>Site Selection</H2>
+          <P>Rockfish surveys should be conducted in areas known to have rockfish, which usually means complex rocky reef: rockfish like rocks! They often hide is crevices and caves. Surveys should not be conducted in areas with poor rockfish habitat such as sandy bottom or mud slopes. GPS coordinates for entry point, plus compass direction along shore from entry point are helpful</P>
+          <H2>Data Collection</H2>
+          <P>One diver should be responsible for recording the data on a slate. Any dive buddies should stay close to the data collector, helping to locate and point out rockfish in the area or to light for videotaping.</P>
+          <P>Avoid double counting. If the dive has a fixed entry/exit point such as would occur on a shoreline dive, the divers should survey different depths for each direction traveled. For example, survey a depth of 45-60 feet in one direction, returning at a depth of 30-45 feet.</P>
+          <P>Repeat surveys conducted at the same site are both welcome and necessary in order to build a solid data record for a given area. The idea is to repeat counts under different visibility conditions over an extended period (years). We no longer recommend winter/spring surveying, as data prove that extensive winter hiding occurs.</P>
+          <H2>Bottom Times</H2>
+          <P>Total bottom time is absolutely necessary in order to calculate the abundance of rockfish in a given area. For the survey, bottom times should include any decompression stops.</P>
+          <Button onClick={this.handleInstructions} id="dialog-close">Close</Button>
+        </DialogContent>
+      </Dialog>
+    );
+
+    return (
+      <div style={{ overflowX: 'hidden' }}>
+        <Hero src={HEROIMG} alt={`${this.props.slug}-hero`} />
+        <div style={{ padding: 20 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '0 auto', maxWidth: 1100 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '0 auto', marginBottom: 20 }}>
+              <H1 style={{ marginBottom: 5 }}>The Rockfish Abundance Survey</H1>
+              <Divider />
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', margin: '0 auto', marginBottom: 20 }}>
+              <H2>Annual Rockfish Abundance Survey</H2>
+              <P>If you SCUBA dive with a video camera and capture video of rockfish then it’s easy for you to participate in our Rockfish Abundance Survey, which runs annually from August to October. Through this diver survey we collect data that can help us determine how many rockfish there are, where they live and how this information might change over time. Participating in this survey can be as easy as just sending us your dive videos, we will identify and count the rockfish for you. Or, if you are good at identifying the fish yourself you can fill out the survey sheet.</P>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', margin: '0 auto', marginBottom: 20 }}>
+              <H2>How The Survey Began</H2>
+              <P>Conservation of B.C.’s inshore rockfish species is a serious matter owing to the slow maturation, longevity and small home territories of these fishes. They are all too easy to catch, and are still a target of poachers. In 2007, Fisheries and Oceans Canada finalized a total of 164 Rockfish Conservation Areas in B.C., to aid the recovery of B.C.’s inshore rockfish species. By surveying rockfish along the B.C. coast inside and outside of these RCAs, we can monitor and continue to ensure these species thrive.</P>
+              <H2>Between a Rock And A Hard Place</H2>
+              <P>Recent research findings by the Vancouver Aquarium’s Howe Sound dive team indicate that, in B.C., some rockfish hide deep in rock piles during winter. With this in mind, the rockfish abundance survey is best conducted in summer and early fall. Late summer typically has good visibility and the rockfish tend to be hovering well above their rocky home sites. Consequently, this years Rockfish Abundance Survey is being conducted from August-October.</P>
+              <H2>Rockfish Conservation At The Aquarium</H2>
+              <P>Rockfish are an important part of B.C.’s ocean ecosystem. However, they’re easy targets for fishermen, as they naturally don’t move far from their home territories. The Aquarium team has been working to establish black rockfish where they were once abundant along the shoreline of West Vancouver. They had been fished out in the 1960s, but signs are emerging that our black rockfish transplants have successfully bred new generations in 2004, 2006, 2008 and 2010. As previously mentioned, the Howe Sound team is also monitoring a population of copper rockfish year round to better understand the winter hiding behaviour that has been observed over the past 7 years.</P>
+              <Button id="instructions" onClick={() => this.handleInstructions(false)}>Start by reading the instructions</Button>
+              {instructions}
+              {this.state.instructionsRead ? (
+                <div style={{ maxWidth: 760, margin: '0 auto' }}>
+                  <h3>Data Collection Form</h3>
+                  <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                    <div style={{ width: '100%' }}>
+                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                        <h4>Diver Info:</h4>
+                      </div>
+                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                        <TextField fullWidth type="date" label="Dive date:" InputLabelProps={{ shrink: true }} value={this.state.divedate} onChange={this.handleText('divedate')} />
+                      </div>
+                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                        <TextField fullWidth placeholder="Name" margin="normal" value={this.state.name} onClick={this.handleText('name')} />
+                      </div>
+                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                        <TextField fullWidth placeholder="Address" margin="normal" value={this.state.address} onClick={this.handleText('address')} />
+                      </div>
+                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                        <TextField fullWidth placeholder="Phone" margin="normal" value={this.state.phone} onClick={this.handleText('phone')} />
+                      </div>
+                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                        <TextField fullWidth placeholder="Email" margin="normal" value={this.state.email} onClick={this.handleText('email')} />
+                      </div>
+                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                        <Select fullWidth value={this.state.generalLocation} displayEmpty onChange={this.handleText('generalLocation')}>
+                          <MenuItem value="">General Location...</MenuItem>
+                          <MenuItem value="Howe Sound">Howe Sound</MenuItem>
+                          <MenuItem value="Sunshine Coast">Sunshine Coast</MenuItem>
+                          <MenuItem value="Indian Arm">Indian Arm</MenuItem>
+                          <MenuItem value="West Vancouver Island">West Vancouver Island</MenuItem>
+                          <MenuItem value="Southern Gulf Islands">Southern Gulf Islands</MenuItem>
+                          <MenuItem value="Northern Gulf Islands">Northern Gulf Islands</MenuItem>
+                          <MenuItem value="Johnstone Strait">Johnstone Strait</MenuItem>
+                          <MenuItem value="Hecate Strait">Hecate Strait</MenuItem>
+                          <MenuItem value="Other">Other</MenuItem>
+                        </Select>
+                      </div>
+                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                        <TextField placeholder="Specific Location" margin="normal" fullWidth value={this.state.specificLocation} onChange={this.handleText('specificLocation')} />
+                      </div>
+                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                        <TextField placeholder="Bottom Time" margin="normal" fullWidth value={this.state.bottomTime} onChange={this.handleText('bottomTime')} />
+                      </div>
+                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                        <TextField placeholder="Average Depth" margin="normal" fullWidth value={this.state.averageDepth} onChange={this.handleText('averageDepth')} />
+                      </div>
+                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                        <TextField placeholder="Maximum Depth" margin="normal" fullWidth value={this.state.maximumDepth} onChange={this.handleText('maximumDepth')} />
+                      </div>
+                    </div>
+                    <hr />
+                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                      <Grid fluid>
+                        <Row>
+                          <Col xl={2}>
+                            <h3>Species</h3>
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col xl={2}>
+                            Quillback
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Adults" margin="normal" value={this.state.quillbackAdults} onChange={this.handleText('quillbackAdults')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.quillbackJuvenile} onChange={this.handleText('quillbackJuvenile')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Baby" margin="normal" value={this.state.quillbackBaby} onChange={this.handleText('quillbackBaby')} />
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col xl={2}>
+                            Copper
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Adults" margin="normal" value={this.state.copperAdults} onChange={this.handleText('copperAdults')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.copperJuvenile} onChange={this.handleText('copperJuvenile')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Baby" margin="normal" value={this.state.copperBaby} onChange={this.handleText('copperBaby')} />
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col xl={2}>
+                            Yelloweye
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Adults" margin="normal" value={this.state.yelloweyeAdults} onChange={this.handleText('yelloweyeAdults')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.yelloweyeJuvenile} onChange={this.handleText('yelloweyeJuvenile')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Baby" margin="normal" value={this.state.yelloweyeBaby} onChange={this.handleText('yelloweyeBaby')} />
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col xl={2}>
+                            Yellowtail
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Adults" margin="normal" value={this.state.yellowtailAdults} onChange={this.handleText('yellowtailAdults')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.yellowtailJuvenile} onChange={this.handleText('yellowtailJuvenile')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Baby" margin="normal" value={this.state.yellowtailBaby} onChange={this.handleText('yellowtailBaby')} />
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col xl={2}>
+                            Black
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Adults" margin="normal" value={this.state.blackAdults} onChange={this.handleText('blackAdults')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.blackJuvenile} onChange={this.handleText('blackJuvenile')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Baby" margin="normal" value={this.state.blackBaby} onChange={this.handleText('blackBaby')} />
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col xl={2}>
+                            Tiger
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Adults" margin="normal" value={this.state.tigerAdults} onChange={this.handleText('tigerAdults')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.tigerJuvenile} onChange={this.handleText('tigerJuvenile')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Baby" margin="normal" value={this.state.tigerBaby} onChange={this.handleText('tigerBaby')} />
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col xl={2}>
+                            Puget Sound
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Adults" margin="normal" value={this.state.pugetSoundAdults} onChange={this.handleText('pugetSoundAdults')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.pugetSoundJuvenile} onChange={this.handleText('pugetSoundJuvenile')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Baby" margin="normal" value={this.state.pugetSoundBaby} onChange={this.handleText('pugetSoundBaby')} />
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col xl={2}>
+                            Other
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Adults" margin="normal" value={this.state.otherAdults} onChange={this.handleText('otherAdults')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.otherJuvenile} onChange={this.handleText('otherJuvenile')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Baby" margin="normal" value={this.state.otherBaby} onChange={this.handleText('otherBaby')} />
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col xl={2}>
+                            Unknown
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Adults" margin="normal" value={this.state.unknownAdults} onChange={this.handleText('unknownAdults')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.unknownJuvenile} onChange={this.handleText('unknownJuvenile')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Baby" margin="normal" value={this.state.unknownBaby} onChange={this.handleText('unknownBaby')} />
+                          </Col>
+                        </Row>
+                      </Grid>
+                    </div>
+                    <div style={{ display: 'flex', width: '100%', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                      <TextField placeholder="Additional Comments" fullWidth margin="normal" value={this.state.additionalComments} onChange={this.handleText('additionalComments')} />
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', margin: '0 auto', maxWidth: 580, paddingTop: 20 }}>
+                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', paddingTop: 20 }}>
+                      {submitButton}
+                    </div>
+                  </div>
+                </div>
+              ) : ''}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+RockfishSurvey.propTypes = {
+  submitted: PropTypes.bool,
+  upload: PropTypes.func,
+  slug: PropTypes.string,
+};
+
+export default RockfishSurvey;
