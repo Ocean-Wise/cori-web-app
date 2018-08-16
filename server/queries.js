@@ -154,10 +154,10 @@ function handleSurveyData(req, res) {
               // The files were uploaded to Cloudinary successfully, so store the survey data and CDN URLs in the appropriate database table
               handleAnnapolisSurvey(req.body.data.survey, JSON.stringify(result))
                 .then(() => res.status(200).send('Successfully uploaded survey data')) // Success! Return status 200
-                .catch((err) => res.status(500).send(err.stack));
+                .catch((err) => res.status(500).send(err));
             })
             .catch((err) => {
-              res.status(500).send(err.stack);
+              res.status(500).send(err);
             });
         } else {
           // The User has not chosen to upload any files, so just upload the survey data
@@ -169,7 +169,12 @@ function handleSurveyData(req, res) {
       case 'lingcod':
         handleLingcodSurvey(req.body.data.survey)
           .then(() => res.status(200).send('Successfully uploaded survey data'))
-          .catch((err) => res.status(500).send(err.stack));
+          .catch((err) => res.status(500).send(err));
+        break;
+      case 'rockfish':
+        handleRockfishSurvey(req.body.data.survey)
+          .then(() => res.status(200).send('Successfully uploaded survey data'))
+          .catch((err) => res.status(500).send(err));
         break;
       default:
         res.status(500).send('You must supply the surveyName value and associated data object');
@@ -190,14 +195,20 @@ function handleAnnapolisSurvey(data, images) {
 }
 
 function handleLingcodSurvey(data) {
-  // console.log(data);
-  console.log(JSON.stringify(data.divera));
-
   return new Promise((res, rej) => {
     db.any(`INSERT INTO lingcod(divera, diverb, divedate, generalLocation, specificLocation, bottomTime, nests, additionalComments) VALUES ('${JSON.stringify(data.divera)}', '${JSON.stringify(data.diverb)}', '${JSON.stringify(data.divedate)}', '${JSON.stringify(data.generalLocation)}', '${JSON.stringify(data.specificLocation)}', '${JSON.stringify(data.bottomTime)}', '${JSON.stringify(data.nests)}', '${JSON.stringify(data.additionalComments)}')`)
       .then(() => res())
       .catch((err) => {
-        console.log(err.stack);
+        rej(err.stack);
+      });
+  });
+}
+
+function handleRockfishSurvey(data) {
+  return new Promise((res, rej) => {
+    db.any(`INSERT INTO rockfish(divedate, name, address, phone, email, generalLocation, specificLocation, bottomTime, averageDepth, maximumDepth, speciesData, additionalComments) VALUES ('${data.divedate}', '${data.name}', '${data.address}', '${data.phone}', '${data.email}', '${data.generalLocation}', '${data.specificLocation}', '${data.bottomTime}', '${data.averageDepth}', '${data.maximumDepth}', '${JSON.stringify(data.speciesData)}', '${data.additionalComments}')`)
+      .then(() => res())
+      .catch((err) => {
         rej(err.stack);
       });
   });

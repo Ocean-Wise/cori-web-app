@@ -39,6 +39,8 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
       },
       generalLocation: '',
       specificLocation: '',
+      gps: '',
+      bottomType: '',
       bottomTime: '',
       nests: [],
       nestList: [],
@@ -75,13 +77,15 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
 
 
   doUpload = async () => {
-    const { divera, diverb, divedate, generalLocation, specificLocation, bottomTime, nests, additionalComments } = this.state;
+    const { divera, diverb, divedate, generalLocation, specificLocation, gps, bottomType, bottomTime, nests, additionalComments } = this.state;
     const surveyData = {
       divera,
       diverb,
       divedate,
       generalLocation,
       specificLocation,
+      gps,
+      bottomType,
       bottomTime,
       nests,
       additionalComments,
@@ -270,18 +274,43 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
                 <Select fullWidth value={this.state.generalLocation} displayEmpty onChange={this.handleText('generalLocation')}>
                   <MenuItem value="">General Location...</MenuItem>
                   <MenuItem value="Howe Sound">Howe Sound</MenuItem>
-                  <MenuItem value="Sunshine Coast">Sunshine Coast</MenuItem>
-                  <MenuItem value="Indian Arm">Indian Arm</MenuItem>
-                  <MenuItem value="West Vancouver Island">West Vancouver Island</MenuItem>
+                  <MenuItem value="Haida Gwaii">Haida Gwaii</MenuItem>
+                  <MenuItem value="Burrard Inlet">Burrard Inlet</MenuItem>
+                  <MenuItem value="Saanich Inlet">Saanich Inlet</MenuItem>
                   <MenuItem value="Southern Gulf Islands">Southern Gulf Islands</MenuItem>
+                  <MenuItem value="San Juan Islands">San Juan Islands</MenuItem>
+                  <MenuItem value="Barkley Sound">Barkley Sound</MenuItem>
+                  <MenuItem value="NE Vancouver Island">NE Vancouver Island</MenuItem>
+                  <MenuItem value="Central Coast">Central Coast</MenuItem>
+                  <MenuItem value="Strait of Juan de Fuca">Strait of Juan de Fuca</MenuItem>
+                  <MenuItem value="Campbell River">Campbell River</MenuItem>
                   <MenuItem value="Northern Gulf Islands">Northern Gulf Islands</MenuItem>
-                  <MenuItem value="Johnstone Strait">Johnstone Strait</MenuItem>
-                  <MenuItem value="Hecate Strait">Hecate Strait</MenuItem>
+                  <MenuItem value="Sunshine Coast">Sunshine Coast</MenuItem>
+                  <MenuItem value="Nanaimo">Nanaimo</MenuItem>
+                  <MenuItem value="Sechelt">Sechelt</MenuItem>
+                  <MenuItem value="Jervis Inlet">Jervis Inlet</MenuItem>
+                  <MenuItem value="Parksville">Parksville</MenuItem>
+                  <MenuItem value="Victoria">Victoria</MenuItem>
+                  <MenuItem value="Cape Lazo North">Cape Lazo North</MenuItem>
+                  <MenuItem value="Agamemnon Channel">Agamemnon Channel</MenuItem>
                   <MenuItem value="Other">Other</MenuItem>
                 </Select>
               </div>
               <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
                 <TextField placeholder="Specific Location" margin="normal" fullWidth value={this.state.specificLocation} onChange={this.handleText('specificLocation')} />
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                <TextField placeholder="GPS (decimal degrees)" margin="normal" fullWidth value={this.state.gps} onChange={this.handleText('gps')} />
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                <Select value={this.state.bottomType} displayEmpty onChange={this.handleText('bottomType')}>
+                  <MenuItem value="">Bottom Type</MenuItem>
+                  <MenuItem value="wall">wall</MenuItem>
+                  <MenuItem value="boulders">boulders</MenuItem>
+                  <MenuItem value="cobble">cobble</MenuItem>
+                  <MenuItem value="silt">Silt</MenuItem>
+                  <MenuItem value="bedrock">Bedrock</MenuItem>
+                </Select>
               </div>
               <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
                 <TextField placeholder="Bottom Time" margin="normal" fullWidth value={this.state.bottomTime} onChange={this.handleText('bottomTime')} />

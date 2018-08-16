@@ -1,15 +1,19 @@
-DROP TABLE IF EXISTS lingcod;
+DROP TABLE IF EXISTS rockfish;
 
-CREATE TABLE lingcod (
+CREATE TABLE rockfish (
   ID SERIAL PRIMARY KEY,
-  divera JSON,
-  diverb JSON,
   divedate VARCHAR,
+  name VARCHAR,
+  address VARCHAR,
+  phone VARCHAR,
+  email VARCHAR,
   generalLocation VARCHAR,
   specificLocation VARCHAR,
   gps VARCHAR,
   bottomType VARCHAR,
   bottomTime VARCHAR,
-  nests JSON,
+  averageDepth VARCHAR,
+  maximumDepth VARCHAR,
+  speciesData JSON,
   additionalComments VARCHAR
 );
