@@ -58,7 +58,6 @@ function GetPublications({ data: { publications }, addToList, removeFromList, se
       </div>
     );
   } catch (err) {
-    console.log(err.stack);
     return null;
   }
 
