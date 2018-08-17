@@ -59,7 +59,7 @@ class PersonModal extends React.PureComponent { // eslint-disable-line react/pre
           <Img image={person.image.url} filter={'grayscale'} />
           <div style={{ color: '#00B398', fontSize: 24, fontWeight: 300, letterSpacing: '2.57px', lineHeight: '35px', maxWidth: 255 }}>{honorific}{person.first} {person.last}</div>
           <Divider />
-          <div>
+          <div style={{ maxWidth: 255 }}>
             <span className="bold">{person.position}</span>
           </div>
         </Person>
@@ -81,7 +81,7 @@ class PersonModal extends React.PureComponent { // eslint-disable-line react/pre
               <Img image={person.image.url} filter={'grayscale'} />
               <div style={{ color: '#00B398', fontSize: 24, fontWeight: 300, letterSpacing: '2.57px', lineHeight: '35px', maxWidth: 255 }}>{honorific}{person.first} {person.last}</div>
               <Divider />
-              <div>
+              <div style={{ maxWidth: 255 }}>
                 <span className="bold">{person.position}</span>
               </div>
             </Person>
