@@ -85,7 +85,9 @@ class PersonModal extends React.PureComponent { // eslint-disable-line react/pre
                 <span className="bold">{person.position}</span>
               </div>
             </Person>
-            <ReactMarkdown source={person.copy} />
+            <div style={{ width: 375, marginLeft: 320 }}>
+              <ReactMarkdown source={person.copy} />
+            </div>
           </DialogContent>
         </Dialog>
       </div>
