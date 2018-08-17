@@ -48,14 +48,11 @@ class PublicationCard extends React.PureComponent { // eslint-disable-line react
       })
       .then(() => {
         if (this.props.data.pdf === null && this.props.data.doi !== null) {
-          try {
-            axios.get(`https://api.semanticscholar.org/v1/paper/${this.props.data.doi}`)
-              .then((pub) => {
-                this.setState({ semanticScholar: pub.data });
-              });
-          } catch (err) {
-            // Semantic Scholar gave a 404, so leave the semanticScholar state object empty
-          }
+          axios.get(`https://api.semanticscholar.org/v1/paper/${this.props.data.doi}`)
+            .then((pub) => {
+              this.setState({ semanticScholar: pub.data });
+            })
+            .catch();
         }
       })
       .catch();

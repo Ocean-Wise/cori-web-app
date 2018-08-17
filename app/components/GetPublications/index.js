@@ -13,35 +13,9 @@ import { createFilter } from 'react-search-input';
 
 const KEYS_TO_FILTER = ['title', 'authors', 'year', 'abstract', 'keywords'];
 
-function GetPublications({ data, data: { publications }, addToList, removeFromList, selected, match, searchTerm }) {
+function GetPublications({ data: { publications }, addToList, removeFromList, selected, match, searchTerm }) {
   const output = [];
-  console.log(data);
-  console.log(publications);
   try {
-    // const sortDesc = (a, b) => parseInt(b.year, 10) - parseInt(a.year, 10);
-    // const sortAsc = (a, b) => parseInt(a.year, 10) - parseInt(b.year, 10);
-    // let sorted = [...publications].sort(
-    //   sort === 'asc' ? sortAsc : sortDesc
-    // );
-    // if (alpha) {
-    //   if (sort === 'asc') {
-    //     sorted = sorted.sort(
-    //       (a, b) => {
-    //         if (a.title < b.title) return -1;
-    //         if (a.title > b.title) return 1;
-    //         return 0;
-    //       }
-    //     );
-    //   } else {
-    //     sorted = sorted.sort(
-    //       (a, b) => {
-    //         if (a.title < b.title) return 1;
-    //         if (a.title > b.title) return -1;
-    //         return 0;
-    //       }
-    //     );
-    //   }
-    // }
     publications.forEach((publication, i) => {
       let isSelected = false;
       selected.some((item, index) => {
@@ -84,7 +58,6 @@ function GetPublications({ data, data: { publications }, addToList, removeFromLi
       </div>
     );
   } catch (err) {
-    console.log(err.stack);
     return null;
   }
 

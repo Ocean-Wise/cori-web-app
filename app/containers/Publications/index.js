@@ -103,21 +103,6 @@ export class Publications extends React.Component { // eslint-disable-line react
     });
   }
 
-  // setAlpha = () => {
-    // this.setState({ alpha: !this.state.alpha, sorting: 'asc' });
-  // }
-
-  // swapSort = () => {
-    // this.setState({ sorting: this.state.sorting === 'desc' ? 'asc' : 'desc', alpha: false });
-  // }
-
-  // onPageChanged = (data) => {
-  //   const { currentPage, totalPages, pageLimit } = data;
-  //   const offset = (currentPage - 1) * pageLimit;
-  //   this.setState({ page: currentPage, totalPages, pubSkip: offset });
-  // }
-
-
   setOrder = (alpha, dir) => {
     if (alpha) {
       this.setState({ pubOrder: dir ? 'order=-fields.title' : 'order=fields.title' });
