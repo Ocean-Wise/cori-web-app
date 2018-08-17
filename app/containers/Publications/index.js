@@ -91,16 +91,37 @@ export class Publications extends React.Component { // eslint-disable-line react
   };
 
   componentWillMount() {
+    this.getTotalEntries();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.getTotalEntries();
+    }
+  }
+
+  getTotalEntries = () => {
     const client = contentful.createClient({
       space: 'fsquhe7zbn68',
       accessToken: 'b1cb5f035189ddc9c2e21ad0746109e08620755b3db8ad6655852295e6baba00',
     });
-    client.getEntries({
-      content_type: 'researchPapers',
-    })
-    .then((content) => {
-      this.setState({ totalPubs: content.total, totalPages: content.total / 10 });
-    });
+    if (this.props.match.params.slug !== undefined) {
+      client.getEntries({
+        content_type: 'researchPapers',
+        'fields.researchArea.sys.contentType.sys.id': 'researchArea',
+        'fields.researchArea.fields.slug[match]': this.props.match.params.slug,
+      })
+      .then((content) => {
+        this.setState({ totalPubs: content.total, totalPages: content.total / 10 });
+      });
+    } else {
+      client.getEntries({
+        content_type: 'researchPapers',
+      })
+      .then((content) => {
+        this.setState({ totalPubs: content.total, totalPages: content.total / 10 });
+      });
+    }
   }
 
   setOrder = (alpha, dir) => {

@@ -34,7 +34,7 @@ function GetPublications({ data: { publications }, addToList, removeFromList, se
           keywords: publication.keywords ? publication.keywords.join() : null,
           item: <PublicationCard isSelected={isSelected} addToList={addToList} removeFromList={removeFromList} data={publication} name={publication.slug} index={i} max={publications.length} key={publication.slug} />,
         });
-      } else if (match.params.slug === publication.researchArea.slug) {
+      } else if (publication.researchArea !== null && match.params.slug === publication.researchArea.slug) {
         output.push({
           title: publication.title,
           authors: publication.authors.join(),
@@ -58,6 +58,7 @@ function GetPublications({ data: { publications }, addToList, removeFromList, se
       </div>
     );
   } catch (err) {
+    console.log(err.stack);
     return null;
   }
 
@@ -80,7 +81,7 @@ export default graphql(getPublications, {
     variables: {
       limit: props.limit,
       skip: props.skip,
-      sort: props.order,
+      sort: `${props.order}${props.match.params.slug ? `&fields.researchArea.sys.contentType.sys.id=researchArea&fields.researchArea.fields.slug[match]=${props.match.params.slug}` : ''}`,
     },
   }),
 })(GetPublications);
