@@ -137,7 +137,7 @@ class PublicationCard extends React.PureComponent { // eslint-disable-line react
               </Row>
               {abstractSection}
               <Row>
-                <div>
+                <div style={{ maxWidth: '100%', overflowWrap: 'break-word' }}>
                   <P citation>{citationString}</P>
                 </div>
               </Row>
