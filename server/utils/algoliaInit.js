@@ -116,7 +116,7 @@ function deleteProj() {
 }
 
 function getPubs() {
-  return new Promise((res) => {
+  return new Promise((res, rej) => {
     client.getEntries({
       content_type: 'researchPapers',
     })
@@ -138,6 +138,12 @@ function getPubs() {
               link = null;
             }
           }
+          let abstract;
+          if (entry.fields.abstract) {
+            abstract = entry.fields.abstract;
+          } else {
+            abstract = '';
+          }
           // Create our Publication object for the current entry
           const keywords = entry.fields.keywords ? entry.fields.keywords.join() : '';
           const item = {
@@ -145,17 +151,15 @@ function getPubs() {
             slug: link,
             authors: entry.fields.authors.join(';'),
             title: entry.fields.title,
-            journal: entry.fields.journal,
-            volume: entry.fields.volume,
-            number: entry.fields.number,
+            abstract,
             keywords,
-            pages: entry.fields.pages,
             year: parseInt(entry.fields.year, 10),
           };
           // Add our Publication object to our publications array
           publications.push(item);
         } catch (err) {
           // Error
+          rej(err);
         }
       });
       res();
@@ -237,12 +241,16 @@ function getIntv() {
           links_to_entry: entry.sys.id,
         })
         .then((link) => {
-          progSlug = link.items[0].fields.slug;
+          try {
+            progSlug = link.items[0].fields.slug;
+          } catch (err) {
+            progSlug = '';
+          }
         });
         const item = {
           objectID: entry.fields.slug,
           title: entry.fields.title,
-          slug: `/program/${progSlug}#${entry.fields.slug}`,
+          slug: progSlug !== '' ? `/program/${progSlug}#${entry.fields.slug}` : null,
         };
         intv.push(item);
       });

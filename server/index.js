@@ -15,7 +15,7 @@ const resolve = require('path').resolve;
 // const cors = require('cors');
 const bodyParser = require('body-parser');
 
-// const initAlgolia = require('./utils/algoliaInit');
+const algoliaInit = require('./utils/algoliaInit');
 
 const app = express();
 
@@ -35,23 +35,23 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 app.use('/api', theApi);
 
-// if (process.env.NODE_ENV === 'production') {
-//   initAlgolia()
-//     .then(() => {
-//       // In production we need to pass these values in instead of relying on webpack
-//       setup(app, {
-//         outputPath: resolve(process.cwd(), 'build'),
-//         publicPath: '/',
-//       });
-//     });
-// } else {
-setup(app, {
-  outputPath: resolve(process.cwd(), 'build'),
-  publicPath: '/',
-});
-// }
+if (process.env.NODE_ENV === 'production') {
+  algoliaInit()
+    .then(() => {
+      // In production we need to pass these values in instead of relying on webpack
+      setup(app, {
+        outputPath: resolve(process.cwd(), 'build'),
+        publicPath: '/',
+      });
+    });
+} else {
+  setup(app, {
+    outputPath: resolve(process.cwd(), 'build'),
+    publicPath: '/',
+  });
+}
 // process.env.NODE_ENV !== 'production' &&
-if (process.env.NODE_ENV !== 'development') {
+if (process.env.NODE_ENV !== 'development' || process.env.NODE_ENV !== 'staging') {
   app.use(auth.connect(internalAuth));
 }
 
