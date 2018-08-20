@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import getPublications from 'graphql/queries/getPublications.graphql';
-import PublicationCard from 'components/PublicationCard';
+import PublicationCard from 'components/PublicationCard/Loadable';
 import { createFilter } from 'react-search-input';
 
 const KEYS_TO_FILTER = ['title', 'authors', 'year', 'abstract', 'keywords'];
