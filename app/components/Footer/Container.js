@@ -7,6 +7,11 @@ const Container = styled.div`
     flex-direction: column;
     text-align: center;
   `}
+  ${mixins.bp.md.max`
+    display: flex;
+    width: 290px;
+    flex-wrap: wrap;
+  `}
 `;
 
 export default Container;
