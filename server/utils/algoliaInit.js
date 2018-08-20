@@ -119,6 +119,7 @@ function getPubs() {
   return new Promise((res, rej) => {
     client.getEntries({
       content_type: 'researchPapers',
+      limit: 1000,
     })
     .then((content) => {
       content.items.forEach(async (entry) => {
@@ -171,6 +172,7 @@ function getPeeps() {
   return new Promise((res) => {
     client.getEntries({
       content_type: 'people',
+      limit: 1000,
     })
     .then((content) => {
       content.items.forEach((entry) => {
@@ -195,6 +197,7 @@ function getRA() {
   return new Promise((res) => {
     client.getEntries({
       content_type: 'researchArea',
+      limit: 1000,
     })
     .then((content) => {
       content.items.forEach((entry) => {
@@ -214,6 +217,7 @@ function getProg() {
   return new Promise((res) => {
     client.getEntries({
       content_type: 'program',
+      limit: 1000,
     })
     .then((content) => {
       content.items.forEach((entry) => {
@@ -233,6 +237,7 @@ function getIntv() {
   return new Promise((res) => {
     client.getEntries({
       content_type: 'initiative',
+      limit: 1000,
     })
     .then((content) => {
       content.items.forEach(async (entry) => {
@@ -263,6 +268,7 @@ function getProj() {
   return new Promise((res) => {
     client.getEntries({
       content_type: 'projects',
+      limit: 1000,
     })
     .then((content) => {
       content.items.forEach((entry) => {
