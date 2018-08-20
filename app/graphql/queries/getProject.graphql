@@ -12,5 +12,18 @@ query Project($slug: String!) {
       }
     }
     supportersCopy
+    _backrefs {
+      initiatives__via__projects {
+        slug
+        _backrefs {
+          programs__via__initiatives {
+            slug
+          }
+        }
+      }
+      researchAreas__via__projects {
+        slug
+      }
+    }
   }
 }

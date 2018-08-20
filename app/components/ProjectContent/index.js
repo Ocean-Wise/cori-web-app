@@ -21,10 +21,40 @@ import MarkdownWrapper from './MarkdownWrapper';
 import Hr from './Hr';
 import SupporterRow from './SupporterRow';
 
-function ProjectContent({ data: { projects }, slug, match }) {
+function ProjectContent({ data: { projects }, slug, match, history }) {
   let project = {};
   try {
     project = projects[0];
+
+    /*
+     * Some projects are able to only be listed and not visitable, but can still be navigated to
+     * so we want to ensure that a redirection occurs if they are landed on for whatever reason
+     */
+    if (!project.showOnSite) {
+      // If there is a backreferenced initiative
+      if (project._backrefs.initiatives__via__projects[0] !== undefined) { // eslint-disable-line
+        // Determine the parent program
+        const program = project._backrefs.initiatives__via__projects[0]._backrefs.programs__via__initiatives[0].slug; // eslint-disable-line
+        // Determine the parent initiative
+        const initiative = project._backrefs.initiatives__via__projects[0].slug; // eslint-disable-line
+        // Construct the correct internal URL and push it to the router history
+        // which was passed from the parent component
+        history.push(`/program/${program}#${initiative}`);
+      } else {
+        // If there are no backreferenced initiatives this project is listed
+        // directly under a researchArea
+        const researchArea = project._backrefs.researchAreas__via__projects[0].slug; // eslint-disable-line
+        history.push(`/research/${researchArea}`);
+      }
+    }
+    // This project has no text content and is just an externalLink or pdf,
+    // but has been navigated to somehow. So redirect to the proper external URL
+    if (project.externalLink || project.pdf) {
+      const redirect = project.externalLink || project.pdf;
+      // Set the window's location to the externalLink or the PDF link
+      window.location = redirect;
+    }
+
     let supporters;
     let supportersComponent;
     try {
@@ -110,6 +140,7 @@ ProjectContent.propTypes = {
   data: PropTypes.object.isRequired,
   slug: PropTypes.string.isRequired,
   match: PropTypes.object.isRequired,
+  history: PropTypes.object,
 };
 
 export default graphql(getProject, {

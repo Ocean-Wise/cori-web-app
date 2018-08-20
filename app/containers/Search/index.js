@@ -8,7 +8,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { Link } from 'react-router-dom';
 import { InstantSearch, SearchBox, Index, Highlight } from 'react-instantsearch/dom';
 import { connectHits, connectStateResults } from 'react-instantsearch/connectors';
 import { withStyles } from '@material-ui/core/styles';
@@ -20,6 +19,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import PoweredBy from 'styles/icons/algolia.svg';
 import { Scrollbars } from 'react-custom-scrollbars';
+import A from './A';
+import Link from './Link';
 
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
@@ -66,9 +67,9 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
             {hits.map((hit) => { // eslint-disable-line
               // eslint-disable-next-line
               const result = hit.slug ? hit.slug.match(/https?:\/\//g) ? (
-                <a href={hit.slug} target="_blank" style={{ color: 'rgb(0, 179, 152) !important' }}>
+                <A href={hit.slug} target="_blank">
                   <Highlight attribute="title" hit={hit} />
-                </a>
+                </A>
               ) : (
                 <Link to={hit.slug} style={{ color: 'rgb(0, 179, 152) !important' }}>
                   <Highlight attribute="title" hit={hit} />

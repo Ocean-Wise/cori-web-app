@@ -60,7 +60,7 @@ export class Project extends React.PureComponent { // eslint-disable-line react/
         {/* <div style={{ left: 65 }}>
           {NAV}
         </div> */}
-        <ProjectContent slug={this.props.match.params.slug} match={this.props.match} />
+        <ProjectContent slug={this.props.match.params.slug} match={this.props.match} history={this.props.history} />
       </div>
     );
   }
@@ -69,6 +69,7 @@ export class Project extends React.PureComponent { // eslint-disable-line react/
 Project.propTypes = {
   // dispatch: PropTypes.func.isRequired,
   match: PropTypes.object,
+  history: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
