@@ -276,6 +276,7 @@ function getProj() {
           objectID: entry.fields.slug,
           title: entry.fields.projectTitle,
           slug: `/project/${entry.fields.slug}`,
+          showOnSite: entry.fields.showOnSite,
         };
         projs.push(item);
       });

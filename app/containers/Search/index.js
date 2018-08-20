@@ -65,16 +65,30 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
           <div style={{ borderBottom: '1px solid #00B398' }}>
             <span style={{ fontWeight: 'bold', color: '#4D4D4D', fontSize: 18, lineHeight: '21px', paddingBottom: 8 }}>{type}</span>
             {hits.map((hit) => { // eslint-disable-line
-              // eslint-disable-next-line
-              const result = hit.slug ? hit.slug.match(/https?:\/\//g) ? (
-                <A href={hit.slug} target="_blank">
-                  <Highlight attribute="title" hit={hit} />
-                </A>
-              ) : (
-                <Link to={hit.slug} style={{ color: 'rgb(0, 179, 152) !important' }}>
-                  <Highlight attribute="title" hit={hit} />
-                </Link>
-              ) : <Highlight attribute="title" hit={hit} />;
+              let result;
+              if (type !== 'Projects') {
+                // eslint-disable-next-line
+                result = hit.slug ? hit.slug.match(/https?:\/\//g) ? (
+                  <A href={hit.slug} target="_blank">
+                    <Highlight attribute="title" hit={hit} />
+                  </A>
+                ) : (
+                  <Link to={hit.slug}>
+                    <Highlight attribute="title" hit={hit} />
+                  </Link>
+                ) : <Highlight attribute="title" hit={hit} />;
+              } else {
+                // eslint-disable-next-line
+                result = hit.slug && hit.showOnSite ? hit.slug.match(/https?:\/\//g) ? (
+                  <A href={hit.slug} target="_blank">
+                    <Highlight attribute="title" hit={hit} />
+                  </A>
+                ) : (
+                  <Link to={hit.slug}>
+                    <Highlight attribute="title" hit={hit} />
+                  </Link>
+                ) : <Highlight attribute="title" hit={hit} />;
+              }
 
               return (
                 <div key={hit.objectID} style={{ paddingBottom: 8 }}>
