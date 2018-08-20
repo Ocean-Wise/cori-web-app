@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-// import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import Header from 'components/Header';
@@ -27,7 +26,6 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import PubSearch from 'containers/PubSearch';
-// import Pagination from 'components/Pagination';
 import ReactPaginate from 'react-paginate';
 
 import injectReducer from 'utils/injectReducer';
@@ -36,8 +34,6 @@ import reducer from './reducer';
 import { addToList, removeFromList } from './actions';
 
 import SelectContainer from './SelectContainer';
-// import SearchInput from './SearchInput';
-// import messages from './messages';
 
 const contentful = require('contentful');
 
@@ -75,11 +71,8 @@ const styles = () => ({
   },
 });
 
-// TODO: ADD PAGINATION AND FIX SORTING
 export class Publications extends React.Component { // eslint-disable-line react/prefer-stateless-function
   state = {
-    // sorting: 'desc',
-    // alpha: false,
     sortType: 'descending',
     searchTerm: '',
     pubLimit: 10,
@@ -202,7 +195,6 @@ export class Publications extends React.Component { // eslint-disable-line react
         <RAFilterButtons filter={this.props.match} />
         <SelectContainer>
           <div style={{ display: 'flex', paddingTop: 8, flexWrap: 'wrap' }}>
-            {/* <SearchInput classame="search-input" onChange={this.searchUpdated} placeholder="Search publications..." /> */}
             <PubSearch />
             <div>
               <span style={{ fontSize: 12, lineHeight: '12px', color: '#4D4D4D', marginTop: 12 }}>SORT:&nbsp;&nbsp;</span>

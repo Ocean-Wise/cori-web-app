@@ -45,7 +45,6 @@ function GetPublications({ data: { publications }, addToList, removeFromList, se
         });
       }
     });
-    // return output;
     let filteredOutput;
     if (searchTerm !== undefined) {
       filteredOutput = output.filter(createFilter(searchTerm, KEYS_TO_FILTER));
@@ -60,15 +59,11 @@ function GetPublications({ data: { publications }, addToList, removeFromList, se
   } catch (err) {
     return null;
   }
-
-  // return output;
 }
 
 GetPublications.propTypes = {
   selected: PropTypes.array,
   data: PropTypes.object.isRequired,
-  // sort: PropTypes.string,
-  // alpha: PropTypes.bool,
   addToList: PropTypes.func,
   removeFromList: PropTypes.func,
   match: PropTypes.object,

@@ -5,7 +5,6 @@
 */
 
 import React from 'react';
-// import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Grid, Row, Col } from 'react-flexbox-grid';
@@ -20,8 +19,6 @@ import Title from './Title';
 import Year from './Year';
 import Hr from './Hr';
 import ReadingList from './ReadingList';
-
-// import messages from './messages';
 
 const styles = () => ({
   checkRoot: {
