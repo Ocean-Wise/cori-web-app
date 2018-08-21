@@ -272,11 +272,21 @@ function getProj() {
     })
     .then((content) => {
       content.items.forEach((entry) => {
+        let externalLink = '';
+        let pdf = '';
+        if (entry.fields.externalLink) {
+          externalLink = entry.fields.externalLink;
+        }
+        if (entry.fields.pdf) {
+          pdf = entry.fields.pdf;
+        }
         const item = {
           objectID: entry.fields.slug,
           title: entry.fields.projectTitle,
           slug: `/project/${entry.fields.slug}`,
           showOnSite: entry.fields.showOnSite,
+          externalLink,
+          pdf,
         };
         projs.push(item);
       });

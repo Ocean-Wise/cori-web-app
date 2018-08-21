@@ -65,16 +65,31 @@ class PubSearch extends React.Component { // eslint-disable-line react/prefer-st
           <div style={{ borderBottom: '1px solid #00B398' }}>
             <span style={{ fontWeight: 'bold', color: '#4D4D4D', fontSize: 18, lineHeight: '21px', paddingBottom: 8 }}>{type}</span>
             {hits.map((hit) => { // eslint-disable-line
-              // eslint-disable-next-line
-              const result = hit.slug ? hit.slug.match(/https?:\/\//g) ? (
-                <A href={hit.slug} target="_blank">
+              let result;
+              // Is there a slug in the hit?
+              if (hit.slug) {
+                // Is the slug an external link?
+                if (hit.slug.match(/https?:\/\//g)) {
+                  // Yeah, so link with <a>
+                  result = (
+                    <A href={hit.slug} target="_blank">
+                      <Highlight attribute="title" hit={hit} />
+                    </A>
+                  );
+                } else {
+                  // No, so link with react-router
+                  result = (
+                    <Link to={hit.slug} style={{ color: '' }}>
+                      <Highlight attribute="title" hit={hit} />
+                    </Link>
+                  );
+                }
+              } else {
+                // There is no slug, so just output the highlighted text
+                result = (
                   <Highlight attribute="title" hit={hit} />
-                </A>
-              ) : (
-                <Link to={hit.slug} style={{ color: '' }}>
-                  <Highlight attribute="title" hit={hit} />
-                </Link>
-              ) : <Highlight attribute="title" hit={hit} />;
+                );
+              }
 
               return (
                 <div key={hit.objectID} style={{ paddingBottom: 8 }}>

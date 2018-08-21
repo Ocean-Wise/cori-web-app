@@ -66,28 +66,67 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
             <span style={{ fontWeight: 'bold', color: '#4D4D4D', fontSize: 18, lineHeight: '21px', paddingBottom: 8 }}>{type}</span>
             {hits.map((hit) => { // eslint-disable-line
               let result;
+              // If this hit is not of type projects
               if (type !== 'Projects') {
-                // eslint-disable-next-line
-                result = hit.slug ? hit.slug.match(/https?:\/\//g) ? (
-                  <A href={hit.slug} target="_blank">
-                    <Highlight attribute="title" hit={hit} />
-                  </A>
-                ) : (
-                  <Link to={hit.slug}>
-                    <Highlight attribute="title" hit={hit} />
-                  </Link>
-                ) : <Highlight attribute="title" hit={hit} />;
+                // Is there a slug in the hit?
+                if (hit.slug) {
+                  // Is the slug an external link?
+                  if (hit.slug.match(/https?:\/\//g)) {
+                    // Yeah, so link with <a>
+                    result = (
+                      <A href={hit.slug} target="_blank">
+                        <Highlight attribute="title" hit={hit} />
+                      </A>
+                    );
+                  } else {
+                    // No, so link with react-router
+                    result = (
+                      <Link to={hit.slug}>
+                        <Highlight attribute="title" hit={hit} />
+                      </Link>
+                    );
+                  }
+                } else {
+                  // There is no slug, so just output the highlighted text
+                  result = <Highlight attribute="title" hit={hit} />;
+                }
               } else {
-                // eslint-disable-next-line
-                result = hit.slug && hit.showOnSite ? hit.slug.match(/https?:\/\//g) ? (
-                  <A href={hit.slug} target="_blank">
-                    <Highlight attribute="title" hit={hit} />
-                  </A>
-                ) : (
-                  <Link to={hit.slug}>
-                    <Highlight attribute="title" hit={hit} />
-                  </Link>
-                ) : <Highlight attribute="title" hit={hit} />;
+                // Is showOnSite true?
+                if (hit.showOnSite) { // eslint-disable-line
+                  // Is the slug an external link. A tad redundant due to the externalLink field, but just a failsafe.
+                  if (hit.slug.match(/https?:\/\//g)) {
+                    // Yeah, so render it as an <a>
+                    result = (
+                      <A href={hit.slug} target="_blank">
+                        <Highlight attribute="title" hit={hit} />
+                      </A>
+                    );
+                  } else if (hit.externalLink) {
+                    // The hit has an externalLink, so render it as an <a>
+                    result = (
+                      <A href={hit.externalLink} target="_blank">
+                        <Highlight attribute="title" hit={hit} />
+                      </A>
+                    );
+                  } else if (hit.pdf) {
+                    // The hit has a PDF, so link to it with an <a>
+                    result = (
+                      <A href={hit.pdf} target="_blank">
+                        <Highlight attribute="title" hit={hit} />
+                      </A>
+                    );
+                  } else if (hit.slug) {
+                    // The hit has an internal slug, so link to it with react-router
+                    result = (
+                      <Link to={hit.slug}>
+                        <Highlight attribute="title" hit={hit} />
+                      </Link>
+                    );
+                  }
+                } else {
+                  // No, so just output the highlighted text
+                  result = <Highlight attribute="title" hit={hit} />;
+                }
               }
 
               return (
