@@ -12,6 +12,7 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import Header from 'components/Header';
+import H2 from 'components/H2';
 import Button from '@material-ui/core/Button';
 import Badge from '@material-ui/core/Badge';
 import PublicationContent from 'components/PublicationContent';
@@ -129,6 +130,12 @@ export class Publications extends React.Component { // eslint-disable-line react
     }
   }
 
+  deslugify = (slug) =>
+    slug.replace(/-/gi, ' ')
+        .split(' ')
+        .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+        .join(' ');
+
   handlePageClick = (data) => {
     const selected = data.selected;
     const offset = Math.ceil(selected * this.state.pubLimit);
@@ -233,54 +240,62 @@ export class Publications extends React.Component { // eslint-disable-line react
           </div>
           <Button classes={{ root: this.props.classes.buttonRoot }} onClick={this.generateList}>Generate Citation List <Badge classes={{ badge: this.props.classes.badge, colorPrimary: this.props.classes.badgeColor }} badgeContent={this.props.publications.list.length > 0 ? this.props.publications.list.length : ''} color={this.props.publications.list.length > 0 ? 'primary' : 'default'}><img src={DownloadIcon} alt="Download" style={{ height: 25 }} /></Badge></Button>
         </SelectContainer>
-        <div style={{ maxWidth: 1120, margin: '0 auto' }}>
-          <ReactPaginate
-            previousLabel={'Previous'}
-            nextLabel={'Next'}
-            forcePage={this.state.page}
-            /* eslint-disable */
-            breakLabel={<a href="#">...</a>}
-            /* eslint-enable */
-            breakClassName={'break-me'}
-            pageCount={this.state.totalPages}
-            marginPagesDisplayed={1}
-            pageRangeDisplayed={3}
-            onPageChange={this.handlePageClick}
-            containerClassName={'pagination'}
-            subContainerClassName={'pages pagination'}
-            activeClassName={'active'}
-          />
-        </div>
-        <div style={{ boxShadow: '0 1px 3px 0 rgba(0,0,0,0.24), 8px -8px 0 0 #CCF0EA', maxWidth: 1120, margin: '0 auto', overflow: 'hidden' }}>
-          <GetPublications
-            match={this.props.match}
-            selected={this.props.publications.list}
-            addToList={this.props.addItem}
-            removeFromList={this.props.removeItem}
-            searchTerm={this.state.searchTerm}
-            limit={this.state.pubLimit}
-            skip={this.state.pubSkip}
-            order={this.state.pubOrder}
-          />
-        </div>
-        <div style={{ maxWidth: 1120, margin: '5px auto 120px' }}>
-          <ReactPaginate
-            previousLabel={'Previous'}
-            nextLabel={'Next'}
-            forcePage={this.state.page}
-            /* eslint-disable */
-            breakLabel={<a href="#">...</a>}
-            /* eslint-enable */
-            breakClassName={'break-me'}
-            pageCount={this.state.totalPages}
-            marginPagesDisplayed={1}
-            pageRangeDisplayed={3}
-            onPageChange={this.handlePageClick}
-            containerClassName={'pagination'}
-            subContainerClassName={'pages pagination'}
-            activeClassName={'active'}
-          />
-        </div>
+        {/* eslint-disable */}
+        {this.state.totalPages > 0 ? (
+          <div>
+            <div style={{ maxWidth: 1120, margin: '0 auto' }}>
+              <ReactPaginate
+                previousLabel={'Previous'}
+                nextLabel={'Next'}
+                forcePage={this.state.page}
+                /* eslint-disable */
+                breakLabel={<a href="#">...</a>}
+                /* eslint-enable */
+                breakClassName={'break-me'}
+                pageCount={this.state.totalPages}
+                marginPagesDisplayed={1}
+                pageRangeDisplayed={3}
+                onPageChange={this.handlePageClick}
+                containerClassName={'pagination'}
+                subContainerClassName={'pages pagination'}
+                activeClassName={'active'}
+              />
+            </div>
+            <GetPublications
+              match={this.props.match}
+              selected={this.props.publications.list}
+              addToList={this.props.addItem}
+              removeFromList={this.props.removeItem}
+              searchTerm={this.state.searchTerm}
+              limit={this.state.pubLimit}
+              skip={this.state.pubSkip}
+              order={this.state.pubOrder}
+            />
+            <div style={{ maxWidth: 1120, margin: '5px auto 120px' }}>
+              <ReactPaginate
+                previousLabel={'Previous'}
+                nextLabel={'Next'}
+                forcePage={this.state.page}
+                /* eslint-disable */
+                breakLabel={<a href="#">...</a>}
+                /* eslint-enable */
+                breakClassName={'break-me'}
+                pageCount={this.state.totalPages}
+                marginPagesDisplayed={1}
+                pageRangeDisplayed={3}
+                onPageChange={this.handlePageClick}
+                containerClassName={'pagination'}
+                subContainerClassName={'pages pagination'}
+                activeClassName={'active'}
+              />
+            </div>
+          </div>
+        ) : this.props.match.params.slug ? (
+          <div style={{ textAlign: 'center', maxWidth: 1120, margin: '0 auto', overflow: 'hidden' }}>
+            <H2>No publications found under &#8216;{this.deslugify(this.props.match.params.slug)}&#8217;</H2>
+          </div>
+        ) : ''}
+        {/* eslint-enable */}
       </div>
     );
   }

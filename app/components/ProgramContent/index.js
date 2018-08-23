@@ -36,7 +36,7 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
       const projects = [];
       let column = [];
       initiative.projects.map((project, j) => {
-        if (j % 3 && j !== 0) {
+        if (j === initiative.projects.length / 2) {
           projects.push(<Col md={6} key={`column-${j.toString()}`}>{column}</Col>);
           column = [];
         }
@@ -44,7 +44,7 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
           if (project.type !== 'Internal') {
             if (project.type === 'Link') {
               column.push(
-                <div key={`project-${j.toString()}`} style={{ paddingBottom: 10 }}>
+                <div key={`project-${j.toString()}`} style={{ paddingBottom: 10, wordWrap: 'break-word' }}>
                   <a href={project.externalLink} style={{ fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>
                     <span style={{ color: '#00B398' }}>{project.projectTitle} <img alt="Chevron" style={{ width: 25, marginLeft: 0 }} src={ChevronRight} /></span>
                   </a>
@@ -52,7 +52,7 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
               );
             } else if (project.type === 'PDF') {
               column.push(
-                <div key={`project-${j.toString()}`} style={{ paddingBottom: 10 }}>
+                <div key={`project-${j.toString()}`} style={{ paddingBottom: 10, wordWrap: 'break-word' }}>
                   <a href={project.pdf.url} style={{ fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>
                     <span style={{ color: '#00B398' }}>{project.projectTitle} <img alt="Chevron" style={{ width: 25, marginLeft: 0 }} src={ChevronRight} /></span>
                   </a>
@@ -61,7 +61,7 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
             }
           } else {
             column.push(
-              <div key={`project-${j.toString()}`} style={{ paddingBottom: 10 }}>
+              <div key={`project-${j.toString()}`} style={{ paddingBottom: 10, wordWrap: 'break-word' }}>
                 <Link to={`/project/${project.slug}`} style={{ fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>
                   <span style={{ color: '#00B398' }}>{project.projectTitle} <img alt="Chevron" style={{ width: 25, marginLeft: 0 }} src={ChevronRight} /></span>
                 </Link>
@@ -70,7 +70,7 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
           }
         } else {
           column.push(
-            <div key={`project-${j.toString()}`} style={{ paddingBottom: 10 }}>
+            <div key={`project-${j.toString()}`} style={{ paddingBottom: 10, wordWrap: 'break-word' }}>
               <span style={{ color: '#B2BEC4', fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>{project.projectTitle}</span>
             </div>
           );

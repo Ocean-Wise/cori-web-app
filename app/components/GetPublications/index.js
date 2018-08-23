@@ -42,11 +42,17 @@ function GetPublications({ data: { publications }, addToList, removeFromList, se
         });
       }
     });
-    return (
-      <div>
-        {output.map((item) => item.item)}
-      </div>
-    );
+    if (output.length > 0) {
+      return (
+        <div style={{ boxShadow: '0 1px 3px 0 rgba(0,0,0,0.24), 8px -8px 0 0 #CCF0EA', maxWidth: 1120, margin: '0 auto', overflow: 'hidden' }}>
+          {output.map((item) => item.item)}
+        </div>
+      );
+    } else { // eslint-disable-line
+      return (
+        <div />
+      );
+    }
   } catch (err) {
     return null;
   }
