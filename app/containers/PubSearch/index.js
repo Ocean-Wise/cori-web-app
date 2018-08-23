@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { InstantSearch, SearchBox, Index, Highlight } from 'react-instantsearch/dom';
 import { connectHits, connectStateResults } from 'react-instantsearch/connectors';
-import { withStyles } from '@material-ui/core/styles';
 import OWButton from 'components/Button';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from 'styles/icons/search.svg';
@@ -22,14 +21,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 
 import Link from './Link';
 import A from './A';
-// import { FormattedMessage } from 'react-intl';
-// import messages from './messages';
-
-const styles = () => ({
-  paper: {
-    // width: '85%',
-  },
-});
+import Container from './Container';
 
 class PubSearch extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -44,7 +36,7 @@ class PubSearch extends React.Component { // eslint-disable-line react/prefer-st
   }
 
   render() {
-    const { fullScreen, classes } = this.props;
+    const { fullScreen } = this.props;
 
     // The object to hold the Algolia query results
     let queryResults = {};
@@ -133,7 +125,7 @@ class PubSearch extends React.Component { // eslint-disable-line react/prefer-st
     });
 
     return (
-      <div>
+      <Container>
         <div style={{ position: 'relative', bottom: 5 }}>
           <IconButton aria-label="Search" onClick={this.toggleSearch} >
             <img alt="Search" src={SearchIcon} style={{ width: 25 }} />
@@ -144,7 +136,6 @@ class PubSearch extends React.Component { // eslint-disable-line react/prefer-st
           open={this.state.search}
           onClose={this.toggleSearch}
           aria-labelledby="responsive-search-dialog"
-          classes={classes}
           PaperProps={{ className: 'search-paper' }}
         >
           <DialogContent>
@@ -162,14 +153,13 @@ class PubSearch extends React.Component { // eslint-disable-line react/prefer-st
             </InstantSearch>
           </DialogContent>
         </Dialog>
-      </div>
+      </Container>
     );
   }
 }
 
 PubSearch.propTypes = {
   fullScreen: PropTypes.bool.isRequired,
-  classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired, // eslint-disable-line
 };
 
@@ -185,5 +175,4 @@ const withConnect = connect(null, mapDispatchToProps);
 export default compose(
   withConnect,
   withMobileDialog(),
-  withStyles(styles)
 )(PubSearch);
