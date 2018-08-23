@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { InstantSearch, SearchBox, Index, Highlight } from 'react-instantsearch/dom';
 import { connectHits, connectStateResults } from 'react-instantsearch/connectors';
-import { withStyles } from '@material-ui/core/styles';
 import OWButton from 'components/Button';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from 'styles/icons/search.svg';
@@ -21,15 +20,7 @@ import PoweredBy from 'styles/icons/algolia.svg';
 import { Scrollbars } from 'react-custom-scrollbars';
 import A from './A';
 import Link from './Link';
-
-// import { FormattedMessage } from 'react-intl';
-// import messages from './messages';
-
-const styles = () => ({
-  paper: {
-    // width: '85%',
-  },
-});
+import Container from './Container';
 
 class Search extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -44,7 +35,7 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
   }
 
   render() {
-    const { fullScreen, classes } = this.props;
+    const { fullScreen } = this.props;
 
     // The object to hold the Algolia query results
     let queryResults = {};
@@ -186,7 +177,7 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
     });
 
     return (
-      <div>
+      <Container>
         <IconButton aria-label="Search" onClick={this.toggleSearch}>
           <img alt="Search" src={SearchIcon} style={{ width: 25 }} />
         </IconButton>
@@ -195,7 +186,6 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
           open={this.state.search}
           onClose={this.toggleSearch}
           aria-labelledby="responsive-search-dialog"
-          classes={classes}
           PaperProps={{ className: 'search-paper' }}
         >
           <DialogContent>
@@ -213,14 +203,13 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
             </InstantSearch>
           </DialogContent>
         </Dialog>
-      </div>
+      </Container>
     );
   }
 }
 
 Search.propTypes = {
   fullScreen: PropTypes.bool.isRequired,
-  classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired, // eslint-disable-line
 };
 
@@ -236,5 +225,4 @@ const withConnect = connect(null, mapDispatchToProps);
 export default compose(
   withConnect,
   withMobileDialog(),
-  withStyles(styles)
 )(Search);
