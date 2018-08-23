@@ -37,7 +37,7 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
       let column = [];
       initiative.projects.map((project, j) => {
         if (j === initiative.projects.length / 2) {
-          projects.push(<Col md={6} key={`column-${j.toString()}`}>{column}</Col>);
+          projects.push(<Col md={5} key={`column-${j.toString()}`}>{column}</Col>);
           column = [];
         }
         if (project.showOnSite) {
@@ -77,7 +77,7 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
         }
 
         if (j === initiative.projects.length - 1) {
-          projects.push(<Col key={`projectCol-${j.toString()}`} md={6}>{column}</Col>);
+          projects.push(<Col key={`projectCol-${j.toString()}`} md={5}>{column}</Col>);
         }
         return true;
       });
