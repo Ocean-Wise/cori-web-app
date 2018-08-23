@@ -93,28 +93,32 @@ export class Publications extends React.Component { // eslint-disable-line react
     }
   }
 
-  getTotalEntries = () => {
-    const client = contentful.createClient({
-      space: 'fsquhe7zbn68',
-      accessToken: 'b1cb5f035189ddc9c2e21ad0746109e08620755b3db8ad6655852295e6baba00',
+  getTotalEntries = () => { // eslint-disable-line
+    return new Promise((res) => {
+      const client = contentful.createClient({
+        space: 'fsquhe7zbn68',
+        accessToken: 'b1cb5f035189ddc9c2e21ad0746109e08620755b3db8ad6655852295e6baba00',
+      });
+      if (this.props.match.params.slug !== undefined) {
+        client.getEntries({
+          content_type: 'researchPapers',
+          'fields.researchArea.sys.contentType.sys.id': 'researchArea',
+          'fields.researchArea.fields.slug[match]': this.props.match.params.slug,
+        })
+        .then((content) => {
+          this.setState({ totalPubs: content.total, totalPages: content.total / this.state.pubLimit });
+          res();
+        });
+      } else {
+        client.getEntries({
+          content_type: 'researchPapers',
+        })
+        .then((content) => {
+          this.setState({ totalPubs: content.total, totalPages: content.total / this.state.pubLimit });
+          res();
+        });
+      }
     });
-    if (this.props.match.params.slug !== undefined) {
-      client.getEntries({
-        content_type: 'researchPapers',
-        'fields.researchArea.sys.contentType.sys.id': 'researchArea',
-        'fields.researchArea.fields.slug[match]': this.props.match.params.slug,
-      })
-      .then((content) => {
-        this.setState({ totalPubs: content.total, totalPages: content.total / 10 });
-      });
-    } else {
-      client.getEntries({
-        content_type: 'researchPapers',
-      })
-      .then((content) => {
-        this.setState({ totalPubs: content.total, totalPages: content.total / 10 });
-      });
-    }
   }
 
   setOrder = (alpha, dir) => {
@@ -150,7 +154,10 @@ export class Publications extends React.Component { // eslint-disable-line react
 
   toggleLimit = (evt) => {
     const pubLimit = evt.target.value;
-    this.setState({ pubLimit, totalPages: this.state.totalPubs / pubLimit });
+    this.getTotalEntries().then(() => {
+      const totalPages = this.state.totalPubs / pubLimit;
+      this.setState({ pubLimit, totalPages, page: 0 });
+    });
   }
 
   toggleSort = (evt) => {

@@ -53,7 +53,6 @@ function RAFilterButtons({ data: { researchAreas }, filter }) {
         </Button>
       </Link>
     );
-
     return (
       <Container>
         {buttons}

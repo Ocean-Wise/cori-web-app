@@ -9,11 +9,8 @@ import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import getPublications from 'graphql/queries/getPublications.graphql';
 import PublicationCard from 'components/PublicationCard/Loadable';
-import { createFilter } from 'react-search-input';
 
-const KEYS_TO_FILTER = ['title', 'authors', 'year', 'abstract', 'keywords'];
-
-function GetPublications({ data: { publications }, addToList, removeFromList, selected, match, searchTerm }) {
+function GetPublications({ data: { publications }, addToList, removeFromList, selected, match }) {
   const output = [];
   try {
     publications.forEach((publication, i) => {
@@ -45,15 +42,9 @@ function GetPublications({ data: { publications }, addToList, removeFromList, se
         });
       }
     });
-    let filteredOutput;
-    if (searchTerm !== undefined) {
-      filteredOutput = output.filter(createFilter(searchTerm, KEYS_TO_FILTER));
-    } else {
-      filteredOutput = output;
-    }
     return (
       <div>
-        {filteredOutput.map((item) => item.item)}
+        {output.map((item) => item.item)}
       </div>
     );
   } catch (err) {
@@ -67,7 +58,6 @@ GetPublications.propTypes = {
   addToList: PropTypes.func,
   removeFromList: PropTypes.func,
   match: PropTypes.object,
-  searchTerm: PropTypes.string,
 };
 
 export default graphql(getPublications, {

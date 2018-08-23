@@ -3,7 +3,7 @@ import bibtexparser
 from bibtexparser.bibdatabase import BibDatabase
 import logging
 logging.basicConfig()
-logger = logging.getLogger('logger');
+logger = logging.getLogger('logger')
 import uuid
 import re
 from slugify import slugify
@@ -83,10 +83,19 @@ def authorify(author):
     out = '{0}, {1}.'.format(unescape(authorArr[0]), joinNames(authorArr[1:]))
     return out
 
-with open('CORI.bib') as f:
+with open('categorized.bib') as f:
     bibtex = bibtexparser.load(f)
 
 JSON = []
+
+researchAreas = {
+    "cori": "4WfJxUTZeMuU8YGIsoomSy",
+    "va": "27jHD9qRXise2wIiIMWCm4",
+    "plastics": "1YmmHsWKDKeSQQa2GwayQG",
+    "special": "7mXfmqBm80OSCCa6EKywi0",
+    "arctic": "2yHHO5kr32IWSG2UaQIUuQ",
+    "species": "5r7Hcw4ZH20IW8qYyMAu0K"
+}
 
 with open('import.json', 'w') as f:
     f.write('{\n')
@@ -205,6 +214,31 @@ with open('import.json', 'w') as f:
                     entryString += '"{0}",\n'.format(authorify(author))
             entryString += ']\n'
             entryString += '},\n'
+            if 'comments' in entry:
+                entryString += '"researchArea": {\n'
+                entryString += '"en-US": {\n'
+                entryString += '"sys": {\n'
+                entryString += '"type": "Link",\n'
+                entryString += '"linkType": "Entry",\n'
+                entryString += '"id": "'
+                theId = ''
+                if 'cori' in entry['comments']:
+                    theId = researchAreas['cori']
+                elif 'vancouver-aquarium' in entry['comments']:
+                    theId = researchAreas['va']
+                elif 'arctic' in entry['comments']:
+                    theId = researchAreas['arctic']
+                elif 'plastics' in entry['comments']:
+                    theId = researchAreas['plastics']
+                elif 'special-places' in entry['comments']:
+                    theId = researchAreas['special']
+                elif 'species-under-threat' in entry['comments']:
+                    theId = researchAreas['species']
+                entryString += theId
+                entryString += '"\n'
+                entryString += '}\n'
+                entryString += '}\n'
+                entryString += '},\n'
             if 'keywords' in entry:
                 entryString += '"keywords": {\n'
                 entryString += '"en-US": [\n'
