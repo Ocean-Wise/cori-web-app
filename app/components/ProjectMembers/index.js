@@ -9,10 +9,13 @@ import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import projectMemberQuery from 'graphql/queries/getProjectMembers.graphql';
 import PersonModal from 'components/PersonModal/Loadable';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 
 import Container from './Container';
 import H1 from './H1';
 import H3 from './H3';
+import Hr from './Hr';
+import Section from './Section';
 
 /*
  * Returns the ProjectMembers for a particular project.
@@ -29,16 +32,28 @@ function ProjectMembers({ data: { projects } }) {
       <PersonModal key={`person-${i.toString()}`} person={member} />
     );
   } catch (err) {
-    members = [];
+    return <div />;
   }
 
   return (
     <div>
-      <H1>Research Team</H1>
-      <H3>{copyString}</H3>
-      <Container>
-        {members}
-      </Container>
+      <div style={{ width: '80%', margin: '0 auto', marginTop: -50 }}>
+        <Hr />
+      </div>
+      <Section>
+        <Grid fluid>
+          <Row>
+            <Col xl={2} />
+            <Col xl={8}>
+              <H1>Research Team</H1>
+              <H3>{copyString}</H3>
+              <Container>
+                {members}
+              </Container>
+            </Col>
+          </Row>
+        </Grid>
+      </Section>
     </div>
   );
 }

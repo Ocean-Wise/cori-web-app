@@ -18,7 +18,6 @@ import Section from './Section';
 import H1 from './H1';
 import H3 from './H3';
 import MarkdownWrapper from './MarkdownWrapper';
-import Hr from './Hr';
 import SupporterRow from './SupporterRow';
 
 function ProjectContent({ data: { projects }, slug, match, history }) {
@@ -115,19 +114,7 @@ function ProjectContent({ data: { projects }, slug, match, history }) {
             </Row>
           </Grid>
         </Section>
-        <div style={{ width: '80%', margin: '0 auto', marginTop: -50 }}>
-          <Hr />
-        </div>
-        <Section>
-          <Grid fluid>
-            <Row>
-              <Col xl={2} />
-              <Col xl={8}>
-                <ProjectMembers slug={slug} />
-              </Col>
-            </Row>
-          </Grid>
-        </Section>
+        <ProjectMembers slug={slug} />
         {supportersComponent}
       </div>
     );
