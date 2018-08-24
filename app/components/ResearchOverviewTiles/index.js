@@ -27,7 +27,7 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
     const va = areas.find((x) => x.slug === 'vancouver-aquarium');
     topRow.push(
       <Col key="cori-tile" md={6} style={{ padding: 0 }}>
-        <Tile id="tile-1" image={cori.hero.url} width="100%">
+        <Tile id="tile-1" image={cori.hero.url} width="100%" imageAlign={cori.imageAlign}>
           <div id="hover" style={{ zIndex: 10, position: 'relative', top: 65, padding: 30 }}>
             <H1>{cori.title}</H1>
             <P>{cori.subheader}</P>
@@ -45,7 +45,7 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
     );
     topRow.push(
       <Col key="va-tile" md={6} style={{ padding: 0 }}>
-        <Tile id="tile-1" image={va.hero.url} width="100%">
+        <Tile id="tile-1" image={va.hero.url} width="100%" imageAlign={va.imageAlign}>
           <div id="hover" style={{ zIndex: 10, position: 'relative', top: 65, padding: 30 }}>
             <H1>{va.title}</H1>
             <P>{va.subheader}</P>
@@ -72,7 +72,7 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
     areas.map((area, i) => {
       row.push(
         <Col key={`${area.slug}-tile`} md={6} lg={3} style={{ padding: 0 }}>
-          <Tile last id={`tile-${i.toString()}`} image={area.hero.url} width="100%">
+          <Tile last id={`tile-${i.toString()}`} image={area.hero.url} width="100%" imageAlign={area.imageAlign}>
             <HoverContainer>
               <H1>{area.title}</H1>
               <P>{area.subheader}</P>

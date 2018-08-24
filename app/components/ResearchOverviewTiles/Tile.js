@@ -13,6 +13,22 @@ const Tile = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  ${(props) => {
+    switch (props.imageAlign) {
+      case 'Left':
+        return 'background-position-x: left;';
+      case 'Right':
+        return 'background-position-x: right;';
+      case 'Top':
+        return 'background-position-y: top;';
+      case 'Bottom':
+        return 'background-position-y: bottom;';
+      case 'Center':
+        return 'background-position: center;';
+      default:
+        return 'background-position: unset;';
+    }
+  }}
   background-image: url(${(props) => props.image});
   background-size: cover;
   &::before {

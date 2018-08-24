@@ -33,7 +33,7 @@ function ProgramTiles({ data: { researchAreas }, width }) {
     try {
       researchAreas[0].programs.map((program, i) => {
         tiles.push(
-          <Tile image={program.hero.url} key={`programLink-${i.toString()}`} width={width}>
+          <Tile image={program.hero.url} key={`programLink-${i.toString()}`} width={width} imageAlign={program.imageAlign}>
             <HoverContainer>
               <H2>{program.title}</H2>
               <P>{program.overlay}</P>
@@ -58,7 +58,7 @@ function ProgramTiles({ data: { researchAreas }, width }) {
         if (project.showOnSite) {
           if (project.type === 'Link') {
             tiles.push(
-              <Tile image={project.hero.url} key={`programLink-${i.toString()}`} width={width}>
+              <Tile image={project.hero.url} key={`programLink-${i.toString()}`} width={width} imageAlign={project.imageAlign}>
                 <HoverContainer>
                   <H2>{project.projectTitle}</H2>
                   <P>{project.subheader}</P>
@@ -75,7 +75,7 @@ function ProgramTiles({ data: { researchAreas }, width }) {
             );
           } else if (project.type === 'PDF') {
             tiles.push(
-              <Tile image={project.hero.url} key={`programLink-${i.toString()}`} width={width}>
+              <Tile image={project.hero.url} key={`programLink-${i.toString()}`} width={width} imageAlign={project.imageAlign}>
                 <HoverContainer>
                   <H2>{project.projectTitle}</H2>
                   <P>{project.subheader}</P>
@@ -92,7 +92,7 @@ function ProgramTiles({ data: { researchAreas }, width }) {
             );
           } else {
             tiles.push(
-              <Tile image={project.hero.url} key={`programLink-${i.toString()}`} width={width}>
+              <Tile image={project.hero.url} key={`programLink-${i.toString()}`} width={width} imageAlign={project.imageAlign}>
                 <HoverContainer>
                   <H2>{project.projectTitle}</H2>
                   <P>{project.subheader}</P>

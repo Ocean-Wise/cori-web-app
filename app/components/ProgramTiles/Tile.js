@@ -3,6 +3,22 @@ import * as mixins from 'styles/mixins';
 
 const Tile = styled.div`
   position: relative;
+  ${(props) => {
+    switch (props.imageAlign) {
+      case 'Left':
+        return 'background-position-x: left;';
+      case 'Right':
+        return 'background-position-x: right;';
+      case 'Top':
+        return 'background-position-y: top;';
+      case 'Bottom':
+        return 'background-position-y: bottom;';
+      case 'Center':
+        return 'background-position: center;';
+      default:
+        return 'background-position: unset;';
+    }
+  }}
   background-image: url(${(props) => props.image});
   background-size: cover;
   height: 425px;

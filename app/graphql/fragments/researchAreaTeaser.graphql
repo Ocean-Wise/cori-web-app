@@ -6,4 +6,5 @@ fragment ResearchAreaTeaser on ResearchArea {
     title
     url
   }
+  imageAlign
 }
