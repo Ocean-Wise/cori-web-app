@@ -66,10 +66,10 @@ function ProjectContent({ data: { projects }, slug, match, history }) {
       });
 
       supportersComponent = project.supporters !== null ? (
-        <div style={{ backgroundColor: '#F8F9F9', marginTop: 100, paddingBottom: 80, paddingTop: 80 }}>
+        <div style={{ backgroundColor: '#F8F9F9', paddingBottom: 80, paddingTop: 80 }}>
           <center>
             <H1 style={{ fontSize: 48, lineHeight: '50px', marginTop: 0, marginBottom: 16 }}>Our Supporters</H1>
-            <p style={{ fontSize: 16, lineHeight: '26px', color: '#4D4D4D', maxWidth: 730 }}>{project.supportersCopy}</p>
+            <H3 style={{ maxWidth: 730 }}>{project.supportersCopy ? project.supportersCopy : ''}</H3>
             <Grid fluid>
               <Row>
                 <Col xl={8} style={{ margin: '0 auto' }}>
