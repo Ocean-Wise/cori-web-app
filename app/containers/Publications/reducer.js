@@ -8,10 +8,12 @@ import { fromJS } from 'immutable';
 import {
   ADD_TO_LIST,
   REMOVE_FROM_LIST,
+  SET_LIMIT,
 } from './constants';
 
 const initialState = fromJS({
   list: [],
+  limit: 10,
 });
 
 function removeByKey(array, params) {
@@ -35,6 +37,9 @@ function publicationsReducer(state = initialState, action) {
       const list2 = removeByKey(state.get('list'), { key: 'key', value: action.item.key });
       return state
         .set('list', [...list2]);
+    case SET_LIMIT:
+      return state
+        .set('limit', action.limit);
     default:
       return state;
   }

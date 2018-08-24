@@ -10,13 +10,14 @@ import { graphql } from 'react-apollo';
 import getTeamCopy from 'graphql/queries/getTeamCopy.graphql';
 
 import Container from './Container';
+import H3 from './H3';
 
 function TeamCopy({ data: { teamCopies } }) {
   try {
     return (
       <Container>
         <h1>{teamCopies[0].headline}</h1>
-        <p>{teamCopies[0].copy}</p>
+        <H3>{teamCopies[0].copy}</H3>
       </Container>
     );
   } catch (err) {

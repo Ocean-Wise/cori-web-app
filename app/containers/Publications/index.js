@@ -32,7 +32,7 @@ import ReactPaginate from 'react-paginate';
 import injectReducer from 'utils/injectReducer';
 import makeSelectPublications from './selectors';
 import reducer from './reducer';
-import { addToList, removeFromList } from './actions';
+import { addToList, removeFromList, setLimit } from './actions';
 
 import SelectContainer from './SelectContainer';
 
@@ -76,7 +76,6 @@ export class Publications extends React.Component { // eslint-disable-line react
   state = {
     sortType: 'descending',
     searchTerm: '',
-    pubLimit: 10,
     pubSkip: 0,
     page: 0,
     pubOrder: 'order=-fields.year',
@@ -107,7 +106,7 @@ export class Publications extends React.Component { // eslint-disable-line react
           'fields.researchArea.fields.slug[match]': this.props.match.params.slug,
         })
         .then((content) => {
-          this.setState({ totalPubs: content.total, totalPages: content.total / this.state.pubLimit });
+          this.setState({ totalPubs: content.total, totalPages: content.total / this.props.publications.limit });
           res();
         });
       } else {
@@ -115,7 +114,7 @@ export class Publications extends React.Component { // eslint-disable-line react
           content_type: 'researchPapers',
         })
         .then((content) => {
-          this.setState({ totalPubs: content.total, totalPages: content.total / this.state.pubLimit });
+          this.setState({ totalPubs: content.total, totalPages: content.total / this.props.publications.limit });
           res();
         });
       }
@@ -138,8 +137,8 @@ export class Publications extends React.Component { // eslint-disable-line react
 
   handlePageClick = (data) => {
     const selected = data.selected;
-    const offset = Math.ceil(selected * this.state.pubLimit);
-    this.setState({ page: selected, pubSkip: offset, totalPages: this.state.totalPubs / this.state.pubLimit });
+    const offset = Math.ceil(selected * this.props.publications.limit);
+    this.setState({ page: selected, pubSkip: offset, totalPages: this.state.totalPubs / this.props.publications.limit });
   }
 
   generateList = () => {
@@ -163,7 +162,8 @@ export class Publications extends React.Component { // eslint-disable-line react
     const pubLimit = evt.target.value;
     this.getTotalEntries().then(() => {
       const totalPages = this.state.totalPubs / pubLimit;
-      this.setState({ pubLimit, totalPages, page: 0 });
+      this.props.setLimit(pubLimit);
+      this.setState({ totalPages, page: 0 });
     });
   }
 
@@ -229,12 +229,11 @@ export class Publications extends React.Component { // eslint-disable-line react
             </div>
             <div style={{ marginLeft: 10 }}>
               <span style={{ fontSize: 12, lineHeight: '12px', color: '#4D4D4D', marginTop: 12 }}>LIMIT:&nbsp;&nbsp;</span>
-              <Select value={this.state.pubLimit} onChange={this.toggleLimit} name="limit" input={<Input disableUnderline />} classes={{ root: this.props.classes.root, selectMenu: this.props.classes.selectMenu, icon: this.props.classes.icon }}>
+              <Select value={this.props.publications.limit} onChange={this.toggleLimit} name="limit" input={<Input disableUnderline />} classes={{ root: this.props.classes.root, selectMenu: this.props.classes.selectMenu, icon: this.props.classes.icon }}>
                 <MenuItem value={10}>10</MenuItem>
                 <MenuItem value={25}>25</MenuItem>
                 <MenuItem value={50}>50</MenuItem>
                 <MenuItem value={75}>75</MenuItem>
-                <MenuItem value={100}>100</MenuItem>
               </Select>
             </div>
           </div>
@@ -267,7 +266,7 @@ export class Publications extends React.Component { // eslint-disable-line react
               addToList={this.props.addItem}
               removeFromList={this.props.removeItem}
               searchTerm={this.state.searchTerm}
-              limit={this.state.pubLimit}
+              limit={this.props.publications.limit}
               skip={this.state.pubSkip}
               order={this.state.pubOrder}
             />
@@ -306,6 +305,7 @@ Publications.propTypes = {
   publications: PropTypes.object,
   addItem: PropTypes.func,
   removeItem: PropTypes.func,
+  setLimit: PropTypes.func,
   dispatch: PropTypes.func.isRequired, // eslint-disable-line
   classes: PropTypes.object.isRequired,
 };
@@ -318,6 +318,7 @@ function mapDispatchToProps(dispatch) {
   return {
     addItem: (item) => dispatch(addToList(item)),
     removeItem: (item) => dispatch(removeFromList(item)),
+    setLimit: (limit) => dispatch(setLimit(limit)),
     dispatch,
   };
 }

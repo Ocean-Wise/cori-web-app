@@ -12,10 +12,7 @@ import PersonModal from 'components/PersonModal/Loadable';
 
 import Container from './Container';
 import H1 from './H1';
-import P from './P';
-
-// import { FormattedMessage } from 'react-intl';
-// import messages from './messages';
+import H3 from './H3';
 
 /*
  * Returns the ProjectMembers for a particular project.
@@ -25,13 +22,12 @@ import P from './P';
  */
 function ProjectMembers({ data: { projects } }) {
   let members;
+  let copyString;
   try {
-    members = projects[0].members.map((member, i) => { // eslint-disable-line
-
-      return (
-        <PersonModal key={`person-${i.toString()}`} person={member} />
-      );
-    });
+    copyString = projects[0].researchTeamCopy ? projects[0].researchTeamCopy : 'Meet the Ocean Wise Research team behind this project';
+    members = projects[0].members.map((member, i) =>
+      <PersonModal key={`person-${i.toString()}`} person={member} />
+    );
   } catch (err) {
     members = [];
   }
@@ -39,7 +35,7 @@ function ProjectMembers({ data: { projects } }) {
   return (
     <div>
       <H1>Research Team</H1>
-      <P>Vivamus non quam efficitur, consectetur ante sed, tincidunt tortor. Fusce ut tincidunt nisi, ac condimentum quam.</P>
+      <H3>{copyString}</H3>
       <Container>
         {members}
       </Container>

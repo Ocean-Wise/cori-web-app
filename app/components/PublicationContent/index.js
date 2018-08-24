@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import getPublicationCopy from 'graphql/queries/getPublicationCopy.graphql';
 import Container from './Container';
+import H3 from './H3';
 
 function PublicationContent({ data: { publicationCopies } }) {
   try {
@@ -16,7 +17,7 @@ function PublicationContent({ data: { publicationCopies } }) {
       <Container>
         <center>
           <h1>Publications</h1>
-          <p>{publicationCopies[0].copy}</p>
+          <H3>{publicationCopies[0].copy}</H3>
         </center>
       </Container>
     );
