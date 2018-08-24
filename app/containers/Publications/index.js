@@ -244,16 +244,16 @@ export class Publications extends React.Component { // eslint-disable-line react
           <div>
             <div style={{ maxWidth: 1120, margin: '0 auto' }}>
               <ReactPaginate
-                previousLabel={'Previous'}
-                nextLabel={'Next'}
+                previousLabel={window.innerWidth < 415 ? '<' : 'Previous'}
+                nextLabel={window.innerWidth < 415 ? '>' : 'Next'}
                 forcePage={this.state.page}
                 /* eslint-disable */
                 breakLabel={<a href="#">...</a>}
                 /* eslint-enable */
                 breakClassName={'break-me'}
                 pageCount={this.state.totalPages}
-                marginPagesDisplayed={1}
-                pageRangeDisplayed={3}
+                marginPagesDisplayed={window.innerWidth < 415 ? 0 : 1}
+                pageRangeDisplayed={window.innerWidth < 415 ? 2 : 3}
                 onPageChange={this.handlePageClick}
                 containerClassName={'pagination'}
                 subContainerClassName={'pages pagination'}
@@ -272,16 +272,16 @@ export class Publications extends React.Component { // eslint-disable-line react
             />
             <div style={{ maxWidth: 1120, margin: '5px auto 120px' }}>
               <ReactPaginate
-                previousLabel={'Previous'}
-                nextLabel={'Next'}
+                previousLabel={window.innerWidth < 415 ? '<' : 'Previous'}
+                nextLabel={window.innerWidth < 415 ? '>' : 'Next'}
                 forcePage={this.state.page}
                 /* eslint-disable */
                 breakLabel={<a href="#">...</a>}
                 /* eslint-enable */
                 breakClassName={'break-me'}
                 pageCount={this.state.totalPages}
-                marginPagesDisplayed={1}
-                pageRangeDisplayed={3}
+                marginPagesDisplayed={window.innerWidth < 415 ? 0 : 1}
+                pageRangeDisplayed={window.innerWidth < 415 ? 2 : 3}
                 onPageChange={this.handlePageClick}
                 containerClassName={'pagination'}
                 subContainerClassName={'pages pagination'}
