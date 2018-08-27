@@ -7,7 +7,9 @@ const H1 = styled(NormalH1)`
   font-size: 72px;
   font-weight: bold;
   line-height: 79px;
-  margin-bottom: 15px;
+  ${(props) => props.supporters ? '' : `
+    margin-bottom: 15px;
+  `}
   ${mixins.bp.xs.max`
     font-size: 56px;
     line-height: 61px;

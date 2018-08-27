@@ -54,7 +54,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, width, spotlight }
       supportersComponent = area.supporters !== null ? (
         <Section>
           <center>
-            <H1 style={{ fontSize: 48, lineHeight: '50px', paddingTop: 15 }}>Our Supporters</H1>
+            <H1 style={{ fontSize: 48, lineHeight: '50px', marginTop: 0 }} supporters>Our Supporters</H1>
             {/* <Divider /> */}
             {area.supportersCopy ? <p>{area.supportersCopy}</p> : ''}
             <Grid fluid>
