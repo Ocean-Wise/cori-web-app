@@ -40,9 +40,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, width, spotlight }
       </Section>
     ) : '';
     const MediaReleasesComponent = area.mediaRSS !== null ? (
-      <Section>
-        <MediaReleases url={area.mediaRSS} />
-      </Section>
+      <MediaReleases url={area.mediaRSS} />
     ) : '';
 
     let supporters;

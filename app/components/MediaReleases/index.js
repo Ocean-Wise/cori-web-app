@@ -20,6 +20,7 @@ import H1 from './H1';
 import H3 from './H3';
 import Date from './Date';
 import A from './A';
+import Section from './Section';
 
 class MediaReleases extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
@@ -47,30 +48,33 @@ class MediaReleases extends React.PureComponent { // eslint-disable-line react/p
   }
 
   render() {
+    if (this.state.media.length < 1) return null;
     return (
-      <Grid fluid>
-        <Row>
-          <Col xl={4}>
-            <Container>
-              <Divider />
-              <H1>
-                <FormattedMessage {...messages.header} />
-              </H1>
-            </Container>
-          </Col>
-          <Col xl={5} style={{ maxWidth: 850 }}>
-            <div>
-              {this.state.media}
-            </div>
-          </Col>
-        </Row>
-        <Row style={{ marginTop: 15 }}>
-          <Col xl={4} />
-          <Col xl={5} style={{ maxWidth: 850 }}>
-            <A href="https://ocean.org/media-releases" target="_blank">View more media releases <img style={{ width: 25 }} alt="ChevronRight" src={ChevronRight} /></A>
-          </Col>
-        </Row>
-      </Grid>
+      <Section>
+        <Grid fluid>
+          <Row>
+            <Col xl={4}>
+              <Container>
+                <Divider />
+                <H1>
+                  <FormattedMessage {...messages.header} />
+                </H1>
+              </Container>
+            </Col>
+            <Col xl={5} style={{ maxWidth: 850 }}>
+              <div>
+                {this.state.media}
+              </div>
+            </Col>
+          </Row>
+          <Row style={{ marginTop: 15 }}>
+            <Col xl={4} />
+            <Col xl={5} style={{ maxWidth: 850 }}>
+              <A href="https://ocean.org/media-releases" target="_blank">View more media releases <img style={{ width: 25 }} alt="ChevronRight" src={ChevronRight} /></A>
+            </Col>
+          </Row>
+        </Grid>
+      </Section>
     );
   }
 }
