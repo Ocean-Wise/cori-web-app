@@ -11,7 +11,6 @@ import { graphql } from 'react-apollo';
 import ReactMarkdown from 'react-markdown';
 import getProgram from 'graphql/queries/getProgram.graphql';
 import { Grid, Row, Col } from 'react-flexbox-grid';
-// import ChevronRight from '@material-ui/icons/ChevronRight';
 import ChevronRight from 'styles/icons/ChevronRight.svg';
 
 import ResearchAreaTag from 'components/ResearchAreaTag';
@@ -86,8 +85,8 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
       try {
         initiative.sponsors.map((sponsor, j) => { // eslint-disable-line
           sponsors.push(
-            <Col md={2} key={`sponsor-${j.toString()}`}>
-              <img style={{ padding: '16px 0 32px 0', maxWidth: '100%' }} src={sponsor.logo.url} alt={sponsor.logo.title} />
+            <Col sm={3} xs={5} key={`sponsor-${j.toString()}`} style={{ margin: 'auto' }}>
+              <img style={{ padding: '16px 0 32px 0', maxWidth: '100%', display: 'block', margin: 'auto' }} src={sponsor.logo.url} alt={sponsor.logo.title} />
             </Col>
           );
         });

@@ -59,7 +59,7 @@ function ProjectContent({ data: { projects }, slug, match, history }) {
     try {
       supporters = project.supporters.map((supporter, i) => { // eslint-disable-line
         return (
-          <div key={`supporter-${i.toString()}`} style={{ margin: 10 }}>
+          <div key={`supporter-${i.toString()}`} style={{ margin: 'auto', padding: 10 }}>
             <img src={supporter.logo.url} alt={supporter.name} width={250} />
           </div>
         );
