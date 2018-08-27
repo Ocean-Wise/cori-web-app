@@ -35,9 +35,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, width, spotlight }
   try {
     area = researchAreas[0];
     const LatestNewsComponent = area.newsRSS !== null ? (
-      <Section>
-        <LatestNews url={area.newsRSS} />
-      </Section>
+      <LatestNews url={area.newsRSS} />
     ) : '';
     const MediaReleasesComponent = area.mediaRSS !== null ? (
       <MediaReleases url={area.mediaRSS} />

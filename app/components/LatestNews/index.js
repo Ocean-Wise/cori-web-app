@@ -24,6 +24,7 @@ import A from './A';
 import H1 from './H1';
 import H3 from './H3';
 import Divider from './Divider';
+import Section from './Section';
 
 class LatestNews extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -31,15 +32,38 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
     this.state = {
       featured: '',
       regular: [],
+      shouldRender: true,
     };
   }
 
   componentWillMount() {
+    this.getData();
+  }
+
+  // Check if we have received an updated url prop from a route change
+  componentDidUpdate(prevProps) {
+    if (prevProps.url !== this.props.url) {
+      // If we have, update the component with the new RSS data
+      this.getData();
+    }
+  }
+
+  getData = async () => {
     let featured;
     const regular = [];
-    axios.post(`${window.location.origin}/api/rss`, { url: this.props.url, news: true })
+    await axios.post(`${window.location.origin}/api/rss`, { url: this.props.url, news: true })
       .then((res) => {
         const data = res.data;
+        // There were no items in the RSS feed
+        if (data.featured.length < 1) {
+          // So don't render and skip the rest of this function
+          this.setState({ shouldRender: false });
+          return false;
+        } else { // eslint-disable-line
+          // There was at least one item in the RSS feed. Ensure that the shouldRender state
+          // variable is at set correctly if the route has changed.
+          this.setState({ shouldRender: true });
+        }
         const featuredTeaser = data.featured[0].teaser.replace('[…]', '');
         const featuredTitle = <Link to={`${data.featured[0].link}`}>{data.featured[0].title}</Link>;
         featured = (
@@ -79,38 +103,42 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
           );
         });
 
-        this.setState({ regular });
-        this.setState({ featured });
+        this.setState({ regular, featured });
+        return true;
       });
   }
 
   render() {
-    return (
-      <Grid fluid>
-        <Row>
-          <Col xl={4}>
-            <Container>
-              <Divider />
-              <H1>
-                <FormattedMessage {...messages.header} />
-              </H1>
-            </Container>
-          </Col>
-          <Col xl={7} style={{ maxWidth: 850, padding: 0 }}>
-            <Wrapper>
-              {this.state.regular}
-            </Wrapper>
-            {this.state.featured}
-          </Col>
-        </Row>
-        <Row>
-          <Col xl={4} />
-          <Col xl={5} style={{ margin: '-10px 0' }}>
-            <A href="https://aquablog.ca/" target="_blank">See more on Aquablog.ca <img style={{ width: 25 }} alt="ChevronRight" src={ChevronRight} /></A>
-          </Col>
-        </Row>
-      </Grid>
-    );
+    if (this.state.shouldRender) {
+      return (
+        <Section>
+          <Grid fluid>
+            <Row>
+              <Col xl={4}>
+                <Container>
+                  <Divider />
+                  <H1>
+                    <FormattedMessage {...messages.header} />
+                  </H1>
+                </Container>
+              </Col>
+              <Col xl={7} style={{ maxWidth: 850, padding: 0 }}>
+                <Wrapper>
+                  {this.state.regular}
+                </Wrapper>
+                {this.state.featured}
+              </Col>
+            </Row>
+            <Row>
+              <Col xl={4} />
+              <Col xl={5} style={{ margin: '-10px 0' }}>
+                <A href="https://aquablog.ca/" target="_blank">See more on Aquablog.ca <img style={{ width: 25 }} alt="ChevronRight" src={ChevronRight} /></A>
+              </Col>
+            </Row>
+          </Grid>
+        </Section>
+      );
+    } else return null; // eslint-disable-line
   }
 }
 
