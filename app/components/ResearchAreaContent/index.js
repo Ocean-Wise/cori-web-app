@@ -58,7 +58,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, width, spotlight }
           <center>
             <H1 style={{ fontSize: 48, lineHeight: '50px', paddingTop: 15 }}>Our Supporters</H1>
             {/* <Divider /> */}
-            <p>{area.supportersCopy}</p>
+            {area.supportersCopy ? <p>{area.supportersCopy}</p> : ''}
             <Grid fluid>
               <Row>
                 <Col xl={8} style={{ margin: '0 auto' }}>
