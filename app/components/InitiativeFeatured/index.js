@@ -1,6 +1,6 @@
 /**
 *
-* ProjectFeatured
+* InitiativeFeatured
 *
 */
 
@@ -13,20 +13,41 @@ import P from 'components/P';
 import Divider from './Divider';
 import H3 from './H3';
 import Paper from './Paper';
+import Hr from './Hr';
+import H5 from './H5';
 
-class ProjectFeatured extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+class InitiativeFeatured extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
     this.state = {
       story: '',
+      shouldRender: true,
     };
   }
 
   componentWillMount() {
+    this.getData();
+  }
+
+  // Check if we have received an updated url prop from a route change
+  componentDidUpdate(prevProps) {
+    if (prevProps.url !== this.props.url) {
+      // If we have, update the component with the new RSS data
+      this.getData();
+    }
+  }
+
+  getData = () => {
     let story;
     axios.post(`${window.location.origin}/api/rss`, { url: this.props.url, news: true })
       .then((res) => {
         const data = res.data;
+        if (data.featured.length < 1) {
+          this.setState({ shouldRender: false });
+          return false;
+        } else { // eslint-disable-line
+          this.setState({ shouldRender: true });
+        }
         try {
           const teaser = data.featured[0].teaser.replace('[…]', '');
           const title = <Link to={`${data.featured[0].link}`}>{data.featured[0].title}</Link>;
@@ -44,20 +65,34 @@ class ProjectFeatured extends React.PureComponent { // eslint-disable-line react
             </Paper>
           );
           this.setState({ story });
+          return true;
         } catch (err) {
           story = <div></div>;
           this.setState({ story });
+          return false;
         }
       });
   }
 
   render() {
-    return <div>{this.state.story}</div>;
+    if (this.state.shouldRender) {
+      return (
+        <div>
+          <Hr style={{ marginBottom: 15 }} />
+          <H5>FEATURE STORY</H5>
+          <div>
+            {this.state.story}
+          </div>
+        </div>
+      );
+    } else { // eslint-disable-line
+      return null;
+    }
   }
 }
 
-ProjectFeatured.propTypes = {
+InitiativeFeatured.propTypes = {
   url: PropTypes.string.isRequired,
 };
 
-export default ProjectFeatured;
+export default InitiativeFeatured;

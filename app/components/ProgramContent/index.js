@@ -14,7 +14,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import ChevronRight from 'styles/icons/ChevronRight.svg';
 
 import ResearchAreaTag from 'components/ResearchAreaTag';
-import ProjectFeatured from 'components/ProjectFeatured/Loadable';
+import InitiativeFeatured from 'components/InitiativeFeatured/Loadable';
 import Hero from './Hero';
 import Section from './Section';
 import Hr from './Hr';
@@ -107,11 +107,7 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
       );
 
       const spotlight = initiative.rssLink !== null ? (
-        <div>
-          <Hr style={{ marginBottom: 15 }} />
-          <H5>FEATURE STORY</H5>
-          <ProjectFeatured url={initiative.rssLink} />
-        </div>
+        <InitiativeFeatured url={initiative.rssLink} />
       ) : '';
 
       return (
