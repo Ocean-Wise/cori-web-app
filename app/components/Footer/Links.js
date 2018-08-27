@@ -14,7 +14,9 @@ function Links() {
       <LinkSection>
         <Row>
           <H4>
-            Coastal Ocean Research Institute
+            <A to="/research/cori">
+              Coastal Ocean Research Institute
+            </A>
           </H4>
           <A to="/program/marine-mammals">
             Marine Mammals
@@ -25,24 +27,26 @@ function Links() {
           <A to="#">
             Plastics Lab
           </A>
-          <A to="/program/coastal-ocean-health">
-            Coastal Ocean Health
+          <A to="/program/ocean-watch">
+            Ocean Watch
           </A>
-          <A to="/program/howe-sound-biodiversity">
-            Howe Sound Biodiversity
+          <A to="/program/howe-sound-research-conservation">
+            Howe Sound
           </A>
         </Row>
         <Row>
           <H4>
-            Vancouver Aquarium
+            <A to="research/vancouver-aquarium">
+              Vancouver Aquarium
+            </A>
           </H4>
-          <A to="#">
+          <A to="/project/amphibian-ark">
             Frog Conservation
           </A>
           <A to="#">
             Fish Propagation
           </A>
-          <A to="#">
+          <A to="/project/animal-health-and-rehabilitation">
             Animal Health
           </A>
           <A to="/program/energetics-and-metabolism">
@@ -65,7 +69,7 @@ function Links() {
           <A to="/research/special-places">
             Special Places
           </A>
-          <A to="#">
+          <A to="/research/species-under-threat">
             Species Under Threat
           </A>
         </Row>

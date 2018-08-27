@@ -43,7 +43,7 @@ export class About extends React.PureComponent { // eslint-disable-line react/pr
         } catch (err) {
           // Element didn't exist yet, but we don't want to stop the page from rendering
         }
-      });
+      }, 1500);
     }
     window.addEventListener('resize', this.updateWindowDimensions);
   }
