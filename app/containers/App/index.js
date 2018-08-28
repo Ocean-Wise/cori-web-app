@@ -43,10 +43,11 @@ const ScrollWrapper = styled.div`
 `;
 
 const REACT_APP_ENV = process.env.NODE_ENV;
+console.log(REACT_APP_ENV);
+console.log(window.location);
 
 export default function App() {
-  let contentfulEdit;
-  if (REACT_APP_ENV !== 'production') contentfulEdit = <ContentfulEdit />;
+  const contentfulEdit = (REACT_APP_ENV === 'production' || window.location.host.includes('cori-staging')) ? '' : <ContentfulEdit />;
   return (
     <AppWrapper>
       <ApolloWrapper>
