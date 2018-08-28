@@ -19,6 +19,7 @@ import MediaReleases from 'components/MediaReleases/Loadable';
 import Button from 'components/Button/Loadable';
 import SpotlightTag from 'components/SpotlightTag/Loadable';
 import Hero from './Hero';
+import HeroWrapper from './HeroWrapper';
 import Section from './Section';
 import Container from './Container';
 import H1 from './H1';
@@ -74,10 +75,12 @@ function ResearchAreaContent({ data: { researchAreas }, slug, width, spotlight }
     }
 
     const Spotlight = spotlight ? <SpotlightTag /> : '';
-
     return (
       <div style={{ overflow: 'hidden' }}>
-        <Hero src={area.hero.url} alt={area.hero.title} />
+        <HeroWrapper>
+          <Hero src={area.hero.url} alt={area.hero.title} />
+          {area.imageAttribution ? <span id="attribution">{area.imageAttribution}</span> : ''}
+        </HeroWrapper>
         <Section first>
           <Grid fluid>
             <Row>

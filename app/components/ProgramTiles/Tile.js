@@ -33,6 +33,14 @@ const Tile = styled.div`
     font-weight: bold;
     line-height: 12px;
   }
+  span#attribution {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    color: rgba(255,255,255,0.5);
+    writing-mode: vertical-rl;
+    font-size: 9px;
+  }
   &::before {
     content: '';
     position: absolute;
@@ -70,6 +78,9 @@ const Tile = styled.div`
       opacity: 1;
     }
     .initialTitle {
+      display: none;
+    }
+    span#attribution {
       display: none;
     }
   }

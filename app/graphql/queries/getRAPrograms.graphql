@@ -5,7 +5,6 @@ query Programs($slug: String!) {
   researchAreas(q: $slug) {
     programs {
       ...ProgramTeaser
-      imageAlign
       overlay
     }
     projects {

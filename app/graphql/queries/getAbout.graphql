@@ -5,6 +5,7 @@ query About {
     hero {
       url
     }
+    imageAttribution
     copy
   }
 }

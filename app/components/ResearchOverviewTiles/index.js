@@ -19,7 +19,6 @@ import H1 from './H1';
 import P from './P';
 
 function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-line
-
   try {
     let areas = researchAreas;
     const topRow = [];
@@ -40,6 +39,7 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
             </center>
           </div>
           <span id="topTitle" className="initialTitle">{cori.title}</span>
+          {cori.imageAttribution ? <span id="attribution">{cori.imageAttribution}</span> : ''}
         </Tile>
       </Col>
     );
@@ -58,6 +58,7 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
             </center>
           </div>
           <span id="topTitle" className="initialTitle">{va.title}</span>
+          {va.imageAttribution ? <span id="attribution">{va.imageAttribution}</span> : ''}
         </Tile>
       </Col>
     );
@@ -85,6 +86,7 @@ function ResearchOverviewTiles({ data: { researchAreas } }) { // eslint-disable-
               </center>
             </HoverContainer>
             <span className="initialTitle subsequent"><div id="spotlight">Spotlight</div>{area.title}</span>
+            {area.imageAttribution ? <span id="attribution">{area.imageAttribution}</span> : ''}
           </Tile>
         </Col>
       );

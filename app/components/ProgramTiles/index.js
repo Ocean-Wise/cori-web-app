@@ -45,6 +45,7 @@ function ProgramTiles({ data: { researchAreas }, width }) {
                 </Link>
               </center>
             </HoverContainer>
+            {program.imageAttribution ? <span id="attribution">{program.imageAttribution}</span> : ''}
             <Title className="initialTitle">{program.title}</Title>
           </Tile>
         );
@@ -70,6 +71,7 @@ function ProgramTiles({ data: { researchAreas }, width }) {
                     </a>
                   </center>
                 </HoverContainer>
+                {project.imageAttribution ? <span id="attribution">{project.imageAttribution}</span> : ''}
                 <Title className="initialTitle">{project.projectTitle}</Title>
               </Tile>
             );
@@ -87,6 +89,7 @@ function ProgramTiles({ data: { researchAreas }, width }) {
                     </a>
                   </center>
                 </HoverContainer>
+                {project.imageAttribution ? <span id="attribution">{project.imageAttribution}</span> : ''}
                 <Title className="initialTitle">{project.projectTitle}</Title>
               </Tile>
             );
@@ -104,6 +107,7 @@ function ProgramTiles({ data: { researchAreas }, width }) {
                     </Link>
                   </center>
                 </HoverContainer>
+                {project.imageAttribution ? <span id="attribution">{project.imageAttribution}</span> : ''}
                 <Title className="initialTitle">{project.projectTitle}</Title>
               </Tile>
             );

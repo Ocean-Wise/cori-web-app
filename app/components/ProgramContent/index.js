@@ -16,6 +16,7 @@ import ChevronRight from 'styles/icons/ChevronRight.svg';
 import ResearchAreaTag from 'components/ResearchAreaTag/Loadable';
 import InitiativeFeatured from 'components/InitiativeFeatured/Loadable';
 import Hero from './Hero';
+import HeroWrapper from './HeroWrapper';
 import Section from './Section';
 import Hr from './Hr';
 import H1 from './H1';
@@ -155,7 +156,10 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
 
     return (
       <div>
-        <Hero src={program.hero.url} alt={program.hero.title} />
+        <HeroWrapper>
+          <Hero src={program.hero.url} alt={program.hero.title} />
+          {program.imageAttribution ? <span id="attribution">{program.imageAttribution}</span> : ''}
+        </HeroWrapper>
         <Section style={{ paddingBottom: 20 }}>
           <Grid fluid>
             <Row>

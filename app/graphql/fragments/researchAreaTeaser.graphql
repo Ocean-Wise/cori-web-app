@@ -7,4 +7,5 @@ fragment ResearchAreaTeaser on ResearchArea {
     url
   }
   imageAlign
+  imageAttribution
 }

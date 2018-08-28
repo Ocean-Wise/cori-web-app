@@ -14,6 +14,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import ResearchAreaTag from 'components/ResearchAreaTag/Loadable';
 import ProjectMembers from 'components/ProjectMembers/Loadable';
 import Hero from './Hero';
+import HeroWrapper from './HeroWrapper';
 import Section from './Section';
 import H1 from './H1';
 import H3 from './H3';
@@ -98,7 +99,10 @@ function ProjectContent({ data: { projects }, slug, match, history }) {
 
     return (
       <div>
-        <Hero src={project.hero.url} alt={project.hero.title} />
+        <HeroWrapper>
+          <Hero src={project.hero.url} alt={project.hero.title} />
+          {project.imageAttribution ? <span id="attribution">{project.imageAttribution}</span> : ''}
+        </HeroWrapper>
         <Section>
           <Grid fluid>
             <Row>

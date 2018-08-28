@@ -12,6 +12,7 @@ import getAbout from 'graphql/queries/getAbout.graphql';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
 import Hero from './Hero';
+import HeroWrapper from './HeroWrapper';
 import Section from './Section';
 import H1 from './H1';
 import H2 from './H2';
@@ -36,7 +37,10 @@ function AboutContent({ data: { aboutPages }, width }) {
     const responsiveWidth = width < 769 ? '100%' : 850;
     return (
       <div>
-        <Hero src={data.hero.url} alt="About Us" />
+        <HeroWrapper>
+          <Hero src={data.hero.url} alt="About Us" />
+          {data.imageAttribution ? <span id="attribution">{data.imageAttribution}</span> : ''}
+        </HeroWrapper>
         <Section>
           <Grid fluid>
             <Row>

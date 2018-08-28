@@ -8,6 +8,8 @@ fragment ProjectTeaser on Project {
     title
     url
   }
+  imageAlign
+  imageAttribution
   copy
   externalLink
   pdf {
