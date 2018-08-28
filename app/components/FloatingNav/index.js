@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Nav from 'components/Nav';
+import Nav from 'components/Nav/Loadable';
 import Paper from './Paper';
 
 /**

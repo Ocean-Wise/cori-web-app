@@ -13,12 +13,11 @@ import getResearchArea from 'graphql/queries/getResearchArea.graphql';
 import { Grid, Row } from 'react-flexbox-grid';
 
 import ChevronRight from '@material-ui/icons/ChevronRight';
-import ProgramTiles from 'components/ProgramTiles';
-// import Breadcrumbs from 'components/Breadcrumbs';
+import ProgramTiles from 'components/ProgramTiles/Loadable';
 import LatestNews from 'components/LatestNews/Loadable';
 import MediaReleases from 'components/MediaReleases/Loadable';
-import Button from 'components/Button';
-import SpotlightTag from 'components/SpotlightTag';
+import Button from 'components/Button/Loadable';
+import SpotlightTag from 'components/SpotlightTag/Loadable';
 import Hero from './Hero';
 import Section from './Section';
 import Container from './Container';

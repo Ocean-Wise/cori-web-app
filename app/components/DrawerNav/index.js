@@ -11,11 +11,11 @@ import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Button from '@material-ui/core/Button';
-import Nav from 'components/Nav';
+import Nav from 'components/Nav/Loadable';
 import Menu from '@material-ui/icons/Menu';
 import Close from '@material-ui/icons/Close';
 import Search from 'containers/Search/Loadable';
-import OWButton from 'components/Button';
+import OWButton from 'components/Button/Loadable';
 
 import Container from './Container';
 

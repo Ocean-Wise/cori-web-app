@@ -11,7 +11,7 @@ import { graphql } from 'react-apollo';
 import ReactMarkdown from 'react-markdown';
 import getHomeCopy from 'graphql/queries/getHomeCopy.graphql';
 
-import Button from 'components/Button';
+import Button from 'components/Button/Loadable';
 
 import H1 from './H1';
 import Blockquote from './Blockquote';

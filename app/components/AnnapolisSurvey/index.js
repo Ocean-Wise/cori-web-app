@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'components/Button';
+import Button from 'components/Button/Loadable';
 import TextField from '@material-ui/core/TextField';
 
 import Dropzone from 'react-dropzone';

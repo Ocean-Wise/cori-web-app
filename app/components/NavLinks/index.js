@@ -8,9 +8,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import DrawerNav from 'components/DrawerNav';
+import DrawerNav from 'components/DrawerNav/Loadable';
 import Search from 'containers/Search/Loadable';
-import OWButton from 'components/Button';
+import OWButton from 'components/Button/Loadable';
 
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';

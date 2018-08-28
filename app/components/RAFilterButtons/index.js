@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import getAreas from 'graphql/queries/getResearchAreaTeasers.graphql';
-import Button from 'components/Button';
+import Button from 'components/Button/Loadable';
 import Container from './Container';
 
 function RAFilterButtons({ data: { researchAreas }, filter }) {

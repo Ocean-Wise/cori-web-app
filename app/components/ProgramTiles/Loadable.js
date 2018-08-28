@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for ResearchAreaList
+ * Asynchronously loads the component for ProgramTiles
  *
  */
 

@@ -11,8 +11,8 @@ import ReactMarkdown from 'react-markdown';
 import getProject from 'graphql/queries/getProject.graphql';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
-import ResearchAreaTag from 'components/ResearchAreaTag';
-import ProjectMembers from 'components/ProjectMembers';
+import ResearchAreaTag from 'components/ResearchAreaTag/Loadable';
+import ProjectMembers from 'components/ProjectMembers/Loadable';
 import Hero from './Hero';
 import Section from './Section';
 import H1 from './H1';

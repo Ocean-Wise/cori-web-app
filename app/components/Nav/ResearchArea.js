@@ -14,6 +14,9 @@ const ResearchArea = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  ${mixins.bp.lg.min`
+    width: 287px;
+  `}
   &:focus {
     outline: none;
   }

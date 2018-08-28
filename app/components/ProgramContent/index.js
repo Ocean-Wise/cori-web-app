@@ -13,7 +13,7 @@ import getProgram from 'graphql/queries/getProgram.graphql';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import ChevronRight from 'styles/icons/ChevronRight.svg';
 
-import ResearchAreaTag from 'components/ResearchAreaTag';
+import ResearchAreaTag from 'components/ResearchAreaTag/Loadable';
 import InitiativeFeatured from 'components/InitiativeFeatured/Loadable';
 import Hero from './Hero';
 import Section from './Section';

@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import { withStyles } from '@material-ui/core/styles';
-import Button from 'components/Button';
+import Button from 'components/Button/Loadable';
 import Checkbox from '@material-ui/core/Checkbox';
 import PDFIcon from 'styles/icons/pdf.svg';
 import ExternalLink from 'styles/icons/externalLink.svg';
