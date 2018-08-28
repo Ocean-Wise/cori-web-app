@@ -14,7 +14,7 @@ function Links() {
       <LinkSection>
         <Row>
           <H4>
-            <A to="/research/cori">
+            <A to="/research/cori" noStyle>
               Coastal Ocean Research Institute
             </A>
           </H4>
@@ -36,7 +36,7 @@ function Links() {
         </Row>
         <Row>
           <H4>
-            <A to="research/vancouver-aquarium">
+            <A to="research/vancouver-aquarium" noStyle>
               Vancouver Aquarium
             </A>
           </H4>

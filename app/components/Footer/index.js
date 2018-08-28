@@ -27,17 +27,20 @@ function Footer() {
           </Section>
           <Hr />
           <Section>
-            <Logo src={OWLogo} alt="Ocean Wise" />
+            <a href="https://ocean.org/" target="_blank">
+              <Logo src={OWLogo} alt="Ocean Wise" />
+            </a>
           </Section>
         </Wrapper>
       </div>
       <Wrapper style={{ backgroundColor: '#f8f9f9' }}>
         <Section>
           <Container>
-            <span>About Ocean Wise&reg;</span>
-            <span>Terms</span>
-            <span>Privacy</span>
-            <span id="copy">&copy; 2018 Ocean Wise</span>
+            <span><a href="https://ocean.org/about" target="_blank">About Ocean Wise&reg;</a></span>
+            <span><a href="https://ocean.org/terms-conditions" target="_blank">Terms</a></span>
+            <span><a href="https://ocean.org/privacy-policy" target="_blank">Privacy</a></span>
+            <span id="copy"><a href="https://ocean.org" target="_blank">&copy; 2018 Ocean Wise</a></span>
+            <span><a href="https://www.contentful.com/" rel="nofollow" target="_blank"><img src="https://images.ctfassets.net/fo9twyrwpveg/44baP9Gtm8qE2Umm8CQwQk/c43325463d1cb5db2ef97fca0788ea55/PoweredByContentful_LightBackground.svg" style={{ maxWidth: 100, width: '100%', margin: '0 25px' }} alt="Powered By Contentful" /></a></span>
           </Container>
         </Section>
         <Section>
