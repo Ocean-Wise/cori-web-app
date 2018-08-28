@@ -10,6 +10,7 @@ const graphqlHTTP = require('express-graphql');
 const spaceId = process.env.SPACE_ID;
 const cdaToken = process.env.CDA_TOKEN;
 const cmaToken = process.env.CMA_TOKEN;
+const cpaToken = process.env.CPA_TOKEN;
 
 const logger = require('../logger');
 
@@ -24,7 +25,7 @@ function createWebpackMiddleware(compiler, publicPath) {
 
 module.exports = function addDevMiddlewares(app, webpackConfig) {
   // Create GraphQL clients for our Contentful space
-  const enClient = cfGraphql.createClient({ spaceId, cdaToken, cmaToken });
+  const enClient = cfGraphql.createClient({ spaceId, cdaToken, cmaToken, preview: true, cpaToken });
   // Get the content types in our Contentful space
   enClient.getContentTypes()
   .then(cfGraphql.prepareSpaceGraph)

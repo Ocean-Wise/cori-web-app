@@ -22,6 +22,7 @@ import Publications from 'containers/Publications';
 import Survey from 'containers/Survey';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Footer from 'components/Footer';
+import ContentfulEdit from 'components/ContentfulEdit';
 
 import ScrollUpButton from 'react-scroll-up-button';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
@@ -41,8 +42,11 @@ const ScrollWrapper = styled.div`
   z-index: 2147483647;
 `;
 
+const REACT_APP_ENV = process.env.NODE_ENV;
 
 export default function App() {
+  let contentfulEdit;
+  if (REACT_APP_ENV !== 'production') contentfulEdit = <ContentfulEdit />;
   return (
     <AppWrapper>
       <ApolloWrapper>
@@ -52,6 +56,7 @@ export default function App() {
         >
           <meta name="description" content="Ocean Wise Research" />
         </Helmet>
+        {contentfulEdit}
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/about" component={About} />

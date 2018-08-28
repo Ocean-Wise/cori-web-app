@@ -9,6 +9,7 @@ const graphqlHTTP = require('express-graphql');
 const spaceId = process.env.SPACE_ID;
 const cdaToken = process.env.CDA_TOKEN;
 const cmaToken = process.env.CMA_TOKEN;
+const cpaToken = process.env.CPA_TOKEN;
 
 const logger = require('../logger');
 
@@ -17,7 +18,7 @@ module.exports = function addProdMiddlewares(app, options) {
   const outputPath = options.outputPath || path.resolve(process.cwd(), 'build');
 
   // Create GraphQL clients for our Contentful space
-  const enClient = cfGraphql.createClient({ spaceId, cdaToken, cmaToken });
+  const enClient = process.env.NODE_ENV === 'staging' ? cfGraphql.createClient({ spaceId, cdaToken, cmaToken, preview: true, cpaToken }) : cfGraphql.createClient({ spaceId, cdaToken, cmaToken });
   // Get the content types in our Contentful space
   enClient.getContentTypes()
   .then(cfGraphql.prepareSpaceGraph)
@@ -28,7 +29,7 @@ module.exports = function addProdMiddlewares(app, options) {
   })
   .then(cfGraphql.createSchema)
   .then((enSchema) => {
-    const frClient = cfGraphql.createClient({ spaceId, cdaToken, cmaToken, locale: 'fr' });
+    const frClient = process.env.NODE_ENV === 'staging' ? cfGraphql.createClient({ spaceId, cdaToken, cmaToken, preview: true, cpaToken, locale: 'fr' }) : cfGraphql.createClient({ spaceId, cdaToken, cmaToken, locale: 'fr' });
 
     frClient.getContentTypes()
     .then(cfGraphql.prepareSpaceGraph)
