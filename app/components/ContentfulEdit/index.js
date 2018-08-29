@@ -120,7 +120,7 @@ class ContentfulEdit extends React.Component { // eslint-disable-line react/pref
     const { entryId, position, width } = this.state;
     if (entryId === '') return <div />;
     return (
-      <div style={{ width, backgroundColor: '#283C50', overflow: 'hidden', position, zIndex: '100', padding: 10, paddingBottom: 12, transition: 'width 2s ease-in-out' }}>
+      <div style={{ width, backgroundColor: '#283C50', overflow: 'hidden', position, zIndex: '100', padding: 10, paddingBottom: 12, transition: 'width 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s' }}>
         <a href={`https://app.contentful.com/spaces/fsquhe7zbn68/entries/${entryId}`} target="_blank"><Button id="edit">Edit on Contentful</Button></a>
       </div>
     );
