@@ -1,10 +1,10 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import Circle from './Circle';
 import Wrapper from './Wrapper';
 
-const LoadingIndicator = () => (
-  <Wrapper>
+const LoadingIndicator = ({ person }) => (
+  <Wrapper person={person}>
     <Circle />
     <Circle rotate={30} delay={-1.1} />
     <Circle rotate={60} delay={-1} />
@@ -19,5 +19,9 @@ const LoadingIndicator = () => (
     <Circle rotate={330} delay={-0.1} />
   </Wrapper>
 );
+
+LoadingIndicator.propTypes = {
+  person: PropTypes.boolean,
+};
 
 export default LoadingIndicator;

@@ -5,6 +5,9 @@ const Wrapper = styled.div`
   width: 40px;
   height: 40px;
   position: relative;
+  ${(props) => props.person ? `
+    margin: 50px 100px;
+  ` : ''}
 `;
 
 export default Wrapper;

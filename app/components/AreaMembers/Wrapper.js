@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: start;
 `;
 
 export default Wrapper;
