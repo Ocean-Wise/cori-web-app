@@ -4,7 +4,7 @@ import NormalPaper from '@material-ui/core/Paper';
 
 const Paper = styled(NormalPaper)`
   margin-bottom: 50px;
-  padding-bottom: 1px;
+  padding-bottom: 25px;
 `;
 
 export default Paper;
