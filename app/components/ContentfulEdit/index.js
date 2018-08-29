@@ -5,6 +5,8 @@
 */
 
 import React from 'react';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Button from 'components/Button/Loadable';
 const contentful = require('contentful');
 
@@ -56,6 +58,7 @@ function getData() {
       default:
         rej();
     }
+    console.log(entryId);
     res(entryId);
   });
 }
@@ -76,7 +79,16 @@ class ContentfulEdit extends React.Component { // eslint-disable-line react/pref
   componentWillMount() {
     getData().then((entryId) => {
       this.setState({ entryId });
-    });
+    }).catch();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { location } = this.props;
+    if (location !== nextProps.location) {
+      getData().then((entryId) => {
+        this.setState({ entryId });
+      }).catch();
+    }
   }
 
   render() {
@@ -91,7 +103,7 @@ class ContentfulEdit extends React.Component { // eslint-disable-line react/pref
 }
 
 ContentfulEdit.propTypes = {
-
+  location: PropTypes.any,
 };
 
-export default ContentfulEdit;
+export default withRouter(ContentfulEdit);
