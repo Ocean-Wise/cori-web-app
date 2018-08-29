@@ -9,8 +9,8 @@ const H1 = styled(NormalH1)`
   line-height: 79px;
   margin-top: 16px;
   ${mixins.bp.xs.max`
-    font-size: 56px;
-    line-height: 61px;
+    font-size: 37px;
+    line-height: 40px;
   `}
 `;
 
