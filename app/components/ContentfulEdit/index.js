@@ -53,12 +53,11 @@ function getData() {
         entryId = await getId('program', slug);
         break;
       case '/project':
-        entryId = await getId('project', slug);
+        entryId = await getId('projects', slug);
         break;
       default:
         rej();
     }
-    console.log(entryId);
     res(entryId);
   });
 }
@@ -74,12 +73,29 @@ function getId(type, slug) {
 class ContentfulEdit extends React.Component { // eslint-disable-line react/prefer-stateless-function
   state = {
     entryId: '',
+    position: 'unset',
+    width: '100%',
   }
 
   componentWillMount() {
     getData().then((entryId) => {
       this.setState({ entryId });
     }).catch();
+  }
+
+  componentDidMount() {
+    let last = window.scrollY;
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      last = window.scrollY;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          this.changePositioning(last);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -91,11 +107,20 @@ class ContentfulEdit extends React.Component { // eslint-disable-line react/pref
     }
   }
 
+
+  changePositioning = (position) => {
+    if (position > 40 && position < 80) {
+      this.setState({ position: 'fixed', width: '200px' });
+    } else if (position < 40 || position === 0) {
+      this.setState({ position: 'unset', width: '100%' });
+    }
+  }
+
   render() {
-    const { entryId } = this.state;
+    const { entryId, position, width } = this.state;
     if (entryId === '') return <div />;
     return (
-      <div style={{ width: '100%', backgroundColor: '#283C50', overflow: 'hidden' }}>
+      <div style={{ width, backgroundColor: '#283C50', overflow: 'hidden', position, zIndex: '100', padding: 10, paddingBottom: 12, transition: 'width 2s ease-in-out' }}>
         <a href={`https://app.contentful.com/spaces/fsquhe7zbn68/entries/${entryId}`} target="_blank"><Button id="edit">Edit on Contentful</Button></a>
       </div>
     );
