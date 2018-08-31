@@ -24,7 +24,7 @@ function Links() {
           <A to="/program/ocean-pollution">
             Ocean Pollution
           </A>
-          <A to="#">
+          <A to="/program/plastics-lab">
             Plastics Lab
           </A>
           <A to="/program/ocean-watch">
@@ -52,7 +52,7 @@ function Links() {
           <A to="/program/energetics-and-metabolism">
             Energetics and Metabolism
           </A>
-          <A to="#">
+          <A to="/program/propagation#jellyfish-lab">
             Jellyfish Rearing
           </A>
         </Row>
