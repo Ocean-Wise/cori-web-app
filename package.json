@@ -197,7 +197,8 @@
       "citation-js",
       "bluebird",
       "pg-promise",
-      "cloudinary"
+      "cloudinary",
+      "newrelic"
     ],
     "include": [
       "core-js",
@@ -267,6 +268,7 @@
     "ip": "1.1.5",
     "lodash": "4.17.4",
     "minimist": "1.2.0",
+    "newrelic": "^4.8.1",
     "pg-promise": "^8.4.5",
     "prop-types": "15.5.10",
     "ramda": "^0.25.0",

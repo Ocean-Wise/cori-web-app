@@ -2,6 +2,7 @@
 
 // Load in our environment variables
 require('dotenv').config();
+require('newrelic');
 
 const express = require('express');
 const logger = require('./logger');
