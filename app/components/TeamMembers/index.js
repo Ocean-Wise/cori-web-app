@@ -1,6 +1,6 @@
 /**
 *
-* Teampersons
+* TeamMembers
 *
 */
 
@@ -16,7 +16,7 @@ import Wrapper from './Wrapper';
  * Returns all the people in the CMS
  *
  */
-function Teampersons({ data: { people }, member }) {
+function TeamMembers({ data: { people }, member }) {
   let renderedPeople;
   try {
     renderedPeople = people.map((person, i) => { // eslint-disable-line
@@ -34,9 +34,9 @@ function Teampersons({ data: { people }, member }) {
   );
 }
 
-Teampersons.propTypes = {
+TeamMembers.propTypes = {
   data: PropTypes.object.isRequired,
   member: PropTypes.string,
 };
 
-export default graphql(teamQuery)(Teampersons);
+export default graphql(teamQuery)(TeamMembers);

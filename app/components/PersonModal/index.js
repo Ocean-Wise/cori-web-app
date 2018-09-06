@@ -15,6 +15,7 @@ import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import ClearIcon from '@material-ui/icons/Clear';
 import ReactMarkdown from 'react-markdown';
+import ReactGA from 'react-ga';
 import Divider from './Divider';
 import Person from './Person';
 import Img from './Img';
@@ -43,6 +44,13 @@ class PersonModal extends React.PureComponent { // eslint-disable-line react/pre
   }
 
   handleToggle = () => {
+    if (!this.state.open) {
+      ReactGA.event({
+        category: 'Team',
+        action: 'Viewed a reasearcher\'s bio',
+        label: `${this.props.person.honorifictitle !== null ? `${this.props.person.honorifictitle}.` : ''} ${this.props.person.first} ${this.props.person.last}`,
+      });
+    }
     this.setState({ open: !this.state.open });
   }
 

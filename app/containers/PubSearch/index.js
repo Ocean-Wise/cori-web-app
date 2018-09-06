@@ -18,6 +18,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import PoweredBy from 'styles/icons/algolia.svg';
 import { Scrollbars } from 'react-custom-scrollbars';
+import ReactGA from 'react-ga';
 
 import Link from './Link';
 import A from './A';
@@ -32,6 +33,7 @@ class PubSearch extends React.Component { // eslint-disable-line react/prefer-st
   }
 
   toggleSearch = () => {
+    if (!this.state.search) ReactGA.modalview('publication-search');
     this.setState({ search: !this.state.search });
   }
 

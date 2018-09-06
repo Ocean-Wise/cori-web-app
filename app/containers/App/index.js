@@ -10,6 +10,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
+import ReactGA from 'react-ga';
 
 import HomePage from 'containers/HomePage/Loadable';
 import About from 'containers/About/Loadable';
@@ -44,8 +45,11 @@ const ScrollWrapper = styled.div`
 
 const REACT_APP_ENV = process.env.NODE_ENV;
 
+ReactGA.initialize('UA-305660-37', { debug: true });
+
 export default function App() {
   const contentfulEdit = (REACT_APP_ENV === 'production' && !(window.location.host.includes('cori-staging'))) ? '' : <ContentfulEdit />;
+  ReactGA.pageview(window.location.pathname);
   return (
     <AppWrapper>
       <ApolloWrapper>

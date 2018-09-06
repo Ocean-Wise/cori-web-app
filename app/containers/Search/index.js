@@ -18,6 +18,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import PoweredBy from 'styles/icons/algolia.svg';
 import { Scrollbars } from 'react-custom-scrollbars';
+import ReactGA from 'react-ga';
 import A from './A';
 import Link from './Link';
 import Container from './Container';
@@ -31,6 +32,7 @@ class Search extends React.Component { // eslint-disable-line react/prefer-state
   }
 
   toggleSearch = () => {
+    if (!this.state.search) ReactGA.modalview('search');
     this.setState({ search: !this.state.search });
   }
 

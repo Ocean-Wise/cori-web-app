@@ -20,6 +20,7 @@ import GetPublications from 'components/GetPublications/Loadable';
 import RAFilterButtons from 'components/RAFilterButtons';
 import DownloadIcon from 'styles/icons/download.svg';
 import { saveAs } from 'file-saver/FileSaver';
+import ReactGA from 'react-ga';
 
 import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
@@ -146,6 +147,12 @@ export class Publications extends React.Component { // eslint-disable-line react
     if (list.length > 0) {
       axios.post(`${window.location.origin}/api/citation`, { list })
         .then((res) => {
+          // Record this in Google Analytics
+          ReactGA.event({
+            category: 'Publications',
+            action: 'Downloaded citation list',
+            value: list.length,
+          });
           // Split the data by new line, then add Carriage Return and New Line
           // to each line before rejoining
           const data = res.data.split('\n').map((x) => `${x}\r\n`).join('');
