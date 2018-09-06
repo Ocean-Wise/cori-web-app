@@ -45,10 +45,12 @@ const ScrollWrapper = styled.div`
 
 const REACT_APP_ENV = process.env.NODE_ENV;
 
-ReactGA.initialize('UA-305660-37', { debug: true });
+const isProd = REACT_APP_ENV === 'production' && !(window.location.host.includes('cori-staging'));
+
+ReactGA.initialize('UA-305660-37');
 
 export default function App() {
-  const contentfulEdit = (REACT_APP_ENV === 'production' && !(window.location.host.includes('cori-staging'))) ? '' : <ContentfulEdit />;
+  const contentfulEdit = isProd ? '' : <ContentfulEdit />;
   ReactGA.pageview(window.location.pathname);
   return (
     <AppWrapper>
