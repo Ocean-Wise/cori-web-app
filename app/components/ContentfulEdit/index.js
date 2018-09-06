@@ -107,6 +107,21 @@ class ContentfulEdit extends React.Component { // eslint-disable-line react/pref
     }
   }
 
+  componentWillUnmount() {
+    let last = '';
+    let ticking = false;
+    window.removeEventListener('scroll', () => {
+      last = window.scrollY;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          this.changePositioning(last);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  }
+
 
   changePositioning = (position) => {
     if (position > 40 && position < 80) {

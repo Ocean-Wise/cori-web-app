@@ -21,7 +21,7 @@ const LoadingIndicator = ({ person }) => (
 );
 
 LoadingIndicator.propTypes = {
-  person: PropTypes.boolean,
+  person: PropTypes.any,
 };
 
 export default LoadingIndicator;

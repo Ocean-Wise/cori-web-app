@@ -16,3 +16,6 @@ citation.js/node_modules
 citation.js/coverage/
 citation.js/jsdoc/
 citation.js/lib/
+
+# New Relic
+newrelic_agent.log

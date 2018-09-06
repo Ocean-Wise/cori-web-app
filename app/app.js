@@ -18,6 +18,7 @@ import 'sanitize.css/sanitize.css';
 import throttle from 'lodash/throttle';
 import { ThemeProvider } from 'styled-components';
 import browserUpdate from 'browser-update';
+import ReactGA from 'react-ga';
 
 // Import root app
 import App from 'containers/App';
@@ -71,6 +72,8 @@ store.subscribe(throttle(() => {
 browserUpdate({ required: { i: 12 }, unsupported: true, url: 'http://outdatedbrowser.com', no_permanent_hide: true, reminder: 0 });
 
 const MOUNT_NODE = document.getElementById('app');
+
+ReactGA.initialize('UA-305660-37', { debug: true });
 
 const render = (messages) => {
   ReactDOM.render(
