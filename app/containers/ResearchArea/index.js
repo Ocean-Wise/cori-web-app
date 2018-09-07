@@ -15,6 +15,7 @@ import { compose } from 'redux';
 import Header from 'components/Header';
 import Breadcrumbs from 'components/Breadcrumbs';
 import ResearchAreaContent from 'components/ResearchAreaContent';
+import ResearchAreaContentIe from 'components/ResearchAreaContentIe';
 import FloatingNav from 'components/FloatingNav';
 
 import injectReducer from 'utils/injectReducer';
@@ -48,17 +49,18 @@ export class ResearchArea extends React.PureComponent { // eslint-disable-line r
   render() {
     const NAV = this.state.width < 1200 ? '' : <FloatingNav active={this.props.match.params.slug} location={this.props.match} />;
     const spotlight = !(this.props.match.params.slug === 'cori' || this.props.match.params.slug === 'vancouver-aquarium');
+    const isIE = /* @cc_on!@ */false || !!document.documentMode;
 
     return (
       <div>
         <Helmet>
           <title>{this.deslugify(this.props.match.params.slug)}</title>
-          <meta name="description" content="Description of ResearchArea" />
+          <meta name="description" content="Read about our research" />
         </Helmet>
         <Header active={this.props.match.params.slug} />
-        <Breadcrumbs slug={this.props.match.params.slug} location={this.props.match} research />
-        {NAV}
-        <ResearchAreaContent spotlight={spotlight} slug={this.props.match.params.slug} match={this.props.match} width={this.state.width} />
+        {isIE ? '' : <Breadcrumbs slug={this.props.match.params.slug} location={this.props.match} research />}
+        {isIE ? '' : NAV}
+        {isIE ? <ResearchAreaContentIe spotlight={spotlight} slug={this.props.match.params.slug} match={this.props.match} width={this.state.width} /> : <ResearchAreaContent spotlight={spotlight} slug={this.props.match.params.slug} match={this.props.match} width={this.state.width} />}
       </div>
     );
   }

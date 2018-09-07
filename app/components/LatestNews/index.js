@@ -51,7 +51,7 @@ class LatestNews extends React.PureComponent { // eslint-disable-line react/pref
   getData = async () => {
     let featured;
     const regular = [];
-    await axios.post(`${window.location.origin}/api/rss`, { url: this.props.url, news: true })
+    await axios.post('/api/rss', { url: this.props.url, news: true })
       .then((res) => {
         const data = res.data;
         // There were no items in the RSS feed

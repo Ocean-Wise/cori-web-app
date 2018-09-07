@@ -16,6 +16,7 @@ import H2 from 'components/H2';
 import Button from '@material-ui/core/Button';
 import Badge from '@material-ui/core/Badge';
 import PublicationContent from 'components/PublicationContent';
+import PublicationContentIe from 'components/PublicationContentIe';
 import GetPublications from 'components/GetPublications/Loadable';
 import RAFilterButtons from 'components/RAFilterButtons';
 import DownloadIcon from 'styles/icons/download.svg';
@@ -200,6 +201,20 @@ export class Publications extends React.Component { // eslint-disable-line react
   }
 
   render() {
+    const isIE = /* @cc_on!@ */false || !!document.documentMode;
+    if (isIE) {
+      return (
+        <div>
+          <Helmet>
+            <title>Publications</title>
+            <meta name="description" content="Description of Publications" />
+          </Helmet>
+          <Header />
+          <PublicationContentIe />
+          <center><H2>This functionality is not supported on your browser</H2></center>
+        </div>
+      );
+    }
     return (
       <div>
         <Helmet>
