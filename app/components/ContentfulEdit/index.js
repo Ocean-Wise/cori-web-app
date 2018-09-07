@@ -20,7 +20,7 @@ function getData() {
     let slug = '';
     let type = '';
     let entryId = '';
-    const regexp = /(.*)\/(?<!(^\/))(.*)$/g;
+    const regexp = /(.*)(?!(^\/))\/(.*)$/g;
     try {
       const match = regexp.exec(window.location.pathname);
       type = match[1];
