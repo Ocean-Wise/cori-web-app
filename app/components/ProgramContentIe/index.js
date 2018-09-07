@@ -16,7 +16,6 @@ import Section from './Section';
 import A from './A';
 import H1 from './H1';
 import H3 from './H3';
-import H4 from './H4';
 import MarkdownWrapper from './MarkdownWrapper';
 import Divider from './Divider';
 import TitleContainer from './TitleContainer';
@@ -86,7 +85,6 @@ class ProgramContentIe extends React.Component { // eslint-disable-line react/pr
         </div>
       );
     } catch (err) {
-      console.log(err.stack);
       return <div></div>;
     }
   }
