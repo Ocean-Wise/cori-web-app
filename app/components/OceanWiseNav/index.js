@@ -47,6 +47,7 @@ class OceanWiseNav extends React.Component { // eslint-disable-line react/prefer
   }
 
   render() {
+    const isIE = /* @cc_on!@ */false || !!document.documentMode;
     return (
       <div className="hello-bar" ref={this.setWrapperRef}>
         <div style={{ display: 'inline-flex' }}>
@@ -59,7 +60,7 @@ class OceanWiseNav extends React.Component { // eslint-disable-line react/prefer
         </div>
 
 
-        <div className="hello-bar-logo-toggle">
+        <div className="hello-bar-logo-toggle" style={isIE ? { width: 147 } : {}}>
           <img alt="logo" className="hello-bar-logo" src="https://dev.ryanmurray.ca/ow/ow-logo.svg" />
           <button className={this.state.active ? 'hello-bar-btn hello-bar-btn-open' : 'hello-bar-btn hello-bar-btn-closed'} onClick={() => this.toggleActive()}>
             <img alt="chevron" className="hello-bar-icon" src="https://dev.ryanmurray.ca/ow/chevron.svg" />
