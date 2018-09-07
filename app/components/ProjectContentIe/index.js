@@ -143,8 +143,6 @@ class ProjectContentIe extends React.Component { // eslint-disable-line react/pr
 
 ProjectContentIe.propTypes = {
   slug: PropTypes.string.isRequired,
-  match: PropTypes.object.isRequired,
-  history: PropTypes.object,
 };
 
 export default ProjectContentIe;
