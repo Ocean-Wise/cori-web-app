@@ -15,7 +15,7 @@ import { compose } from 'redux';
 
 import Header from 'components/Header';
 import AboutContent from 'components/AboutContent';
-// import FloatingNav from 'components/FloatingNav';
+import AboutContentIe from 'components/AboutContentIe';
 
 import injectReducer from 'utils/injectReducer';
 import makeSelectAbout from './selectors';
@@ -53,7 +53,8 @@ export class About extends React.PureComponent { // eslint-disable-line react/pr
   }
 
   render() {
-    // const NAV = this.state.width < 1200 ? '' : <FloatingNav active={this.props.match.params.slug} location={this.props.match} />;
+    const isIE = /* @cc_on!@ */false || !!document.documentMode;
+    const Content = isIE ? <AboutContentIe width={this.state.width} /> : <AboutContent width={this.state.width} />;
     return (
       <div>
         <Helmet>
@@ -61,7 +62,7 @@ export class About extends React.PureComponent { // eslint-disable-line react/pr
           <meta name="description" content="About Ocean Wise Research" />
         </Helmet>
         <Header active={this.props.match.params.slug} />
-        <AboutContent width={this.state.width} />
+        {Content}
       </div>
     );
   }

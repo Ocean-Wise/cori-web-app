@@ -13,7 +13,9 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
 import ResearchOverviewTiles from 'components/ResearchOverviewTiles/Loadable';
+import ResearchOverviewTilesIe from 'components/ResearchOverviewTilesIe/Loadable';
 import HomeCopy from 'components/HomeCopy/Loadable';
+import HomeCopyIe from 'components/HomeCopyIe/Loadable';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
@@ -32,6 +34,9 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
   }
 
   render() {
+    const isIE = /* @cc_on!@ */false || !!document.documentMode;
+    const ResearchTiles = isIE ? <ResearchOverviewTilesIe /> : <ResearchOverviewTiles />;
+    const Copy = isIE ? <HomeCopyIe /> : <HomeCopy />;
     return (
       <article>
         <Header active={this.props.match.params.slug} />
@@ -40,8 +45,8 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
           <meta name="description" content="Ocean Wise Research" />
         </Helmet>
         <Wrapper>
-          <ResearchOverviewTiles />
-          <HomeCopy />
+          {ResearchTiles}
+          {Copy}
         </Wrapper>
       </article>
     );

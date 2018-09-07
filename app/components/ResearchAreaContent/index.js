@@ -138,7 +138,6 @@ function ResearchAreaContent({ data: { researchAreas }, slug, width, spotlight }
       </div>
     );
   } catch (err) {
-    console.log(err.stack);
     return <div></div>;
   }
 }

@@ -30,7 +30,7 @@ export class Media extends React.PureComponent { // eslint-disable-line react/pr
 
   componentWillMount() {
     const media = [];
-    axios.post(`${window.location.origin}/api/rss`, { url: 'https://ocean.org/media-release-tag/research/feed/', news: false, mediaPage: true })
+    axios.post('/api/rss', { url: 'https://ocean.org/media-release-tag/research/feed/', news: false, mediaPage: true })
       .then((res) => {
         const data = res.data;
         data.forEach((item, i) => {

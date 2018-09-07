@@ -16,11 +16,13 @@ import H2 from 'components/H2';
 import Button from '@material-ui/core/Button';
 import Badge from '@material-ui/core/Badge';
 import PublicationContent from 'components/PublicationContent';
+import PublicationContentIe from 'components/PublicationContentIe';
 import GetPublications from 'components/GetPublications/Loadable';
 import RAFilterButtons from 'components/RAFilterButtons';
 import DownloadIcon from 'styles/icons/download.svg';
 import { saveAs } from 'file-saver/FileSaver';
 import ReactGA from 'react-ga';
+import client from 'utils/contentful';
 
 import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
@@ -36,8 +38,8 @@ import reducer from './reducer';
 import { addToList, removeFromList, setLimit } from './actions';
 
 import SelectContainer from './SelectContainer';
-
-const contentful = require('contentful');
+import H3 from './H3';
+import A from './A';
 
 const styles = () => ({
   root: {
@@ -96,10 +98,6 @@ export class Publications extends React.Component { // eslint-disable-line react
 
   getTotalEntries = () => { // eslint-disable-line
     return new Promise((res) => {
-      const client = contentful.createClient({
-        space: 'fsquhe7zbn68',
-        accessToken: 'b1cb5f035189ddc9c2e21ad0746109e08620755b3db8ad6655852295e6baba00',
-      });
       if (this.props.match.params.slug !== undefined) {
         client.getEntries({
           content_type: 'researchPapers',
@@ -205,6 +203,23 @@ export class Publications extends React.Component { // eslint-disable-line react
   }
 
   render() {
+    const isIE = /* @cc_on!@ */false || !!document.documentMode;
+    if (isIE) {
+      return (
+        <div>
+          <Helmet>
+            <title>Publications</title>
+            <meta name="description" content="Description of Publications" />
+          </Helmet>
+          <Header />
+          <PublicationContentIe />
+          <center>
+            <H3>This feature is not avaliable on your browser. Please <A href="http://outdatedbrowser.com">update your browser</A>.</H3>
+            <H3>You can still look for research papers via the search function located at the top of the page.</H3>
+          </center>
+        </div>
+      );
+    }
     return (
       <div>
         <Helmet>

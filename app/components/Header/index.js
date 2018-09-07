@@ -19,13 +19,14 @@ import Logo from 'styles/icons/logo.svg';
 import Container from './Container';
 
 function Header({ active }) {
+  const isIE = /* @cc_on!@ */false || !!document.documentMode;
   return (
     <div style={{ borderBottom: '1px solid #CED5E9' }}>
       <OceanWiseNav />
       <Container>
         <Link to="/">
           {/* <H1>Ocean Wise<sup>&reg;</sup> <span>Research</span></H1> */}
-          <img id="logo" alt="Ocean Wise Research" src={Logo} style={{ width: 275 }} />
+          <img id="logo" alt="Ocean Wise Research" src={Logo} style={isIE ? { width: 275, height: 20 } : { width: 275 }} />
         </Link>
         <NavLinks active={active} />
       </Container>
