@@ -16,6 +16,7 @@ import Header from 'components/Header';
 import Breadcrumbs from 'components/Breadcrumbs';
 import FloatingNav from 'components/FloatingNav/Loadable';
 import ProgramContent from 'components/ProgramContent/Loadable';
+import ProgramContentIe from 'components/ProgramContentIe/Loadable';
 
 import injectReducer from 'utils/injectReducer';
 import makeSelectProgram from './selectors';
@@ -57,6 +58,7 @@ export class Program extends React.PureComponent { // eslint-disable-line react/
       .replace(/\w\S*/g, (str) => str.charAt(0).toUpperCase() + str.substr(1).toLowerCase());
 
   render() {
+    const isIE = /* @cc_on!@ */false || !!document.documentMode;
     const NAV = this.state.width < 1200 ? '' : <FloatingNav active={this.props.match.params.slug} location={this.props.match} />;
     return (
       <div>
@@ -65,9 +67,9 @@ export class Program extends React.PureComponent { // eslint-disable-line react/
           <meta name="description" content="Description of Program" />
         </Helmet>
         <Header active={this.props.match.params.slug} />
-        <Breadcrumbs slug={this.props.match.params.slug} location={this.props.match} program />
-        {NAV}
-        <ProgramContent slug={this.props.match.params.slug} match={this.props.match} width={this.state.width} />
+        {isIE ? '' : <Breadcrumbs slug={this.props.match.params.slug} location={this.props.match} program />}
+        {isIE ? '' : NAV}
+        {isIE ? <ProgramContentIe slug={this.props.match.params.slug} match={this.props.match} width={this.state.width} /> : <ProgramContent slug={this.props.match.params.slug} match={this.props.match} width={this.state.width} />}
       </div>
     );
   }

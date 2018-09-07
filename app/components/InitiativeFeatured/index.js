@@ -39,7 +39,7 @@ class InitiativeFeatured extends React.PureComponent { // eslint-disable-line re
 
   getData = () => {
     let story;
-    axios.post(`${window.location.origin}/api/rss`, { url: this.props.url, news: true })
+    axios.post('/api/rss', { url: this.props.url, news: true })
       .then((res) => {
         const data = res.data;
         if (data.featured.length < 1) {
