@@ -38,6 +38,8 @@ import reducer from './reducer';
 import { addToList, removeFromList, setLimit } from './actions';
 
 import SelectContainer from './SelectContainer';
+import H3 from './H3';
+import A from './A';
 
 const styles = () => ({
   root: {
@@ -211,7 +213,10 @@ export class Publications extends React.Component { // eslint-disable-line react
           </Helmet>
           <Header />
           <PublicationContentIe />
-          <center><H2>This functionality is not supported on your browser</H2></center>
+          <center>
+            <H3>This feature is not avaliable on your browser. Please <A href="http://outdatedbrowser.com">update your browser</A>.</H3>
+            <H3>You can still look for research papers via the search function located at the top of the page.</H3>
+          </center>
         </div>
       );
     }
