@@ -55,51 +55,58 @@ class PersonModal extends React.PureComponent { // eslint-disable-line react/pre
   }
 
   render() {
-    const { person, fullScreen, classes } = this.props;
+    const { person, isIE, fullScreen, classes } = this.props;
     let honorific = '';
-    if (person.honorifictitle !== null) {
-      honorific = `${person.honorifictitle}. `;
+    try {
+      if (person.honorifictitle !== null && typeof person.honorifictitle === 'string') {
+        honorific = `${person.honorifictitle}. `;
+      }
+    } catch (err) {
+      honorific = '';
     }
-
-    return (
-      <div>
-        <Person onClick={this.handleToggle}>
-          <Img image={person.image.url} filter={'grayscale'} />
-          <div style={{ color: '#00B398', fontSize: 24, fontWeight: 300, letterSpacing: '2.57px', lineHeight: '35px', maxWidth: 255 }}>{honorific}{person.first} {person.last}</div>
-          <Divider />
-          <div style={{ maxWidth: 255 }}>
-            <span className="bold">{person.position}</span>
-          </div>
-        </Person>
-        <Dialog
-          fullScreen={fullScreen}
-          open={this.state.open}
-          onClose={this.handleToggle}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-          classes={classes}
-        >
-          <DialogActions classes={classes} id="actions">
-            <IconButton onClick={this.handleToggle}>
-              <ClearIcon />
-            </IconButton>
-          </DialogActions>
-          <DialogContent>
-            <Person className="embed">
-              <Img image={person.image.url} filter={'grayscale'} />
-              <div style={{ color: '#00B398', fontSize: 24, fontWeight: 300, letterSpacing: '2.57px', lineHeight: '35px', maxWidth: 255 }}>{honorific}{person.first} {person.last}</div>
-              <Divider />
-              <div style={{ maxWidth: 255 }}>
-                <span className="bold">{person.position}</span>
-              </div>
-            </Person>
-            <div style={{ width: 375, marginLeft: 320 }}>
-              <ReactMarkdown source={person.copy} />
+    try {
+      return (
+        <div>
+          <Person onClick={this.handleToggle}>
+            <Img image={isIE ? person.image.fields.file.url : person.image.url} filter={'grayscale'} />
+            <div style={{ color: '#00B398', fontSize: 24, fontWeight: 300, letterSpacing: '2.57px', lineHeight: '35px', maxWidth: 255 }}>{honorific}{person.first} {person.last}</div>
+            <Divider />
+            <div style={{ maxWidth: 255 }}>
+              <span className="bold">{person.position}</span>
             </div>
-          </DialogContent>
-        </Dialog>
-      </div>
-    );
+          </Person>
+          <Dialog
+            fullScreen={fullScreen}
+            open={this.state.open}
+            onClose={this.handleToggle}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+            classes={classes}
+          >
+            <DialogActions classes={classes} id="actions">
+              <IconButton onClick={this.handleToggle}>
+                <ClearIcon />
+              </IconButton>
+            </DialogActions>
+            <DialogContent>
+              <Person className="embed">
+                <Img image={isIE ? person.image.fields.file.url : person.image.url} filter={'grayscale'} />
+                <div style={{ color: '#00B398', fontSize: 24, fontWeight: 300, letterSpacing: '2.57px', lineHeight: '35px', maxWidth: 255 }}>{honorific}{person.first} {person.last}</div>
+                <Divider />
+                <div style={{ maxWidth: 255 }}>
+                  <span className="bold">{person.position}</span>
+                </div>
+              </Person>
+              <div style={{ width: 375, marginLeft: 320 }}>
+                <ReactMarkdown source={person.copy} />
+              </div>
+            </DialogContent>
+          </Dialog>
+        </div>
+      );
+    } catch (err) {
+      return <div />;
+    }
   }
 }
 
@@ -108,6 +115,7 @@ PersonModal.propTypes = {
   fullScreen: PropTypes.bool.isRequired,
   classes: PropTypes.object,
   active: PropTypes.bool,
+  isIE: PropTypes.bool,
 };
 
 export default compose(
