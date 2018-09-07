@@ -75,7 +75,7 @@ class ContentfulEdit extends React.Component { // eslint-disable-line react/pref
   componentWillMount() {
     getData().then((entryId) => {
       this.setState({ entryId });
-    }).catch();
+    }).catch((err) => err);
   }
 
   componentDidMount() {
@@ -98,7 +98,7 @@ class ContentfulEdit extends React.Component { // eslint-disable-line react/pref
     if (location !== nextProps.location) {
       getData().then((entryId) => {
         this.setState({ entryId });
-      }).catch();
+      }).catch((err) => err);
     }
   }
 
