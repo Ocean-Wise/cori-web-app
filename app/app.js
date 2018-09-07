@@ -68,7 +68,7 @@ store.subscribe(throttle(() => {
   });
 }, 1000));
 
-browserUpdate({ required: { i: 12 }, unsupported: true, url: 'http://outdatedbrowser.com', no_permanent_hide: true, reminder: 0 });
+browserUpdate({ required: { i: 12, s: 9, e: 13 }, url: 'http://outdatedbrowser.com', no_permanent_hide: true, reminder: 0 });
 
 const MOUNT_NODE = document.getElementById('app');
 
