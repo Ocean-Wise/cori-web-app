@@ -11,7 +11,6 @@ import { graphql } from 'react-apollo';
 import ReactMarkdown from 'react-markdown';
 import getProgram from 'graphql/queries/getProgram.graphql';
 import { Grid, Row, Col } from 'react-flexbox-grid';
-import ChevronRight from 'styles/icons/ChevronRight.svg';
 
 import ResearchAreaTag from 'components/ResearchAreaTag/Loadable';
 import InitiativeFeatured from 'components/InitiativeFeatured/Loadable';
@@ -32,55 +31,67 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
   let program = {};
   try {
     program = programs[0];
+    // Loop over all the initiatives
     const initiativesList = program.initiatives.map((initiative, i) => {
-      const projects = [];
-      let column = [];
+      const projects = []; // The array to hold the final rendered project columns to display
+      const projectItems = []; // The array to hold the individual formatted project items
+
+      // How many columns should we have?
+      const roundCols = Math.ceil(initiative.projects.length / 3.0); // Round up fractions to next highest integer
+      const numCols = roundCols > 1 ? roundCols : 2; // Ensure we have at least two columns
+      // Loop over all the projects in the current initiative
       initiative.projects.map((project, j) => {
-        if (j === initiative.projects.length / 2) {
-          projects.push(<Col md={5} key={`column-${j.toString()}`}>{column}</Col>);
-          column = [];
-        }
+        // Check if we should link, and what type of link to render the project as
         if (project.showOnSite) {
           if (project.type !== 'Internal') {
             if (project.type === 'Link') {
-              column.push(
+              projectItems.push(
                 <div key={`project-${j.toString()}`} style={{ paddingBottom: 10, wordWrap: 'break-word' }}>
                   <a href={project.externalLink} style={{ fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>
-                    <span style={{ color: '#00B398' }}>{project.projectTitle} <img alt="Chevron" style={{ width: 25, marginLeft: 0 }} src={ChevronRight} /></span>
+                    <span style={{ color: '#00B398' }}>{project.projectTitle}</span>
                   </a>
                 </div>
               );
             } else if (project.type === 'PDF') {
-              column.push(
+              projectItems.push(
                 <div key={`project-${j.toString()}`} style={{ paddingBottom: 10, wordWrap: 'break-word' }}>
                   <a href={project.pdf.url} style={{ fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>
-                    <span style={{ color: '#00B398' }}>{project.projectTitle} <img alt="Chevron" style={{ width: 25, marginLeft: 0 }} src={ChevronRight} /></span>
+                    <span style={{ color: '#00B398' }}>{project.projectTitle}</span>
                   </a>
                 </div>
               );
             }
           } else {
-            column.push(
+            projectItems.push(
               <div key={`project-${j.toString()}`} style={{ paddingBottom: 10, wordWrap: 'break-word' }}>
                 <Link to={`/project/${project.slug}`} style={{ fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>
-                  <span style={{ color: '#00B398' }}>{project.projectTitle} <img alt="Chevron" style={{ width: 25, marginLeft: 0 }} src={ChevronRight} /></span>
+                  <span style={{ color: '#00B398' }}>{project.projectTitle}</span>
                 </Link>
               </div>
             );
           }
         } else {
-          column.push(
+          projectItems.push(
             <div key={`project-${j.toString()}`} style={{ paddingBottom: 10, wordWrap: 'break-word' }}>
               <span style={{ color: '#B2BEC4', fontSize: 14, lineHeight: '18px', fontWeight: 'bold' }}>{project.projectTitle}</span>
             </div>
           );
         }
-
-        if (j === initiative.projects.length - 1) {
-          projects.push(<Col key={`projectCol-${j.toString()}`} md={5}>{column}</Col>);
-        }
         return true;
       });
+
+      // Organize the projects into their proper columns.
+      // Loop over columns. Appropriate projects calculated by (project index % numCols) === current column
+      for (let j = 0; j < numCols; j += 1) {
+        projects.push(
+          <Col md={5} key={`column-${j.toString()}`}>
+            {projectItems.map((project, k) => {
+              if (k % numCols === j) return project;
+              return null;
+            })}
+          </Col>
+        );
+      }
 
       const sponsors = [];
       try {
