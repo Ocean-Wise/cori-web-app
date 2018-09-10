@@ -35,10 +35,10 @@ export class Media extends React.PureComponent { // eslint-disable-line react/pr
         const data = res.data;
         data.forEach((item, i) => {
           media.push(
-            <div key={`release-${i.toString()}`}>
+            <a href={item.link} target="_blank" key={`release-${i.toString()}`}>
               <H2>{item.title}</H2>
               <span style={{ color: '#8D8D8D', fontSize: 12, lineHeight: '18px' }}>{item.date}</span>
-            </div>
+            </a>
           );
         });
         this.setState({ media });
