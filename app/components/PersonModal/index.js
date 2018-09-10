@@ -19,6 +19,7 @@ import ReactGA from 'react-ga';
 import Divider from './Divider';
 import Person from './Person';
 import Img from './Img';
+import CopyWrapper from './CopyWrapper';
 
 const styles = () => ({
   paper: {
@@ -97,9 +98,9 @@ class PersonModal extends React.PureComponent { // eslint-disable-line react/pre
                   <span className="bold">{person.position}</span>
                 </div>
               </Person>
-              <div style={{ width: 375, marginLeft: 320 }}>
+              <CopyWrapper>
                 <ReactMarkdown source={person.copy} />
-              </div>
+              </CopyWrapper>
             </DialogContent>
           </Dialog>
         </div>
