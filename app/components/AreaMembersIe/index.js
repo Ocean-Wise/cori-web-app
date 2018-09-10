@@ -16,6 +16,17 @@ class AreaMembersIe extends React.Component { // eslint-disable-line react/prefe
   }
 
   componentWillMount() {
+    this.getData();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { slug } = this.props;
+    if (slug !== nextProps.slug) {
+      window.location.reload(false);
+    }
+  }
+
+  getData = () => {
     client.getEntries({
       content_type: 'researchArea',
       'fields.slug[match]': this.props.slug,
