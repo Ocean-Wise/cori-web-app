@@ -37,10 +37,10 @@ class MediaReleases extends React.PureComponent { // eslint-disable-line react/p
         const media = [];
         res.data.forEach((item, i) => {
           media.push(
-            <div key={i.toString()}>
-              <a href={item.link} target="_blank"><H3 style={{ marginBottom: 2 }}>{item.title}</H3></a>
+            <a href={item.link} target="_blank" key={i.toString()}>
+              <H3 style={{ marginBottom: 2 }}>{item.title}</H3>
               <Date>{item.date}</Date>
-            </div>
+            </a>
           );
         });
         this.setState({ media });
