@@ -187,13 +187,13 @@ class RockfishSurvey extends React.Component { // eslint-disable-line react/pref
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', margin: '0 auto', marginBottom: 20 }}>
               <H2>Annual Rockfish Abundance Survey</H2>
-              <P>If you SCUBA dive with a video camera and capture video of rockfish then it’s easy for you to participate in our Rockfish Abundance Survey, which runs annually from August to October. Through this diver survey we collect data that can help us determine how many rockfish there are, where they live and how this information might change over time. Participating in this survey can be as easy as just sending us your dive videos, we will identify and count the rockfish for you. Or, if you are good at identifying the fish yourself you can fill out the survey sheet.</P>
+              <P>Are you a SCUBA diver? If so, Ocean Wise&reg; can use your help with our Annual Rockfish Abundance Survey. Either count or video the rockfish you see on you dive and submit your data online to participate. Conservation of B.C.’s inshore rockfish species is a serious matter owing to the slow maturation, longevity and small home territories of these fishes. By surveying rockfish along the B.C. coast, we can monitor and continue to ensure these species thrive.</P>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', margin: '0 auto', marginBottom: 20 }}>
               <H2>How The Survey Began</H2>
-              <P>Conservation of B.C.’s inshore rockfish species is a serious matter owing to the slow maturation, longevity and small home territories of these fishes. They are all too easy to catch, and are still a target of poachers. In 2007, Fisheries and Oceans Canada finalized a total of 164 Rockfish Conservation Areas in B.C., to aid the recovery of B.C.’s inshore rockfish species. By surveying rockfish along the B.C. coast inside and outside of these RCAs, we can monitor and continue to ensure these species thrive.</P>
+              <P>Conservation of B.C.’s inshore rockfish species is a serious matter owing to the slow maturation, longevity and small home territories of these fishes. They are all-too-easy to catch, and are still a target of poachers. In 2007, Fisheries and Oceans Canada finalized a total of 164 Rockfish Conservation Areas in B.C. to aid the recovery of B.C.’s inshore rockfish species. By surveying rockfish along the B.C. coast inside and outside of these RCAs, we can monitor and continue to ensure these species thrive.</P>
               <H2>Between a Rock And A Hard Place</H2>
-              <P>Recent research findings by the Vancouver Aquarium’s Howe Sound dive team indicate that, in B.C., some rockfish hide deep in rock piles during winter. With this in mind, the rockfish abundance survey is best conducted in summer and early fall. Late summer typically has good visibility and the rockfish tend to be hovering well above their rocky home sites. Consequently, this years Rockfish Abundance Survey is being conducted from August-October.</P>
+              <P>Recent research findings by the Vancouver Aquarium’s Howe Sound dive team indicate that, in B.C., some rockfish hide deep in rock piles during winter. With this in mind, the rockfish abundance survey is best conducted in summer and early fall. Late summer typically has good visibility and the rockfish tend to be hovering well above their rocky home sites.</P>
               <H2>Rockfish Conservation</H2>
               <P>Rockfish are an important part of B.C.’s ocean ecosystem. However, they’re easy targets for fishermen, as they naturally don’t move far from their home territories. The Aquarium team has been working to establish black rockfish where they were once abundant along the shoreline of West Vancouver. They had been fished out in the 1960s, but signs are emerging that our black rockfish transplants have successfully bred new generations in 2004, 2006, 2008 and 2010. As previously mentioned, the Howe Sound team is also monitoring a population of copper rockfish year round to better understand the winter hiding behaviour that has been observed over the past 7 years.</P>
               <Button id="instructions" onClick={() => this.handleInstructions(false)}>Start by reading the instructions</Button>
@@ -223,12 +223,13 @@ class RockfishSurvey extends React.Component { // eslint-disable-line react/pref
                       </div>
                       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
                         <Select fullWidth value={this.state.generalLocation} displayEmpty onChange={this.handleText('generalLocation')}>
-                          <MenuItem value="">General Location...</MenuItem>
+                          <MenuItem value="">Area...</MenuItem>
                           <MenuItem value="Howe Sound">Howe Sound</MenuItem>
                           <MenuItem value="Haida Gwaii">Haida Gwaii</MenuItem>
                           <MenuItem value="Burrard Inlet">Burrard Inlet</MenuItem>
                           <MenuItem value="Saanich Inlet">Saanich Inlet</MenuItem>
-                          <MenuItem value="Southern Gulf Islands">Southern Gulf Islands</MenuItem>
+                          <MenuItem value="Strait of Georgia Southern Gulf Islands">Strait of Georgia Southern Gulf Islands</MenuItem>
+                          <MenuItem value="Inside Southern Gulf Islands">Inside Southern Gulf Islands</MenuItem>
                           <MenuItem value="San Juan Islands">San Juan Islands</MenuItem>
                           <MenuItem value="Barkley Sound">Barkley Sound</MenuItem>
                           <MenuItem value="NE Vancouver Island">NE Vancouver Island</MenuItem>
@@ -236,7 +237,8 @@ class RockfishSurvey extends React.Component { // eslint-disable-line react/pref
                           <MenuItem value="Strait of Juan de Fuca">Strait of Juan de Fuca</MenuItem>
                           <MenuItem value="Campbell River">Campbell River</MenuItem>
                           <MenuItem value="Northern Gulf Islands">Northern Gulf Islands</MenuItem>
-                          <MenuItem value="Sunshine Coast">Sunshine Coast</MenuItem>
+                          <MenuItem value="Sunshine Coast North">Sunshine Coast North</MenuItem>
+                          <MenuItem value="Sunshine Coast South">Sunshine Coast South</MenuItem>
                           <MenuItem value="Nanaimo">Nanaimo</MenuItem>
                           <MenuItem value="Sechelt">Sechelt</MenuItem>
                           <MenuItem value="Jervis Inlet">Jervis Inlet</MenuItem>
@@ -255,7 +257,7 @@ class RockfishSurvey extends React.Component { // eslint-disable-line react/pref
                       </div>
                       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
                         <Select value={this.state.bottomType} displayEmpty onChange={this.handleText('bottomType')}>
-                          <MenuItem value="">Bottom Type</MenuItem>
+                          <MenuItem value="">Dominant Bottom Type</MenuItem>
                           <MenuItem value="Wall">Wall</MenuItem>
                           <MenuItem value="Boulders">Boulders</MenuItem>
                           <MenuItem value="Cobble">Cobble</MenuItem>
@@ -289,20 +291,6 @@ class RockfishSurvey extends React.Component { // eslint-disable-line react/pref
                         </Row>
                         <Row>
                           <Col xl={2}>
-                            Quillback
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Adults" margin="normal" value={this.state.quillbackAdults} onChange={this.handleText('quillbackAdults')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.quillbackJuvenile} onChange={this.handleText('quillbackJuvenile')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Baby" margin="normal" value={this.state.quillbackBaby} onChange={this.handleText('quillbackBaby')} />
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xl={2}>
                             Copper
                           </Col>
                           <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
@@ -317,6 +305,48 @@ class RockfishSurvey extends React.Component { // eslint-disable-line react/pref
                         </Row>
                         <Row>
                           <Col xl={2}>
+                            Quillback
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Adults" margin="normal" value={this.state.quillbackAdults} onChange={this.handleText('quillbackAdults')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.quillbackJuvenile} onChange={this.handleText('quillbackJuvenile')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Baby" margin="normal" value={this.state.quillbackBaby} onChange={this.handleText('quillbackBaby')} />
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col xl={2}>
+                            Vermillion
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Adults" margin="normal" value={this.state.vermillionAdults} onChange={this.handleText('vermillionAdults')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.vermillionJuvenile} onChange={this.handleText('vermillionJuvenile')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Baby" margin="normal" value={this.state.vermillionBaby} onChange={this.handleText('vermillionBaby')} />
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col xl={2}>
+                            Canary
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Adults" margin="normal" value={this.state.canaryAdults} onChange={this.handleText('canaryAdults')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.canaryJuvenile} onChange={this.handleText('canaryJuvenile')} />
+                          </Col>
+                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                            <TextField placeholder="# Baby" margin="normal" value={this.state.canaryBaby} onChange={this.handleText('canaryBaby')} />
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col xl={2}>
                             Yelloweye
                           </Col>
                           <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
@@ -327,34 +357,6 @@ class RockfishSurvey extends React.Component { // eslint-disable-line react/pref
                           </Col>
                           <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
                             <TextField placeholder="# Baby" margin="normal" value={this.state.yelloweyeBaby} onChange={this.handleText('yelloweyeBaby')} />
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xl={2}>
-                            Yellowtail
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Adults" margin="normal" value={this.state.yellowtailAdults} onChange={this.handleText('yellowtailAdults')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.yellowtailJuvenile} onChange={this.handleText('yellowtailJuvenile')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Baby" margin="normal" value={this.state.yellowtailBaby} onChange={this.handleText('yellowtailBaby')} />
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xl={2}>
-                            Black
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Adults" margin="normal" value={this.state.blackAdults} onChange={this.handleText('blackAdults')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.blackJuvenile} onChange={this.handleText('blackJuvenile')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Baby" margin="normal" value={this.state.blackBaby} onChange={this.handleText('blackBaby')} />
                           </Col>
                         </Row>
                         <Row>
@@ -387,30 +389,30 @@ class RockfishSurvey extends React.Component { // eslint-disable-line react/pref
                         </Row>
                         <Row>
                           <Col xl={2}>
-                            Vermillion
+                            Yellowtail
                           </Col>
                           <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Adults" margin="normal" value={this.state.vermillionAdults} onChange={this.handleText('vermillionAdults')} />
+                            <TextField placeholder="# Adults" margin="normal" value={this.state.yellowtailAdults} onChange={this.handleText('yellowtailAdults')} />
                           </Col>
                           <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.vermillionJuvenile} onChange={this.handleText('vermillionJuvenile')} />
+                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.yellowtailJuvenile} onChange={this.handleText('yellowtailJuvenile')} />
                           </Col>
                           <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Baby" margin="normal" value={this.state.vermillionBaby} onChange={this.handleText('vermillionBaby')} />
+                            <TextField placeholder="# Baby" margin="normal" value={this.state.yellowtailBaby} onChange={this.handleText('yellowtailBaby')} />
                           </Col>
                         </Row>
                         <Row>
                           <Col xl={2}>
-                            Canary
+                            Black
                           </Col>
                           <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Adults" margin="normal" value={this.state.canaryAdults} onChange={this.handleText('canaryAdults')} />
+                            <TextField placeholder="# Adults" margin="normal" value={this.state.blackAdults} onChange={this.handleText('blackAdults')} />
                           </Col>
                           <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.canaryJuvenile} onChange={this.handleText('canaryJuvenile')} />
+                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.blackJuvenile} onChange={this.handleText('blackJuvenile')} />
                           </Col>
                           <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Baby" margin="normal" value={this.state.canaryBaby} onChange={this.handleText('canaryBaby')} />
+                            <TextField placeholder="# Baby" margin="normal" value={this.state.blackBaby} onChange={this.handleText('blackBaby')} />
                           </Col>
                         </Row>
                         <Row>

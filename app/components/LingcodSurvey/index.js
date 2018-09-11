@@ -218,11 +218,11 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', margin: '0 auto', marginBottom: 20 }}>
               <H2>How The Survey Began</H2>
-              <P>In 1994, the Marine Life Sanctuaries Society (MLSS) created a project to involve the sport diving community in assisting with the collection of data on lingcod populations. At the time the commercial lingcod fishery in Georgia Strait had recently been closed, and the sport fishery was restricted by new size limits and annual bag limits. This project, now sponsored and organized by the Vancouver Aquarium, is called the Lingcod Egg Mass Survey (LEMS).</P>
+              <P>In 1994, the Marine Life Sanctuaries Society (MLSS) created a project to involve the sport diving community in assisting with the collection of data on lingcod populations. At the time the commercial lingcod fishery in the Strait of Georgia had recently been closed, and the sport fishery was restricted by new size limits and annual bag limits. This project, now sponsored and organized by the Vancouver Aquarium, is called the Lingcod Egg Mass Survey (LEMS).</P>
               <H2>The Importance of Timing</H2>
-              <P>The survey is carried out just after mature female lingcod spawn. After spawning, the female leaves the male to guard the nest site. The size of the egg mass indicates the age of the spawning female while the number of egg masses observed in a given area helps researchers determine lingcod abundance. The survey uses data collected by volunteer divers to evaluate the status of lingcod populations on the coast of B.C. These data provide information on the reproductive outputs of lingcod, as well as an insight into the age structure of the female lingcod population.</P>
+              <P>The survey is carried out just after mature female lingcod spawn. After spawning, the female leaves the male to guard the nest site. The size of the egg mass indicates the age of the spawning female while the number of egg masses observed in a given area helps researchers determine lingcod abundance. The survey uses data collected by community divers to evaluate the status of lingcod populations on the coast of B.C. These data provide information on the reproductive outputs of lingcod, as well as an insight into the age structure of the female lingcod population.</P>
               <H2>Natural Bottom Dwellers</H2>
-              <P>The lingcod is a bottom dwelling fish that inhabits the local waters of B.C.&lsquo;s coast. Lingcod can grow up to 1.5 meters in length and weigh up to 45 kg. Lingcod spawn from December through to early April in the Strait of Georgia, with peak egg mass abundance in late February. The males guard the egg masses, which resemble Styrofoam, for over a month, until hatching. The behavior of the guarding male and the distinctive appearance of the egg masses are easily identified by volunteer divers.</P>
+              <P>The lingcod is a bottom dwelling fish that inhabits the local waters of B.C.&lsquo;s coast. Lingcod can grow up to 1.5 meters in length and weigh up to 45 kg. Lingcod spawn from December through to early April in the Strait of Georgia, with peak egg mass abundance in late February. The males guard the egg masses, which resemble Styrofoam, for over a month, until hatching. The behavior of the guarding male and the distinctive appearance of the egg masses are easily identified by divers.</P>
               <H2>Lingcod At The Aquarium</H2>
               <P>The lingcod projects at the Vancouver Aquarium, including the Lingcod Egg Mass Survey and lingcod rearing in the research laboratory, have emerged due to serious concerns regarding the overfishing of lingcod stocks. Strait of Georgia Lingcod stocks are just 7-22 percent of what they were 100 years ago except for the Vancouver area, at less than 1 percent. In 1990, the commercial fishery for lingcod was stopped and in 2002, sportfishing for lingcod was banned in the Strait of Georgia.<br /><a href="http://www.vanaqua.orf/learn/aquafacts/fish/lingcod" style={{ color: '#00B398' }}>Visit our lingcod AquaFacts</a></P>
             </div>
@@ -272,12 +272,13 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
               </div>
               <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap', marginTop: 15 }}>
                 <Select fullWidth value={this.state.generalLocation} displayEmpty onChange={this.handleText('generalLocation')}>
-                  <MenuItem value="">General Location...</MenuItem>
+                  <MenuItem value="">Area...</MenuItem>
                   <MenuItem value="Howe Sound">Howe Sound</MenuItem>
                   <MenuItem value="Haida Gwaii">Haida Gwaii</MenuItem>
                   <MenuItem value="Burrard Inlet">Burrard Inlet</MenuItem>
                   <MenuItem value="Saanich Inlet">Saanich Inlet</MenuItem>
-                  <MenuItem value="Southern Gulf Islands">Southern Gulf Islands</MenuItem>
+                  <MenuItem value="Strait of Georgia Southern Gulf Islands">Strait of Georgia Southern Gulf Islands</MenuItem>
+                  <MenuItem value="Inside Southern Gulf Islands">Inside Southern Gulf Islands</MenuItem>
                   <MenuItem value="San Juan Islands">San Juan Islands</MenuItem>
                   <MenuItem value="Barkley Sound">Barkley Sound</MenuItem>
                   <MenuItem value="NE Vancouver Island">NE Vancouver Island</MenuItem>
@@ -285,7 +286,8 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
                   <MenuItem value="Strait of Juan de Fuca">Strait of Juan de Fuca</MenuItem>
                   <MenuItem value="Campbell River">Campbell River</MenuItem>
                   <MenuItem value="Northern Gulf Islands">Northern Gulf Islands</MenuItem>
-                  <MenuItem value="Sunshine Coast">Sunshine Coast</MenuItem>
+                  <MenuItem value="Sunshine Coast North">Sunshine Coast North</MenuItem>
+                  <MenuItem value="Sunshine Coast South">Sunshine Coast South</MenuItem>
                   <MenuItem value="Nanaimo">Nanaimo</MenuItem>
                   <MenuItem value="Sechelt">Sechelt</MenuItem>
                   <MenuItem value="Jervis Inlet">Jervis Inlet</MenuItem>
@@ -304,7 +306,7 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
               </div>
               <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
                 <Select value={this.state.bottomType} displayEmpty onChange={this.handleText('bottomType')}>
-                  <MenuItem value="">Bottom Type</MenuItem>
+                  <MenuItem value="">Dominant Bottom Type</MenuItem>
                   <MenuItem value="wall">wall</MenuItem>
                   <MenuItem value="boulders">boulders</MenuItem>
                   <MenuItem value="cobble">cobble</MenuItem>
