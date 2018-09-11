@@ -172,7 +172,9 @@ class AnnapolisSurvey extends React.Component { // eslint-disable-line react/pre
 
     return (
       <div style={{ overflowX: 'hidden' }}>
-        <Hero src={HEROIMG} alt={`${this.props.slug}-hero`} />
+        <Hero src={HEROIMG} alt={`${this.props.slug}-hero`}>
+          <span id="attribution">Photo Credit: Amy Morgan-Young</span>
+        </Hero>
         <div style={{ padding: 20 }}>
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '0 auto', maxWidth: 1100 }}>
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '0 auto', marginBottom: 20 }}>
