@@ -47,7 +47,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, width, spotlight }
       supporters = area.supporters.map((supporter) => { // eslint-disable-line
         return (
           <div key={`supporter-${supporter.name}`} style={{ margin: 'auto 20px', display: 'inline-block', height: '100%', verticalAlign: 'middle' }}>
-            <img src={supporter.logo.url} alt={supporter.name} width={150} style={{ display: 'inline-block', height: '100%', verticalAlign: 'middle' }} />
+            <img src={supporter.logo.url} alt={supporter.name} style={{ display: 'inline-block', width: 150, height: '100% !important', verticalAlign: 'middle' }} />
           </div>
         );
       });
