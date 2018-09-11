@@ -60,8 +60,8 @@ function ProjectContent({ data: { projects }, slug, match, history }) {
     try {
       supporters = project.supporters.map((supporter, i) => { // eslint-disable-line
         return (
-          <div key={`supporter-${i.toString()}`} style={{ margin: 'auto', padding: 10 }}>
-            <img src={supporter.logo.url} alt={supporter.name} width={250} />
+          <div key={`supporter-${i.toString()}`} style={{ margin: 'auto 20px', display: 'inline-block', height: '100%', verticalAlign: 'middle' }}>
+            <img src={supporter.logo.url} alt={supporter.name} width={150} style={{ display: 'inline-block', height: '100%', verticalAlign: 'middle' }} />
           </div>
         );
       });

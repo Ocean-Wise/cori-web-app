@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import * as mixins from 'styles/mixins';
 
-const Img = styled.img`
+const Img = styled.div`
+  background-image: url(${(props) => props.src});
+  background-size: cover;
   height: 100%;
   width: 50%;
   @media all and (max-width: 1400px) {

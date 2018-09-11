@@ -26,6 +26,7 @@ import MarkdownWrapper from './MarkdownWrapper';
 import Paper from './Paper';
 import Divider from './Divider';
 import TitleContainer from './TitleContainer';
+import ProjectCol from './ProjectCol';
 
 function ProgramContent({ data: { programs }, slug, match, width }) {
   let program = {};
@@ -84,12 +85,12 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
       // Loop over columns. Appropriate projects calculated by (project index % numCols) === current column
       for (let j = 0; j < numCols; j += 1) {
         projects.push(
-          <Col md={5} key={`column-${j.toString()}`}>
+          <ProjectCol md={6} key={`column-${j.toString()}`}>
             {projectItems.map((project, k) => {
               if (k % numCols === j) return project;
               return null;
             })}
-          </Col>
+          </ProjectCol>
         );
       }
 
@@ -98,7 +99,7 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
         initiative.sponsors.map((sponsor, j) => { // eslint-disable-line
           sponsors.push(
             <Col sm={3} xs={5} key={`sponsor-${j.toString()}`} style={{ margin: 'auto' }}>
-              <img style={{ padding: '16px 0 32px 0', maxWidth: '100%', display: 'block', margin: 'auto' }} src={sponsor.logo.url} alt={sponsor.logo.title} />
+              <img style={{ padding: '16px 0 32px 0', maxWidth: '150px', margin: 'auto' }} src={sponsor.logo.url} alt={sponsor.logo.title} />
             </Col>
           );
         });
