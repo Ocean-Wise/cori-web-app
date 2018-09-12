@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import ReactMarkdown from 'react-markdown';
 import getHomeCopy from 'graphql/queries/getHomeCopy.graphql';
+import { Helmet } from 'react-helmet';
 
 import Button from 'components/Button/Loadable';
 
@@ -70,6 +71,18 @@ function HomeCopy({ data: { homeCopies } }) {
 
     return (
       <div>
+        <Helmet>
+          {/* Search Engine */}
+          <meta name="description" content={data.introCopy} />
+          {/* Schema.org for Google */}
+          {/* eslint-disable */}
+          <meta itemprop="description" content={data.introCopy} />
+          {/* eslint-enable */}
+          {/* Twitter */}
+          <meta name="twitter:description" content={data.introCopy} />
+          {/* Open Graph general (Facebook, Pinterest & Google+) */}
+          <meta name="og:description" content={data.introCopy} />
+        </Helmet>
         <Wrapper>
           <IntroContainer>
             <center>

@@ -10,6 +10,7 @@ import { graphql } from 'react-apollo';
 import ReactMarkdown from 'react-markdown';
 import getProject from 'graphql/queries/getProject.graphql';
 import { Grid, Row, Col } from 'react-flexbox-grid';
+import { Helmet } from 'react-helmet';
 
 import ResearchAreaTag from 'components/ResearchAreaTag/Loadable';
 import ProjectMembers from 'components/ProjectMembers/Loadable';
@@ -99,6 +100,28 @@ function ProjectContent({ data: { projects }, slug, match, history }) {
 
     return (
       <div>
+        <Helmet>
+          {/* Search Engine */}
+          <meta name="description" content={project.subheader} />
+          <meta name="image" content={project.hero.url} />
+          {/* Schema.org for Google */}
+          {/* eslint-disable */}
+          <meta itemprop="name" content={`${project.projectTitle} - Ocean Wise Research`} />
+          <meta itemprop="description" content={project.subheader} />
+          <meta itemprop="image" content={project.hero.url} />
+          {/* eslint-enable */}
+          {/* Twitter */}
+          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:title" content={`${project.projectTitle} - Ocean Wise Research`} />
+          <meta name="twitter:description" content={project.subheader} />
+          {/* Open Graph general (Facebook, Pinterest & Google+) */}
+          <meta name="og:title" content={`${project.projectTitle} - Ocean Wise Research`} />
+          <meta name="og:description" content={project.subheader} />
+          <meta name="og:image" content={project.hero.url} />
+          <meta name="og:url" content={`https://research.ocean.org/project/${slug}`} />
+          <meta name="og:site_name" content="Ocean Wise Research" />
+          <meta name="og:type" content="article" />
+        </Helmet>
         <HeroWrapper>
           <Hero src={project.hero.url} alt={project.hero.title} />
           {project.imageAttribution ? <span id="attribution">{project.imageAttribution}</span> : ''}

@@ -8,6 +8,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import client from 'utils/contentful';
+import { Helmet } from 'react-helmet';
 
 import Button from 'components/Button/Loadable';
 
@@ -27,7 +28,6 @@ class HomeCopyIe extends React.Component { // eslint-disable-line react/prefer-s
   };
 
   componentWillMount() {
-    console.log('hi');
     client.getEntries({
       content_type: 'homeCopy',
     }).then((res) => this.setData(res.items[0].fields))
@@ -82,6 +82,18 @@ class HomeCopyIe extends React.Component { // eslint-disable-line react/prefer-s
 
       return (
         <div>
+          <Helmet>
+            {/* Search Engine */}
+            <meta name="description" content={data.introCopy} />
+            {/* Schema.org for Google */}
+            {/* eslint-disable */}
+            <meta itemprop="description" content={data.introCopy} />
+            {/* eslint-enable */}
+            {/* Twitter */}
+            <meta name="twitter:description" content={data.introCopy} />
+            {/* Open Graph general (Facebook, Pinterest & Google+) */}
+            <meta name="og:description" content={data.introCopy} />
+          </Helmet>
           <Wrapper>
             <IntroContainer>
               <center>
@@ -127,7 +139,6 @@ class HomeCopyIe extends React.Component { // eslint-disable-line react/prefer-s
         </div>
       );
     } catch (err) {
-      console.log(err.stack);
       return <div />;
     }
   }

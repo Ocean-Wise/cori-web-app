@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { Grid, Row } from 'react-flexbox-grid';
 import client from 'utils/contentful';
+import { Helmet } from 'react-helmet';
 
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import ProgramTilesIe from 'components/ProgramTilesIe/Loadable';
@@ -93,6 +94,28 @@ class ResearchAreaContentIe extends React.Component { // eslint-disable-line rea
       const Spotlight = spotlight ? <SpotlightTag /> : '';
       return (
         <div style={{ overflow: 'hidden' }}>
+          <Helmet>
+            {/* Search Engine */}
+            <meta name="description" content={area.copy} />
+            <meta name="image" content={area.hero.fields.file.url} />
+            {/* Schema.org for Google */}
+            {/* eslint-disable */}
+            <meta itemprop="name" content={`${area.title} - Ocean Wise Research`} />
+            <meta itemprop="description" content={area.copy} />
+            <meta itemprop="image" content={area.hero.fields.file.url} />
+            {/* eslint-enable */}
+            {/* Twitter */}
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:title" content={`${area.title} - Ocean Wise Research`} />
+            <meta name="twitter:description" content={area.copy} />
+            {/* Open Graph general (Facebook, Pinterest & Google+) */}
+            <meta name="og:title" content={`${area.title} - Ocean Wise Research`} />
+            <meta name="og:description" content={area.copy} />
+            <meta name="og:image" content={area.hero.fields.file.url} />
+            <meta name="og:url" content={`https://research.ocean.org/research/${slug}`} />
+            <meta name="og:site_name" content="Ocean Wise Research" />
+            <meta name="og:type" content="article" />
+          </Helmet>
           <HeroWrapper>
             <Hero src={area.hero.fields.file.url} alt={area.hero.fields.title} />
             {area.imageAttribution ? <span id="attribution">{area.imageAttribution}</span> : ''}

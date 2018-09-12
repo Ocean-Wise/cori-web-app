@@ -59,7 +59,26 @@ export default function App() {
           titleTemplate="%s - Ocean Wise Research"
           defaultTitle="Ocean Wise Research"
         >
-          <meta name="description" content="Ocean Wise Research" />
+          {/* Search Engine */}
+          <meta name="description" content="Ocean Wise Research contributes to knowledge and understanding of individuals, populations and habitats through a combination of studies carried out in the wild and with the animals living at the Vancouver Aquarium. Field research is largely carried out under the auspices of the Coastal Ocean Research Institute (CORI)." />
+          <meta name="image" content="http://images.ctfassets.net/fsquhe7zbn68/7hl1kxd9XG8OmgQsWu6S4c/c51e91dcc782cca4f4df977cefbf1cc6/Resources_title_picture.jpg" />
+          {/* Schema.org for Google */}
+          {/* eslint-disable */}
+          <meta itemprop="name" content="Ocean Wise Research" />
+          <meta itemprop="description" content="Ocean Wise Research contributes to knowledge and understanding of individuals, populations and habitats through a combination of studies carried out in the wild and with the animals living at the Vancouver Aquarium. Field research is largely carried out under the auspices of the Coastal Ocean Research Institute (CORI)." />
+          <meta itemprop="image" content="http://images.ctfassets.net/fsquhe7zbn68/7hl1kxd9XG8OmgQsWu6S4c/c51e91dcc782cca4f4df977cefbf1cc6/Resources_title_picture.jpg" />
+          {/* eslint-enable */}
+          {/* Twitter */}
+          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:title" content="Ocean Wise Research" />
+          <meta name="twitter:description" content="Ocean Wise Research contributes to knowledge and understanding of individuals, populations and habitats through a combination of studies carried out in the wild and with the animals living at the Vancouver Aquarium. Field research is largely carried out under the auspices of the Coastal Ocean Research Institute (CORI)." />
+          {/* Open Graph general (Facebook, Pinterest & Google+) */}
+          <meta name="og:title" content="Ocean Wise Research" />
+          <meta name="og:description" content="Ocean Wise Research contributes to knowledge and understanding of individuals, populations and habitats through a combination of studies carried out in the wild and with the animals living at the Vancouver Aquarium. Field research is largely carried out under the auspices of the Coastal Ocean Research Institute (CORI)." />
+          <meta name="og:image" content="http://images.ctfassets.net/fsquhe7zbn68/7hl1kxd9XG8OmgQsWu6S4c/c51e91dcc782cca4f4df977cefbf1cc6/Resources_title_picture.jpg" />
+          <meta name="og:url" content="https://research.ocean.org" />
+          <meta name="og:site_name" content="Ocean Wise Research" />
+          <meta name="og:type" content="website" />
         </Helmet>
         {contentfulEdit}
         <Switch>

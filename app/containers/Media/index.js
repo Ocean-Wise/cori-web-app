@@ -53,7 +53,24 @@ export class Media extends React.PureComponent { // eslint-disable-line react/pr
       <div>
         <Helmet>
           <title>Media Releases</title>
-          <meta name="description" content="Media Releases from Ocean.org" />
+          {/* Search Engine */}
+          <meta name="description" content="Media Releases from Ocean.org on our research" />
+          <meta name="image" content="http://images.ctfassets.net/fsquhe7zbn68/1W8cGTEbmQaYIoYMEIQWCO/a59d36fa88a13e2f7a0ba446a60b0309/frank-busch-731184-unsplash.jpg" />
+          {/* Schema.org for Google */}
+          {/* eslint-disable */}
+          <meta itemprop="name" content="Ocean Wise Research Media Releases" />
+          <meta itemprop="image" content="http://images.ctfassets.net/fsquhe7zbn68/1W8cGTEbmQaYIoYMEIQWCO/a59d36fa88a13e2f7a0ba446a60b0309/frank-busch-731184-unsplash.jpg" />
+          {/* eslint-enable */}
+          {/* Twitter */}
+          <meta name="twitter:title" content="Ocean Wise Research Media Releases" />
+          <meta name="twitter:description" content="Media Releases from Ocean.org on our research" />
+          {/* Open Graph general (Facebook, Pinterest & Google+) */}
+          <meta name="og:title" content="Ocean Wise Research Media Releases" />
+          <meta name="og:description" content="Media Releases from Ocean.org on our research" />
+          <meta name="og:image" content="http://images.ctfassets.net/fsquhe7zbn68/7hl1kxd9XG8OmgQsWu6S4c/c51e91dcc782cca4f4df977cefbf1cc6/Resources_title_picture.jpg" />
+          <meta name="og:url" content="https://research.ocean.org/media" />
+          <meta name="og:site_name" content="Ocean Wise Research" />
+          <meta name="og:type" content="website" />
         </Helmet>
         <Header />
         <div style={{ marginTop: 80, marginBottom: 120 }}>

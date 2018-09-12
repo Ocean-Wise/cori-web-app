@@ -64,7 +64,6 @@ export class Program extends React.PureComponent { // eslint-disable-line react/
       <div>
         <Helmet>
           <title>{this.deslugify(this.props.match.params.slug)}</title>
-          <meta name="description" content="Description of Program" />
         </Helmet>
         <Header active={this.props.match.params.slug} />
         {isIE ? '' : <Breadcrumbs slug={this.props.match.params.slug} location={this.props.match} program />}

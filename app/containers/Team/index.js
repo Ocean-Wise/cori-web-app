@@ -42,7 +42,24 @@ export class Team extends React.PureComponent { // eslint-disable-line react/pre
       <div>
         <Helmet>
           <title>Our Team</title>
-          <meta name="description" content="Description of Team" />
+          {/* Search Engine */}
+          <meta name="description" content="Meet the Ocean Wise Research team" />
+          <meta name="image" content="http://images.ctfassets.net/fsquhe7zbn68/1W8cGTEbmQaYIoYMEIQWCO/a59d36fa88a13e2f7a0ba446a60b0309/frank-busch-731184-unsplash.jpg" />
+          {/* Schema.org for Google */}
+          {/* eslint-disable */}
+          <meta itemprop="name" content="Ocean Wise Research Team" />
+          <meta itemprop="image" content="http://images.ctfassets.net/fsquhe7zbn68/1W8cGTEbmQaYIoYMEIQWCO/a59d36fa88a13e2f7a0ba446a60b0309/frank-busch-731184-unsplash.jpg" />
+          {/* eslint-enable */}
+          {/* Twitter */}
+          <meta name="twitter:title" content="Ocean Wise Research Team" />
+          <meta name="twitter:description" content="Meet the Ocean Wise Research team" />
+          {/* Open Graph general (Facebook, Pinterest & Google+) */}
+          <meta name="og:title" content="Ocean Wise Research Team" />
+          <meta name="og:description" content="Meet the Ocean Wise Research team" />
+          <meta name="og:image" content="http://images.ctfassets.net/fsquhe7zbn68/7hl1kxd9XG8OmgQsWu6S4c/c51e91dcc782cca4f4df977cefbf1cc6/Resources_title_picture.jpg" />
+          <meta name="og:url" content="https://research.ocean.org/team" />
+          <meta name="og:site_name" content="Ocean Wise Research" />
+          <meta name="og:type" content="website" />
         </Helmet>
         <Header active={this.props.match.params.slug} />
         {Copy}

@@ -59,7 +59,24 @@ export class About extends React.PureComponent { // eslint-disable-line react/pr
       <div>
         <Helmet>
           <title>About</title>
-          <meta name="description" content="About Ocean Wise Research" />
+          {/* Search Engine */}
+          <meta name="description" content="Ocean Wise Research is home to more than 30 researchers committed to pursuing science in support of ocean conservation." />
+          <meta name="image" content="http://images.ctfassets.net/fsquhe7zbn68/1W8cGTEbmQaYIoYMEIQWCO/a59d36fa88a13e2f7a0ba446a60b0309/frank-busch-731184-unsplash.jpg" />
+          {/* Schema.org for Google */}
+          {/* eslint-disable */}
+          <meta itemprop="name" content="About Ocean Wise Research" />
+          <meta itemprop="image" content="http://images.ctfassets.net/fsquhe7zbn68/1W8cGTEbmQaYIoYMEIQWCO/a59d36fa88a13e2f7a0ba446a60b0309/frank-busch-731184-unsplash.jpg" />
+          {/* eslint-enable */}
+          {/* Twitter */}
+          <meta name="twitter:title" content="About Ocean Wise Research" />
+          <meta name="twitter:description" content="Ocean Wise Research is home to more than 30 researchers committed to pursuing science in support of ocean conservation." />
+          {/* Open Graph general (Facebook, Pinterest & Google+) */}
+          <meta name="og:title" content="About Ocean Wise Research" />
+          <meta name="og:description" content="Ocean Wise Research is home to more than 30 researchers committed to pursuing science in support of ocean conservation." />
+          <meta name="og:image" content="http://images.ctfassets.net/fsquhe7zbn68/1W8cGTEbmQaYIoYMEIQWCO/a59d36fa88a13e2f7a0ba446a60b0309/frank-busch-731184-unsplash.jpg" />
+          <meta name="og:url" content="https://research.ocean.org/about" />
+          <meta name="og:site_name" content="Ocean Wise Research" />
+          <meta name="og:type" content="website" />
         </Helmet>
         <Header active={this.props.match.params.slug} />
         {Content}

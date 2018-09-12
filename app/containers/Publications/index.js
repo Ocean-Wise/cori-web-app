@@ -209,7 +209,26 @@ export class Publications extends React.Component { // eslint-disable-line react
         <div>
           <Helmet>
             <title>Publications</title>
-            <meta name="description" content="Description of Publications" />
+            {/* Search Engine */}
+            <meta name="description" content="Read the research articles that our researchers have published" />
+            <meta name="image" content="http://images.ctfassets.net/fsquhe7zbn68/7hl1kxd9XG8OmgQsWu6S4c/c51e91dcc782cca4f4df977cefbf1cc6/Resources_title_picture.jpg" />
+            {/* Schema.org for Google */}
+            {/* eslint-disable */}
+            <meta itemprop="name" content="Ocean Wise Research Publications" />
+            <meta itemprop="description" content="Read the research articles that our researchers have published" />
+            <meta itemprop="image" content="http://images.ctfassets.net/fsquhe7zbn68/7hl1kxd9XG8OmgQsWu6S4c/c51e91dcc782cca4f4df977cefbf1cc6/Resources_title_picture.jpg" />
+            {/* eslint-enable */}
+            {/* Twitter */}
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:title" content="Ocean Wise Research Publications" />
+            <meta name="twitter:description" content="Read the research articles that our researchers have published" />
+            {/* Open Graph general (Facebook, Pinterest & Google+) */}
+            <meta name="og:title" content="Ocean Wise Research Publications" />
+            <meta name="og:description" content="Read the research articles that our researchers have published" />
+            <meta name="og:image" content="http://images.ctfassets.net/fsquhe7zbn68/7hl1kxd9XG8OmgQsWu6S4c/c51e91dcc782cca4f4df977cefbf1cc6/Resources_title_picture.jpg" />
+            <meta name="og:url" content="https://research.ocean.org" />
+            <meta name="og:site_name" content="Ocean Wise Research" />
+            <meta name="og:type" content="website" />
           </Helmet>
           <Header />
           <PublicationContentIe />

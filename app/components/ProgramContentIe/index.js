@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import client from 'utils/contentful';
+import { Helmet } from 'react-helmet';
 
 import Hero from './Hero';
 import HeroWrapper from './HeroWrapper';
@@ -40,7 +41,7 @@ class ProgramContentIe extends React.Component { // eslint-disable-line react/pr
 
   render() {
     const { program } = this.state;
-    const { width } = this.props;
+    const { width, slug } = this.props;
     try {
       const responsiveWidth = width < 769 ? '100%' : 850;
       const InitiativesComponent = (
@@ -61,6 +62,28 @@ class ProgramContentIe extends React.Component { // eslint-disable-line react/pr
       );
       return (
         <div>
+          <Helmet>
+            {/* Search Engine */}
+            <meta name="description" content={program.copy} />
+            <meta name="image" content={program.hero.fields.file.url} />
+            {/* Schema.org for Google */}
+            {/* eslint-disable */}
+            <meta itemprop="name" content={`${program.title} - Ocean Wise Research`} />
+            <meta itemprop="description" content={program.subheader} />
+            <meta itemprop="image" content={program.hero.fields.file.url} />
+            {/* eslint-enable */}
+            {/* Twitter */}
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:title" content={`${program.title} - Ocean Wise Research`} />
+            <meta name="twitter:description" content={program.subheader} />
+            {/* Open Graph general (Facebook, Pinterest & Google+) */}
+            <meta name="og:title" content={`${program.title} - Ocean Wise Research`} />
+            <meta name="og:description" content={program.subheader} />
+            <meta name="og:image" content={program.hero.fields.file.url} />
+            <meta name="og:url" content={`https://research.ocean.org/program/${slug}`} />
+            <meta name="og:site_name" content="Ocean Wise Research" />
+            <meta name="og:type" content="article" />
+          </Helmet>
           <HeroWrapper>
             <Hero src={program.hero.fields.file.url} alt={program.hero.fields.title} />
             {program.imageAttribution ? <span id="attribution">{program.imageAttribution}</span> : ''}
