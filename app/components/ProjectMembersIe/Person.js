@@ -17,7 +17,7 @@ const Person = styled.div`
       font-weight: 300;
       line-height: 35px;
       letter-spacing: 3px;
-      max-width: 255px;
+      max-width: 250px;
     }
     &:last-of-type {
       color: #8D8D8D;
