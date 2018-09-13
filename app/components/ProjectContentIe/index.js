@@ -148,7 +148,7 @@ class ProjectContentIe extends React.Component { // eslint-disable-line react/pr
                   <H1>{project.projectTitle}</H1>
                   <H3>{project.subheader}</H3>
                   <MarkdownWrapper>
-                    <ReactMarkdown source={copy} />
+                    <ReactMarkdown source={copy} escapeHtml={false} />
                   </MarkdownWrapper>
                 </Col>
               </Row>

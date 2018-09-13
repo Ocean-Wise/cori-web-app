@@ -22,6 +22,7 @@ import H3 from './H3';
 import MarkdownWrapper from './MarkdownWrapper';
 import SupporterRow from './SupporterRow';
 
+
 function ProjectContent({ data: { projects }, slug, match, history }) {
   let project = {};
   try {
@@ -135,7 +136,7 @@ function ProjectContent({ data: { projects }, slug, match, history }) {
                 <H1>{project.projectTitle}</H1>
                 <H3>{project.subheader}</H3>
                 <MarkdownWrapper>
-                  <ReactMarkdown source={copy} />
+                  <ReactMarkdown source={copy} escapeHtml={false} />
                 </MarkdownWrapper>
               </Col>
             </Row>
