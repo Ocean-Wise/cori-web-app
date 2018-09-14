@@ -13,8 +13,8 @@ const setup = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
 const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
 const resolve = require('path').resolve;
-// const cors = require('cors');
 const bodyParser = require('body-parser');
+const sslRedirect = require('heroku-ssl-redirect');
 
 const algoliaInit = require('./utils/algoliaInit');
 
@@ -30,6 +30,8 @@ const internalAuth = auth.basic({
   callback(username === 'admin' && password === 'coriresearch'); // Set the username and password here
 }
 );
+
+app.use(sslRedirect());
 
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
