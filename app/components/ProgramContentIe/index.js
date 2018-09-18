@@ -60,17 +60,26 @@ class ProgramContentIe extends React.Component { // eslint-disable-line react/pr
           </Row>
         </Grid>
       );
+
+      // Ensure we render the page even if the editor did not remember to publish the hero image...
+      let hero;
+      let title;
+      if (program.hero) {
+        hero = program.hero.fields.file.url;
+        title = program.hero.fields.file.title;
+      }
+
       return (
         <div>
           <Helmet>
             {/* Search Engine */}
             <meta name="description" content={program.copy} />
-            <meta name="image" content={program.hero.fields.file.url} />
+            <meta name="image" content={hero} />
             {/* Schema.org for Google */}
             {/* eslint-disable */}
             <meta itemprop="name" content={`${program.title} - Ocean Wise Research`} />
             <meta itemprop="description" content={program.subheader} />
-            <meta itemprop="image" content={program.hero.fields.file.url} />
+            <meta itemprop="image" content={hero} />
             {/* eslint-enable */}
             {/* Twitter */}
             <meta name="twitter:card" content="summary" />
@@ -79,13 +88,13 @@ class ProgramContentIe extends React.Component { // eslint-disable-line react/pr
             {/* Open Graph general (Facebook, Pinterest & Google+) */}
             <meta name="og:title" content={`${program.title} - Ocean Wise Research`} />
             <meta name="og:description" content={program.subheader} />
-            <meta name="og:image" content={program.hero.fields.file.url} />
+            <meta name="og:image" content={hero} />
             <meta name="og:url" content={`https://research.ocean.org/program/${slug}`} />
             <meta name="og:site_name" content="Ocean Wise Research" />
             <meta name="og:type" content="article" />
           </Helmet>
           <HeroWrapper>
-            <Hero src={program.hero.fields.file.url} alt={program.hero.fields.title} />
+            <Hero src={hero} alt={title} />
             {program.imageAttribution ? <span id="attribution">{program.imageAttribution}</span> : ''}
           </HeroWrapper>
           <Section style={{ paddingBottom: 20 }}>

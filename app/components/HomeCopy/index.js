@@ -94,7 +94,7 @@ function HomeCopy({ data: { homeCopies } }) {
         </Wrapper>
         <Wrapper>
           <Section flexDirection="column">
-            <Img src={data.firstImage.url} alt={data.firstImage.title} float="left" />
+            <Img src={data.firstImage ? data.firstImage.url : null} alt={data.firstImage ? data.firstImage.title : null} float="left" />
             <CopyBlock float="right">
               <Divider />
               <H1 section>{data.firstHeader}</H1>
@@ -111,12 +111,12 @@ function HomeCopy({ data: { homeCopies } }) {
               <ReactMarkdown source={data.secondCopy} />
               {secondButtons}
             </CopyBlock>
-            <Img src={data.secondImage.url} alt={data.secondImage.title} float="right" />
+            <Img src={data.secondImage ? data.secondImage.url : null} alt={data.secondImage ? data.secondImage.title : null} float="right" />
           </Section>
         </Wrapper>
         <Wrapper>
           <Section flexDirection="column">
-            <Img src={data.thirdImage.url} alt={data.thirdImage.title} float="left" />
+            <Img src={data.thirdImage ? data.thirdImage.url : null} alt={data.thirdImage ? data.thirdImage.title : null} float="left" />
             <CopyBlock float="right">
               <Divider />
               <H1 section>{data.thirdHeader}</H1>

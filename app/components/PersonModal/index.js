@@ -69,7 +69,9 @@ class PersonModal extends React.PureComponent { // eslint-disable-line react/pre
       return (
         <div>
           <Person onClick={this.handleToggle}>
-            <Img image={isIE ? person.image.fields.file.url : person.image.url} filter={'grayscale'} />
+            {/* eslint-disable */}
+            <Img image={person.image ? isIE ? person.image.fields.file.url : person.image.url : null} filter={'grayscale'} />
+            {/* eslint-enable */}
             <div style={{ color: '#00B398', fontSize: 24, fontWeight: 300, letterSpacing: '2.57px', lineHeight: '35px', maxWidth: 255 }}>{honorific}{person.first} {person.last}</div>
             <Divider />
             <div style={{ maxWidth: 255 }}>

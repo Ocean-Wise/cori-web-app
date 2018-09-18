@@ -54,7 +54,7 @@ class AboutContentIe extends React.Component { // eslint-disable-line react/pref
       return (
         <div>
           <HeroWrapper>
-            <Hero src={data.hero.fields.file.url} alt="About Us" />
+            <Hero src={data.hero ? data.hero.fields.file.url : null} alt="About Us" />
             {data.imageAttribution ? <span id="attribution">{data.imageAttribution}</span> : ''}
           </HeroWrapper>
           <Section>

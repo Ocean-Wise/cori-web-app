@@ -38,7 +38,7 @@ function AboutContent({ data: { aboutPages }, width }) {
     return (
       <div>
         <HeroWrapper>
-          <Hero src={data.hero.url} alt="About Us" />
+          <Hero src={data.hero ? data.hero.url : null} alt="About Us" />
           {data.imageAttribution ? <span id="attribution">{data.imageAttribution}</span> : ''}
         </HeroWrapper>
         <Section>

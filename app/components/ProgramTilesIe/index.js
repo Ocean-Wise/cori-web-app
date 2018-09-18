@@ -50,8 +50,10 @@ class ProgramTilesIe extends React.Component { // eslint-disable-line react/pref
       const tiles = [];
       try {
         area.programs.map((program, i) => {
+          let hero;
+          if (program.fields.hero) hero = program.fields.hero.fields.file.url;
           tiles.push(
-            <Tile image={program.fields.hero.fields.file.url} key={`programLink-${i.toString()}`} width={width} imageAlign={program.fields.imageAlign}>
+            <Tile image={hero} key={`programLink-${i.toString()}`} width={width} imageAlign={program.fields.imageAlign}>
               <HoverContainer>
                 <H2>{program.fields.title}</H2>
                 <P>{program.fields.overlay}</P>
@@ -74,10 +76,12 @@ class ProgramTilesIe extends React.Component { // eslint-disable-line react/pref
       }
       try {
         area.projects.map((project, i) => {
+          let hero;
           if (project.fields.showOnSite) {
+            if (project.fields.hero) hero = project.fields.hero.fields.file.url;
             if (project.fields.type === 'Link') {
               tiles.push(
-                <Tile image={project.fields.hero.fields.file.url} key={`programLink-${i.toString()}`} width={width} imageAlign={project.fields.imageAlign}>
+                <Tile image={hero} key={`programLink-${i.toString()}`} width={width} imageAlign={project.fields.imageAlign}>
                   <HoverContainer>
                     <H2>{project.fields.projectTitle}</H2>
                     <P>{project.fields.subheader}</P>
@@ -95,7 +99,7 @@ class ProgramTilesIe extends React.Component { // eslint-disable-line react/pref
               );
             } else if (project.fields.type === 'PDF') {
               tiles.push(
-                <Tile image={project.fields.hero.fields.file.url} key={`programLink-${i.toString()}`} width={width} imageAlign={project.fields.imageAlign}>
+                <Tile image={hero} key={`programLink-${i.toString()}`} width={width} imageAlign={project.fields.imageAlign}>
                   <HoverContainer>
                     <H2>{project.fields.projectTitle}</H2>
                     <P>{project.fields.subheader}</P>
@@ -113,7 +117,7 @@ class ProgramTilesIe extends React.Component { // eslint-disable-line react/pref
               );
             } else {
               tiles.push(
-                <Tile image={project.fields.hero.fields.file.url} key={`programLink-${i.toString()}`} width={width} imageAlign={project.fields.imageAlign}>
+                <Tile image={hero} key={`programLink-${i.toString()}`} width={width} imageAlign={project.fields.imageAlign}>
                   <HoverContainer>
                     <H2>{project.fields.projectTitle}</H2>
                     <P>{project.fields.subheader}</P>

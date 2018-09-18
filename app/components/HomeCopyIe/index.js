@@ -105,7 +105,7 @@ class HomeCopyIe extends React.Component { // eslint-disable-line react/prefer-s
           </Wrapper>
           <Wrapper>
             <Section flexDirection="column">
-              <Img src={data.firstImage.fields.file.url} alt={data.firstImage.fields.title} float="left" />
+              <Img src={data.firstImage ? data.firstImage.fields.file.url : null} alt={data.firstImage ? data.firstImage.fields.title : null} float="left" />
               <CopyBlock float="right">
                 <Divider />
                 <H1 section>{data.firstHeader}</H1>
@@ -122,12 +122,12 @@ class HomeCopyIe extends React.Component { // eslint-disable-line react/prefer-s
                 <ReactMarkdown source={data.secondCopy} />
                 {secondButtons}
               </CopyBlock>
-              <Img src={data.secondImage.fields.file.url} alt={data.secondImage.fields.title} float="right" />
+              <Img src={data.secondImage ? data.secondImage.fields.file.url : null} alt={data.secondImage ? data.secondImage.fields.title : null} float="right" />
             </Section>
           </Wrapper>
           <Wrapper>
             <Section flexDirection="column">
-              <Img src={data.thirdImage.fields.file.url} alt={data.thirdImage.fields.title} float="left" />
+              <Img src={data.thirdImage ? data.thirdImage.fields.file.url : null} alt={data.thirdImage ? data.thirdImage.fields.title : null} float="left" />
               <CopyBlock float="right">
                 <Divider />
                 <H1 section>{data.thirdHeader}</H1>

@@ -32,8 +32,10 @@ function ProgramTiles({ data: { researchAreas }, width }) {
     const tiles = [];
     try {
       researchAreas[0].programs.map((program, i) => {
+        let hero;
+        if (program.hero) hero = program.hero.url;
         tiles.push(
-          <Tile image={program.hero.url} key={`programLink-${i.toString()}`} width={width} imageAlign={program.imageAlign}>
+          <Tile image={hero} key={`programLink-${i.toString()}`} width={width} imageAlign={program.imageAlign}>
             <HoverContainer>
               <H2>{program.title}</H2>
               <P>{program.overlay}</P>
@@ -56,10 +58,12 @@ function ProgramTiles({ data: { researchAreas }, width }) {
     }
     try {
       researchAreas[0].projects.map((project, i) => {
+        let hero;
         if (project.showOnSite) {
+          if (project.hero) hero = project.hero.url;
           if (project.type === 'Link') {
             tiles.push(
-              <Tile image={project.hero.url} key={`programLink-${i.toString()}`} width={width} imageAlign={project.imageAlign}>
+              <Tile image={hero} key={`programLink-${i.toString()}`} width={width} imageAlign={project.imageAlign}>
                 <HoverContainer>
                   <H2>{project.projectTitle}</H2>
                   <P>{project.subheader}</P>
@@ -77,7 +81,7 @@ function ProgramTiles({ data: { researchAreas }, width }) {
             );
           } else if (project.type === 'PDF') {
             tiles.push(
-              <Tile image={project.hero.url} key={`programLink-${i.toString()}`} width={width} imageAlign={project.imageAlign}>
+              <Tile image={hero} key={`programLink-${i.toString()}`} width={width} imageAlign={project.imageAlign}>
                 <HoverContainer>
                   <H2>{project.projectTitle}</H2>
                   <P>{project.subheader}</P>
@@ -95,7 +99,7 @@ function ProgramTiles({ data: { researchAreas }, width }) {
             );
           } else {
             tiles.push(
-              <Tile image={project.hero.url} key={`programLink-${i.toString()}`} width={width} imageAlign={project.imageAlign}>
+              <Tile image={hero} key={`programLink-${i.toString()}`} width={width} imageAlign={project.imageAlign}>
                 <HoverContainer>
                   <H2>{project.projectTitle}</H2>
                   <P>{project.subheader}</P>

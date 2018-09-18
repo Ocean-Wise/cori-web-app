@@ -41,7 +41,7 @@ class ResearchOverviewTilesIe extends React.Component { // eslint-disable-line r
 
       topRow.push(
         <Col key="cori-tile" md={6} style={{ padding: 0 }}>
-          <Tile id="tile-1" image={cori.fields.hero.fields.file.url} width="100%" imageAlign={cori.fields.imageAlign}>
+          <Tile id="tile-1" image={cori.fields.hero ? cori.fields.hero.fields.file.url : null} width="100%" imageAlign={cori.fields.imageAlign}>
             <div id="hover" style={{ zIndex: 10, position: 'relative', bottom: 100, padding: 30 }}>
               <H1>{cori.fields.title}</H1>
               <P>{cori.fields.subheader}</P>
@@ -60,7 +60,7 @@ class ResearchOverviewTilesIe extends React.Component { // eslint-disable-line r
       );
       topRow.push(
         <Col key="va-tile" md={6} style={{ padding: 0 }}>
-          <Tile id="tile-1" image={va.fields.hero.fields.file.url} width="100%" imageAlign={va.fields.imageAlign}>
+          <Tile id="tile-1" image={va.fields.hero ? va.fields.hero.fields.file.url : null} width="100%" imageAlign={va.fields.imageAlign}>
             <div id="hover" style={{ zIndex: 10, position: 'relative', bottom: 100, padding: 30 }}>
               <H1>{va.fields.title}</H1>
               <P>{va.fields.subheader}</P>
@@ -88,7 +88,7 @@ class ResearchOverviewTilesIe extends React.Component { // eslint-disable-line r
       areas.map((area, i) => {
         row.push(
           <Col key={`${area.fields.slug}-tile`} md={6} lg={3} style={{ padding: 0 }}>
-            <Tile last id={`tile-${i.toString()}`} image={area.fields.hero.fields.file.url} width="100%" imageAlign={area.fields.imageAlign}>
+            <Tile last id={`tile-${i.toString()}`} image={area.fields.hero ? area.fields.hero.fields.file.url : null} width="100%" imageAlign={area.fields.imageAlign}>
               <HoverContainer>
                 <H1>{area.fields.title}</H1>
                 <P>{area.fields.subheader}</P>

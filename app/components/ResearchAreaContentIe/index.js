@@ -92,17 +92,26 @@ class ResearchAreaContentIe extends React.Component { // eslint-disable-line rea
       }
 
       const Spotlight = spotlight ? <SpotlightTag /> : '';
+
+      // Ensure we render the page even if the editor did not remember to publish the hero image...
+      let hero;
+      let title;
+      if (area.hero) {
+        hero = area.hero.fields.file.url;
+        title = area.hero.fields.file.title;
+      }
+
       return (
         <div style={{ overflow: 'hidden' }}>
           <Helmet>
             {/* Search Engine */}
             <meta name="description" content={area.copy} />
-            <meta name="image" content={area.hero.fields.file.url} />
+            <meta name="image" content={hero} />
             {/* Schema.org for Google */}
             {/* eslint-disable */}
             <meta itemprop="name" content={`${area.title} - Ocean Wise Research`} />
             <meta itemprop="description" content={area.copy} />
-            <meta itemprop="image" content={area.hero.fields.file.url} />
+            <meta itemprop="image" content={hero} />
             {/* eslint-enable */}
             {/* Twitter */}
             <meta name="twitter:card" content="summary" />
@@ -111,13 +120,13 @@ class ResearchAreaContentIe extends React.Component { // eslint-disable-line rea
             {/* Open Graph general (Facebook, Pinterest & Google+) */}
             <meta name="og:title" content={`${area.title} - Ocean Wise Research`} />
             <meta name="og:description" content={area.copy} />
-            <meta name="og:image" content={area.hero.fields.file.url} />
+            <meta name="og:image" content={hero} />
             <meta name="og:url" content={`https://research.ocean.org/research/${slug}`} />
             <meta name="og:site_name" content="Ocean Wise Research" />
             <meta name="og:type" content="article" />
           </Helmet>
           <HeroWrapper>
-            <Hero src={area.hero.fields.file.url} alt={area.hero.fields.title} />
+            <Hero src={hero} alt={title} />
             {area.imageAttribution ? <span id="attribution">{area.imageAttribution}</span> : ''}
           </HeroWrapper>
           <Section first>
@@ -177,7 +186,6 @@ class ResearchAreaContentIe extends React.Component { // eslint-disable-line rea
         </div>
       );
     } catch (err) {
-      console.log(err.stack);
       return <div></div>;
     }
   }

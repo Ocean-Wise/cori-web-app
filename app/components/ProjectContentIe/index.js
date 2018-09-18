@@ -112,17 +112,25 @@ class ProjectContentIe extends React.Component { // eslint-disable-line react/pr
         images = regex.exec(copy);
       }
 
+      // Ensure we render the page even if the editor did not remember to publish the hero image...
+      let hero;
+      let title;
+      if (project.hero) {
+        hero = project.hero.fields.file.url;
+        title = project.hero.fields.file.title;
+      }
+
       return (
         <div>
           <Helmet>
             {/* Search Engine */}
             <meta name="description" content={project.subheader} />
-            <meta name="image" content={project.hero.fields.file.url} />
+            <meta name="image" content={hero} />
             {/* Schema.org for Google */}
             {/* eslint-disable */}
             <meta itemprop="name" content={`${project.title} - Ocean Wise Research`} />
             <meta itemprop="description" content={project.subheader} />
-            <meta itemprop="image" content={project.hero.fields.file.url} />
+            <meta itemprop="image" content={hero} />
             {/* eslint-enable */}
             {/* Twitter */}
             <meta name="twitter:card" content="summary" />
@@ -131,13 +139,13 @@ class ProjectContentIe extends React.Component { // eslint-disable-line react/pr
             {/* Open Graph general (Facebook, Pinterest & Google+) */}
             <meta name="og:title" content={`${project.title} - Ocean Wise Research`} />
             <meta name="og:description" content={project.subheader} />
-            <meta name="og:image" content={project.hero.fields.file.url} />
+            <meta name="og:image" content={hero} />
             <meta name="og:url" content={`https://research.ocean.org/project/${slug}`} />
             <meta name="og:site_name" content="Ocean Wise Research" />
             <meta name="og:type" content="article" />
           </Helmet>
           <HeroWrapper>
-            <Hero src={project.hero.fields.file.url} alt={project.hero.fields.title} />
+            <Hero src={hero} alt={title} />
             {project.imageAttribution ? <span id="attribution">{project.imageAttribution}</span> : ''}
           </HeroWrapper>
           <Section>
