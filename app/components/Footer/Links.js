@@ -40,20 +40,14 @@ function Links() {
               Vancouver Aquarium
             </A>
           </H4>
-          <A to="/project/amphibian-ark">
-            Frog Conservation
+          <A to="/program/marine-mammal-energetics-and-ecology">
+            Marine Mammal Energetics and Ecology
           </A>
-          <A to="#">
-            Fish Propagation
+          <A to="/program/propagation">
+            Propagation
           </A>
-          <A to="/project/animal-health-and-rehabilitation">
-            Animal Health
-          </A>
-          <A to="/program/energetics-and-metabolism">
-            Energetics and Metabolism
-          </A>
-          <A to="/program/propagation#jellyfish-lab">
-            Jellyfish Rearing
+          <A to="/program/animal-health-and-rehabilitation">
+            Animal Health and Rehabilitation
           </A>
         </Row>
         <Row>
