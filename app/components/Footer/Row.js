@@ -4,7 +4,7 @@ import * as mixins from 'styles/mixins';
 const Row = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: start;
   &:not(:first-of-type) {
     margin-left: 3em;
   }
