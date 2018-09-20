@@ -50,7 +50,7 @@ class InitiativeFeatured extends React.PureComponent { // eslint-disable-line re
         }
         try {
           const teaser = data.featured[0].teaser.replace('[…]', '');
-          const title = <Link to={`${data.featured[0].link}`}>{data.featured[0].title}</Link>;
+          const title = <a href={`${data.featured[0].link}`} target="_blank" rel="noopener noreferrer">{data.featured[0].title}</a>;
           story = (
             <Paper zDepth={2}>
               <a href={data.featured[0].link} target="_blank"><img src={data.featured[0].img} alt="featured" style={{ width: '100%' }} /></a>
