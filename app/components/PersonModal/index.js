@@ -39,6 +39,12 @@ const styles = () => ({
   },
 });
 
+/* eslint-disable */
+function LinkRenderer(props) {
+  return <a href={props.href} target="_blank" rel="noopener noreferrer">{props.children}</a>;
+}
+/* eslint-enable */
+
 class PersonModal extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   state = {
     open: this.props.active,
@@ -101,7 +107,7 @@ class PersonModal extends React.PureComponent { // eslint-disable-line react/pre
                 </div>
               </Person>
               <CopyWrapper>
-                <ReactMarkdown source={person.copy} />
+                <ReactMarkdown source={person.copy} renderers={{ link: LinkRenderer }} />
               </CopyWrapper>
             </DialogContent>
           </Dialog>

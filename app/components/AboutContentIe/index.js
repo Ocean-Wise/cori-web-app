@@ -20,6 +20,12 @@ import A from './A';
 import Divider from './Divider';
 import MarkdownWrapper from './MarkdownWrapper';
 
+/* eslint-disable */
+function LinkRenderer(props) {
+  return <a href={props.href} target="_blank" rel="noopener noreferrer">{props.children}</a>;
+}
+/* eslint-enable */
+
 class AboutContentIe extends React.Component { // eslint-disable-line react/prefer-stateless-function
   state = {
     data: [],
@@ -65,7 +71,7 @@ class AboutContentIe extends React.Component { // eslint-disable-line react/pref
                   <H1>{data.title}</H1>
                   <H3>{data.subheader}</H3>
                   <MarkdownWrapper>
-                    <ReactMarkdown source={copy} />
+                    <ReactMarkdown renderers={{ link: LinkRenderer }} source={copy} />
                   </MarkdownWrapper>
                 </Col>
               </Row>

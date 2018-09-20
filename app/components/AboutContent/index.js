@@ -21,6 +21,12 @@ import A from './A';
 import Divider from './Divider';
 import MarkdownWrapper from './MarkdownWrapper';
 
+/* eslint-disable */
+function LinkRenderer(props) {
+  return <a href={props.href} target="_blank" rel="noopener noreferrer">{props.children}</a>;
+}
+/* eslint-enable */
+
 function AboutContent({ data: { aboutPages }, width }) {
   try {
     const data = aboutPages[0];
@@ -49,7 +55,7 @@ function AboutContent({ data: { aboutPages }, width }) {
                 <H1>{data.title}</H1>
                 <H3>{data.subheader}</H3>
                 <MarkdownWrapper>
-                  <ReactMarkdown source={copy} />
+                  <ReactMarkdown renderers={{ link: LinkRenderer }} source={copy} />
                 </MarkdownWrapper>
               </Col>
             </Row>

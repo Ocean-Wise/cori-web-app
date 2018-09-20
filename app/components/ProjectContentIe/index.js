@@ -20,6 +20,12 @@ import H3 from './H3';
 import MarkdownWrapper from './MarkdownWrapper';
 import SupporterRow from './SupporterRow';
 
+/* eslint-disable */
+function LinkRenderer(props) {
+  return <a href={props.href} target="_blank" rel="noopener noreferrer">{props.children}</a>;
+}
+/* eslint-enable */
+
 class ProjectContentIe extends React.Component { // eslint-disable-line react/prefer-stateless-function
   state = {
     project: {},
@@ -156,7 +162,7 @@ class ProjectContentIe extends React.Component { // eslint-disable-line react/pr
                   <H1>{project.projectTitle}</H1>
                   <H3>{project.subheader}</H3>
                   <MarkdownWrapper>
-                    <ReactMarkdown source={copy} escapeHtml={false} />
+                    <ReactMarkdown source={copy} escapeHtml={false} renderers={{ link: LinkRenderer }} />
                   </MarkdownWrapper>
                 </Col>
               </Row>

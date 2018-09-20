@@ -29,6 +29,12 @@ import Divider from './Divider';
 import TitleContainer from './TitleContainer';
 import ProjectCol from './ProjectCol';
 
+/* eslint-disable */
+function LinkRenderer(props) {
+  return <a href={props.href} target="_blank" rel="noopener noreferrer">{props.children}</a>;
+}
+/* eslint-enable */
+
 function ProgramContent({ data: { programs }, slug, match, width }) {
   let program = {};
   try {
@@ -132,7 +138,7 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
             </div>
             <div style={{ padding: '0 32px' }}>
               <MarkdownWrapper>
-                <ReactMarkdown source={initiative.copy} />
+                <ReactMarkdown source={initiative.copy} renderers={{ link: LinkRenderer }} />
               </MarkdownWrapper>
               <Hr style={{ marginBottom: 15 }} />
               <H5>PROJECTS</H5>
@@ -212,7 +218,7 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
                 <H1 style={{ marginTop: 15 }}>{program.title}</H1>
                 <H3>{program.subheader}</H3>
                 <MarkdownWrapper>
-                  <ReactMarkdown source={program.copy} />
+                  <ReactMarkdown source={program.copy} renderers={{ link: LinkRenderer }} />
                 </MarkdownWrapper>
               </Col>
             </Row>

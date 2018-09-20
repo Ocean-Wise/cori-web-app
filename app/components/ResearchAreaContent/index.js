@@ -31,6 +31,12 @@ import H3 from './H3';
 import Col from './Col';
 import SupporterRow from './SupporterRow';
 
+/* eslint-disable */
+function LinkRenderer(props) {
+  return <a href={props.href} target="_blank" rel="noopener noreferrer">{props.children}</a>;
+}
+/* eslint-enable */
+
 function ResearchAreaContent({ data: { researchAreas }, slug, width, spotlight }) {
   let area = {};
   try {
@@ -123,7 +129,7 @@ function ResearchAreaContent({ data: { researchAreas }, slug, width, spotlight }
                 <H1 style={{ marginTop: 25 }}>{area.title}</H1>
                 <H2>{area.subheader}</H2>
                 <MarkdownWrapper>
-                  <ReactMarkdown source={area.copy} />
+                  <ReactMarkdown source={area.copy} renderers={{ link: LinkRenderer }} />
                 </MarkdownWrapper>
               </Col>
             </Row>

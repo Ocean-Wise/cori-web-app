@@ -21,6 +21,11 @@ import CopyBlock from './CopyBlock';
 import Img from './Img';
 import Divider from './Divider';
 
+/* eslint-disable */
+function LinkRenderer(props) {
+  return <a href={props.href} target="_blank" rel="noopener noreferrer">{props.children}</a>;
+}
+/* eslint-enable */
 
 class HomeCopyIe extends React.Component { // eslint-disable-line react/prefer-stateless-function
   state = {
@@ -99,7 +104,7 @@ class HomeCopyIe extends React.Component { // eslint-disable-line react/prefer-s
               <center>
                 <H1>{data.headline}</H1>
                 <Blockquote>{data.subheader}</Blockquote>
-                <ReactMarkdown source={data.introCopy} />
+                <ReactMarkdown renderers={{ link: LinkRenderer }} source={data.introCopy} />
               </center>
             </IntroContainer>
           </Wrapper>
@@ -109,7 +114,7 @@ class HomeCopyIe extends React.Component { // eslint-disable-line react/prefer-s
               <CopyBlock float="right">
                 <Divider />
                 <H1 section>{data.firstHeader}</H1>
-                <ReactMarkdown source={data.firstCopy} />
+                <ReactMarkdown renderers={{ link: LinkRenderer }} source={data.firstCopy} />
                 {firstButtons}
               </CopyBlock>
             </Section>
@@ -119,7 +124,7 @@ class HomeCopyIe extends React.Component { // eslint-disable-line react/prefer-s
               <CopyBlock float="left">
                 <Divider />
                 <H1 section>{data.secondHeader}</H1>
-                <ReactMarkdown source={data.secondCopy} />
+                <ReactMarkdown renderers={{ link: LinkRenderer }} source={data.secondCopy} />
                 {secondButtons}
               </CopyBlock>
               <Img src={data.secondImage ? data.secondImage.fields.file.url : null} alt={data.secondImage ? data.secondImage.fields.title : null} float="right" />
@@ -131,7 +136,7 @@ class HomeCopyIe extends React.Component { // eslint-disable-line react/prefer-s
               <CopyBlock float="right">
                 <Divider />
                 <H1 section>{data.thirdHeader}</H1>
-                <ReactMarkdown source={data.thirdCopy} />
+                <ReactMarkdown renderers={{ link: LinkRenderer }} source={data.thirdCopy} />
                 {thirdButtons}
               </CopyBlock>
             </Section>

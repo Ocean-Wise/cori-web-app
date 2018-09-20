@@ -23,6 +23,12 @@ import CopyBlock from './CopyBlock';
 import Img from './Img';
 import Divider from './Divider';
 
+/* eslint-disable */
+function LinkRenderer(props) {
+  return <a href={props.href} target="_blank" rel="noopener noreferrer">{props.children}</a>;
+}
+/* eslint-enable */
+
 function HomeCopy({ data: { homeCopies } }) {
   try {
     const data = homeCopies[0];
@@ -88,7 +94,7 @@ function HomeCopy({ data: { homeCopies } }) {
             <center>
               <H1>{data.headline}</H1>
               <Blockquote>{data.subheader}</Blockquote>
-              <ReactMarkdown source={data.introCopy} />
+              <ReactMarkdown renderers={{ link: LinkRenderer }} source={data.introCopy} />
             </center>
           </IntroContainer>
         </Wrapper>
@@ -98,7 +104,7 @@ function HomeCopy({ data: { homeCopies } }) {
             <CopyBlock float="right">
               <Divider />
               <H1 section>{data.firstHeader}</H1>
-              <ReactMarkdown source={data.firstCopy} />
+              <ReactMarkdown renderers={{ link: LinkRenderer }} source={data.firstCopy} />
               {firstButtons}
             </CopyBlock>
           </Section>
@@ -108,7 +114,7 @@ function HomeCopy({ data: { homeCopies } }) {
             <CopyBlock float="left">
               <Divider />
               <H1 section>{data.secondHeader}</H1>
-              <ReactMarkdown source={data.secondCopy} />
+              <ReactMarkdown renderers={{ link: LinkRenderer }} source={data.secondCopy} />
               {secondButtons}
             </CopyBlock>
             <Img src={data.secondImage ? data.secondImage.url : null} alt={data.secondImage ? data.secondImage.title : null} float="right" />
@@ -120,7 +126,7 @@ function HomeCopy({ data: { homeCopies } }) {
             <CopyBlock float="right">
               <Divider />
               <H1 section>{data.thirdHeader}</H1>
-              <ReactMarkdown source={data.thirdCopy} />
+              <ReactMarkdown renderers={{ link: LinkRenderer }} source={data.thirdCopy} />
               {thirdButtons}
             </CopyBlock>
           </Section>
