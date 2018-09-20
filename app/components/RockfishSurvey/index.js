@@ -156,6 +156,7 @@ class RockfishSurvey extends React.Component { // eslint-disable-line react/pref
       <Dialog onClose={this.handleInstructions} open={this.state.instructionsOpen} aria-labelledby="instructions-dialog">
         <DialogTitle id="instructions-title">Instructions</DialogTitle>
         <DialogContent>
+          <P>Read the <a href="https://assets.ctfassets.net/fsquhe7zbn68/1WXvrDsHPOia28OkY2w0UK/de1e90332b23cbdf881e41e323786f58/RAS_Survey_Instructions.pdf" target="_blank" rel="noopener noreferrer">PDF version</a> of these instructions</P>
           <H2>Determining The Age Of Rockfish</H2>
           <P>Adult rockfish are approximately 20 cm in length or longer. For most divers, this is length of your hand from your fingertip to wrist (looking at your palm). Please check your hand against this length before conducting the survey in order to be as accurate as possible.</P>
           <P>Rockfish smaller than your hand (20 cm) should be counted as Juvenile*.<br />Very young rockfish, pinky-finger-length and smaller, are differently coloured and should be counted as Baby**.</P>
@@ -187,359 +188,353 @@ class RockfishSurvey extends React.Component { // eslint-disable-line react/pref
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', margin: '0 auto', marginBottom: 20 }}>
               <H2>Annual Rockfish Abundance Survey</H2>
-              <P>Are you a SCUBA diver? If so, Ocean Wise&reg; can use your help with our Annual Rockfish Abundance Survey. Either count or video the rockfish you see on you dive and submit your data online to participate. Conservation of B.C.’s inshore rockfish species is a serious matter owing to the slow maturation, longevity and small home territories of these fishes. By surveying rockfish along the B.C. coast, we can monitor and continue to ensure these species thrive.</P>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', margin: '0 auto', marginBottom: 20 }}>
-              <H2>How The Survey Began</H2>
-              <P>Conservation of B.C.’s inshore rockfish species is a serious matter owing to the slow maturation, longevity and small home territories of these fishes. They are all-too-easy to catch, and are still a target of poachers. In 2007, Fisheries and Oceans Canada finalized a total of 164 Rockfish Conservation Areas in B.C. to aid the recovery of B.C.’s inshore rockfish species. By surveying rockfish along the B.C. coast inside and outside of these RCAs, we can monitor and continue to ensure these species thrive.</P>
-              <H2>Between a Rock And A Hard Place</H2>
-              <P>Recent research findings by the Vancouver Aquarium’s Howe Sound dive team indicate that, in B.C., some rockfish hide deep in rock piles during winter. With this in mind, the rockfish abundance survey is best conducted in summer and early fall. Late summer typically has good visibility and the rockfish tend to be hovering well above their rocky home sites.</P>
+              <P>Are you a SCUBA diver? If so, Ocean Wise® can use your help with our Annual Rockfish Abundance Survey. Either count or video the rockfish you see on you dive and submit your data online to participate. Conservation of B.C.’s inshore rockfish species is a serious matter owing to the slow maturation, longevity and small home territories of these fishes. By surveying rockfish along the B.C. coast, we can monitor and continue to ensure these species thrive. In 2007, Fisheries and Oceans Canada finalized a total of 164 Rockfish Conservation Areas in BC to aid the recovery of B.C.’s inshore rockfish species.</P>
               <H2>Rockfish Conservation</H2>
-              <P>Rockfish are an important part of B.C.’s ocean ecosystem. However, they’re easy targets for fishermen, as they naturally don’t move far from their home territories. The Aquarium team has been working to establish black rockfish where they were once abundant along the shoreline of West Vancouver. They had been fished out in the 1960s, but signs are emerging that our black rockfish transplants have successfully bred new generations in 2004, 2006, 2008 and 2010. As previously mentioned, the Howe Sound team is also monitoring a population of copper rockfish year round to better understand the winter hiding behaviour that has been observed over the past 7 years.</P>
+              <P>Rockfish are an important species in rocky reef communities in B.C. However, rockfish tend to have a small home range and as such they are easy targets for fishermen. Following depletion of rockfish through the 1980s, protection for rockfish through Rockfish Conservation Areas has been an important step aiding the recovery of depleted inshore rockfish species.</P>
+              <P>In addition to the Rockfish Abundance Survey, the Howe Sound Research and Conservation team has been monitoring copper rockfish winter hiding behaviour in Howe Sound to understand seasonal behaviour associated with shallow-water populations of copper rockfish. As a result of this research, the Annual Rockfish Abundance Survey is conducted primarily between August – October when rockfish are not hiding in rock piles and when visibility is best. The team also assisted with the transplant of Black Rockfish to Point Atkinson in the early 2000s as part of an effort to re-introduce a species that had been extirpated from Howe Sound in the 1960s. Since the transplant of Black Rockfish there have been successful year classes in 2004, 2006, 2008, 2010 and most recently in 2016.</P>
+              <P>Read our <a href="https://assets.ctfassets.net/fsquhe7zbn68/X9nr4O0ZQkoWocSC2iYqa/674e14d52fd3957f49d303d0f069ce3c/Rockfish_Abundance_Survey_Report_2017.pdf" target="_blank" rel="noopener noreferrer">most recent report</a></P>
               <Button id="instructions" onClick={() => this.handleInstructions(false)}>Start by reading the instructions</Button>
               {instructions}
-              {this.state.instructionsRead ? (
-                <div style={{ maxWidth: 760, margin: '0 auto' }}>
-                  <h3>Data Collection Form</h3>
-                  <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                    <div style={{ width: '100%' }}>
-                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                        <h4>Diver Info:</h4>
-                      </div>
-                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                        <TextField fullWidth type="date" label="Dive date:" InputLabelProps={{ shrink: true }} value={this.state.divedate} onChange={this.handleText('divedate')} />
-                      </div>
-                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                        <TextField fullWidth placeholder="Name" margin="normal" value={this.state.name} onChange={this.handleText('name')} />
-                      </div>
-                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                        <TextField fullWidth placeholder="Address" margin="normal" value={this.state.address} onChange={this.handleText('address')} />
-                      </div>
-                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                        <TextField fullWidth placeholder="Phone" margin="normal" value={this.state.phone} onChange={this.handleText('phone')} />
-                      </div>
-                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                        <TextField fullWidth placeholder="Email" margin="normal" value={this.state.email} onChange={this.handleText('email')} />
-                      </div>
-                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                        <Select fullWidth value={this.state.generalLocation} displayEmpty onChange={this.handleText('generalLocation')}>
-                          <MenuItem value="">Area...</MenuItem>
-                          <MenuItem value="Howe Sound">Howe Sound</MenuItem>
-                          <MenuItem value="Haida Gwaii">Haida Gwaii</MenuItem>
-                          <MenuItem value="Burrard Inlet">Burrard Inlet</MenuItem>
-                          <MenuItem value="Saanich Inlet">Saanich Inlet</MenuItem>
-                          <MenuItem value="Strait of Georgia Southern Gulf Islands">Strait of Georgia Southern Gulf Islands</MenuItem>
-                          <MenuItem value="Inside Southern Gulf Islands">Inside Southern Gulf Islands</MenuItem>
-                          <MenuItem value="San Juan Islands">San Juan Islands</MenuItem>
-                          <MenuItem value="Barkley Sound">Barkley Sound</MenuItem>
-                          <MenuItem value="NE Vancouver Island">NE Vancouver Island</MenuItem>
-                          <MenuItem value="Central Coast">Central Coast</MenuItem>
-                          <MenuItem value="Strait of Juan de Fuca">Strait of Juan de Fuca</MenuItem>
-                          <MenuItem value="Campbell River">Campbell River</MenuItem>
-                          <MenuItem value="Northern Gulf Islands">Northern Gulf Islands</MenuItem>
-                          <MenuItem value="Sunshine Coast North">Sunshine Coast North</MenuItem>
-                          <MenuItem value="Sunshine Coast South">Sunshine Coast South</MenuItem>
-                          <MenuItem value="Nanaimo">Nanaimo</MenuItem>
-                          <MenuItem value="Sechelt">Sechelt</MenuItem>
-                          <MenuItem value="Jervis Inlet">Jervis Inlet</MenuItem>
-                          <MenuItem value="Parksville">Parksville</MenuItem>
-                          <MenuItem value="Victoria">Victoria</MenuItem>
-                          <MenuItem value="Cape Lazo North">Cape Lazo North</MenuItem>
-                          <MenuItem value="Agamemnon Channel">Agamemnon Channel</MenuItem>
-                          <MenuItem value="Other">Other</MenuItem>
-                        </Select>
-                      </div>
-                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                        <TextField placeholder="Specific Location" margin="normal" fullWidth value={this.state.specificLocation} onChange={this.handleText('specificLocation')} />
-                      </div>
-                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                        <TextField placeholder="GPS (decimal degrees)" margin="normal" fullWidth value={this.state.gps} onChange={this.handleText('gps')} />
-                      </div>
-                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                        <Select value={this.state.bottomType} displayEmpty onChange={this.handleText('bottomType')}>
-                          <MenuItem value="">Dominant Bottom Type</MenuItem>
-                          <MenuItem value="Wall">Wall</MenuItem>
-                          <MenuItem value="Boulders">Boulders</MenuItem>
-                          <MenuItem value="Cobble">Cobble</MenuItem>
-                          <MenuItem value="Silt">Silt</MenuItem>
-                          <MenuItem value="Bedrock">Bedrock</MenuItem>
-                        </Select>
-                      </div>
-                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                        <TextField placeholder="Bottom Time" margin="normal" fullWidth value={this.state.bottomTime} onChange={this.handleText('bottomTime')} />
-                      </div>
-                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                        <TextField placeholder="Average Depth" margin="normal" fullWidth value={this.state.averageDepth} onChange={this.handleText('averageDepth')} />
-                      </div>
-                      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                        <TextField placeholder="Maximum Depth" margin="normal" fullWidth value={this.state.maximumDepth} onChange={this.handleText('maximumDepth')} />
-                      </div>
-                    </div>
-                    <hr />
+              <div style={{ maxWidth: 760, margin: '0 auto' }}>
+                <h3>Data Collection Form</h3>
+                <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                  <div style={{ width: '100%' }}>
                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                      <Grid fluid>
-                        <Row>
-                          <Col xl={2}>
-                            <h3>Species</h3>
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xl={2}>
-                            Copper
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Adults" margin="normal" value={this.state.copperAdults} onChange={this.handleText('copperAdults')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.copperJuvenile} onChange={this.handleText('copperJuvenile')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Baby" margin="normal" value={this.state.copperBaby} onChange={this.handleText('copperBaby')} />
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xl={2}>
-                            Quillback
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Adults" margin="normal" value={this.state.quillbackAdults} onChange={this.handleText('quillbackAdults')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.quillbackJuvenile} onChange={this.handleText('quillbackJuvenile')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Baby" margin="normal" value={this.state.quillbackBaby} onChange={this.handleText('quillbackBaby')} />
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xl={2}>
-                            Vermillion
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Adults" margin="normal" value={this.state.vermillionAdults} onChange={this.handleText('vermillionAdults')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.vermillionJuvenile} onChange={this.handleText('vermillionJuvenile')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Baby" margin="normal" value={this.state.vermillionBaby} onChange={this.handleText('vermillionBaby')} />
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xl={2}>
-                            Canary
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Adults" margin="normal" value={this.state.canaryAdults} onChange={this.handleText('canaryAdults')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.canaryJuvenile} onChange={this.handleText('canaryJuvenile')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Baby" margin="normal" value={this.state.canaryBaby} onChange={this.handleText('canaryBaby')} />
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xl={2}>
-                            Yelloweye
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Adults" margin="normal" value={this.state.yelloweyeAdults} onChange={this.handleText('yelloweyeAdults')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.yelloweyeJuvenile} onChange={this.handleText('yelloweyeJuvenile')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Baby" margin="normal" value={this.state.yelloweyeBaby} onChange={this.handleText('yelloweyeBaby')} />
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xl={2}>
-                            Tiger
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Adults" margin="normal" value={this.state.tigerAdults} onChange={this.handleText('tigerAdults')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.tigerJuvenile} onChange={this.handleText('tigerJuvenile')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Baby" margin="normal" value={this.state.tigerBaby} onChange={this.handleText('tigerBaby')} />
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xl={2}>
-                            Puget Sound
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Adults" margin="normal" value={this.state.pugetSoundAdults} onChange={this.handleText('pugetSoundAdults')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.pugetSoundJuvenile} onChange={this.handleText('pugetSoundJuvenile')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Baby" margin="normal" value={this.state.pugetSoundBaby} onChange={this.handleText('pugetSoundBaby')} />
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xl={2}>
-                            Yellowtail
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Adults" margin="normal" value={this.state.yellowtailAdults} onChange={this.handleText('yellowtailAdults')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.yellowtailJuvenile} onChange={this.handleText('yellowtailJuvenile')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Baby" margin="normal" value={this.state.yellowtailBaby} onChange={this.handleText('yellowtailBaby')} />
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xl={2}>
-                            Black
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Adults" margin="normal" value={this.state.blackAdults} onChange={this.handleText('blackAdults')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.blackJuvenile} onChange={this.handleText('blackJuvenile')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Baby" margin="normal" value={this.state.blackBaby} onChange={this.handleText('blackBaby')} />
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xl={2}>
-                            Deacon
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Adults" margin="normal" value={this.state.deaconAdults} onChange={this.handleText('deaconAdults')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.deaconJuvenile} onChange={this.handleText('deaconJuvenile')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Baby" margin="normal" value={this.state.deaconBaby} onChange={this.handleText('deaconBaby')} />
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xl={2}>
-                            Widow
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Adults" margin="normal" value={this.state.widowAdults} onChange={this.handleText('widowAdults')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.widowJuvenile} onChange={this.handleText('widowJuvenile')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Baby" margin="normal" value={this.state.widowBaby} onChange={this.handleText('widowBaby')} />
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xl={2}>
-                            Silvergrey
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Adults" margin="normal" value={this.state.silvergreyAdults} onChange={this.handleText('silvergreyAdults')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.silvergreyJuvenile} onChange={this.handleText('silvergreyJuvenile')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Baby" margin="normal" value={this.state.silvergreyBaby} onChange={this.handleText('silvergreyBaby')} />
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xl={2}>
-                            Brown
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Adults" margin="normal" value={this.state.brownAdults} onChange={this.handleText('brownAdults')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.brownJuvenile} onChange={this.handleText('brownJuvenile')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Baby" margin="normal" value={this.state.brownBaby} onChange={this.handleText('brownBaby')} />
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xl={2}>
-                            China
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Adults" margin="normal" value={this.state.chinaAdults} onChange={this.handleText('chinaAdults')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.chinaJuvenile} onChange={this.handleText('chinaJuvenile')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Baby" margin="normal" value={this.state.chinaBaby} onChange={this.handleText('chinaBaby')} />
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xl={2}>
-                            Boccacio
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Adults" margin="normal" value={this.state.boccacioAdults} onChange={this.handleText('boccacioAdults')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.boccacioJuvenile} onChange={this.handleText('boccacioJuvenile')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Baby" margin="normal" value={this.state.boccacioBaby} onChange={this.handleText('boccacioBaby')} />
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xl={2}>
-                            Other
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Adults" margin="normal" value={this.state.otherAdults} onChange={this.handleText('otherAdults')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.otherJuvenile} onChange={this.handleText('otherJuvenile')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Baby" margin="normal" value={this.state.otherBaby} onChange={this.handleText('otherBaby')} />
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xl={2}>
-                            Unknown
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Adults" margin="normal" value={this.state.unknownAdults} onChange={this.handleText('unknownAdults')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Juvenile" margin="normal" value={this.state.unknownJuvenile} onChange={this.handleText('unknownJuvenile')} />
-                          </Col>
-                          <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
-                            <TextField placeholder="# Baby" margin="normal" value={this.state.unknownBaby} onChange={this.handleText('unknownBaby')} />
-                          </Col>
-                        </Row>
-                      </Grid>
+                      <h4>Diver Info:</h4>
                     </div>
-                    <div style={{ display: 'flex', width: '100%', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                      <TextField placeholder="Additional Comments" fullWidth margin="normal" value={this.state.additionalComments} onChange={this.handleText('additionalComments')} />
+                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                      <TextField fullWidth type="date" label="Dive date:" InputLabelProps={{ shrink: true }} value={this.state.divedate} onChange={this.handleText('divedate')} />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                      <TextField fullWidth placeholder="Name" margin="normal" value={this.state.name} onChange={this.handleText('name')} />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                      <TextField fullWidth placeholder="Address" margin="normal" value={this.state.address} onChange={this.handleText('address')} />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                      <TextField fullWidth placeholder="Phone" margin="normal" value={this.state.phone} onChange={this.handleText('phone')} />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                      <TextField fullWidth placeholder="Email" margin="normal" value={this.state.email} onChange={this.handleText('email')} />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                      <Select fullWidth value={this.state.generalLocation} displayEmpty onChange={this.handleText('generalLocation')}>
+                        <MenuItem value="">Area...</MenuItem>
+                        <MenuItem value="Howe Sound">Howe Sound</MenuItem>
+                        <MenuItem value="Haida Gwaii">Haida Gwaii</MenuItem>
+                        <MenuItem value="Burrard Inlet">Burrard Inlet</MenuItem>
+                        <MenuItem value="Saanich Inlet">Saanich Inlet</MenuItem>
+                        <MenuItem value="Strait of Georgia Southern Gulf Islands">Strait of Georgia Southern Gulf Islands</MenuItem>
+                        <MenuItem value="Inside Southern Gulf Islands">Inside Southern Gulf Islands</MenuItem>
+                        <MenuItem value="San Juan Islands">San Juan Islands</MenuItem>
+                        <MenuItem value="Barkley Sound">Barkley Sound</MenuItem>
+                        <MenuItem value="NE Vancouver Island">NE Vancouver Island</MenuItem>
+                        <MenuItem value="Central Coast">Central Coast</MenuItem>
+                        <MenuItem value="Strait of Juan de Fuca">Strait of Juan de Fuca</MenuItem>
+                        <MenuItem value="Campbell River">Campbell River</MenuItem>
+                        <MenuItem value="Northern Gulf Islands">Northern Gulf Islands</MenuItem>
+                        <MenuItem value="Sunshine Coast North">Sunshine Coast North</MenuItem>
+                        <MenuItem value="Sunshine Coast South">Sunshine Coast South</MenuItem>
+                        <MenuItem value="Nanaimo">Nanaimo</MenuItem>
+                        <MenuItem value="Sechelt">Sechelt</MenuItem>
+                        <MenuItem value="Jervis Inlet">Jervis Inlet</MenuItem>
+                        <MenuItem value="Parksville">Parksville</MenuItem>
+                        <MenuItem value="Victoria">Victoria</MenuItem>
+                        <MenuItem value="Cape Lazo North">Cape Lazo North</MenuItem>
+                        <MenuItem value="Agamemnon Channel">Agamemnon Channel</MenuItem>
+                        <MenuItem value="Other">Other</MenuItem>
+                      </Select>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                      <TextField placeholder="Specific Location" margin="normal" fullWidth value={this.state.specificLocation} onChange={this.handleText('specificLocation')} />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                      <TextField placeholder="GPS (decimal degrees)" margin="normal" fullWidth value={this.state.gps} onChange={this.handleText('gps')} />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                      <Select value={this.state.bottomType} displayEmpty onChange={this.handleText('bottomType')}>
+                        <MenuItem value="">Dominant Bottom Type</MenuItem>
+                        <MenuItem value="Wall">Wall</MenuItem>
+                        <MenuItem value="Boulders">Boulders</MenuItem>
+                        <MenuItem value="Cobble">Cobble</MenuItem>
+                        <MenuItem value="Silt">Silt</MenuItem>
+                        <MenuItem value="Bedrock">Bedrock</MenuItem>
+                      </Select>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                      <TextField placeholder="Bottom Time" margin="normal" fullWidth value={this.state.bottomTime} onChange={this.handleText('bottomTime')} />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                      <TextField placeholder="Average Depth" margin="normal" fullWidth value={this.state.averageDepth} onChange={this.handleText('averageDepth')} />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                      <TextField placeholder="Maximum Depth" margin="normal" fullWidth value={this.state.maximumDepth} onChange={this.handleText('maximumDepth')} />
                     </div>
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', margin: '0 auto', maxWidth: 580, paddingTop: 20 }}>
-                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', paddingTop: 20 }}>
-                      {submitButton}
-                    </div>
+                  <hr />
+                  <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                    <Grid fluid>
+                      <Row>
+                        <Col xl={2}>
+                          <h3>Species</h3>
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xl={2}>
+                          Copper
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Adults" margin="normal" value={this.state.copperAdults} onChange={this.handleText('copperAdults')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Juvenile" margin="normal" value={this.state.copperJuvenile} onChange={this.handleText('copperJuvenile')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Baby" margin="normal" value={this.state.copperBaby} onChange={this.handleText('copperBaby')} />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xl={2}>
+                          Quillback
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Adults" margin="normal" value={this.state.quillbackAdults} onChange={this.handleText('quillbackAdults')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Juvenile" margin="normal" value={this.state.quillbackJuvenile} onChange={this.handleText('quillbackJuvenile')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Baby" margin="normal" value={this.state.quillbackBaby} onChange={this.handleText('quillbackBaby')} />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xl={2}>
+                          Vermillion
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Adults" margin="normal" value={this.state.vermillionAdults} onChange={this.handleText('vermillionAdults')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Juvenile" margin="normal" value={this.state.vermillionJuvenile} onChange={this.handleText('vermillionJuvenile')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Baby" margin="normal" value={this.state.vermillionBaby} onChange={this.handleText('vermillionBaby')} />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xl={2}>
+                          Canary
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Adults" margin="normal" value={this.state.canaryAdults} onChange={this.handleText('canaryAdults')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Juvenile" margin="normal" value={this.state.canaryJuvenile} onChange={this.handleText('canaryJuvenile')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Baby" margin="normal" value={this.state.canaryBaby} onChange={this.handleText('canaryBaby')} />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xl={2}>
+                          Yelloweye
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Adults" margin="normal" value={this.state.yelloweyeAdults} onChange={this.handleText('yelloweyeAdults')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Juvenile" margin="normal" value={this.state.yelloweyeJuvenile} onChange={this.handleText('yelloweyeJuvenile')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Baby" margin="normal" value={this.state.yelloweyeBaby} onChange={this.handleText('yelloweyeBaby')} />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xl={2}>
+                          Tiger
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Adults" margin="normal" value={this.state.tigerAdults} onChange={this.handleText('tigerAdults')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Juvenile" margin="normal" value={this.state.tigerJuvenile} onChange={this.handleText('tigerJuvenile')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Baby" margin="normal" value={this.state.tigerBaby} onChange={this.handleText('tigerBaby')} />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xl={2}>
+                          Puget Sound
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Adults" margin="normal" value={this.state.pugetSoundAdults} onChange={this.handleText('pugetSoundAdults')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Juvenile" margin="normal" value={this.state.pugetSoundJuvenile} onChange={this.handleText('pugetSoundJuvenile')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Baby" margin="normal" value={this.state.pugetSoundBaby} onChange={this.handleText('pugetSoundBaby')} />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xl={2}>
+                          Yellowtail
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Adults" margin="normal" value={this.state.yellowtailAdults} onChange={this.handleText('yellowtailAdults')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Juvenile" margin="normal" value={this.state.yellowtailJuvenile} onChange={this.handleText('yellowtailJuvenile')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Baby" margin="normal" value={this.state.yellowtailBaby} onChange={this.handleText('yellowtailBaby')} />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xl={2}>
+                          Black
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Adults" margin="normal" value={this.state.blackAdults} onChange={this.handleText('blackAdults')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Juvenile" margin="normal" value={this.state.blackJuvenile} onChange={this.handleText('blackJuvenile')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Baby" margin="normal" value={this.state.blackBaby} onChange={this.handleText('blackBaby')} />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xl={2}>
+                          Deacon
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Adults" margin="normal" value={this.state.deaconAdults} onChange={this.handleText('deaconAdults')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Juvenile" margin="normal" value={this.state.deaconJuvenile} onChange={this.handleText('deaconJuvenile')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Baby" margin="normal" value={this.state.deaconBaby} onChange={this.handleText('deaconBaby')} />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xl={2}>
+                          Widow
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Adults" margin="normal" value={this.state.widowAdults} onChange={this.handleText('widowAdults')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Juvenile" margin="normal" value={this.state.widowJuvenile} onChange={this.handleText('widowJuvenile')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Baby" margin="normal" value={this.state.widowBaby} onChange={this.handleText('widowBaby')} />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xl={2}>
+                          Silvergrey
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Adults" margin="normal" value={this.state.silvergreyAdults} onChange={this.handleText('silvergreyAdults')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Juvenile" margin="normal" value={this.state.silvergreyJuvenile} onChange={this.handleText('silvergreyJuvenile')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Baby" margin="normal" value={this.state.silvergreyBaby} onChange={this.handleText('silvergreyBaby')} />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xl={2}>
+                          Brown
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Adults" margin="normal" value={this.state.brownAdults} onChange={this.handleText('brownAdults')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Juvenile" margin="normal" value={this.state.brownJuvenile} onChange={this.handleText('brownJuvenile')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Baby" margin="normal" value={this.state.brownBaby} onChange={this.handleText('brownBaby')} />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xl={2}>
+                          China
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Adults" margin="normal" value={this.state.chinaAdults} onChange={this.handleText('chinaAdults')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Juvenile" margin="normal" value={this.state.chinaJuvenile} onChange={this.handleText('chinaJuvenile')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Baby" margin="normal" value={this.state.chinaBaby} onChange={this.handleText('chinaBaby')} />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xl={2}>
+                          Boccacio
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Adults" margin="normal" value={this.state.boccacioAdults} onChange={this.handleText('boccacioAdults')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Juvenile" margin="normal" value={this.state.boccacioJuvenile} onChange={this.handleText('boccacioJuvenile')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Baby" margin="normal" value={this.state.boccacioBaby} onChange={this.handleText('boccacioBaby')} />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xl={2}>
+                          Other
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Adults" margin="normal" value={this.state.otherAdults} onChange={this.handleText('otherAdults')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Juvenile" margin="normal" value={this.state.otherJuvenile} onChange={this.handleText('otherJuvenile')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Baby" margin="normal" value={this.state.otherBaby} onChange={this.handleText('otherBaby')} />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xl={2}>
+                          Unknown
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Adults" margin="normal" value={this.state.unknownAdults} onChange={this.handleText('unknownAdults')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Juvenile" margin="normal" value={this.state.unknownJuvenile} onChange={this.handleText('unknownJuvenile')} />
+                        </Col>
+                        <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
+                          <TextField placeholder="# Baby" margin="normal" value={this.state.unknownBaby} onChange={this.handleText('unknownBaby')} />
+                        </Col>
+                      </Row>
+                    </Grid>
+                  </div>
+                  <div style={{ display: 'flex', width: '100%', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                    <TextField placeholder="Additional Comments" fullWidth margin="normal" value={this.state.additionalComments} onChange={this.handleText('additionalComments')} />
                   </div>
                 </div>
-              ) : ''}
+                <div style={{ display: 'flex', flexDirection: 'column', margin: '0 auto', maxWidth: 580, paddingTop: 20 }}>
+                  <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', paddingTop: 20 }}>
+                    {submitButton}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
