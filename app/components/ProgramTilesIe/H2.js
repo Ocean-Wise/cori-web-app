@@ -9,6 +9,7 @@ const H2 = styled(NormalH1)`
   line-height: 45px;
   letter-spacing: 3px;
   text-align: center;
+  max-width: 100%;
 `;
 
 export default H2;
