@@ -29,7 +29,7 @@ injectGlobal`
   }
   a {
     text-decoration: none !important;
-    color: inherit !important;
+    color: inherit;
   }
 
   .ScrollUpButton__Container {
