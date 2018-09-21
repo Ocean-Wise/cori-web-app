@@ -72,10 +72,6 @@ async function handleGetRSS(req, res) {
       feed.items.forEach((item, i) => {
         const itemData = {};
 
-        // Determine if this is a featured post or not
-        // Only feature the most recent post with a 'Featured' category
-        const isFeatured = i === 0;
-
         // Start constructing our itemData object
         itemData.title = item.title;
 
@@ -93,7 +89,8 @@ async function handleGetRSS(req, res) {
         itemData.img = item.content.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/gm)[0]; // eslint-disable-line
 
         // Push to the appropriate array
-        if (isFeatured) {
+        // If this is the first RSS item, feature the story
+        if (i === 0) {
           featured.push(itemData);
         } else {
           data.push(itemData);
