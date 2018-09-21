@@ -69,17 +69,12 @@ async function handleGetRSS(req, res) {
       const featured = [];
 
       // Loop over each item
-      feed.items.forEach((item) => {
+      feed.items.forEach((item, i) => {
         const itemData = {};
 
         // Determine if this is a featured post or not
         // Only feature the most recent post with a 'Featured' category
-        let isFeatured = false;
-        item.categories.forEach((category) => {
-          if (category.indexOf('Feature') > -1 && !isFeatured && featured.length < 1) {
-            isFeatured = true;
-          }
-        });
+        const isFeatured = i === 0;
 
         // Start constructing our itemData object
         itemData.title = item.title;
