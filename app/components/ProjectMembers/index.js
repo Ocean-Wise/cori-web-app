@@ -28,9 +28,12 @@ function ProjectMembers({ data: { projects } }) {
   let copyString;
   try {
     copyString = projects[0].researchTeamCopy ? projects[0].researchTeamCopy : 'Meet the Ocean Wise Research team behind this project';
-    members = projects[0].members.map((member, i) =>
-      <PersonModal key={`person-${i.toString()}`} person={member} />
-    );
+    members = projects[0].members
+      .slice()
+      .sort((a, b) => a.last.localeCompare(b.last))
+      .map((member, i) =>
+        <PersonModal key={`person-${i.toString()}`} person={member} />
+      );
   } catch (err) {
     return <div />;
   }

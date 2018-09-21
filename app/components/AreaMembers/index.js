@@ -24,12 +24,14 @@ import Wrapper from './Wrapper';
 function AreaMembers({ data: { researchAreas } }) {
   let members;
   try {
-    members = researchAreas[0].teamMembers.map((member, i) => { // eslint-disable-line
-
-      return (
-        <PersonModal key={`person-${i.toString()}`} person={member} />
-      );
-    });
+    members = researchAreas[0].teamMembers
+      .slice()
+      .sort((a, b) => a.last.localeCompare(b.last))
+      .map((member, i) => { // eslint-disable-line
+        return (
+          <PersonModal key={`person-${i.toString()}`} person={member} />
+        );
+      });
   } catch (err) {
     members = [];
   }

@@ -43,7 +43,10 @@ class AreaMembersIe extends React.Component { // eslint-disable-line react/prefe
     const { researchAreas } = this.state;
     let members;
     try {
-      members = researchAreas.map((area) => area.fields.teamMembers.map((member, i) => <PersonModal isIE key={`person-${i.toString()}`} person={member.fields} />));
+      members = researchAreas.map((area) => area.fields.teamMembers
+      .slice()
+      .sort((a, b) => a.last.localeCompare(b.last))
+      .map((member, i) => <PersonModal isIE key={`person-${i.toString()}`} person={member.fields} />));
     } catch (err) {
       members = [];
     }

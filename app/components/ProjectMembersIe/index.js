@@ -45,9 +45,12 @@ class ProjectMembersIe extends React.Component { // eslint-disable-line react/pr
     let copyString;
     try {
       copyString = project.researchTeamCopy ? project.researchTeamCopy : 'Meet the Ocean Wise Research team behind this project';
-      members = project.members.map((member, i) =>
-        <PersonModal isIE key={`person-${i.toString()}`} person={member.fields} />
-      );
+      members = project.members
+        .slice()
+        .sort((a, b) => a.last.localeCompare(b.last))
+        .map((member, i) =>
+          <PersonModal isIE key={`person-${i.toString()}`} person={member.fields} />
+        );
     } catch (err) {
       return <div />;
     }
