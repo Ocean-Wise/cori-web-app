@@ -37,7 +37,7 @@ function Links() {
         <Row>
           <H4>
             <A to="research/vancouver-aquarium" noStyle>
-              Vancouver Aquarium
+              Vancouver Aquarium  Research
             </A>
           </H4>
           <A to="/program/marine-mammal-energetics-and-ecology">
@@ -52,7 +52,7 @@ function Links() {
         </Row>
         <Row>
           <H4>
-            Working Groups
+            Spotlights
           </H4>
           <A to="/research/arctic">
             Arctic
