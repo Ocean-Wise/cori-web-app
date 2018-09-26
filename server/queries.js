@@ -218,7 +218,8 @@ function handleLingcodSurvey(data) {
     db.any(`INSERT INTO lingcod(divera, diverb, divedate, generalLocation, specificLocation, bottomTime, nests, additionalComments) VALUES ('${JSON.stringify(data.divera)}', '${JSON.stringify(data.diverb)}', '${JSON.stringify(data.divedate)}', '${JSON.stringify(data.generalLocation)}', '${JSON.stringify(data.specificLocation)}', '${JSON.stringify(data.bottomTime)}', '${JSON.stringify(data.nests)}', '${JSON.stringify(data.additionalComments)}')`)
       .then(() => {
         const subject = 'New survey submission for Lingcod';
-        const content = new helper.Content('text/plain', `Diver A:\n\n\t\tName: ${data.divera.name}\n\n\t\tAddress: ${data.divera.address}\n\n\t\tPhone: ${data.divera.phone}\n\n\t\tEmail: ${data.divera.email}\n\n\nDiver B:\n\n\t\tName: ${data.diverb.name}\n\n\t\tAddress: ${data.diverb.address}\n\n\t\tPhone: ${data.diverb.phone}\n\n\t\tEmail: ${data.diverb.email}\n\n\nGeneral Location: ${data.generalLocation}\n\nSpecific Location: ${data.specificLocation}\n\nGPS: ${data.gps}\n\nBottom Time: ${data.bottomTime}\n\nNests:\n\n${JSON.stringify(data.nests, null, 2)}\n\n\n\nAdditional Comments:${data.additionalComments}`);
+        // eslint-disable-next-line
+        const content = new helper.Content('text/plain', `Diver A:\n\n\t\tName: ${data.divera.name}\n\n\t\tAddress: ${data.divera.address}\n\n\t\tPhone: ${data.divera.phone}\n\n\t\tEmail: ${data.divera.email}\n\n\nDiver B:\n\n\t\tName: ${data.diverb.name}\n\n\t\tAddress: ${data.diverb.address}\n\n\t\tPhone: ${data.diverb.phone}\n\n\t\tEmail: ${data.diverb.email}\n\n\nGeneral Location: ${data.generalLocation}\n\nSpecific Location: ${data.specificLocation}\n\nGPS: ${data.gps}\n\nBottom Time: ${data.bottomTime}\n\nNests:\n\n${JSON.stringify(data.nests, null, 2).replace(/\"([^(\")"]+)\":/g, "$1:")}\n\n\n\nAdditional Comments:${data.additionalComments}`);
         const mail = new helper.Mail(fromEmail, subject, toEmail, content);
         const request = sg.emptyRequest({
           method: 'POST',
@@ -244,7 +245,8 @@ function handleRockfishSurvey(data) {
     db.any(`INSERT INTO rockfish(divedate, name, address, phone, email, generalLocation, specificLocation, bottomTime, averageDepth, maximumDepth, speciesData, additionalComments) VALUES ('${data.divedate}', '${data.name}', '${data.address}', '${data.phone}', '${data.email}', '${data.generalLocation}', '${data.specificLocation}', '${data.bottomTime}', '${data.averageDepth}', '${data.maximumDepth}', '${JSON.stringify(data.speciesData)}', '${data.additionalComments}')`)
       .then(() => {
         const subject = 'New survey submission for Rockfish';
-        const content = new helper.Content('text/plain', `Date: ${data.divedate}\n\nName: ${data.name}\n\nAddress: ${data.address}\n\nPhone: ${data.phone}\n\nEmail: ${data.email}\n\nGeneral Location: ${data.generalLocation}\n\nSpecific Location: ${data.specificLocation}\n\nBottom Time ${data.bottomTime}\n\nAverage Depth: ${data.averageDepth}\n\nMaximum Depth: ${data.maximumDepth}\n\nSpecies Data:\n\n${JSON.stringify(data.speciesData, null, 2)}\n\n\nAdditional Comments: ${data.additionalComments}`);
+        // eslint-disable-next-line
+        const content = new helper.Content('text/plain', `Date: ${data.divedate}\n\nName: ${data.name}\n\nAddress: ${data.address}\n\nPhone: ${data.phone}\n\nEmail: ${data.email}\n\nGeneral Location: ${data.generalLocation}\n\nSpecific Location: ${data.specificLocation}\n\nBottom Time ${data.bottomTime}\n\nAverage Depth: ${data.averageDepth}\n\nMaximum Depth: ${data.maximumDepth}\n\nSpecies Data:\n\n${JSON.stringify(data.speciesData, null, 2).replace(/\"([^(\")"]+)\":/g, "$1:")}\n\n\nAdditional Comments: ${data.additionalComments}`);
         const mail = new helper.Mail(fromEmail, subject, toEmail, content);
         const request = sg.emptyRequest({
           method: 'POST',
