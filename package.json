@@ -198,7 +198,8 @@
       "bluebird",
       "pg-promise",
       "cloudinary",
-      "newrelic"
+      "newrelic",
+      "fs"
     ],
     "include": [
       "core-js",
@@ -302,6 +303,7 @@
     "reselect": "3.0.1",
     "rss-parser": "^3.1.2",
     "sanitize.css": "4.1.0",
+    "sendgrid": "^5.2.3",
     "styled-components": "2.0.0",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "warning": "3.0.0",

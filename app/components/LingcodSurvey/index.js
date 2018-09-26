@@ -34,7 +34,7 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
       diverb: {
         name: '',
         address: '',
-        phane: '',
+        phone: '',
         email: '',
       },
       generalLocation: '',
@@ -56,6 +56,7 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
     const nests = [];
     for (let i = 0; i < 20; i += 1) {
       nests.push({
+        number: i,
         depth: '',
         size: '',
         condition: '',
@@ -182,7 +183,7 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
         <div style={{ borderBottom: '1px solid black', paddingBottom: 15 }}>
           <div style={{ paddingTop: 22 }}>{i + 1}</div>
           <div key={i} style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-            <TextField placeholder="Depth" margin="normal" value={this.state.nests[i].depth} onChange={this.handleText(`nest-${i}-depth`)} />
+            <TextField placeholder="Depth (in meters)" margin="normal" value={this.state.nests[i].depth} onChange={this.handleText(`nest-${i}-depth`)} />
             <Select value={this.state.nests[i].size} displayEmpty onChange={this.handleText(`nest-${i}-size`)}>
               <MenuItem value="">Size</MenuItem>
               <MenuItem value="W = watermelon">W = watermelon</MenuItem>
