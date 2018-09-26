@@ -98,6 +98,8 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
       this.setState({ submitting: false, error: 'Diver A email required' });
     } else if (generalLocation === '') {
       this.setState({ submitting: false, error: 'Please select an area' });
+    } else if (divedate === '') {
+      this.setState({ submitting: false, error: 'Please select a date' });
     } else {
       this.props.upload({ files: [], name: 'lingcod', surveyData });
       this.setState({ submitted: true, submitting: false });

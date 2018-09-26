@@ -129,6 +129,8 @@ class RockfishSurvey extends React.Component { // eslint-disable-line react/pref
       this.setState({ submitting: false, error: 'Email field required' });
     } else if (generalLocation === '') {
       this.setState({ submitting: false, error: 'Please select an area' });
+    } else if (divedate === '') {
+      this.setState({ submitting: false, error: 'Please select a date' });
     } else {
       this.props.upload({ files: [], name: 'rockfish', surveyData });
       this.setState({ submitting: false, submitted: true, error: '' });
