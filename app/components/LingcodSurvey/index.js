@@ -47,6 +47,7 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
       additionalComments: '',
       submitting: false,
       submitted: false,
+      error: '',
     };
   }
 
@@ -77,6 +78,7 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
 
 
   doUpload = async () => {
+    this.setState({ submitting: true });
     const { divera, diverb, divedate, generalLocation, specificLocation, gps, bottomType, bottomTime, nests, additionalComments } = this.state;
     const surveyData = {
       divera,
@@ -90,8 +92,16 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
       nests,
       additionalComments,
     };
-
-    this.props.upload({ files: [], name: 'lingcod', surveyData });
+    if (divera.name === '') {
+      this.setState({ submitting: false, error: 'Diver A name required' });
+    } else if (divera.email === '') {
+      this.setState({ submitting: false, error: 'Diver A email required' });
+    } else if (generalLocation === '') {
+      this.setState({ submitting: false, error: 'Please select an area' });
+    } else {
+      this.props.upload({ files: [], name: 'lingcod', surveyData });
+      this.setState({ submitted: true, submitting: false });
+    }
   }
 
   handleText = (type) => (event) => {
@@ -242,7 +252,7 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
                     <h4>Diver A:</h4>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                    <TextField placeholder="Full Name" margin="normal" value={this.state.divera.name} onChange={this.handleText('diverAName')} />
+                    <TextField placeholder="Full Name (Required)" margin="normal" value={this.state.divera.name} onChange={this.handleText('diverAName')} />
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
                     <TextField placeholder="Address" margin="normal" value={this.state.divera.address} onChange={this.handleText('diverAAddress')} />
@@ -251,7 +261,7 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
                     <TextField placeholder="Phone" margin="normal" value={this.state.divera.phone} onChange={this.handleText('diverAPhone')} />
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                    <TextField placeholder="Email" margin="normal" value={this.state.divera.email} onChange={this.handleText('diverAEmail')} />
+                    <TextField placeholder="Email (Required)" margin="normal" value={this.state.divera.email} onChange={this.handleText('diverAEmail')} />
                   </div>
                 </div>
                 <div style={{ display: 'inline', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
@@ -274,7 +284,7 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
               </div>
               <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap', marginTop: 15 }}>
                 <Select fullWidth value={this.state.generalLocation} displayEmpty onChange={this.handleText('generalLocation')}>
-                  <MenuItem value="">Area...</MenuItem>
+                  <MenuItem value="">Area (Required)</MenuItem>
                   <MenuItem value="Howe Sound">Howe Sound</MenuItem>
                   <MenuItem value="Haida Gwaii">Haida Gwaii</MenuItem>
                   <MenuItem value="Burrard Inlet">Burrard Inlet</MenuItem>
@@ -325,6 +335,11 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
               {nestList}
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', margin: '0 auto', maxWidth: 580, paddingTop: 20 }}>
+              {this.state.error !== '' ? (
+                <div style={{ color: 'red' }}>
+                  {this.state.error}
+                </div>
+              ) : ''}
               <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', paddingTop: 20 }}>
                 {submitButton}
               </div>

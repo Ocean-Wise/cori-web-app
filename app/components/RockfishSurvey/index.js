@@ -95,6 +95,7 @@ class RockfishSurvey extends React.Component { // eslint-disable-line react/pref
         unknownBaby: '',
       },
       additionalComments: '',
+      error: '',
     };
   }
 
@@ -104,6 +105,7 @@ class RockfishSurvey extends React.Component { // eslint-disable-line react/pref
 
 
   doUpload = async () => {
+    this.setState({ submitting: true });
     const { divedate, name, address, phone, email, generalLocation, specificLocation, gps, bottomType, bottomTime, averageDepth, maximumDepth, speciesData, additionalComments } = this.state;
     const surveyData = {
       divedate,
@@ -121,8 +123,16 @@ class RockfishSurvey extends React.Component { // eslint-disable-line react/pref
       speciesData,
       additionalComments,
     };
-
-    this.props.upload({ files: [], name: 'rockfish', surveyData });
+    if (name === '') {
+      this.setState({ submitting: false, error: 'Name field required' });
+    } else if (email === '') {
+      this.setState({ submitting: false, error: 'Email field required' });
+    } else if (generalLocation === '') {
+      this.setState({ submitting: false, error: 'Please select an area' });
+    } else {
+      this.props.upload({ files: [], name: 'rockfish', surveyData });
+      this.setState({ submitting: false, submitted: true, error: '' });
+    }
   }
 
   handleInstructions = (dir) => {
@@ -206,7 +216,7 @@ class RockfishSurvey extends React.Component { // eslint-disable-line react/pref
                       <TextField fullWidth type="date" label="Dive date:" InputLabelProps={{ shrink: true }} value={this.state.divedate} onChange={this.handleText('divedate')} />
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                      <TextField fullWidth placeholder="Name" margin="normal" value={this.state.name} onChange={this.handleText('name')} />
+                      <TextField fullWidth placeholder="Name (Required)" margin="normal" value={this.state.name} onChange={this.handleText('name')} />
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
                       <TextField fullWidth placeholder="Address" margin="normal" value={this.state.address} onChange={this.handleText('address')} />
@@ -215,11 +225,11 @@ class RockfishSurvey extends React.Component { // eslint-disable-line react/pref
                       <TextField fullWidth placeholder="Phone" margin="normal" value={this.state.phone} onChange={this.handleText('phone')} />
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                      <TextField fullWidth placeholder="Email" margin="normal" value={this.state.email} onChange={this.handleText('email')} />
+                      <TextField fullWidth placeholder="Email (Required)" margin="normal" value={this.state.email} onChange={this.handleText('email')} />
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
                       <Select fullWidth value={this.state.generalLocation} displayEmpty onChange={this.handleText('generalLocation')}>
-                        <MenuItem value="">Area...</MenuItem>
+                        <MenuItem value="">Area (Required)</MenuItem>
                         <MenuItem value="Howe Sound">Howe Sound</MenuItem>
                         <MenuItem value="Haida Gwaii">Haida Gwaii</MenuItem>
                         <MenuItem value="Burrard Inlet">Burrard Inlet</MenuItem>
@@ -530,6 +540,11 @@ class RockfishSurvey extends React.Component { // eslint-disable-line react/pref
                   </div>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', margin: '0 auto', maxWidth: 580, paddingTop: 20 }}>
+                  {this.state.error !== '' ? (
+                    <div style={{ color: 'red' }}>
+                      {this.state.error}
+                    </div>
+                  ) : ''}
                   <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', paddingTop: 20 }}>
                     {submitButton}
                   </div>

@@ -32,6 +32,7 @@ class AnnapolisSurvey extends React.Component { // eslint-disable-line react/pre
       comments: '',
       submitting: false,
       submitted: false,
+      error: '',
     };
   }
 
