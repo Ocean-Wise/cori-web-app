@@ -71,6 +71,11 @@ class InitiativeFeatured extends React.PureComponent { // eslint-disable-line re
           this.setState({ story });
           return false;
         }
+      })
+      .catch(() => {
+        story = <div></div>;
+        this.setState({ story });
+        return false;
       });
   }
 

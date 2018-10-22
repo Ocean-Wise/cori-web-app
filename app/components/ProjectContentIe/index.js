@@ -52,21 +52,7 @@ class ProjectContentIe extends React.Component { // eslint-disable-line react/pr
        * so we want to ensure that a redirection occurs if they are landed on for whatever reason
        */
       if (!project.showOnSite && (project.showOnSite !== undefined || project.showOnSite !== null)) {
-        return (
-          <div>
-            <Section>
-              <Grid fluid>
-                <Row>
-                  <Col xl={2} />
-                  <Col xl={8}>
-                    <H1>{project.projectTitle}</H1>
-                    <H3>Coming soon!</H3>
-                  </Col>
-                </Row>
-              </Grid>
-            </Section>
-          </div>
-        );
+        return <div />;
       }
       // This project has no text content and is just an externalLink or pdf,
       // but has been navigated to somehow. So redirect to the proper external URL
