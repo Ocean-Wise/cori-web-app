@@ -127,7 +127,7 @@ class ProgramContentIe extends React.Component { // eslint-disable-line react/pr
           data.sponsors.map((sponsorObj, j) => { // eslint-disable-line
             const sponsor = sponsorObj.fields;
             sponsors.push(
-              <Col sm={3} xs={5} key={`sponsor-${j.toString()}`} style={{ margin: 'auto' }}>
+              <Col sm={3} xs={8} key={`sponsor-${j.toString()}`} style={{ margin: 'auto' }}>
                 <img style={{ padding: '16px 0 32px 0', maxWidth: '150px', margin: 'auto', height: '100% !important' }} src={sponsor.logo.fields.file.url} alt={sponsor.logo.fields.title} />
               </Col>
             );

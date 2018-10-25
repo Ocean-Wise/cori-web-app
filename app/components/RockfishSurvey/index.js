@@ -6,6 +6,7 @@
 
 import React from 'react';
 // import styled from 'styled-components';
+import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import Button from 'components/Button/Loadable';
 import TextField from '@material-ui/core/TextField';
@@ -191,6 +192,9 @@ class RockfishSurvey extends React.Component { // eslint-disable-line react/pref
 
     return (
       <div style={{ overflowX: 'hidden' }}>
+        <Helmet>
+          <meta name="description" content=" Ocean Wise® can use your help with our Annual Rockfish Abundance Survey. Either count or video the rockfish you see on you dive and submit your data online to participate." />
+        </Helmet>
         <Hero src={HEROIMG} alt={`${this.props.slug}-hero`} />
         <div style={{ padding: 20 }}>
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '0 auto', maxWidth: 1100 }}>
@@ -327,7 +331,7 @@ class RockfishSurvey extends React.Component { // eslint-disable-line react/pref
                       </Row>
                       <Row>
                         <Col xl={2}>
-                          Vermillion
+                          Vermilion
                         </Col>
                         <Col xl={3} style={{ marginLeft: 5, marginRight: 5 }}>
                           <TextField placeholder="# Adults" margin="normal" value={this.state.vermillionAdults} onChange={this.handleText('vermillionAdults')} />

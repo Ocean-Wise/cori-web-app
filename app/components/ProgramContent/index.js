@@ -105,7 +105,7 @@ function ProgramContent({ data: { programs }, slug, match, width }) {
       try {
         initiative.sponsors.map((sponsor, j) => { // eslint-disable-line
           sponsors.push(
-            <Col sm={3} xs={5} key={`sponsor-${j.toString()}`} style={{ margin: 'auto' }}>
+            <Col sm={3} xs={8} key={`sponsor-${j.toString()}`} style={{ margin: 'auto' }}>
               <img style={{ padding: '16px 0 32px 0', maxWidth: '150px', margin: 'auto', height: '100% !important' }} src={sponsor.logo.url} alt={sponsor.logo.title} />
             </Col>
           );

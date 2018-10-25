@@ -179,7 +179,8 @@ function handleSurveyData(req, res) {
         break;
     }
   } catch (err) {
-    res.status(500).send(err.stack);
+    console.error(err.stack);
+    res.status(500).send(err);
   }
 }
 
@@ -208,7 +209,7 @@ function handleAnnapolisSurvey(data, images) {
       })
       .catch((err) => rej(err.stack, images));
     } catch (err) {
-      rej(err.stack);
+      rej(err);
     }
   });
 }
@@ -235,7 +236,7 @@ function handleLingcodSurvey(data) {
         });
       })
       .catch((err) => {
-        rej(err.stack);
+        rej(err);
       });
   });
 }
@@ -256,13 +257,14 @@ function handleRockfishSurvey(data) {
 
         sg.API(request, (error) => {
           if (error) {
-            rej(error.stack);
+            rej(error);
           }
           res();
         });
       })
       .catch((err) => {
-        rej(err.stack);
+        console.error(err.stack);
+        rej(err);
       });
   });
 }
