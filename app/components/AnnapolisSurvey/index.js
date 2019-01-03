@@ -8,13 +8,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'components/Button/Loadable';
 import TextField from '@material-ui/core/TextField';
+import SurveyCopy from 'components/SurveyCopy';
 
 import Dropzone from 'react-dropzone';
 
 import Hero from './Hero';
 import HEROIMG from './hero.jpg';
-import H1 from './H1';
-import Divider from './Divider';
 import P from './P';
 
 class AnnapolisSurvey extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -178,24 +177,7 @@ class AnnapolisSurvey extends React.Component { // eslint-disable-line react/pre
         </Hero>
         <div style={{ padding: 20 }}>
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '0 auto', maxWidth: 1100 }}>
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '0 auto', marginBottom: 20 }}>
-              <H1>Annapolis</H1>
-              <Divider />
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', margin: '0 auto', marginBottom: 20 }}>
-              <P>
-                Things are settling fast on the <a href="https://www.aquablog.ca/2015/05/the-sinking-of-the-hmcs-annapolis" target="_blank">HMCS Annapolis</a> and we need your help.
-              </P>
-              <P>
-                We are asking divers to share their pictures and videos with us to help with the Annapolis Biodiversity Index Study A.B.I.S. (pronounce &ldquo;abyss&rdquo;). The study is expected to run for five years, allowing for a fantastic and continuing opportunity for diver involvement in the program.
-              </P>
-              <P>
-                In only five dives we&rsquo;ve recorded 29 species on the ship and are building abundance scores. In May we saw anemones, barnacles, gobies and shiner perch. By July there were hydroids, tubeworms and encrusting bryozoans. September brought diatoms, new hydroids, spot prawns, coonstripe shrimp, purple and mottled stars, rockfish, pollock, greenlings and sculpins. In November we saw red algae, spiral bryozoans, stout shrimp and pygmy rock crabs.
-              </P>
-              <P>
-                It helps to know where your photos were taken so try to be aware of your surroundings. Structural features on the ship, depth and whether you are diving on the port or starboard side are very useful tools. Landmarks like the front deck forward or aft of the splash wall, in the bridge, hangar, mortar bay, engine room, boiler room or on the flight deck, are all useful information. Don&rsquo;t be concerned about the quality of your photos. We can get details from all photos and videos.
-              </P>
-            </div>
+            <SurveyCopy surveySlug="annapolis" />
             <div style={{ maxWidth: 580, margin: '0 auto' }}>
               <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
                 <TextField error={this.state.nameError} placeholder="Full Name (required)" margin="normal" value={this.state.name} onChange={this.handleText('name')} />
