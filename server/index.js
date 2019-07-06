@@ -2,7 +2,6 @@
 
 // Load in our environment variables
 require('dotenv').config();
-require('newrelic');
 
 const express = require('express');
 const logger = require('./logger');
@@ -11,7 +10,10 @@ const argv = require('./argv');
 const port = require('./port');
 const setup = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
-const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
+const ngrok =
+  (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel
+    ? require('ngrok')
+    : false;
 const resolve = require('path').resolve;
 const bodyParser = require('body-parser');
 const sslRedirect = require('heroku-ssl-redirect');
@@ -24,11 +26,13 @@ const theApi = require('./api');
 
 // Configuration for basic authentication
 const auth = require('http-auth');
-const internalAuth = auth.basic({
-  realm: 'all',
-}, (username, password, callback) => {
-  callback(username === 'admin' && password === 'coriresearch'); // Set the username and password here
-}
+const internalAuth = auth.basic(
+  {
+    realm: 'all',
+  },
+  (username, password, callback) => {
+    callback(username === 'admin' && password === 'coriresearch'); // Set the username and password here
+  }
 );
 
 app.use(sslRedirect());
@@ -39,14 +43,13 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 app.use('/api', theApi);
 
 if (process.env.NODE_ENV === 'production') {
-  algoliaInit()
-    .then(() => {
-      // In production we need to pass these values in instead of relying on webpack
-      setup(app, {
-        outputPath: resolve(process.cwd(), 'build'),
-        publicPath: '/',
-      });
+  algoliaInit().then(() => {
+    // In production we need to pass these values in instead of relying on webpack
+    setup(app, {
+      outputPath: resolve(process.cwd(), 'build'),
+      publicPath: '/',
     });
+  });
 } else {
   setup(app, {
     outputPath: resolve(process.cwd(), 'build'),
@@ -72,13 +75,16 @@ app.listen(port, host, (err) => {
 
   // Connect to ngrok in dev mode
   if (ngrok) {
-    ngrok.connect(port, (innerErr, url) => {
-      if (innerErr) {
-        return logger.error(innerErr);
-      }
+    ngrok.connect(
+      port,
+      (innerErr, url) => {
+        if (innerErr) {
+          return logger.error(innerErr);
+        }
 
-      logger.appStarted(port, prettyHost, url);
-    });
+        logger.appStarted(port, prettyHost, url);
+      }
+    );
   } else {
     logger.appStarted(port, prettyHost);
   }

@@ -24,7 +24,11 @@ function handleGenerateCitation(req, res) {
       req.body.list.forEach((item) => {
         citations.add(item.citation);
       });
-      output = citations.get({ style: 'citation-fas', type: 'string', append: '\n' });
+      output = citations.get({
+        style: 'citation-fas',
+        type: 'string',
+        append: '\n',
+      });
     } else {
       citations.add(req.body.citations);
       switch (req.body.style) {
@@ -35,7 +39,10 @@ function handleGenerateCitation(req, res) {
           output = citations.get({ style: 'citation-apa', type: 'string' });
           break;
         case 'vancouver':
-          output = citations.get({ style: 'citation-vancouver', type: 'string' });
+          output = citations.get({
+            style: 'citation-vancouver',
+            type: 'string',
+          });
           break;
         case 'fas':
           output = citations.get({ style: 'citation-fas', type: 'string' });
@@ -83,8 +90,23 @@ async function handleGetRSS(req, res) {
 
         // Format the date string
         const date = new Date(item.pubDate);
-        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        itemData.date = `${months[date.getMonth()]} ${item.pubDate.match(/\d{2}/g)[0]}, ${date.getFullYear()}`;
+        const months = [
+          'January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September',
+          'October',
+          'November',
+          'December',
+        ];
+        itemData.date = `${months[date.getMonth()]} ${
+          item.pubDate.match(/\d{2}/g)[0]
+        }, ${date.getFullYear()}`;
 
         itemData.link = item.link;
         itemData.teaser = item.contentSnippet;
@@ -92,7 +114,9 @@ async function handleGetRSS(req, res) {
         // Find all URLs in the content field
         // The first URL is always the post's featured image
         // so set that to our img value
-        itemData.img = item.content.match(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/gm)[0]; // eslint-disable-line
+        itemData.img = item.content.match(
+          /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/gm
+        )[0]; // eslint-disable-line
 
         // Push to the appropriate array
         // If this is the first RSS item, feature the story
@@ -117,8 +141,23 @@ async function handleGetRSS(req, res) {
 
         // Format the date string
         const date = new Date(item.pubDate);
-        const months = ['January', 'Feburary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        data.date = `${months[date.getMonth()]} ${item.pubDate.match(/\d{2}/g)[0]}, ${date.getFullYear()}`;
+        const months = [
+          'January',
+          'Feburary',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September',
+          'October',
+          'November',
+          'December',
+        ];
+        data.date = `${months[date.getMonth()]} ${
+          item.pubDate.match(/\d{2}/g)[0]
+        }, ${date.getFullYear()}`;
 
         output.push(data);
       });
@@ -151,7 +190,9 @@ function handleSurveyData(req, res) {
             .then((result) => {
               // The files were uploaded to Cloudinary successfully, so store the survey data and CDN URLs in the appropriate database table
               handleAnnapolisSurvey(req.body.data.survey, result)
-                .then(() => res.status(200).send('Successfully uploaded survey data')) // Success! Return status 200
+                .then(() =>
+                  res.status(200).send('Successfully uploaded survey data')
+                ) // Success! Return status 200
                 .catch((err) => res.status(500).send(err));
             })
             .catch((err) => {
@@ -160,7 +201,9 @@ function handleSurveyData(req, res) {
         } else {
           // The User has not chosen to upload any files, so just upload the survey data
           handleAnnapolisSurvey(req.body.data.survey, '')
-            .then(() => res.status(200).send('Successfully uploaded survey data'))
+            .then(() =>
+              res.status(200).send('Successfully uploaded survey data')
+            )
             .catch((err) => res.status(500).send(err));
         }
         break;
@@ -175,7 +218,11 @@ function handleSurveyData(req, res) {
           .catch((err) => res.status(500).send(err));
         break;
       default:
-        res.status(500).send('You must supply the surveyName value and associated data object');
+        res
+          .status(500)
+          .send(
+            'You must supply the surveyName value and associated data object'
+          );
         break;
     }
   } catch (err) {
@@ -189,25 +236,38 @@ function handleAnnapolisSurvey(data, images) {
   return new Promise((res, rej) => {
     try {
       const stringImages = JSON.stringify(images);
-      db.any(`INSERT INTO annapolis(name, email, divedate, images, videolink, comments) VALUES ('${data.name}', '${data.email}', '${data.divedate}', '${stringImages}', '${data.videoLink}', '${data.comments}')`)
-      .then(() => {
-        const subject = 'New survey submission for Annapolis';
-        const content = new helper.Content('text/plain', `Name: ${data.name}\n\nEmail: ${data.email}\n\nDive date: ${data.divedate}\n\nImages:\n\n${images.map((image) => `${image.url} \n\n`)}\n\nVideo Link: ${data.videoLink}\n\nComments: ${data.comments}`);
-        const mail = new helper.Mail(fromEmail, subject, toEmail, content);
-        const request = sg.emptyRequest({
-          method: 'POST',
-          path: '/v3/mail/send',
-          body: mail.toJSON(),
-        });
+      db.any(
+        `INSERT INTO annapolis(name, email, divedate, images, videolink, comments) VALUES ('${
+          data.name
+        }', '${data.email}', '${data.divedate}', '${stringImages}', '${
+          data.videoLink
+        }', '${data.comments}')`
+      )
+        .then(() => {
+          const subject = 'New survey submission for Annapolis';
+          const content = new helper.Content(
+            'text/plain',
+            `Name: ${data.name}\n\nEmail: ${data.email}\n\nDive date: ${
+              data.divedate
+            }\n\nImages:\n\n${images.map(
+              (image) => `${image.url} \n\n`
+            )}\n\nVideo Link: ${data.videoLink}\n\nComments: ${data.comments}`
+          );
+          const mail = new helper.Mail(fromEmail, subject, toEmail, content);
+          const request = sg.emptyRequest({
+            method: 'POST',
+            path: '/v3/mail/send',
+            body: mail.toJSON(),
+          });
 
-        sg.API(request, (error) => {
-          if (error) {
-            rej(error.stack, images);
-          }
-          res();
-        });
-      })
-      .catch((err) => rej(err.stack, images));
+          sg.API(request, (error) => {
+            if (error) {
+              rej(error.stack, images);
+            }
+            res();
+          });
+        })
+        .catch((err) => rej(err.stack, images));
     } catch (err) {
       rej(err);
     }
@@ -216,11 +276,84 @@ function handleAnnapolisSurvey(data, images) {
 
 function handleLingcodSurvey(data) {
   return new Promise((res, rej) => {
-    db.any(`INSERT INTO lingcod(divera, diverb, divedate, generalLocation, specificLocation, bottomTime, nests, additionalComments) VALUES ('${JSON.stringify(data.divera)}', '${JSON.stringify(data.diverb)}', '${JSON.stringify(data.divedate)}', '${JSON.stringify(data.generalLocation)}', '${JSON.stringify(data.specificLocation)}', '${JSON.stringify(data.bottomTime)}', '${JSON.stringify(data.nests)}', '${JSON.stringify(data.additionalComments)}')`)
+    db.any(
+      `INSERT INTO lingcod(divera, diverb, divedate, generalLocation, specificLocation, bottomTime, nests, additionalComments) VALUES ('${JSON.stringify(
+        data.divera
+      )}', '${JSON.stringify(data.diverb)}', '${JSON.stringify(
+        data.divedate
+      )}', '${JSON.stringify(data.generalLocation)}', '${JSON.stringify(
+        data.specificLocation
+      )}', '${JSON.stringify(data.bottomTime)}', '${JSON.stringify(
+        data.nests
+      )}', '${JSON.stringify(data.additionalComments)}')`
+    )
       .then(() => {
         const subject = 'New survey submission for Lingcod';
+
+        let text = '';
+        if (data.divedate) {
+          text += `Survey/Dive Date: ${data.divedate}\n\n\n`;
+        }
+        text += `Diver A:\n\n\t\tName: ${data.divera.name}\n\n\t\t`;
+        if (data.divera.address) {
+          text += `Address: ${data.divera.address}\n\n\t\t`;
+        }
+        if (data.divera.phone) {
+          text += `Phone: ${data.divera.phone}\n\n\t\t`;
+        }
+        text += `Email: ${data.divera.email}\n\n\n`;
+        if (data.diverb.name) {
+          text += `Diver B:\n\n\t\tName: ${data.diverb.name}\n\n\t\t`;
+        }
+        if (data.diverb.phone) {
+          text += `Phone: ${data.diverb.phone}\n\n\t\t`;
+        }
+        if (data.diverb.email) {
+          text += `Email: ${data.diverb.email}\n\n`;
+        }
+        text += '\n';
+
+        if (data.generalLocation) {
+          text += `General Location: ${data.generalLocation}\n\n`;
+        }
+        if (data.specificLocation) {
+          text += `Specific Location: ${data.specificLocation}\n\n`;
+        }
+        if (data.gps) {
+          text += `GPS: ${data.gps}\n\n`;
+        }
+        if (data.bottomType) {
+          text += `Bottom Type: ${data.bottomType}\n\n`;
+        }
+        if (data.bottomTime) {
+          text += `Bottom Time: ${data.bottomTime}\n\n`;
+        }
+        if (data.nests) {
+          const nests = data.nests
+            .filter((n) => {
+              let show = false;
+              if (n.depth) show = true;
+              if (n.size) show = true;
+              if (n.condition) show = true;
+              if (n.situation) show = true;
+              if (n.guard) show = true;
+              return show;
+            })
+            .map((n) => {
+              n.number += 1;
+              return n;
+            });
+          text += `Nests:\n\n${JSON.stringify(nests, null, 2).replace(
+            /\"([^(\")"]+)\":/g,
+            '$1:'
+          )}\n\n\n\n`;
+        }
+        if (data.additionalComments) {
+          text += `Additional Comments: ${data.additionalComments}`;
+        }
+
         // eslint-disable-next-line
-        const content = new helper.Content('text/plain', `Diver A:\n\n\t\tName: ${data.divera.name}\n\n\t\tAddress: ${data.divera.address}\n\n\t\tPhone: ${data.divera.phone}\n\n\t\tEmail: ${data.divera.email}\n\n\nDiver B:\n\n\t\tName: ${data.diverb.name}\n\n\t\tAddress: ${data.diverb.address}\n\n\t\tPhone: ${data.diverb.phone}\n\n\t\tEmail: ${data.diverb.email}\n\n\nGeneral Location: ${data.generalLocation}\n\nSpecific Location: ${data.specificLocation}\n\nGPS: ${data.gps}\n\nBottom Time: ${data.bottomTime}\n\nNests:\n\n${JSON.stringify(data.nests, null, 2).replace(/\"([^(\")"]+)\":/g, "$1:")}\n\n\n\nAdditional Comments:${data.additionalComments}`);
+        const content = new helper.Content('text/plain', text);
         const mail = new helper.Mail(fromEmail, subject, toEmail, content);
         const request = sg.emptyRequest({
           method: 'POST',
@@ -243,11 +376,40 @@ function handleLingcodSurvey(data) {
 
 function handleRockfishSurvey(data) {
   return new Promise((res, rej) => {
-    db.any(`INSERT INTO rockfish(divedate, name, address, phone, email, generalLocation, specificLocation, bottomTime, averageDepth, maximumDepth, speciesData, additionalComments) VALUES ('${data.divedate}', '${data.name}', '${data.address}', '${data.phone}', '${data.email}', '${data.generalLocation}', '${data.specificLocation}', '${data.bottomTime}', '${data.averageDepth}', '${data.maximumDepth}', '${JSON.stringify(data.speciesData)}', '${data.additionalComments}')`)
+    db.any(
+      `INSERT INTO rockfish(divedate, name, address, phone, email, generalLocation, specificLocation, bottomTime, averageDepth, maximumDepth, speciesData, additionalComments) VALUES ('${
+        data.divedate
+      }', '${data.name}', '${data.address}', '${data.phone}', '${
+        data.email
+      }', '${data.generalLocation}', '${data.specificLocation}', '${
+        data.bottomTime
+      }', '${data.averageDepth}', '${data.maximumDepth}', '${JSON.stringify(
+        data.speciesData
+      )}', '${data.additionalComments}')`
+    )
       .then(() => {
         const subject = 'New survey submission for Rockfish';
         // eslint-disable-next-line
-        const content = new helper.Content('text/plain', `Date: ${data.divedate}\n\nName: ${data.name}\n\nAddress: ${data.address}\n\nPhone: ${data.phone}\n\nEmail: ${data.email}\n\nGeneral Location: ${data.generalLocation}\n\nSpecific Location: ${data.specificLocation}\n\nBottom Time ${data.bottomTime}\n\nAverage Depth: ${data.averageDepth}\n\nMaximum Depth: ${data.maximumDepth}\n\nSpecies Data:\n\n${JSON.stringify(data.speciesData, null, 2).replace(/\"([^(\")"]+)\":/g, "$1:")}\n\n\nAdditional Comments: ${data.additionalComments}`);
+        const content = new helper.Content(
+          'text/plain',
+          `Date: ${data.divedate}\n\nName: ${data.name}\n\nAddress: ${
+            data.address
+          }\n\nPhone: ${data.phone}\n\nEmail: ${
+            data.email
+          }\n\nGeneral Location: ${
+            data.generalLocation
+          }\n\nSpecific Location: ${data.specificLocation}\n\nBottom Time ${
+            data.bottomTime
+          }\n\nAverage Depth: ${data.averageDepth}\n\nMaximum Depth: ${
+            data.maximumDepth
+          }\n\nSpecies Data:\n\n${JSON.stringify(
+            data.speciesData,
+            null,
+            2
+          ).replace(/\"([^(\")"]+)\":/g, '$1:')}\n\n\nAdditional Comments: ${
+            data.additionalComments
+          }`
+        );
         const mail = new helper.Mail(fromEmail, subject, toEmail, content);
         const request = sg.emptyRequest({
           method: 'POST',
@@ -290,24 +452,29 @@ async function handleUploadFiles(data, surveyName) {
       // Get the base64 data
       const base64 = data[i].base64;
       // Await for the upload to complete before continuing loop
-      await cloudinary.v2.uploader.upload(base64, { folder: surveyName }, (error, result) => { // eslint-disable-line
-        if (result) {
-          // Push publicId and url into array
-          uploadRes.push({ id: result.public_id, url: result.url });
-          // If we have uploaded all the files resolve the promise
-          if (uploadRes.length === uploadLen) {
-            resolve(uploadRes);
+      await cloudinary.v2.uploader.upload(
+        base64,
+        { folder: surveyName },
+        (error, result) => {
+          // eslint-disable-line
+          if (result) {
+            // Push publicId and url into array
+            uploadRes.push({ id: result.public_id, url: result.url });
+            // If we have uploaded all the files resolve the promise
+            if (uploadRes.length === uploadLen) {
+              resolve(uploadRes);
+            }
+          } else if (error) {
+            console.log(error.stack); // eslint-disable-line
+            // We had an error so reject the promise
+            reject(error);
           }
-        } else if (error) {
-          console.log(error.stack); // eslint-disable-line
-          // We had an error so reject the promise
-          reject(error);
         }
-      });
+      );
     }
   })
-  .then((result) => result)
-  .catch((error) => error);
+    .then((result) => result)
+    .catch((error) => error);
 
   // Waits until promise is resolved before sending back response to the caller
   const upload = await multipleUpload;

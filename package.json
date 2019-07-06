@@ -18,7 +18,7 @@
     "analyze": "node ./internals/scripts/analyze.js",
     "extract-intl": "babel-node --presets env,stage-0 -- ./internals/scripts/extract-intl.js",
     "npmcheckversion": "node ./internals/scripts/npmcheckversion.js",
-    "preinstall": "npm run npmcheckversion && cd citation-js && npm install && npm run compile && npm run dist:main && cd ..",
+    "preinstall": "npm run npmcheckversion && cd citation-js && mkdir -p build && npm install && npm run compile && npm run dist:main && cd ..",
     "postinstall": "npm run build:dll",
     "prebuild": "npm run build:clean",
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color --progress --hide-modules --display-optimization-bailout",
@@ -198,7 +198,6 @@
       "bluebird",
       "pg-promise",
       "cloudinary",
-      "newrelic",
       "sendgrid"
     ],
     "include": [
@@ -270,7 +269,6 @@
     "ip": "1.1.5",
     "lodash": "4.17.4",
     "minimist": "1.2.0",
-    "newrelic": "^4.8.1",
     "pg-promise": "^8.4.5",
     "prop-types": "15.5.10",
     "ramda": "^0.25.0",

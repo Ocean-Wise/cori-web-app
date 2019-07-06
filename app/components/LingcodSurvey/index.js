@@ -1,8 +1,8 @@
 /**
-*
-* LingcodSurvey
-*
-*/
+ *
+ * LingcodSurvey
+ *
+ */
 
 import React from 'react';
 // import styled from 'styled-components';
@@ -17,9 +17,11 @@ import Hero from './Hero';
 import HEROIMG from './hero.jpg';
 import P from './P';
 
-class LingcodSurvey extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class LingcodSurvey extends React.Component {
+  // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
+    this.childDiv = React.createRef();
     this.state = {
       divedate: '',
       dateError: '',
@@ -65,20 +67,30 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
     this.setState({ nests });
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps !== this.props) {
-  //     this.updateSubmitted();
-  //   }
-  // }
+  componentDidMount() {
+    setTimeout(() => {
+      this.childDiv.current.scrollIntoView({ behavior: 'smooth' });
+    }, 500);
+  }
 
   updateSubmitted = () => {
     this.setState({ submitted: this.props.submitted });
-  }
-
+  };
 
   doUpload = async () => {
     this.setState({ submitting: true });
-    const { divera, diverb, divedate, generalLocation, specificLocation, gps, bottomType, bottomTime, nests, additionalComments } = this.state;
+    const {
+      divera,
+      diverb,
+      divedate,
+      generalLocation,
+      specificLocation,
+      gps,
+      bottomType,
+      bottomTime,
+      nests,
+      additionalComments,
+    } = this.state;
     const surveyData = {
       divera,
       diverb,
@@ -100,10 +112,11 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
     } else if (divedate === '') {
       this.setState({ submitting: false, error: 'Please select a date' });
     } else {
+      // console.log(surveyData);
       this.props.upload({ files: [], name: 'lingcod', surveyData });
       this.setState({ submitted: true, submitting: false });
     }
-  }
+  };
 
   handleText = (type) => (event) => {
     if (type.includes('diverA')) {
@@ -164,15 +177,25 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
     } else {
       this.setState({ [type]: event.target.value });
     }
-  }
+  };
 
   render() {
     const submitButton = this.state.submitted ? ( // eslint-disable-line
-      <P><strong>Thank you for your submission!</strong></P>
+      <P>
+        <strong>Thank you for your submission!</strong>
+        <br />
+        <center>
+          <Button onClick={() => window.location.reload()}>
+            Submit another survey
+          </Button>
+        </center>
+      </P>
     ) : this.state.submitting ? (
       <Button id="upload">Submitting...</Button>
     ) : (
-      <Button id="upload" onClick={this.doUpload}>Submit Survey</Button>
+      <Button id="upload" onClick={this.doUpload}>
+        Submit Survey
+      </Button>
     );
 
     const nestList = [];
@@ -180,30 +203,85 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
       nestList.push(
         <div style={{ borderBottom: '1px solid black', paddingBottom: 15 }}>
           <div style={{ paddingTop: 22 }}>{i + 1}</div>
-          <div key={i} style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-            <TextField placeholder="Depth (in meters)" margin="normal" value={this.state.nests[i].depth} onChange={this.handleText(`nest-${i}-depth`)} />
-            <Select value={this.state.nests[i].size} displayEmpty onChange={this.handleText(`nest-${i}-size`)}>
+          <div
+            key={i}
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+            }}
+          >
+            <TextField
+              placeholder="Depth (in feet)"
+              margin="normal"
+              value={this.state.nests[i].depth}
+              onChange={this.handleText(`nest-${i}-depth`)}
+            />
+            <Select
+              value={this.state.nests[i].size}
+              displayEmpty
+              onChange={this.handleText(`nest-${i}-size`)}
+              style={{
+                display: 'block',
+                position: 'static',
+              }}
+            >
               <MenuItem value="">Size</MenuItem>
               <MenuItem value="W = watermelon">W = watermelon</MenuItem>
               <MenuItem value="C = cantaloupe">C = cantaloupe</MenuItem>
               <MenuItem value="G = grapefruit">G = grapefruit</MenuItem>
             </Select>
-            <Select value={this.state.nests[i].condition} displayEmpty onChange={this.handleText(`nest-${i}-condition`)}>
+            <Select
+              value={this.state.nests[i].condition}
+              displayEmpty
+              onChange={this.handleText(`nest-${i}-condition`)}
+              style={{
+                display: 'block',
+                position: 'static',
+              }}
+            >
               <MenuItem value="">Condition</MenuItem>
-              <MenuItem value="N = new (white, pink)">N = new (white, pink)</MenuItem>
-              <MenuItem value="E = eyed (dark grey)">E = eyed (dark grey)</MenuItem>
+              <MenuItem value="N = new (white, pink)">
+                N = new (white, pink)
+              </MenuItem>
+              <MenuItem value="E = eyed (dark grey)">
+                E = eyed (dark grey)
+              </MenuItem>
               <MenuItem value="R = rotten">R = rotten</MenuItem>
             </Select>
-            <Select value={this.state.nests[i].situation} displayEmpty onChange={this.handleText(`nest-${i}-situation`)}>
+            <Select
+              value={this.state.nests[i].situation}
+              displayEmpty
+              onChange={this.handleText(`nest-${i}-situation`)}
+              style={{
+                display: 'block',
+                position: 'static',
+              }}
+            >
               <MenuItem value="">Situation</MenuItem>
-              <MenuItem value="S = secure in crevice">S = secure in crevice</MenuItem>
-              <MenuItem value="L = loose in crevice">L = loose in crevice</MenuItem>
+              <MenuItem value="S = secure in crevice">
+                S = secure in crevice
+              </MenuItem>
+              <MenuItem value="L = loose in crevice">
+                L = loose in crevice
+              </MenuItem>
               <MenuItem value="O = out in open">O = out in open</MenuItem>
             </Select>
-            <Select value={this.state.nests[i].guard} displayEmpty onChange={this.handleText(`nest-${i}-guard`)}>
+            <Select
+              value={this.state.nests[i].guard}
+              displayEmpty
+              onChange={this.handleText(`nest-${i}-guard`)}
+              style={{
+                display: 'block',
+                position: 'static',
+              }}
+            >
               <MenuItem value="">Nest-Guarding Male</MenuItem>
               <MenuItem value="P = male present">P = male present</MenuItem>
-              <MenuItem value="P2 = male guarding multiple egg masses">P2 = male guarding multiple egg masses</MenuItem>
+              <MenuItem value="P2 = male guarding multiple egg masses">
+                P2 = male guarding multiple egg masses
+              </MenuItem>
               <MenuItem value="A = absent male">A = absent male</MenuItem>
             </Select>
           </div>
@@ -212,91 +290,325 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
     }
 
     return (
-      <div style={{ overflowX: 'hidden' }}>
+      <div
+        style={{ overflowX: 'hidden' }}
+        className="lingcod-survey"
+        ref={this.childDiv}
+      >
         <Hero src={HEROIMG} alt={`${this.props.slug}-hero`} />
         <div style={{ padding: 20 }}>
-          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '0 auto', maxWidth: 1100 }}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              margin: '0 auto',
+              maxWidth: 1100,
+            }}
+          >
             <SurveyCopy surveySlug="lingcod" />
-            <div style={{ maxWidth: 580, margin: '0 auto' }}>
-              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+            <div style={{ margin: '0 auto', position: 'relative' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  flexWrap: 'wrap',
+                }}
+              >
                 <h3>Note:</h3>
-                <P>Please enter the substrate types you encountered on your dive in the comments box at the end of the form below, thank you!</P>
+                <P style={{ margin: 'auto 0', marginLeft: 10 }}>
+                  Please enter the substrate types you encountered on your dive
+                  in the comments box at the end of the form below, thank you!
+                </P>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                <TextField error={this.state.dateError} type="date" label="Dive Date (required)" InputLabelProps={{ shrink: true }} value={this.state.divedate} onChange={this.handleText('divedate')} />
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                <div style={{ display: 'inline', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                  <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-evenly',
+                  flexWrap: 'wrap',
+                }}
+              >
+                <div
+                  style={{
+                    display: 'inline',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    flexWrap: 'wrap',
+                  }}
+                >
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      flexWrap: 'wrap',
+                    }}
+                  >
                     <h4>Diver A:</h4>
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                    <TextField placeholder="Full Name (Required)" margin="normal" value={this.state.divera.name} onChange={this.handleText('diverAName')} />
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      flexWrap: 'wrap',
+                    }}
+                  >
+                    <TextField
+                      placeholder="Full Name (Required)"
+                      margin="normal"
+                      value={this.state.divera.name}
+                      onChange={this.handleText('diverAName')}
+                    />
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                    <TextField placeholder="Address" margin="normal" value={this.state.divera.address} onChange={this.handleText('diverAAddress')} />
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      flexWrap: 'wrap',
+                    }}
+                  >
+                    <TextField
+                      placeholder="Address"
+                      margin="normal"
+                      value={this.state.divera.address}
+                      onChange={this.handleText('diverAAddress')}
+                    />
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                    <TextField placeholder="Phone" margin="normal" value={this.state.divera.phone} onChange={this.handleText('diverAPhone')} />
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      flexWrap: 'wrap',
+                    }}
+                  >
+                    <TextField
+                      placeholder="Phone"
+                      margin="normal"
+                      value={this.state.divera.phone}
+                      onChange={this.handleText('diverAPhone')}
+                    />
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                    <TextField placeholder="Email (Required)" margin="normal" value={this.state.divera.email} onChange={this.handleText('diverAEmail')} />
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      flexWrap: 'wrap',
+                    }}
+                  >
+                    <TextField
+                      placeholder="Email (Required)"
+                      margin="normal"
+                      value={this.state.divera.email}
+                      onChange={this.handleText('diverAEmail')}
+                    />
                   </div>
                 </div>
-                <div style={{ display: 'inline', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                  <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+                <div
+                  style={{
+                    display: 'inline',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    flexWrap: 'wrap',
+                  }}
+                >
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      flexWrap: 'wrap',
+                    }}
+                  >
                     <h4>Diver B:</h4>
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                    <TextField placeholder="Full Name" margin="normal" value={this.state.diverb.name} onChange={this.handleText('diverAName')} />
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      flexWrap: 'wrap',
+                    }}
+                  >
+                    <TextField
+                      placeholder="Full Name"
+                      margin="normal"
+                      value={this.state.diverb.name}
+                      onChange={this.handleText('diverBName')}
+                    />
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                    <TextField placeholder="Address" margin="normal" value={this.state.diverb.address} onChange={this.handleText('diverAAddress')} />
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      flexWrap: 'wrap',
+                    }}
+                  >
+                    <TextField
+                      placeholder="Address"
+                      margin="normal"
+                      value={this.state.diverb.address}
+                      onChange={this.handleText('diverBAddress')}
+                    />
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                    <TextField placeholder="Phone" margin="normal" value={this.state.diverb.phone} onChange={this.handleText('diverBPhone')} />
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      flexWrap: 'wrap',
+                    }}
+                  >
+                    <TextField
+                      placeholder="Phone"
+                      margin="normal"
+                      value={this.state.diverb.phone}
+                      onChange={this.handleText('diverBPhone')}
+                    />
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                    <TextField placeholder="Email" margin="normal" value={this.state.diverb.email} onChange={this.handleText('diverBEmail')} />
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      flexWrap: 'wrap',
+                    }}
+                  >
+                    <TextField
+                      placeholder="Email"
+                      margin="normal"
+                      value={this.state.diverb.email}
+                      onChange={this.handleText('diverBEmail')}
+                    />
                   </div>
                 </div>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap', marginTop: 15 }}>
-                <Select fullWidth value={this.state.generalLocation} displayEmpty onChange={this.handleText('generalLocation')}>
+              <div
+                style={{
+                  marginTop: 20,
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  flexWrap: 'wrap',
+                }}
+              >
+                <TextField
+                  error={this.state.dateError}
+                  type="date"
+                  label="Dive Date (required)"
+                  InputLabelProps={{ shrink: true }}
+                  value={this.state.divedate}
+                  onChange={this.handleText('divedate')}
+                />
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  flexWrap: 'wrap',
+                  marginTop: 15,
+                }}
+              >
+                <Select
+                  fullWidth
+                  value={this.state.generalLocation}
+                  displayEmpty
+                  onChange={this.handleText('generalLocation')}
+                >
                   <MenuItem value="">Area (Required)</MenuItem>
                   <MenuItem value="Howe Sound">Howe Sound</MenuItem>
                   <MenuItem value="Haida Gwaii">Haida Gwaii</MenuItem>
                   <MenuItem value="Burrard Inlet">Burrard Inlet</MenuItem>
                   <MenuItem value="Saanich Inlet">Saanich Inlet</MenuItem>
-                  <MenuItem value="Strait of Georgia Southern Gulf Islands">Strait of Georgia Southern Gulf Islands</MenuItem>
-                  <MenuItem value="Inside Southern Gulf Islands">Inside Southern Gulf Islands</MenuItem>
+                  <MenuItem value="Strait of Georgia Southern Gulf Islands">
+                    Strait of Georgia Southern Gulf Islands
+                  </MenuItem>
+                  <MenuItem value="Inside Southern Gulf Islands">
+                    Inside Southern Gulf Islands
+                  </MenuItem>
                   <MenuItem value="San Juan Islands">San Juan Islands</MenuItem>
                   <MenuItem value="Barkley Sound">Barkley Sound</MenuItem>
-                  <MenuItem value="NE Vancouver Island">NE Vancouver Island</MenuItem>
+                  <MenuItem value="NE Vancouver Island">
+                    NE Vancouver Island
+                  </MenuItem>
                   <MenuItem value="Central Coast">Central Coast</MenuItem>
-                  <MenuItem value="Strait of Juan de Fuca">Strait of Juan de Fuca</MenuItem>
+                  <MenuItem value="Strait of Juan de Fuca">
+                    Strait of Juan de Fuca
+                  </MenuItem>
                   <MenuItem value="Campbell River">Campbell River</MenuItem>
-                  <MenuItem value="Northern Gulf Islands">Northern Gulf Islands</MenuItem>
-                  <MenuItem value="Sunshine Coast North">Sunshine Coast North</MenuItem>
-                  <MenuItem value="Sunshine Coast South">Sunshine Coast South</MenuItem>
+                  <MenuItem value="Northern Gulf Islands">
+                    Northern Gulf Islands
+                  </MenuItem>
+                  <MenuItem value="Sunshine Coast North">
+                    Sunshine Coast North
+                  </MenuItem>
+                  <MenuItem value="Sunshine Coast South">
+                    Sunshine Coast South
+                  </MenuItem>
                   <MenuItem value="Nanaimo">Nanaimo</MenuItem>
                   <MenuItem value="Sechelt">Sechelt</MenuItem>
                   <MenuItem value="Jervis Inlet">Jervis Inlet</MenuItem>
                   <MenuItem value="Parksville">Parksville</MenuItem>
                   <MenuItem value="Victoria">Victoria</MenuItem>
                   <MenuItem value="Cape Lazo North">Cape Lazo North</MenuItem>
-                  <MenuItem value="Agamemnon Channel">Agamemnon Channel</MenuItem>
+                  <MenuItem value="Agamemnon Channel">
+                    Agamemnon Channel
+                  </MenuItem>
                   <MenuItem value="Other">Other</MenuItem>
                 </Select>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                <TextField placeholder="Specific Location" margin="normal" fullWidth value={this.state.specificLocation} onChange={this.handleText('specificLocation')} />
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  flexWrap: 'wrap',
+                }}
+              >
+                <TextField
+                  placeholder="Specific Location"
+                  margin="normal"
+                  fullWidth
+                  value={this.state.specificLocation}
+                  onChange={this.handleText('specificLocation')}
+                />
               </div>
-              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                <TextField placeholder="GPS (decimal degrees)" margin="normal" fullWidth value={this.state.gps} onChange={this.handleText('gps')} />
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  flexWrap: 'wrap',
+                }}
+              >
+                <TextField
+                  placeholder="GPS (decimal degrees)"
+                  margin="normal"
+                  fullWidth
+                  value={this.state.gps}
+                  onChange={this.handleText('gps')}
+                />
               </div>
-              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                <Select value={this.state.bottomType} displayEmpty onChange={this.handleText('bottomType')}>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  flexWrap: 'wrap',
+                }}
+              >
+                <Select
+                  value={this.state.bottomType}
+                  displayEmpty
+                  onChange={this.handleText('bottomType')}
+                >
                   <MenuItem value="">Dominant Bottom Type</MenuItem>
                   <MenuItem value="wall">wall</MenuItem>
                   <MenuItem value="boulders">boulders</MenuItem>
@@ -305,21 +617,64 @@ class LingcodSurvey extends React.Component { // eslint-disable-line react/prefe
                   <MenuItem value="bedrock">Bedrock</MenuItem>
                 </Select>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                <TextField placeholder="Bottom Time" margin="normal" fullWidth value={this.state.bottomTime} onChange={this.handleText('bottomTime')} />
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                <TextField placeholder="Additional Comments" fullWidth margin="normal" value={this.state.additionalComments} onChange={this.handleText('additionalComments')} multiline />
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  flexWrap: 'wrap',
+                }}
+              >
+                <TextField
+                  placeholder="Bottom Time"
+                  margin="normal"
+                  fullWidth
+                  value={this.state.bottomTime}
+                  onChange={this.handleText('bottomTime')}
+                />
               </div>
               {nestList}
+              <div
+                style={{
+                  marginTop: 20,
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  flexWrap: 'wrap',
+                }}
+              >
+                <TextField
+                  placeholder="Additional Comments"
+                  fullWidth
+                  margin="normal"
+                  value={this.state.additionalComments}
+                  onChange={this.handleText('additionalComments')}
+                  multiline
+                />
+              </div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', margin: '0 auto', maxWidth: 580, paddingTop: 20 }}>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                margin: '0 auto',
+                maxWidth: 580,
+                paddingTop: 20,
+              }}
+            >
               {this.state.error !== '' ? (
-                <div style={{ color: 'red' }}>
-                  {this.state.error}
-                </div>
-              ) : ''}
-              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', paddingTop: 20 }}>
+                <div style={{ color: 'red' }}>{this.state.error}</div>
+              ) : (
+                ''
+              )}
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  paddingTop: 20,
+                }}
+              >
                 {submitButton}
               </div>
             </div>
