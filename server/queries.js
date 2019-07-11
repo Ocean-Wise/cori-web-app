@@ -374,6 +374,19 @@ function handleLingcodSurvey(data) {
   });
 }
 
+// Remove empty values and return a new object
+function removeEmpty(obj) {
+  return Object.keys(obj)
+    .filter((k) => obj[k]) // Remove empty items
+    .reduce(
+      (newObj, k) =>
+        typeof obj[k] === 'object' // Non empty item is object, which could have empty keys
+          ? { ...newObj, [k]: removeEmpty(obj[k]) } // so add it and recurse
+          : { ...newObj, [k]: obj[k] }, // Add a non empty key value pair
+      {}
+    );
+}
+
 function handleRockfishSurvey(data) {
   return new Promise((res, rej) => {
     db.any(
@@ -389,6 +402,7 @@ function handleRockfishSurvey(data) {
     )
       .then(() => {
         const subject = 'New survey submission for Rockfish';
+        const species = removeEmpty(data.speciesData);
         // eslint-disable-next-line
         const content = new helper.Content(
           'text/plain',
@@ -402,13 +416,10 @@ function handleRockfishSurvey(data) {
             data.bottomTime
           }\n\nAverage Depth: ${data.averageDepth}\n\nMaximum Depth: ${
             data.maximumDepth
-          }\n\nSpecies Data:\n\n${JSON.stringify(
-            data.speciesData,
-            null,
-            2
-          ).replace(/\"([^(\")"]+)\":/g, '$1:')}\n\n\nAdditional Comments: ${
-            data.additionalComments
-          }`
+          }\n\nSpecies Data:\n\n${JSON.stringify(species, null, 2).replace(
+            /\"([^(\")"]+)\":/g,
+            '$1:'
+          )}\n\n\nAdditional Comments: ${data.additionalComments}`
         );
         const mail = new helper.Mail(fromEmail, subject, toEmail, content);
         const request = sg.emptyRequest({
