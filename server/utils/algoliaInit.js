@@ -12,7 +12,10 @@ const client = contentful.createClient({
 });
 // Algolia client init
 const algoliasearch = require('algoliasearch');
-const algolia = algoliasearch(process.env.ALGOLIA_APPID, process.env.ALGOLIA_APIKEY);
+const algolia = algoliasearch(
+  process.env.ALGOLIA_APPID,
+  process.env.ALGOLIA_APIKEY
+);
 const pubIndex = algolia.initIndex('Publications');
 const peepIndex = algolia.initIndex('People');
 const raIndex = algolia.initIndex('ResearchAreas');
@@ -48,9 +51,10 @@ function slugify(str) {
     out = out.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
   }
 
-  out = out.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-      .replace(/\s+/g, '-') // collapse whitespace and replace by -
-      .replace(/-+/g, '-'); // collapse dashes
+  out = out
+    .replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+    .replace(/\s+/g, '-') // collapse whitespace and replace by -
+    .replace(/-+/g, '-'); // collapse dashes
 
   return out;
 }
@@ -117,196 +121,216 @@ function deleteProj() {
 
 function getPubs() {
   return new Promise((res, rej) => {
-    client.getEntries({
-      content_type: 'researchPapers',
-      limit: 1000,
-    })
-    .then((content) => {
-      content.items.forEach(async (entry) => {
-        try {
-          let link;
-          if (entry.fields.pdf) {
-            link = entry.fields.pdf.fields.file.url;
-          } else if (entry.fields.url) {
-            link = entry.fields.url;
-          } else if (entry.fields.doi) {
-            try {
-              await axios.get(`https://api.semanticscholar.org/v1/paper/${entry.fields.doi}`)
-                .then((pub) => {
-                  link = pub.data.url;
-                });
-            } catch (err) {
-              link = null;
+    client
+      .getEntries({
+        content_type: 'researchPapers',
+        limit: 1000,
+      })
+      .then((content) => {
+        content.items.forEach(async (entry) => {
+          try {
+            let link;
+            if (entry.fields.pdf) {
+              link = entry.fields.pdf.fields.file.url;
+            } else if (entry.fields.url) {
+              link = entry.fields.url;
+            } else if (entry.fields.doi) {
+              try {
+                await axios
+                  .get(
+                    `https://api.semanticscholar.org/v1/paper/${
+                      entry.fields.doi
+                    }`
+                  )
+                  .then((pub) => {
+                    link = pub.data.url;
+                  });
+              } catch (err) {
+                link = null;
+              }
             }
+            let abstract;
+            if (entry.fields.abstract) {
+              abstract = entry.fields.abstract;
+            } else {
+              abstract = '';
+            }
+            // Create our Publication object for the current entry
+            const keywords = entry.fields.keywords
+              ? entry.fields.keywords.join()
+              : '';
+            const item = {
+              objectID: entry.fields.slug,
+              slug: link,
+              authors: entry.fields.authors.join(';'),
+              title: entry.fields.title,
+              abstract,
+              keywords,
+              year: parseInt(entry.fields.year, 10),
+            };
+            // Add our Publication object to our publications array
+            publications.push(item);
+          } catch (err) {
+            // Error
+            rej(err);
           }
-          let abstract;
-          if (entry.fields.abstract) {
-            abstract = entry.fields.abstract;
-          } else {
-            abstract = '';
-          }
-          // Create our Publication object for the current entry
-          const keywords = entry.fields.keywords ? entry.fields.keywords.join() : '';
-          const item = {
-            objectID: entry.fields.slug,
-            slug: link,
-            authors: entry.fields.authors.join(';'),
-            title: entry.fields.title,
-            abstract,
-            keywords,
-            year: parseInt(entry.fields.year, 10),
-          };
-          // Add our Publication object to our publications array
-          publications.push(item);
-        } catch (err) {
-          // Error
-          rej(err);
-        }
+        });
+        res();
       });
-      res();
-    });
   });
 }
 
 function getPeeps() {
   return new Promise((res) => {
-    client.getEntries({
-      content_type: 'people',
-      limit: 1000,
-    })
-    .then((content) => {
-      content.items.forEach((entry) => {
-        const title = `${entry.fields.first} ${entry.fields.last}`;
-        const slug = `/team#${entry.fields.slug}`;
-        const item = {
-          objectID: `${slugify(entry.fields.first)}-${slugify(entry.fields.last)}`,
-          slug,
-          title,
-          first: entry.fields.first,
-          last: entry.fields.last,
-          image: entry.fields.image.fields.file.url,
-        };
-        peeps.push(item);
+    client
+      .getEntries({
+        content_type: 'people',
+        limit: 1000,
+      })
+      .then((content) => {
+        content.items.forEach((entry) => {
+          const title = `${entry.fields.first} ${entry.fields.last}`;
+          const slug = `/team#${entry.fields.slug}`;
+          const { fields } = entry.fields.image;
+          const item = {
+            objectID: `${slugify(entry.fields.first)}-${slugify(
+              entry.fields.last
+            )}`,
+            slug,
+            title,
+            first: entry.fields.first,
+            last: entry.fields.last,
+            image: fields ? fields.file.url : null,
+          };
+          peeps.push(item);
+        });
+        res();
       });
-      res();
-    });
   });
 }
 
 function getRA() {
   return new Promise((res) => {
-    client.getEntries({
-      content_type: 'researchArea',
-      limit: 1000,
-    })
-    .then((content) => {
-      content.items.forEach((entry) => {
-        const item = {
-          objectID: entry.fields.slug,
-          title: entry.fields.title,
-          slug: `/research/${entry.fields.slug}`,
-        };
-        areas.push(item);
+    client
+      .getEntries({
+        content_type: 'researchArea',
+        limit: 1000,
+      })
+      .then((content) => {
+        content.items.forEach((entry) => {
+          const item = {
+            objectID: entry.fields.slug,
+            title: entry.fields.title,
+            slug: `/research/${entry.fields.slug}`,
+          };
+          areas.push(item);
+        });
+        res();
       });
-      res();
-    });
   });
 }
 
 function getProg() {
   return new Promise((res) => {
-    client.getEntries({
-      content_type: 'program',
-      limit: 1000,
-    })
-    .then((content) => {
-      content.items.forEach((entry) => {
-        const item = {
-          objectID: entry.fields.slug,
-          title: entry.fields.title,
-          slug: `/program/${entry.fields.slug}`,
-        };
-        progs.push(item);
+    client
+      .getEntries({
+        content_type: 'program',
+        limit: 1000,
+      })
+      .then((content) => {
+        content.items.forEach((entry) => {
+          const item = {
+            objectID: entry.fields.slug,
+            title: entry.fields.title,
+            slug: `/program/${entry.fields.slug}`,
+          };
+          progs.push(item);
+        });
+        res();
       });
-      res();
-    });
   });
 }
 
 function getIntv() {
   return new Promise((res) => {
-    client.getEntries({
-      content_type: 'initiative',
-      limit: 1000,
-    })
-    .then((content) => {
-      content.items.forEach(async (entry) => {
-        let progSlug = '';
-        await client.getEntries({
-          links_to_entry: entry.sys.id,
-        })
-        .then((link) => {
-          try {
-            progSlug = link.items[0].fields.slug;
-          } catch (err) {
-            progSlug = '';
-          }
+    client
+      .getEntries({
+        content_type: 'initiative',
+        limit: 1000,
+      })
+      .then((content) => {
+        content.items.forEach(async (entry) => {
+          let progSlug = '';
+          await client
+            .getEntries({
+              links_to_entry: entry.sys.id,
+            })
+            .then((link) => {
+              try {
+                progSlug = link.items[0].fields.slug;
+              } catch (err) {
+                progSlug = '';
+              }
+            });
+          const item = {
+            objectID: entry.fields.slug,
+            title: entry.fields.title,
+            slug:
+              progSlug !== ''
+                ? `/program/${progSlug}#${entry.fields.slug}`
+                : null,
+          };
+          intv.push(item);
         });
-        const item = {
-          objectID: entry.fields.slug,
-          title: entry.fields.title,
-          slug: progSlug !== '' ? `/program/${progSlug}#${entry.fields.slug}` : null,
-        };
-        intv.push(item);
+        res();
       });
-      res();
-    });
   });
 }
 
 function getProj() {
   return new Promise((res) => {
-    client.getEntries({
-      content_type: 'projects',
-      limit: 1000,
-    })
-    .then((content) => {
-      content.items.forEach((entry) => {
-        let externalLink = '';
-        let pdf = '';
-        if (entry.fields.externalLink) {
-          externalLink = entry.fields.externalLink;
-        }
-        if (entry.fields.pdf) {
-          pdf = entry.fields.pdf;
-        }
-        const item = {
-          objectID: entry.fields.slug,
-          title: entry.fields.projectTitle,
-          slug: `/project/${entry.fields.slug}`,
-          showOnSite: entry.fields.showOnSite,
-          externalLink,
-          pdf,
-        };
-        projs.push(item);
+    client
+      .getEntries({
+        content_type: 'projects',
+        limit: 1000,
+      })
+      .then((content) => {
+        content.items.forEach((entry) => {
+          let externalLink = '';
+          let pdf = '';
+          if (entry.fields.externalLink) {
+            externalLink = entry.fields.externalLink;
+          }
+          if (entry.fields.pdf) {
+            pdf = entry.fields.pdf;
+          }
+          const item = {
+            objectID: entry.fields.slug,
+            title: entry.fields.projectTitle,
+            slug: `/project/${entry.fields.slug}`,
+            showOnSite: entry.fields.showOnSite,
+            externalLink,
+            pdf,
+          };
+          projs.push(item);
+        });
+        res();
       });
-      res();
-    });
   });
 }
 
 function getData() {
   return new Promise((res) => {
     getPubs()
-    .then(() => getPeeps())
-    .then(() => getRA())
-    .then(() => getProg())
-    .then(() => getIntv())
-    .then(() => getProj())
-    .then(() => {
-      logger.dataGot();
-      res();
-    });
+      .then(() => getPeeps())
+      .then(() => getRA())
+      .then(() => getProg())
+      .then(() => getIntv())
+      .then(() => getProj())
+      .then(() => {
+        logger.dataGot();
+        res();
+      });
   });
 }
 
@@ -387,7 +411,13 @@ function initAlgolia() {
       .then(() => addProj())
       .then(() => {
         pubIndex.setSettings({
-          searchableAttributes: ['authors', 'title', 'keywords', 'year', 'abstract'],
+          searchableAttributes: [
+            'authors',
+            'title',
+            'keywords',
+            'year',
+            'abstract',
+          ],
         });
         peepIndex.setSettings({
           searchableAttributes: ['first', 'last', 'title'],
