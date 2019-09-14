@@ -1,7 +1,7 @@
 #import "../fragments/personInfo.graphql"
 
 query TeamQuery {
-  people(q: "order=fields.last") {
+  people(q: "order=fields.last", limit: 1000) {
     ...PersonInfo
   }
 }
